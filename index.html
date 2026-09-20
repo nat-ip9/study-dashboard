@@ -432,57 +432,180 @@ details.acc summary:hover{background:var(--surface-2)}
   position:absolute;inset:0;border-radius:14px;pointer-events:none;
   opacity:0;overflow:hidden;
 }
+.d-write-wrap.burning .d-write-area{pointer-events:none}
+.d-burn-overlay{
+  position:absolute;inset:0;border-radius:14px;pointer-events:none;
+  opacity:0;overflow:hidden;
+}
+
+/* ===== 火 ===== */
 .d-burn-overlay.fire{
-  background:radial-gradient(circle at 50% 100%, #ff6a00 0%, #ff2d55 35%, transparent 70%);
-  animation:burnFire 1.6s ease-out forwards;
+  background:
+    radial-gradient(ellipse at 50% 115%, #fff8e0 0%, #ffbb33 12%, #ff6600 30%, #cc2200 55%, transparent 80%),
+    radial-gradient(ellipse at 50% 120%, rgba(255,120,0,.6) 0%, transparent 60%);
+  mix-blend-mode:screen;
+  animation:burnFire 2s cubic-bezier(.4,0,.3,1) forwards;
+  filter:blur(0.5px);
 }
-.d-burn-overlay.water{
-  background:linear-gradient(180deg, transparent 0%, #2b6cff 40%, #00c2ff 80%, #0066ff 100%);
-  animation:burnWater 1.6s ease-out forwards;
+.d-burn-overlay.fire::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 30% 80%, rgba(255,220,120,.9) 0%, transparent 25%),
+    radial-gradient(circle at 70% 85%, rgba(255,180,60,.85) 0%, transparent 22%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,200,.95) 0%, transparent 30%);
+  animation:fireFlicker .35s infinite alternate;
 }
-.d-burn-overlay.wind{
-  background:linear-gradient(90deg, transparent 0%, rgba(255,255,255,.15) 30%, rgba(255,255,255,.4) 60%, transparent 100%);
-  animation:burnWind 1.4s ease-out forwards;
+@keyframes fireFlicker{
+  0%{opacity:.75;transform:translateX(-2px) scaleY(1)}
+  100%{opacity:1;transform:translateX(2px) scaleY(1.05)}
 }
 @keyframes burnFire{
-  0%{opacity:0;transform:translateY(30%) scale(.7)}
-  20%{opacity:.9}
-  100%{opacity:0;transform:translateY(-40%) scale(1.4)}
+  0%{opacity:0;transform:translateY(40%) scale(.75)}
+  12%{opacity:1;transform:translateY(15%) scale(.95)}
+  35%{opacity:1}
+  70%{opacity:.7;transform:translateY(-15%) scale(1.15)}
+  100%{opacity:0;transform:translateY(-50%) scale(1.35)}
+}
+
+/* ===== 水 ===== */
+.d-burn-overlay.water{
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(0,180,255,.15) 40%, rgba(0,120,220,.6) 70%, #003a7a 100%);
+  animation:burnWater 2s cubic-bezier(.5,0,.4,1) forwards;
+}
+.d-burn-overlay.water::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:100%;
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0px,
+      transparent 8px,
+      rgba(180,240,255,.35) 8px,
+      rgba(180,240,255,.35) 10px);
+  mask-image:linear-gradient(180deg, transparent 0%, transparent 30%, #000 60%, #000 100%);
+  -webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 30%, #000 60%, #000 100%);
+  animation:waterWave 1.2s ease-in-out infinite;
+}
+@keyframes waterWave{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
 }
 @keyframes burnWater{
   0%{opacity:0;transform:translateY(100%)}
-  25%{opacity:.85;transform:translateY(20%)}
-  100%{opacity:0;transform:translateY(-30%)}
-}
-@keyframes burnWind{
-  0%{opacity:0;transform:translateX(-30%)}
-  30%{opacity:.9}
-  100%{opacity:0;transform:translateX(40%)}
-}
-.d-write-wrap.burning .d-write-area{animation:textFade 1.4s ease-out forwards}
-@keyframes textFade{
-  0%{opacity:1;filter:blur(0)}
-  50%{opacity:.4;filter:blur(2px)}
-  100%{opacity:0;filter:blur(8px)}
+  15%{opacity:.9;transform:translateY(60%)}
+  45%{opacity:1;transform:translateY(20%)}
+  75%{opacity:.7;transform:translateY(-10%)}
+  100%{opacity:0;transform:translateY(-40%)}
 }
 
-.d-write-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.d-burn-btn{
-  flex:1 1 0;min-width:100px;
-  padding:11px 16px;
-  border-radius:12px;
-  border:1px solid var(--d-border);
-  background:rgba(255,255,255,.04);
-  color:var(--d-text);
-  font:inherit;font-size:13px;font-weight:650;
-  cursor:pointer;transition:.18s;
-  display:flex;align-items:center;justify-content:center;gap:6px;
+/* ===== 風 ===== */
+.d-burn-overlay.wind{
+  background:
+    linear-gradient(90deg,
+      transparent 0%,
+      rgba(255,255,255,.02) 20%,
+      rgba(255,255,255,.25) 50%,
+      rgba(255,255,255,.02) 80%,
+      transparent 100%);
+  animation:burnWind 1.8s cubic-bezier(.3,0,.4,1) forwards;
 }
-.d-burn-btn:hover:not(:disabled){background:rgba(255,154,118,.14);border-color:var(--d-accent);transform:translateY(-1px)}
-.d-burn-btn:disabled{opacity:.35;cursor:not-allowed}
-.d-burn-btn.fire:hover:not(:disabled){box-shadow:0 8px 22px -12px #ff6a00}
-.d-burn-btn.water:hover:not(:disabled){box-shadow:0 8px 22px -12px #2b6cff}
-.d-burn-btn.wind:hover:not(:disabled){box-shadow:0 8px 22px -12px #ffffff}
+.d-burn-overlay.wind::before,
+.d-burn-overlay.wind::after{
+  content:'';position:absolute;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+}
+.d-burn-overlay.wind::before{
+  top:30%;
+  box-shadow:0 30px 0 rgba(255,255,255,.35), 0 70px 0 rgba(255,255,255,.45), 0 110px 0 rgba(255,255,255,.3);
+  animation:windLine 1.2s ease-out infinite;
+}
+.d-burn-overlay.wind::after{
+  top:50%;
+  box-shadow:0 40px 0 rgba(255,255,255,.3), 0 80px 0 rgba(255,255,255,.4);
+  animation:windLine 1.4s ease-out .3s infinite;
+}
+@keyframes windLine{
+  0%{transform:translateX(-30%);opacity:0}
+  30%{opacity:1}
+  100%{transform:translateX(30%);opacity:0}
+}
+@keyframes burnWind{
+  0%{opacity:0}
+  20%{opacity:.9}
+  60%{opacity:.7}
+  100%{opacity:0}
+}
+
+/* ===== 燒掉文字動畫（三種通用） ===== */
+.d-write-wrap.burning .d-write-area{
+  animation:textFade 1.8s ease-out forwards;
+}
+@keyframes textFade{
+  0%{opacity:1;filter:blur(0) brightness(1);transform:scale(1)}
+  30%{opacity:.95;filter:blur(1px) brightness(1.3);transform:scale(1.01)}
+  60%{opacity:.5;filter:blur(3px) brightness(1.5);transform:scale(1.02)}
+  100%{opacity:0;filter:blur(10px) brightness(2);transform:scale(1.03)}
+}
+
+/* ===== 粒子（火/水/風三種） ===== */
+.d-burn-particle{
+  position:absolute;
+  pointer-events:none;
+  border-radius:50%;
+  will-change:transform, opacity;
+}
+.d-burn-particle.fire{
+  width:var(--size);height:var(--size);
+  background:radial-gradient(circle, #fff 0%, #ffdd55 35%, #ff7700 70%, transparent 100%);
+  filter:blur(.5px);
+  box-shadow:0 0 8px rgba(255,140,0,.9);
+  animation:particleFire var(--dur) cubic-bezier(.3,0,.5,1) forwards;
+  animation-delay:var(--delay);
+  opacity:0;
+}
+@keyframes particleFire{
+  0%{transform:translate(0,0) scale(.4);opacity:0}
+  10%{opacity:1}
+  70%{opacity:.9}
+  100%{transform:translate(var(--tx), var(--ty)) scale(.15);opacity:0}
+}
+.d-burn-particle.ash{
+  width:calc(var(--size)*.7);height:calc(var(--size)*.7);
+  background:radial-gradient(circle, #a8a0a0 0%, #555 60%, transparent 100%);
+  animation:particleAsh var(--dur) ease-out forwards;
+  animation-delay:var(--delay);
+  opacity:0;
+}
+@keyframes particleAsh{
+  0%{transform:translate(0,0) scale(.6);opacity:0}
+  20%{opacity:.85}
+  100%{transform:translate(var(--tx), var(--ty)) scale(.2) rotate(180deg);opacity:0}
+}
+.d-burn-particle.water{
+  width:var(--size);height:var(--size);
+  background:radial-gradient(circle, #e0f8ff 0%, #55bbff 50%, transparent 100%);
+  box-shadow:0 0 6px rgba(120,200,255,.7);
+  animation:particleWater var(--dur) cubic-bezier(.4,.1,.6,1) forwards;
+  animation-delay:var(--delay);
+  opacity:0;
+}
+@keyframes particleWater{
+  0%{transform:translate(0,0) scale(.5);opacity:0}
+  15%{opacity:.9}
+  100%{transform:translate(var(--tx), var(--ty)) scale(.8);opacity:0}
+}
+.d-burn-particle.wind{
+  width:calc(var(--size)*2.5);height:1.2px;
+  border-radius:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.85), transparent);
+  animation:particleWind var(--dur) ease-in forwards;
+  animation-delay:var(--delay);
+  opacity:0;
+}
+@keyframes particleWind{
+  0%{transform:translate(0,0) scaleX(.2);opacity:0}
+  20%{opacity:1}
+  100%{transform:translate(var(--tx), var(--ty)) scaleX(1.5);opacity:0}
+}
 
 .d-write-hint{font-size:11px;color:var(--d-text-dim);opacity:.7;margin-top:10px;text-align:center;letter-spacing:.3px}
 
@@ -1251,9 +1374,9 @@ const NAV = [
   {id:'srp',      icon:'⏰', zh:'間隔複習', en:'Spaced Revision'},
   {id:'assign',   icon:'✍️', zh:'作業追蹤', en:'Assignments'},
   {id:'assess',   icon:'📚', zh:'考試計劃', en:'Assessments'},
-  {id:'detox',    icon:'🌿', zh:'解壓空間', en:'Detox Space'},
   {id:'feedback', icon:'💬', zh:'考試反饋', en:'Feedback'},
   {id:'report',   icon:'💯', zh:'成績單',   en:'Report Cards'},
+  {id:'detox',    icon:'🌿', zh:'解壓空間', en:'Detox Space'},
   {id:'schedule', icon:'📅', zh:'課表',     en:'Schedule'},
   {id:'guide',    icon:'📋', zh:'操作指南', en:'Guide'},
   {id:'settings', icon:'⚙️', zh:'設定',     en:'Settings'}
@@ -1356,6 +1479,7 @@ const Ambience = {
     const c = this.ctx;
     const out = c.createGain();
     out.gain.value = 0;
+    out.connect(this.master);   // ← 這行是關鍵！少了它所有音效都不會發聲
 
     if (id === 'rain'){
       const src = c.createBufferSource();
@@ -1454,8 +1578,20 @@ const Ambience = {
   setVolume(id, v){
     if (!state.detoxVolumes) state.detoxVolumes = {};
     state.detoxVolumes[id] = v;
+
+    // 惰性初始化：第一次拖動滑桿就準備好音訊環境
+    if (v > 0 && !this.ctx){
+      this.init();
+    }
     if (!this.ctx) return;
-    if (!this.tracks[id] && v > 0) this.start(id);
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+
+    // 首次播放某軌 → 建立節點
+    if (v > 0 && !this.tracks[id]){
+      this.tracks[id] = this.buildTrack(id);
+    }
+
+    // 更新音量
     if (this.tracks[id]){
       const g = this.tracks[id].out.gain;
       g.cancelScheduledValues(this.ctx.currentTime);
@@ -1498,6 +1634,42 @@ const Ambience = {
     this.tracks = {};
   }
 };
+
+/* 泡泡爆破音效 */
+function popSound(){
+  try{
+    if (!Ambience.ctx){
+      if (!Ambience.init()) return;
+    }
+    if (Ambience.ctx.state === 'suspended') Ambience.ctx.resume();
+    const c = Ambience.ctx;
+    const t = c.currentTime;
+
+    // 主音：短促下滑「啵」
+    const o = c.createOscillator();
+    const g = c.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(900 + Math.random()*300, t);
+    o.frequency.exponentialRampToValueAtTime(160, t + 0.08);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.28, t + 0.008);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+    o.connect(g); g.connect(c.destination);
+    o.start(t); o.stop(t + 0.14);
+
+    // 高頻「啪」的點綴
+    const o2 = c.createOscillator();
+    const g2 = c.createGain();
+    o2.type = 'triangle';
+    o2.frequency.setValueAtTime(2200 + Math.random()*800, t);
+    o2.frequency.exponentialRampToValueAtTime(800, t + 0.03);
+    g2.gain.setValueAtTime(0.0001, t);
+    g2.gain.exponentialRampToValueAtTime(0.08, t + 0.003);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
+    o2.connect(g2); g2.connect(c.destination);
+    o2.start(t); o2.stop(t + 0.06);
+  }catch(e){}
+}
 
 const Bubbles = {
   canvas: null,
@@ -1615,6 +1787,7 @@ const Bubbles = {
       const dx = x - b.x, dy = y - b.y;
       if (dx*dx + dy*dy <= b.r*b.r){
         b.popped = 0.01;
+        popSound();   // ← 加這行
         return true;
       }
     }
@@ -3062,7 +3235,7 @@ document.addEventListener('click', e => {
       break;
     }
 
-    case 'detox-burn': {
+        case 'detox-burn': {
       const wrap = document.getElementById('dWriteWrap');
       const area = document.getElementById('dWriteArea');
       const overlay = document.getElementById('dBurnOverlay');
@@ -3074,21 +3247,64 @@ document.addEventListener('click', e => {
       wrap.classList.add('burning');
       overlay.className = 'd-burn-overlay ' + kind;
 
+      // 清除舊粒子
+      overlay.querySelectorAll('.d-burn-particle').forEach(p => p.remove());
+
+      // 生成粒子
+      const isFire  = kind === 'fire';
+      const isWater = kind === 'water';
+      const isWind  = kind === 'wind';
+      const count   = isFire ? 40 : isWater ? 26 : 30;
+
+      for (let i = 0; i < count; i++){
+        const p = document.createElement('span');
+        let type;
+        if (isFire){
+          type = Math.random() < 0.7 ? 'fire' : 'ash';
+        } else if (isWater){
+          type = 'water';
+        } else {
+          type = 'wind';
+        }
+        p.className = 'd-burn-particle ' + type;
+
+        const startX = 5 + Math.random() * 90;
+        const tx = (Math.random() - 0.5) * (isWind ? 260 : 160);
+        let ty;
+        if (isFire) ty = -(140 + Math.random() * 220);
+        else if (isWater) ty = (30 + Math.random() * 120);
+        else ty = -(40 + Math.random() * 120) * (Math.random() - 0.2);
+
+        p.style.left = startX + '%';
+        p.style.top = isWater ? '0' : '100%';
+        p.style.setProperty('--tx', tx + 'px');
+        p.style.setProperty('--ty', ty + 'px');
+        p.style.setProperty('--delay', (Math.random() * 0.7) + 's');
+        p.style.setProperty('--dur', (1.4 + Math.random() * 0.8) + 's');
+        p.style.setProperty('--size', (2 + Math.random() * 5) + 'px');
+
+        overlay.appendChild(p);
+        setTimeout(() => p.remove(), 2600);
+      }
+
+      // 鎖定按鈕
       const parentCard = wrap.closest('.d-card');
       if (parentCard){
         parentCard.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
       }
 
+      // 動畫結束後清空
       setTimeout(()=>{
         area.value = '';
         wrap.classList.remove('burning');
         overlay.className = 'd-burn-overlay';
+        overlay.querySelectorAll('.d-burn-particle').forEach(p => p.remove());
         const pc = wrap.closest('.d-card');
         if (pc){
           pc.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
         }
         area.focus();
-      }, 1600);
+      }, 2000);
       break;
     }
 
@@ -3096,15 +3312,17 @@ document.addEventListener('click', e => {
       const track = el.dataset.track;
       if (!state.detoxVolumes) state.detoxVolumes = {};
       const cur = state.detoxVolumes[track] || 0;
+
       if (cur > 0){
+        // 暫停 → 記住音量，歸零
         state.detoxVolumes['_memo_' + track] = cur;
         state.detoxVolumes[track] = 0;
         Ambience.setVolume(track, 0);
       } else {
+        // 恢復或第一次播放
         const memo = state.detoxVolumes['_memo_' + track] || 0.5;
         state.detoxVolumes[track] = memo;
         Ambience.setVolume(track, memo);
-        Ambience.start(track);
       }
       save(); render();
       break;
