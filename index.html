@@ -811,7 +811,7 @@ const RC_SUBJECTS = [
   {key:'Sciences',   crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
   {key:'PHE',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
   {key:'Humanities', crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'Biotech',    crit:['I','II','III','IV','V'], cuts:[35,30,24,19,13,8]}
+  {key:'Biotech',    crit:['I','II','III','IV','V'], cuts:[44,38,30,24,16,10]}
 ];
 
 function ibGradeFromTotal(total, cuts){
@@ -1742,7 +1742,7 @@ VIEWS.report = function(){
       const active = i < def.crit.length;
       const raw = (g.scores || [])[i];
       const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
-      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="8" step="1"
+      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="10" step="1"
         value="${v}" ${active ? '' : 'disabled'}
         data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
     }).join('');
@@ -1769,7 +1769,7 @@ VIEWS.report = function(){
     : `<div class="empty"><b>尚無評估成績 No assessment grades</b>先在上方新增一筆評估，再逐格填入各 Criterion 的分數（0–8）。</div>`;
 
   const bounds4 = [[28,'7','卓越'],[24,'6','優秀'],[19,'5','良好'],[15,'4','滿意'],[10,'3','基本'],[6,'2','不足'],[0,'1','入門']];
-  const bounds5 = [[35,'7','卓越'],[30,'6','優秀'],[24,'5','良好'],[19,'4','滿意'],[13,'3','基本'],[8,'2','不足'],[0,'1','入門']];
+  const bounds5 = [[44,'7','卓越'],[38,'6','優秀'],[30,'5','良好'],[24,'4','滿意'],[16,'3','基本'],[10,'2','不足'],[0,'1','入門']];
   const boundBlock = (title, arr) => `
     <div>
       <div class="sec-title">${title}</div>
@@ -1812,7 +1812,7 @@ VIEWS.report = function(){
     <div class="card-head"><div class="card-title">📏 MYP 等級換算表</div></div>
     <div class="grid g-2" style="gap:18px">
       ${boundBlock('4 Criterion（滿分 32）', bounds4)}
-      ${boundBlock('5 Criterion（Biotech · 滿分 40）', bounds5)}
+      ${boundBlock('5 Criterion（Biotech · 滿分 50）', bounds5)}
     </div>
   </div>`;
 };
@@ -2506,7 +2506,7 @@ document.addEventListener('input', e => {
     else {
       let n = parseInt(raw, 10);
       if (isNaN(n)) g.scores[idx] = null;
-      else g.scores[idx] = Math.max(0, Math.min(8, n));
+      else g.scores[idx] = Math.max(0, Math.min(10, n));
     }
     save();
     refreshReportSummary();
@@ -2549,7 +2549,7 @@ document.addEventListener('change', e => {
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     let v = parseInt(el.value, 10);
     if (isNaN(v)) v = null;
-    else v = Math.max(0, Math.min(8, v));
+    else v = Math.max(0, Math.min(10, v));
     g.scores[idx] = v;
     save();
     el.value = v === null ? '' : v;
