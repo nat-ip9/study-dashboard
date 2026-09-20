@@ -524,6 +524,10 @@ select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius
         <div class="sub" id="viewSub">Master Dashboard</div>
       </div>
       <div class="topbar-right">
+        <div class="today-chip" id="syncChip" title="雲端同步狀態 Cloud sync status" data-act="sync-chip" style="cursor:pointer">
+          <span class="dot" id="syncDot" style="background:var(--muted);box-shadow:none"></span>
+          <span id="syncText">本機 Local</span>
+        </div>
         <div class="today-chip"><span class="dot"></span><span id="todayDate">—</span></div>
         <div class="pomo" id="pomo">
           <span class="pomo-mode" id="pomoMode" title="點擊切換模式 Click to switch">專注 FOCUS</span>
@@ -642,6 +646,7 @@ const DEFAULT_STATE = {
   editingSchedule: false,
   editingFbId: null,
   fbAdding: false,
+  updatedAt: 0,
 
   subjects: [...DEFAULT_SUBJECTS],
   feedback: structuredClone(DEFAULT_FEEDBACK),
@@ -701,22 +706,34 @@ const DEFAULT_STATE = {
    3. STATE
    ===================================================================== */
 let state;
+
+function normalizeState(raw){
+  const base = structuredClone(DEFAULT_STATE);
+  const merged = Object.assign(base, raw || {});
+  if (!Array.isArray(merged.subjects) || !merged.subjects.length) merged.subjects = [...DEFAULT_SUBJECTS];
+  if (!Array.isArray(merged.feedback)) merged.feedback = structuredClone(DEFAULT_FEEDBACK);
+  if (!merged.schedule || typeof merged.schedule !== 'object') merged.schedule = structuredClone(DEFAULT_SCHEDULE);
+  if (!Array.isArray(merged.reportGrades)) merged.reportGrades = [];
+  if (!Array.isArray(merged.todos)) merged.todos = [];
+  if (!Array.isArray(merged.srp)) merged.srp = [];
+  if (!Array.isArray(merged.assignments)) merged.assignments = [];
+  if (!Array.isArray(merged.assessments)) merged.assessments = [];
+  if (typeof merged.updatedAt !== 'number') merged.updatedAt = 0;
+  return merged;
+}
+
 function loadState(){
   try{
     const raw = localStorage.getItem(LS_KEY);
-    if (raw){
-      const parsed = JSON.parse(raw);
-      state = Object.assign(structuredClone(DEFAULT_STATE), parsed);
-      if (!Array.isArray(state.subjects) || !state.subjects.length) state.subjects = [...DEFAULT_SUBJECTS];
-      if (!Array.isArray(state.feedback)) state.feedback = structuredClone(DEFAULT_FEEDBACK);
-      if (!state.schedule || typeof state.schedule !== 'object') state.schedule = structuredClone(DEFAULT_SCHEDULE);
-      if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
-      return;
-    }
+    if (raw){ state = normalizeState(JSON.parse(raw)); return; }
   }catch(e){ console.warn('load failed', e); }
   state = structuredClone(DEFAULT_STATE);
 }
-function save(){
+
+/* save(touch=true)：touch 代表「這是使用者的本地修改」，
+   會更新 updatedAt 時間戳，雲端同步據此判斷該推還是該拉。 */
+function save(touch = true){
+  if (touch) state.updatedAt = Date.now();
   try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){}
 }
 
@@ -808,7 +825,7 @@ function smartTips(){
 }
 
 /* =====================================================================
-   4b. REPORT CARD CALCULATION (NEW)
+   4b. REPORT CARD CALCULATION
    ===================================================================== */
 const RC_SUBJECTS = [
   {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
@@ -822,13 +839,11 @@ const RC_SUBJECTS = [
   {key:'Biotech',    crit:['I','II','III','IV','V'], cuts:[35,30,24,19,13,8]}
 ];
 
-/* 由總分換算 MYP 1–7 等級 */
 function ibGradeFromTotal(total, cuts){
   for (let i = 0; i < cuts.length; i++) if (total >= cuts[i]) return 7 - i;
   return 1;
 }
 
-/* 計算所有科目的 criterion 平均（向下取整，等同 ROUNDDOWN(AVERAGE(...))） */
 function rcCalc(){
   const grades = state.reportGrades || [];
   return RC_SUBJECTS.map(def => {
@@ -849,7 +864,6 @@ function rcCalc(){
   });
 }
 
-/* 頂部統計卡片 HTML */
 function rcStatsHTML(){
   const subjData = rcCalc();
   let sumAll = 0, cntAll = 0;
@@ -872,7 +886,6 @@ function rcStatsHTML(){
   `;
 }
 
-/* 科目 Criterion 彙總表 HTML */
 function rcSummaryHTML(){
   const subjData = rcCalc();
   const rows = subjData.map(sd => {
@@ -919,13 +932,251 @@ function rcSummaryHTML(){
   </table></div>`;
 }
 
-/* 即時刷新（不重建整個 view，避免輸入失焦） */
 function refreshReportSummary(){
   const s = document.getElementById('rcStats');
   const m = document.getElementById('rcSummary');
   if (s) s.innerHTML = rcStatsHTML();
   if (m) m.innerHTML = rcSummaryHTML();
 }
+
+/* =====================================================================
+   ☁️ 4c. CLOUD SYNC  （無 Firebase）
+   ===================================================================== */
+const CLOUD_CFG_KEY = 'nathan-cloud-cfg-v1';
+
+const Cloud = {
+  cfg: {
+    provider: 'supabase',            // supabase | jsonbin | custom
+    auto: true,
+    intervalSec: 120,
+    supabase: { url: '', anonKey: '', roomId: '' },
+    jsonbin:  { masterKey: '', binId: '' },
+    custom:   { url: '', token: '' }
+  },
+  timer: null,
+  busy: false,
+  lastSyncAt: 0,
+  status: 'idle',                    // idle | syncing | ok | error | off
+  message: '',
+
+  load(){
+    try{
+      const raw = localStorage.getItem(CLOUD_CFG_KEY);
+      if (raw) Object.assign(this.cfg, JSON.parse(raw));
+    }catch(e){}
+  },
+  persist(){
+    try{ localStorage.setItem(CLOUD_CFG_KEY, JSON.stringify(this.cfg)); }catch(e){}
+  },
+  get configured(){
+    const c = this.cfg;
+    if (c.provider === 'supabase') return !!(c.supabase.url && c.supabase.anonKey && c.supabase.roomId);
+    if (c.provider === 'jsonbin')  return !!(c.jsonbin.binId && c.jsonbin.masterKey);
+    if (c.provider === 'custom')   return !!c.custom.url;
+    return false;
+  },
+
+  /* ---------- 拉取 ---------- */
+  async pull(){
+    const c = this.cfg;
+    if (c.provider === 'supabase'){
+      const base = c.supabase.url.replace(/\/+$/,'');
+      const r = await fetch(
+        `${base}/rest/v1/study_state?room=eq.${encodeURIComponent(c.supabase.roomId)}&select=data`,
+        { headers: { apikey: c.supabase.anonKey, Authorization: `Bearer ${c.supabase.anonKey}` } }
+      );
+      if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
+      const rows = await r.json();
+      return rows[0] ? rows[0].data : null;
+    }
+    if (c.provider === 'jsonbin'){
+      const r = await fetch(`https://api.jsonbin.io/v3/b/${c.jsonbin.binId}/latest`, {
+        headers: { 'X-Master-Key': c.jsonbin.masterKey, 'X-Bin-Meta': 'false' }
+      });
+      if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
+      return await r.json();
+    }
+    if (c.provider === 'custom'){
+      const r = await fetch(c.custom.url, {
+        headers: c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {}
+      });
+      if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
+      return await r.json();
+    }
+    throw new Error('未設定同步 Not configured');
+  },
+
+  /* ---------- 推送 ---------- */
+  async push(data){
+    const c = this.cfg;
+    if (c.provider === 'supabase'){
+      const base = c.supabase.url.replace(/\/+$/,'');
+      const r = await fetch(`${base}/rest/v1/study_state`, {
+        method: 'POST',
+        headers: {
+          apikey: c.supabase.anonKey,
+          Authorization: `Bearer ${c.supabase.anonKey}`,
+          'Content-Type': 'application/json',
+          Prefer: 'resolution=merge-duplicates,return=minimal'
+        },
+        body: JSON.stringify([{ room: c.supabase.roomId, data, updated_at: new Date().toISOString() }])
+      });
+      if (!r.ok) throw new Error(`push HTTP ${r.status}`);
+      return;
+    }
+    if (c.provider === 'jsonbin'){
+      const r = await fetch(`https://api.jsonbin.io/v3/b/${c.jsonbin.binId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': c.jsonbin.masterKey },
+        body: JSON.stringify(data)
+      });
+      if (!r.ok) throw new Error(`push HTTP ${r.status}`);
+      return;
+    }
+    if (c.provider === 'custom'){
+      const r = await fetch(c.custom.url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {})
+        },
+        body: JSON.stringify(data)
+      });
+      if (!r.ok) throw new Error(`push HTTP ${r.status}`);
+      return;
+    }
+    throw new Error('未設定同步 Not configured');
+  },
+
+  /* ---------- 主同步流程 ---------- */
+  async sync(silent){
+    if (!this.configured || this.busy) return;
+    this.busy = true;
+    this.setStatus('syncing', '同步中…');
+    try{
+      const remote = await this.pull();
+      const localTs  = state.updatedAt || 0;
+      const remoteTs = (remote && remote.updatedAt) || 0;
+
+      if (!remote){
+        await this.push(state);
+        this.setStatus('ok', '已上傳雲端');
+      } else if (remoteTs > localTs){
+        // 雲端較新 → 覆蓋本地
+        state = normalizeState(remote);
+        state.editingFbId = null;
+        state.fbAdding = false;
+        state.editingSchedule = false;
+        localStorage.setItem(LS_KEY, JSON.stringify(state));
+        applyTheme();
+        render();
+        this.setStatus('ok', '已下載雲端更新');
+        if (!silent) toast('⬇️ 已同步雲端最新資料');
+      } else if (localTs > remoteTs){
+        await this.push(state);
+        this.setStatus('ok', '已上傳本地');
+      } else {
+        this.setStatus('ok', '已是最新');
+      }
+      this.lastSyncAt = Date.now();
+    }catch(err){
+      console.warn('sync error', err);
+      this.setStatus('error', err.message || '同步失敗');
+    }finally{
+      this.busy = false;
+      this.renderChip();
+    }
+  },
+
+  /* ---------- 強制上傳 / 下載 ---------- */
+  async forcePush(){
+    if (!this.configured) { toast('⚠️ 尚未設定同步'); return; }
+    this.busy = true; this.setStatus('syncing', '上傳中…');
+    try{
+      state.updatedAt = Date.now();
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+      await this.push(state);
+      this.setStatus('ok', '已上傳'); toast('⬆️ 已上傳本地資料');
+    }catch(e){ this.setStatus('error', e.message); toast('⚠️ 上傳失敗'); }
+    finally{ this.busy = false; this.renderChip(); }
+  },
+  async forcePull(){
+    if (!this.configured) { toast('⚠️ 尚未設定同步'); return; }
+    this.busy = true; this.setStatus('syncing', '下載中…');
+    try{
+      const remote = await this.pull();
+      if (!remote){ this.setStatus('ok', '雲端無資料'); toast('雲端尚無資料'); return; }
+      state = normalizeState(remote);
+      state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+      applyTheme(); render();
+      this.setStatus('ok', '已下載'); toast('⬇️ 已下載雲端資料');
+    }catch(e){ this.setStatus('error', e.message); toast('⚠️ 下載失敗'); }
+    finally{ this.busy = false; this.renderChip(); }
+  },
+
+  setStatus(s, msg){
+    this.status = s; this.message = msg || '';
+    this.renderChip();
+    const el = document.getElementById('cloudStatusText');
+    if (el) el.textContent = msg || s;
+  },
+
+  renderChip(){
+    const dot  = document.getElementById('syncDot');
+    const text = document.getElementById('syncText');
+    if (!dot || !text) return;
+    if (!this.configured){
+      dot.style.background = 'var(--muted)'; dot.style.boxShadow = 'none';
+      text.textContent = '本機 Local';
+      return;
+    }
+    const map = {
+      idle:    ['var(--info)',   '待同步'],
+      syncing: ['var(--warn)',   '同步中…'],
+      ok:      ['var(--ok)',     '已同步'],
+      error:   ['var(--danger)', '同步失敗']
+    };
+    const [color, label] = map[this.status] || map.idle;
+    dot.style.background = color;
+    dot.style.boxShadow = `0 0 0 3px color-mix(in srgb, ${color} 25%, transparent)`;
+    text.textContent = label;
+  },
+
+  restartTimer(){
+    clearInterval(this.timer);
+    if (!this.cfg.auto || !this.configured) return;
+    const sec = Math.max(30, this.cfg.intervalSec || 120);
+    this.timer = setInterval(() => {
+      if (document.visibilityState === 'visible') this.sync(true);
+    }, sec * 1000);
+  },
+
+  /* 建立 JSONBin 新 bin */
+  async createJsonBin(){
+    const key = this.cfg.jsonbin.masterKey;
+    if (!key){ toast('⚠️ 請先填入 X-Master-Key'); return; }
+    try{
+      const r = await fetch('https://api.jsonbin.io/v3/b', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': key, 'X-Bin-Name': 'study-dashboard' },
+        body: JSON.stringify(state)
+      });
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const data = await r.json();
+      const id = data?.metadata?.id;
+      if (!id) throw new Error('no id');
+      this.cfg.jsonbin.binId = id;
+      this.persist();
+      toast('✅ 已建立 Bin：' + id);
+      render();
+    }catch(e){
+      toast('⚠️ 建立失敗：' + e.message);
+    }
+  }
+};
+
+Cloud.load();
 
 /* =====================================================================
    5. NAVIGATION
@@ -1499,11 +1750,10 @@ VIEWS.feedback = function(){
   <div>${items || `<div class="empty"><b>沒有符合的反饋</b>No feedback matches this filter. 點擊「＋ 新增反饋」開始記錄。</div>`}</div>`;
 };
 
-/* ---------- 6.7 REPORT CARDS (NEW) ---------- */
+/* ---------- 6.7 REPORT CARDS ---------- */
 VIEWS.report = function(){
   const grades = state.reportGrades || [];
 
-  /* ---- 單次評估成績輸入列 ---- */
   const gradeRows = grades.length ? grades.map(g => {
     const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
     const cells = [...Array(5)].map((_, i) => {
@@ -1542,7 +1792,6 @@ VIEWS.report = function(){
     </div></div>`
     : `<div class="empty"><b>尚無評估成績 No assessment grades</b>先在上方新增一筆評估，再逐格填入各 Criterion 的分數（0–8）。</div>`;
 
-  /* ---- 換算表 ---- */
   const bounds4 = [[28,'7','卓越 Excellent'],[24,'6','優秀 Very Good'],[19,'5','良好 Good'],[15,'4','滿意 Satisfactory'],[10,'3','基本 Basic'],[6,'2','不足 Limited'],[0,'1','入門 Emerging']];
   const bounds5 = [[35,'7','卓越 Excellent'],[30,'6','優秀 Very Good'],[24,'5','良好 Good'],[19,'4','滿意 Satisfactory'],[13,'3','基本 Basic'],[8,'2','不足 Limited'],[0,'1','入門 Emerging']];
   const boundBlock = (title, arr) => `
@@ -1780,6 +2029,56 @@ VIEWS.settings = function(){
   state.assessments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.feedback.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
 
+  /* ---- 雲端同步區塊 ---- */
+  const cf = Cloud.cfg;
+  const provider = cf.provider;
+  const statusLabel = Cloud.configured
+    ? (Cloud.status === 'ok' ? '✅ 已同步' : Cloud.status === 'error' ? '⚠️ ' + (Cloud.message||'同步失敗') : Cloud.status === 'syncing' ? '⏳ 同步中…' : '⏸ 待同步')
+    : '未設定';
+
+  const providerFields = (() => {
+    if (provider === 'supabase') return `
+      <div class="form-row">
+        <input class="input" data-cloud="supabase.url" value="${esc(cf.supabase.url)}" placeholder="Supabase URL  e.g. https://xxxx.supabase.co" style="flex:1 1 320px">
+        <input class="input" data-cloud="supabase.anonKey" value="${esc(cf.supabase.anonKey)}" placeholder="anon public key" style="flex:1 1 260px">
+        <input class="input" data-cloud="supabase.roomId" value="${esc(cf.supabase.roomId)}" placeholder="房間 ID（自行亂打一串，例如 nathan-9a7f3）" style="flex:1 1 220px">
+      </div>
+      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
+        ① 到 <b>supabase.com</b> 免費註冊 → New Project<br>
+        ② 左側 <b>SQL Editor</b> 貼上下面這段 SQL 並 Run：
+        <pre style="background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:7px;font-size:11px;overflow-x:auto;line-height:1.6">create table study_state (
+  room text primary key,
+  data jsonb not null,
+  updated_at timestamptz default now()
+);
+alter table study_state enable row level security;
+create policy "r" on study_state for select using (true);
+create policy "w" on study_state for insert with check (true);
+create policy "u" on study_state for update using (true);</pre>
+        ③ 左側 <b>Project Settings → API</b> 複製 <b>Project URL</b> 與 <b>anon public key</b> 貼到上面<br>
+        ④ 「房間 ID」自己亂打一串英數（愈長愈好），所有裝置填同一串即會同步。
+      </div>`;
+    if (provider === 'jsonbin') return `
+      <div class="form-row">
+        <input class="input" data-cloud="jsonbin.masterKey" value="${esc(cf.jsonbin.masterKey)}" placeholder="X-Master-Key（jsonbin.io → API Keys）" style="flex:1 1 300px">
+        <input class="input" data-cloud="jsonbin.binId" value="${esc(cf.jsonbin.binId)}" placeholder="Bin ID（留空 → 點右邊建立）" style="flex:1 1 260px">
+        <button class="btn" data-act="cloud-create-bin">＋ 建立新 Bin</button>
+      </div>
+      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
+        ① 到 <b>jsonbin.io</b> 免費註冊 → <b>API KEYS</b> 複製 <b>X-MASTER-KEY</b><br>
+        ② 貼上 Master Key，按「建立新 Bin」就會自動產生一個 Bin ID<br>
+        ③ 其他裝置只要填同一組 Master Key + Bin ID 即可同步。
+      </div>`;
+    return `
+      <div class="form-row">
+        <input class="input" data-cloud="custom.url" value="${esc(cf.custom.url)}" placeholder="GET / POST 端點 URL" style="flex:1 1 340px">
+        <input class="input" data-cloud="custom.token" value="${esc(cf.custom.token)}" placeholder="Bearer token（可留空）" style="flex:1 1 240px">
+      </div>
+      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
+        自訂端點：GET 回傳狀態 JSON，POST 接收完整狀態 JSON。適合自架 Cloudflare Worker / Vercel Function。
+      </div>`;
+  })();
+
   const stat = `
   <div class="grid g-4" style="margin-bottom:16px">
     <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🏷️</div>
@@ -1794,6 +2093,48 @@ VIEWS.settings = function(){
 
   return `
   ${stat}
+
+  <div class="card" style="margin-bottom:14px;border-color:${Cloud.configured?'color-mix(in srgb,var(--ok) 35%,var(--border))':'var(--border)'}">
+    <div class="card-head">
+      <div class="card-title">☁️ 雲端同步 <span class="muted" style="font-weight:500;font-size:12px">Cloud Sync（無 Firebase）</span></div>
+      <span class="pill ${Cloud.configured ? (Cloud.status==='error'?'danger':'ok') : 'muted'}">${Cloud.configured ? '已啟用' : '未設定'}</span>
+    </div>
+
+    <div class="form-row" style="margin-bottom:12px">
+      <select class="input" id="cloudProvider" style="flex:0 0 200px">
+        <option value="supabase" ${provider==='supabase'?'selected':''}>Supabase（推薦）</option>
+        <option value="jsonbin"  ${provider==='jsonbin' ?'selected':''}>JSONBin.io（最快）</option>
+        <option value="custom"   ${provider==='custom'  ?'selected':''}>自訂 API</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:7px;flex:0 0 auto;font-size:12.5px;font-weight:600;cursor:pointer">
+        <input type="checkbox" id="cloudAuto" ${cf.auto?'checked':''}> 自動同步
+      </label>
+      <input class="input" type="number" id="cloudInterval" value="${cf.intervalSec}" min="30" step="10" style="flex:0 0 110px" title="同步間隔（秒）">
+      <span class="tiny muted" style="flex:0 0 auto;align-self:center">秒 / interval</span>
+    </div>
+
+    ${providerFields}
+
+    <div class="form-row" style="margin-top:12px">
+      <button class="btn btn-primary" data-act="cloud-save">💾 儲存並同步</button>
+      <button class="btn" data-act="cloud-sync-now">🔄 立即同步</button>
+      <button class="btn" data-act="cloud-push-now">⬆️ 上傳本地</button>
+      <button class="btn" data-act="cloud-pull-now">⬇️ 下載雲端</button>
+    </div>
+
+    <div class="kv" style="margin-top:12px">
+      <span>目前狀態 Status</span>
+      <b id="cloudStatusText">${statusLabel}</b>
+    </div>
+    <div class="kv">
+      <span>上次同步 Last sync</span>
+      <b>${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
+    </div>
+    <div class="tiny muted" style="margin-top:10px;line-height:1.7">
+      💡 同步策略：以「最後修改時間」為準。本機改動較新 → 上傳；雲端較新 → 下載並覆蓋本機。
+      所有裝置請填<b>同一組設定</b>。網址可加上 <code>?room=xxx</code> 快速切換房間。
+    </div>
+  </div>
 
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
@@ -1831,14 +2172,14 @@ VIEWS.settings = function(){
       <button class="btn" data-act="data-import">⬆️ 匯入 JSON Import</button>
       <button class="btn btn-danger" data-act="data-reset">🗑 重設所有資料 Reset All</button>
     </div>
-    <div class="tiny muted" style="margin-top:10px">💡 所有資料儲存在瀏覽器的 localStorage，不會上傳到任何伺服器。</div>
+    <div class="tiny muted" style="margin-top:10px">💡 所有資料儲存在瀏覽器的 localStorage，開啟雲端同步後才會上傳到您指定的後端。</div>
   </div>
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於 <span class="muted" style="font-weight:500;font-size:12px">About</span></div></div>
-    <div class="kv"><span>版本 Version</span><b>1.2</b></div>
+    <div class="kv"><span>版本 Version</span><b>1.3（Cloud Sync）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
-    <div class="kv"><span>儲存 Storage</span><b>Local (browser)</b></div>
+    <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
     <div class="kv"><span>捷徑 Shortcut</span><b>資料自動儲存</b></div>
   </div>`;
 };
@@ -1861,6 +2202,7 @@ function render(){
   $('#todayDate').textContent = `${t.getFullYear()}/${pad(t.getMonth()+1)}/${pad(t.getDate())} 週${WD[t.getDay()]}`;
 
   $('#viewHost').innerHTML = VIEWS[state.view] ? VIEWS[state.view]() : '';
+  Cloud.renderChip();
 }
 
 /* =====================================================================
@@ -1880,6 +2222,27 @@ document.addEventListener('click', e => {
   const act = el.dataset.act;
 
   switch(act){
+    /* ---- cloud ---- */
+    case 'sync-chip': {
+      state.view = 'settings';
+      save(); render();
+      window.scrollTo({top:0, behavior:'smooth'});
+      Cloud.sync();
+      break;
+    }
+    case 'cloud-create-bin': { Cloud.createJsonBin(); break; }
+    case 'cloud-save': {
+      Cloud.persist();
+      Cloud.restartTimer();
+      render();
+      toast('💾 已儲存同步設定');
+      Cloud.sync();
+      break;
+    }
+    case 'cloud-sync-now':  { Cloud.sync(); break; }
+    case 'cloud-push-now': { Cloud.forcePush(); break; }
+    case 'cloud-pull-now': { Cloud.forcePull(); break; }
+
     /* ---- to-do ---- */
     case 'todo-toggle': {
       const it = state.todos.find(x => x.id === el.dataset.id);
@@ -2051,7 +2414,7 @@ document.addEventListener('click', e => {
       break;
     }
 
-    /* ---- report cards (NEW) ---- */
+    /* ---- report cards ---- */
     case 'rcg-add': {
       const name = $('#rcgNewName').value.trim();
       if (!name){ $('#rcgNewName').focus(); return; }
@@ -2151,11 +2514,10 @@ document.addEventListener('click', e => {
           try{
             const data = JSON.parse(re.target.result);
             if (!data || typeof data !== 'object') throw new Error('invalid');
-            state = Object.assign(structuredClone(DEFAULT_STATE), data);
-            if (!Array.isArray(state.subjects) || !state.subjects.length) state.subjects = [...DEFAULT_SUBJECTS];
-            if (!Array.isArray(state.feedback)) state.feedback = structuredClone(DEFAULT_FEEDBACK);
-            if (!state.schedule) state.schedule = structuredClone(DEFAULT_SCHEDULE);
-            if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
+            state = normalizeState(data);
+            state.editingFbId = null;
+            state.fbAdding = false;
+            state.editingSchedule = false;
             save(); applyTheme(); render();
             toast('✅ 已匯入 Imported');
           }catch(err){
@@ -2183,11 +2545,24 @@ document.addEventListener('click', e => {
 
 /* 即時輸入更新（不重建 DOM） */
 document.addEventListener('input', e => {
+  /* --- 雲端設定欄位 --- */
+  const cloudPath = e.target.dataset && e.target.dataset.cloud;
+  if (cloudPath){
+    const [grp, key] = cloudPath.split('.');
+    if (Cloud.cfg[grp] && key) Cloud.cfg[grp][key] = e.target.value;
+    Cloud.persist();
+    return;
+  }
+  if (e.target.id === 'cloudInterval'){
+    Cloud.cfg.intervalSec = Math.max(30, parseInt(e.target.value, 10) || 120);
+    Cloud.persist();
+    return;
+  }
+
   const el = e.target.closest('[data-act]');
   if (!el) return;
   const act = el.dataset.act;
 
-  /* schedule inline edit */
   if (act === 'sched-edit'){
     const day = parseInt(el.dataset.day, 10);
     const period = parseInt(el.dataset.period, 10);
@@ -2197,7 +2572,6 @@ document.addEventListener('input', e => {
     return;
   }
 
-  /* assessment progress slider */
   if (act === 'assess-progress'){
     const a = state.assessments.find(x => x.id === el.dataset.id);
     if (!a) return;
@@ -2214,14 +2588,12 @@ document.addEventListener('input', e => {
     return;
   }
 
-  /* report grade: name */
   if (act === 'rcg-name'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (g){ g.name = el.value; save(); }
     return;
   }
 
-  /* report grade: criterion score */
   if (act === 'rcg-score'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
@@ -2241,20 +2613,36 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('change', e => {
+  /* --- 雲端 provider / auto --- */
+  if (e.target.id === 'cloudProvider'){
+    Cloud.cfg.provider = e.target.value;
+    Cloud.persist();
+    render();
+    return;
+  }
+  if (e.target.id === 'cloudAuto'){
+    Cloud.cfg.auto = e.target.checked;
+    Cloud.persist();
+    Cloud.restartTimer();
+    return;
+  }
+  if (e.target.id === 'cloudInterval'){
+    Cloud.restartTimer();
+    return;
+  }
+
   const el = e.target.closest('[data-act]');
   if (!el) return;
   const act = el.dataset.act;
 
   if (act === 'assess-progress'){ render(); return; }
 
-  /* report grade: subject switch */
   if (act === 'rcg-subject'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (g){ g.subject = el.value; save(); render(); }
     return;
   }
 
-  /* report grade: blur/enter — clamp value */
   if (act === 'rcg-score'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
@@ -2270,7 +2658,6 @@ document.addEventListener('change', e => {
     return;
   }
 
-  /* schedule inline edit (blur) */
   if (act === 'sched-edit'){
     const day = parseInt(el.dataset.day, 10);
     const period = parseInt(el.dataset.period, 10);
@@ -2402,12 +2789,41 @@ $('#pomoMode').addEventListener('click', () => {
    12. BOOT
    ===================================================================== */
 loadState();
+
+/* URL 參數：?room=xxx 可快速指定同步房間 */
+(function applyUrlRoom(){
+  const params = new URLSearchParams(location.search);
+  const room = params.get('room');
+  if (room && room !== Cloud.cfg.supabase.roomId){
+    Cloud.cfg.supabase.roomId = room;
+    Cloud.cfg.provider = 'supabase';
+    Cloud.persist();
+  }
+})();
+
 state.editingFbId = null;
 state.fbAdding = false;
 state.editingSchedule = false;
 applyTheme();
 render();
 pomoRender();
+Cloud.renderChip();
+
+/* 視窗重新聚焦時同步一次 */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && Cloud.configured){
+    Cloud.sync(true);
+  }
+});
+window.addEventListener('online', () => {
+  if (Cloud.configured) Cloud.sync(true);
+});
+
+/* 啟動自動同步 */
+if (Cloud.configured){
+  setTimeout(() => Cloud.sync(true), 1500);
+}
+Cloud.restartTimer();
 
 if ('Notification' in window && Notification.permission === 'default'){
   setTimeout(() => { try{ Notification.requestPermission(); }catch(e){} }, 3000);
