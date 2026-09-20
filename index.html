@@ -6,7 +6,6 @@
 <meta name="color-scheme" content="light dark">
 <title>學習總覽 · Studying Overview</title>
 <style>
-/* ============ RESET & TOKENS ============ */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#f4f5fa;
@@ -53,7 +52,6 @@ body{
 ::-webkit-scrollbar-thumb:hover{background:var(--border);background-clip:content-box}
 ::-webkit-scrollbar-track{background:transparent}
 
-/* ============ LAYOUT ============ */
 .app{display:flex;min-height:100vh}
 .sidebar{
   width:246px;flex:0 0 246px;
@@ -110,7 +108,6 @@ body{
 }
 .today-chip .dot{width:7px;height:7px;border-radius:99px;background:var(--ok);box-shadow:0 0 0 3px rgba(16,185,129,.2)}
 
-/* pomodoro */
 .pomo{
   display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-radius:99px;
   background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
@@ -130,7 +127,6 @@ body{
 .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .pomo.running .pomo-time{color:var(--primary)}
 
-/* ============ COMPONENTS ============ */
 .grid{display:grid;gap:14px}
 .g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .g-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -145,7 +141,6 @@ body{
 .card-title{font-size:14.5px;font-weight:750;display:flex;align-items:center;gap:8px}
 .card-sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 
-/* hero */
 .hero{
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
@@ -176,7 +171,6 @@ body{
 .ring-label b{font-size:22px;font-weight:800;line-height:1}
 .ring-label small{font-size:9.5px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:3px}
 
-/* stats */
 .stat{
   display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r);
   background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
@@ -190,7 +184,6 @@ body{
 .stat-val{font-size:22px;font-weight:800;line-height:1.05;letter-spacing:-.5px}
 .stat-lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px}
 
-/* badges & pills */
 .badge{
   display:inline-flex;align-items:center;padding:2.5px 9px;border-radius:99px;
   font-size:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
@@ -206,7 +199,6 @@ body{
 .pill.info{background:rgba(59,130,246,.15);color:#2563eb}
 .pill.muted{background:var(--surface-2);color:var(--muted)}
 
-/* lists */
 .list{display:flex;flex-direction:column;gap:2px}
 .item{
   display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border-radius:12px;
@@ -221,7 +213,6 @@ body{
 .item-actions{display:flex;gap:5px;opacity:0;transition:.15s}
 .item:hover .item-actions{opacity:1}
 
-/* checkbox */
 .cb{
   width:20px;height:20px;flex:0 0 20px;border-radius:7px;border:2px solid var(--border);
   background:var(--surface);cursor:pointer;display:grid;place-items:center;
@@ -230,7 +221,6 @@ body{
 .cb:hover{border-color:var(--primary);transform:scale(1.06)}
 .cb.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));border-color:transparent;color:#fff}
 
-/* buttons */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:6px;
   padding:9px 15px;border-radius:11px;border:1px solid var(--border);
@@ -249,7 +239,6 @@ body{
 .btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))}
 .btn-danger:hover{background:rgba(239,68,68,.1);color:var(--danger)}
 
-/* inputs */
 .input{
   background:var(--surface);border:1px solid var(--border);border-radius:10px;
   padding:9px 12px;font:inherit;font-size:13px;color:var(--text);outline:none;
@@ -263,7 +252,6 @@ textarea.input{font-family:inherit;resize:vertical;line-height:1.55}
 .form-row > *{flex:1 1 150px}
 .form-row > .btn{flex:0 0 auto}
 
-/* progress bar */
 .bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;width:100%}
 .bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary-2));transition:width .5s cubic-bezier(.4,0,.2,1)}
 .bar-fill.ok{background:linear-gradient(90deg,#10b981,#34d399)}
@@ -283,7 +271,6 @@ input[type=range]::-moz-range-thumb{
   background:var(--primary);cursor:pointer;
 }
 
-/* week strip */
 .week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
 .day-chip{
   padding:11px 8px;border-radius:13px;border:1px solid var(--border);background:var(--surface);
@@ -300,7 +287,6 @@ input[type=range]::-moz-range-thumb{
 .day-chip .mini{height:4px;border-radius:99px;background:var(--surface-3);overflow:hidden}
 .day-chip .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:99px;transition:width .4s}
 
-/* srp chips */
 .rev-row{display:flex;gap:6px;flex-wrap:wrap}
 .rev-chip{
   display:flex;flex-direction:column;align-items:center;gap:1px;
@@ -318,7 +304,6 @@ input[type=range]::-moz-range-thumb{
 .rev-chip.late .rd,.rev-chip.late .rl{color:#c47a06}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(225,29,72,.35)}50%{box-shadow:0 0 0 6px rgba(225,29,72,0)}}
 
-/* table */
 .scroll-x{overflow-x:auto;margin:0 -6px;padding:0 6px}
 table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:620px}
 table.tbl th{
@@ -337,7 +322,6 @@ table.tbl input.cell-input{
 table.tbl input.cell-input:hover{background:var(--surface-2);border-color:var(--border)}
 table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
 
-/* schedule */
 .sched-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .period{
   padding:11px 12px;border-radius:12px;border:1px solid var(--border);
@@ -360,7 +344,6 @@ table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--pr
 .day-tab:hover{color:var(--text);border-color:var(--primary)}
 .day-tab.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 8px 18px -12px var(--primary)}
 
-/* accordion */
 details.acc{
   border:1px solid var(--border);border-radius:14px;background:var(--surface);
   overflow:hidden;transition:.16s;
@@ -389,7 +372,6 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .fb-list li strong{color:var(--text)}
 
-/* chips row */
 .chip-row{display:flex;gap:6px;flex-wrap:wrap}
 .chip{
   padding:5px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);
@@ -398,7 +380,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .chip:hover{color:var(--text);border-color:var(--primary)}
 .chip.active{background:var(--primary);color:#fff;border-color:transparent}
 
-/* subject editor chips */
 .subj-chip{
   display:inline-flex;align-items:center;gap:6px;padding:7px 10px 7px 13px;border-radius:99px;
   background:var(--surface-2);border:1px solid var(--border);font-size:12.5px;font-weight:650;
@@ -413,7 +394,6 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .subj-chip button:hover{background:var(--surface-3);color:var(--text)}
 
-/* misc */
 .empty{
   padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px;
   border:1.5px dashed var(--border);border-radius:14px;line-height:1.7;
@@ -426,7 +406,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .kv:last-child{border-bottom:none}
 .kv b{font-weight:700}
 
-/* report card */
 .rc-row{display:grid;grid-template-columns:130px repeat(4,1fr) 74px;gap:8px;align-items:center;padding:9px 10px;border-radius:12px;transition:.14s}
 .rc-row:hover{background:var(--surface-2)}
 .rc-row.head{font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase}
@@ -440,7 +419,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .rc-grade.lo{background:rgba(239,68,68,.14);color:#dc2626}
 select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius:8px;background-position:calc(100% - 10px) 50%,calc(100% - 6px) 50%;padding-right:18px;background-size:4px 4px,4px 4px}
 
-/* ---- NEW: report-card grade entry grid ---- */
 .rcg-row{
   display:grid;
   grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;
@@ -456,7 +434,6 @@ select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius
 .rcg-num{text-align:center;font-variant-numeric:tabular-nums}
 .rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
 
-/* toast */
 .toast{
   position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
   background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;
@@ -498,9 +475,9 @@ select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius
 }
 </style>
 </head>
+
 <body>
 <div class="app">
-  <!-- ============ SIDEBAR ============ -->
   <aside class="sidebar">
     <div class="brand">
       <div class="brand-icon">📚</div>
@@ -516,7 +493,6 @@ select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius
     </div>
   </aside>
 
-  <!-- ============ MAIN ============ -->
   <main class="main">
     <header class="topbar">
       <div>
@@ -544,6 +520,7 @@ select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius
 <div class="toast" id="toast"></div>
 
 <script>
+
 /* =====================================================================
    1. UTILITIES
    ===================================================================== */
@@ -572,7 +549,6 @@ function toast(msg){
   toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
 }
 
-/* subject colours */
 const SUBJECT_COLORS = {
   chinese:'#ef4444', 中文:'#ef4444', english:'#3b82f6', math:'#8b5cf6', 數學:'#8b5cf6',
   sciences:'#10b981', science:'#10b981', ins:'#f59e0b', 'i&s':'#f59e0b',
@@ -599,28 +575,28 @@ const REV_DAYNUM  = [2, 3, 5, 7];
 const DEFAULT_SUBJECTS = ['Chinese','English','Math','Sciences','INS','Humanities','Biotech','PHE','MfE','Design','Arts','Other'];
 
 const DEFAULT_FEEDBACK = [
-  {id:'f01', name:'Visual Arts', subject:'Arts', crit:'A, D', text:'- Criterion D: To describe development as an artist comprehensively in relation to the SOI\n- Criterion D: To evaluate how I could MODIFY artwork to improve communication of the SOI'},
-  {id:'f02', name:'妙筆生花閱讀理解', subject:'Chinese', crit:'A', text:'- 表述能力可以加強\n- 更好地理解文章內容的含義'},
-  {id:'f03', name:'妙筆生花寫作', subject:'Chinese', crit:'B, C, D', text:'- 情節之間可以更過渡得更自然，如描寫時間的流逝'},
-  {id:'f04', name:'言之有理閱讀理解', subject:'Chinese', crit:'A', text:'- 更敏銳地識別修辭手法\n- 分析手法及作者意圖時適當地展開'},
-  {id:'f05', name:'中文口語 Chinese Oral', subject:'Chinese', crit:'B, C, D', text:'- B 組織: 演講架構完整、邏輯清晰，以提問搭配本地調查數據開場，先闡述 AI 對學習的正面幫助，再轉折探討學術不誠信的風險，最後提出具體使用指引，層次分明、前後呼應。可改進之處在於專家引言與論點的銜接可更緊密，同時可嘗試增加更自然的過渡語句。\n- C 創作: 對議題理解全面、觀點客觀，既能結合親身經歷、可汗名言與研究數據肯定 AI 價值，也以港大真實案例強調學術誠信的重要性，論據權威且具說服力。論證的聚焦性可進一步突出。\n- D 運用語言: 演講語氣穩重得體，用詞準確專業，開場互動性強，受眾意識良好。建議精簡長句、優化語句節奏，在引用名言與核心建議時加強語氣，提升感染力與說服力。'},
-  {id:'f06', name:'拾香紀寫作（非創意寫作）', subject:'Chinese', crit:'A, B, D', text:'- A 分析: 對於八寶形象的理解準確，且既能解釋時代對八寶的影響，又能解釋出八寶身上所反映出的時代特點。在解釋「社會特點」時可以概述得更加準確。\n- B 組織: 結構基本清晰，不過在表述時，語句有重複的現象，可以進一步訓練形成更清晰的論證順序和思路。\n- D 語言: 錯誤很少，令人欣賞。鼓勵你繼續積累更豐富的語言表達方式！'},
-  {id:'f07', name:'House Spirit Criterion D', subject:'Design', crit:'D', text:'- Di: Detailing further by including the exact test questions you asked your target audience.\n- Dii: Expand on your "Overall Success" to create a stronger bridge to your Diii improvement plan.'},
-  {id:'f08', name:'LOTF Analytical Essay', subject:'English', crit:'A, B, D', text:'- Criterion A: Detailed analysis, particularly in paragraph 1. A more detailed annotation may have helped you.\n- Criterion B: Clear thesis statement and three topic sentences provide a strong foundation for your essay.\n- Criterion D: Communicate ideas clearly, errors don\'t cloud meaning.'},
-  {id:'f09', name:'Poetry Analysis + Oral', subject:'English', crit:'A, D', text:'- A detailed presentation referring to specific lines and giving relevant examples.\n- Oral delivery would benefit from further practice.\n- Maintained an appropriate academic register.\n- Develop more varied sentence structures.'},
-  {id:'f10', name:'人文研習 Humanities Research', subject:'Humanities', crit:'B, C, D', text:'- Bi: 研究課題清晰且具焦點，合理解釋了選題原因與研究目的。\n- Bii: 使用了多種資料來源，但還可增加一手文獻資料。\n- Bi: 研究範圍涵蓋服飾、器具、墓葬及信仰等多個方面，內容豐富，但部分段落可進一步聚焦，避免範圍過廣。\n- Ci: 文章大致流暢，風格符合研習論文的要求。\n- Cii: 組織結構合理，段落分明，論述有條理，邏輯清晰。\n- Ciii: 參考資料按照哈佛註引格式列出，但部分引用可更明確標示直接摘錄與概括內容。\n- Di: 對研究課題進行了適當分析，能回答研究問題，並結合文物與歷史文獻進行論證。\n- Dii: 能總結和概括所搜集資料的信息，並對觀點作出有效論證。\n- Diii: 可進一步深化對資料的分析，尤其是對不同資料之間的關聯性及其局限性進行更細緻的探討。'},
-  {id:'f11', name:'Natural Disasters + Notebook Check', subject:'INS', crit:'A, C, D', text:'- Work on explanations\n- Follow the given structure\n- Elaborate more'},
-  {id:'f12', name:'INS Research + OPVL + Evaluation', subject:'INS', crit:'B, C, D', text:'- Biii: Documentary fits social aspect more, you could "SEE" how people "LIVED" back then. Government statistics for economic changes.\n- Biii: Don\'t only focus on one topic within an SQ.\n- Diii: Very good. I feel your paragraph in limitation is better. You elaborated more on what the implications are of these limitations. Try and do that for values, too.'},
-  {id:'f13', name:'Political Revolution Essay', subject:'INS', crit:'A, C, D', text:'- PEEEL Structure could be further refined\n- Some parts weren\'t explained/elaborated well\n- Too much info in some paragraphs — could be broken down into more paragraphs\n- Explain and elaborate on the implications'},
-  {id:'f14', name:'Algebra Crit B', subject:'Math', crit:'B', text:'N/A'},
-  {id:'f15', name:'Trigonometry Crit C', subject:'Math', crit:'C', text:'N/A'},
-  {id:'f16', name:'Coordinate Geometry Crit D', subject:'Math', crit:'D', text:'- Link the DoA more to the context\n- Fully discuss whether the solution makes sense from different perspectives (e.g. 2D → 3D)'},
-  {id:'f17', name:'Glide Ride Stride Workbook', subject:'PHE', crit:'B, D', text:'- Bi: To improve, design a sequence that allows you to practice the skill first, then apply it in the work set.\n- Dii: To improve, describe an example of when the plan had an impact on you achieving your goal.'},
-  {id:'f18', name:'3x3 Basketball', subject:'PHE', crit:'A, C', text:'- Ai Area of Strength: You have described a highly detailed, logical step-by-step sequence.\n- Aii Area of Growth: To improve, continue to analyse challenges by looking at both your team\'s actions and the opponent\'s response.'},
-  {id:'f19', name:'Disease Crit D', subject:'Sciences', crit:'D', text:'- More explicit explanations in terms of the implications of the solution\n- Use statistics to support benefits and limitations\n- More details in describing the issue and solution'},
-  {id:'f20', name:'Physics Crit B', subject:'Sciences', crit:'B', text:'- Avoid using "amount": "amount of mass" does not make sense\n- Specify CVs (e.g. CV: Same type of paper, explanation: + Paper from what brand?)\n- Explicitly state how CVs are being controlled in stepwise method'},
-  {id:'f21', name:'Physics Crit C', subject:'Sciences', crit:'C', text:'- State what the IVs and DVs are when writing the conclusion'},
-  {id:'f22', name:'Statistics', subject:'Math', crit:'C, D', text:''}
+  {id:'f01', name:'Visual Arts', subject:'Arts', grade:'Grade 8', crit:'A, D', text:'- Criterion D: To describe development as an artist comprehensively in relation to the SOI\n- Criterion D: To evaluate how I could MODIFY artwork to improve communication of the SOI'},
+  {id:'f02', name:'妙筆生花閱讀理解', subject:'Chinese', grade:'Grade 8', crit:'A', text:'- 表述能力可以加強\n- 更好地理解文章內容的含義'},
+  {id:'f03', name:'妙筆生花寫作', subject:'Chinese', grade:'Grade 8', crit:'B, C, D', text:'- 情節之間可以更過渡得更自然，如描寫時間的流逝'},
+  {id:'f04', name:'言之有理閱讀理解', subject:'Chinese', grade:'Grade 8', crit:'A', text:'- 更敏銳地識別修辭手法\n- 分析手法及作者意圖時適當地展開'},
+  {id:'f05', name:'中文口語 Chinese Oral', subject:'Chinese', grade:'Grade 8', crit:'B, C, D', text:'- B 組織: 演講架構完整、邏輯清晰，以提問搭配本地調查數據開場，先闡述 AI 對學習的正面幫助，再轉折探討學術不誠信的風險，最後提出具體使用指引，層次分明、前後呼應。可改進之處在於專家引言與論點的銜接可更緊密，同時可嘗試增加更自然的過渡語句。\n- C 創作: 對議題理解全面、觀點客觀，既能結合親身經歷、可汗名言與研究數據肯定 AI 價值，也以港大真實案例強調學術誠信的重要性，論據權威且具說服力。論證的聚焦性可進一步突出。\n- D 運用語言: 演講語氣穩重得體，用詞準確專業，開場互動性強，受眾意識良好。建議精簡長句、優化語句節奏，在引用名言與核心建議時加強語氣，提升感染力與說服力。'},
+  {id:'f06', name:'拾香紀寫作（非創意寫作）', subject:'Chinese', grade:'Grade 8', crit:'A, B, D', text:'- A 分析: 對於八寶形象的理解準確，且既能解釋時代對八寶的影響，又能解釋出八寶身上所反映出的時代特點。在解釋「社會特點」時可以概述得更加準確。\n- B 組織: 結構基本清晰，不過在表述時，語句有重複的現象，可以進一步訓練形成更清晰的論證順序和思路。\n- D 語言: 錯誤很少，令人欣賞。鼓勵你繼續積累更豐富的語言表達方式！'},
+  {id:'f07', name:'House Spirit Criterion D', subject:'Design', grade:'Grade 8', crit:'D', text:'- Di: Detailing further by including the exact test questions you asked your target audience.\n- Dii: Expand on your "Overall Success" to create a stronger bridge to your Diii improvement plan.'},
+  {id:'f08', name:'LOTF Analytical Essay', subject:'English', grade:'Grade 8', crit:'A, B, D', text:'- Criterion A: Detailed analysis, particularly in paragraph 1. A more detailed annotation may have helped you.\n- Criterion B: Clear thesis statement and three topic sentences provide a strong foundation for your essay.\n- Criterion D: Communicate ideas clearly, errors don\'t cloud meaning.'},
+  {id:'f09', name:'Poetry Analysis + Oral', subject:'English', grade:'Grade 8', crit:'A, D', text:'- A detailed presentation referring to specific lines and giving relevant examples.\n- Oral delivery would benefit from further practice.\n- Maintained an appropriate academic register.\n- Develop more varied sentence structures.'},
+  {id:'f10', name:'人文研習 Humanities Research', subject:'Humanities', grade:'Grade 8', crit:'B, C, D', text:'- Bi: 研究課題清晰且具焦點，合理解釋了選題原因與研究目的。\n- Bii: 使用了多種資料來源，但還可增加一手文獻資料。\n- Bi: 研究範圍涵蓋服飾、器具、墓葬及信仰等多個方面，內容豐富，但部分段落可進一步聚焦，避免範圍過廣。\n- Ci: 文章大致流暢，風格符合研習論文的要求。\n- Cii: 組織結構合理，段落分明，論述有條理，邏輯清晰。\n- Ciii: 參考資料按照哈佛註引格式列出，但部分引用可更明確標示直接摘錄與概括內容。\n- Di: 對研究課題進行了適當分析，能回答研究問題，並結合文物與歷史文獻進行論證。\n- Dii: 能總結和概括所搜集資料的信息，並對觀點作出有效論證。\n- Diii: 可進一步深化對資料的分析，尤其是對不同資料之間的關聯性及其局限性進行更細緻的探討。'},
+  {id:'f11', name:'Natural Disasters + Notebook Check', subject:'INS', grade:'Grade 8', crit:'A, C, D', text:'- Work on explanations\n- Follow the given structure\n- Elaborate more'},
+  {id:'f12', name:'INS Research + OPVL + Evaluation', subject:'INS', grade:'Grade 8', crit:'B, C, D', text:'- Biii: Documentary fits social aspect more, you could "SEE" how people "LIVED" back then. Government statistics for economic changes.\n- Biii: Don\'t only focus on one topic within an SQ.\n- Diii: Very good. I feel your paragraph in limitation is better. You elaborated more on what the implications are of these limitations. Try and do that for values, too.'},
+  {id:'f13', name:'Political Revolution Essay', subject:'INS', grade:'Grade 8', crit:'A, C, D', text:'- PEEEL Structure could be further refined\n- Some parts weren\'t explained/elaborated well\n- Too much info in some paragraphs — could be broken down into more paragraphs\n- Explain and elaborate on the implications'},
+  {id:'f14', name:'Algebra Crit B', subject:'Math', grade:'Grade 8', crit:'B', text:'N/A'},
+  {id:'f15', name:'Trigonometry Crit C', subject:'Math', grade:'Grade 8', crit:'C', text:'N/A'},
+  {id:'f16', name:'Coordinate Geometry Crit D', subject:'Math', grade:'Grade 8', crit:'D', text:'- Link the DoA more to the context\n- Fully discuss whether the solution makes sense from different perspectives (e.g. 2D → 3D)'},
+  {id:'f17', name:'Glide Ride Stride Workbook', subject:'PHE', grade:'Grade 8', crit:'B, D', text:'- Bi: To improve, design a sequence that allows you to practice the skill first, then apply it in the work set.\n- Dii: To improve, describe an example of when the plan had an impact on you achieving your goal.'},
+  {id:'f18', name:'3x3 Basketball', subject:'PHE', grade:'Grade 8', crit:'A, C', text:'- Ai Area of Strength: You have described a highly detailed, logical step-by-step sequence.\n- Aii Area of Growth: To improve, continue to analyse challenges by looking at both your team\'s actions and the opponent\'s response.'},
+  {id:'f19', name:'Disease Crit D', subject:'Sciences', grade:'Grade 8', crit:'D', text:'- More explicit explanations in terms of the implications of the solution\n- Use statistics to support benefits and limitations\n- More details in describing the issue and solution'},
+  {id:'f20', name:'Physics Crit B', subject:'Sciences', grade:'Grade 8', crit:'B', text:'- Avoid using "amount": "amount of mass" does not make sense\n- Specify CVs (e.g. CV: Same type of paper, explanation: + Paper from what brand?)\n- Explicitly state how CVs are being controlled in stepwise method'},
+  {id:'f21', name:'Physics Crit C', subject:'Sciences', grade:'Grade 8', crit:'C', text:'- State what the IVs and DVs are when writing the conclusion'},
+  {id:'f22', name:'Statistics', subject:'Math', grade:'Grade 8', crit:'C, D', text:''}
 ];
 
 const DEFAULT_SCHEDULE = {
@@ -643,6 +619,7 @@ const DEFAULT_STATE = {
   selDate: '2026-09-20',
   schedDay: 1,
   fbFilter: 'All',
+  fbGradeFilter: 'All',
   editingSchedule: false,
   editingFbId: null,
   fbAdding: false,
@@ -651,8 +628,6 @@ const DEFAULT_STATE = {
   subjects: [...DEFAULT_SUBJECTS],
   feedback: structuredClone(DEFAULT_FEEDBACK),
   schedule: structuredClone(DEFAULT_SCHEDULE),
-
-  /* NEW: 單次評估成績紀錄 */
   reportGrades: [],
 
   todos: [
@@ -719,6 +694,8 @@ function normalizeState(raw){
   if (!Array.isArray(merged.assignments)) merged.assignments = [];
   if (!Array.isArray(merged.assessments)) merged.assessments = [];
   if (typeof merged.updatedAt !== 'number') merged.updatedAt = 0;
+  /* 舊資料自動補上 grade 欄位 */
+  merged.feedback.forEach(f => { if (!f.grade) f.grade = 'Grade 8'; });
   return merged;
 }
 
@@ -730,8 +707,6 @@ function loadState(){
   state = structuredClone(DEFAULT_STATE);
 }
 
-/* save(touch=true)：touch 代表「這是使用者的本地修改」，
-   會更新 updatedAt 時間戳，雲端同步據此判斷該推還是該拉。 */
 function save(touch = true){
   if (touch) state.updatedAt = Date.now();
   try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){}
@@ -940,13 +915,13 @@ function refreshReportSummary(){
 }
 
 /* =====================================================================
-   ☁️ 4c. CLOUD SYNC  （無 Firebase）
+   ☁️ 4c. CLOUD SYNC
    ===================================================================== */
 const CLOUD_CFG_KEY = 'nathan-cloud-cfg-v1';
 
 const Cloud = {
   cfg: {
-    provider: 'supabase',            // supabase | jsonbin | custom
+    provider: 'supabase',
     auto: true,
     intervalSec: 120,
     supabase: { url: '', anonKey: '', roomId: '' },
@@ -956,7 +931,7 @@ const Cloud = {
   timer: null,
   busy: false,
   lastSyncAt: 0,
-  status: 'idle',                    // idle | syncing | ok | error | off
+  status: 'idle',
   message: '',
 
   load(){
@@ -976,7 +951,6 @@ const Cloud = {
     return false;
   },
 
-  /* ---------- 拉取 ---------- */
   async pull(){
     const c = this.cfg;
     if (c.provider === 'supabase'){
@@ -1006,7 +980,6 @@ const Cloud = {
     throw new Error('未設定同步 Not configured');
   },
 
-  /* ---------- 推送 ---------- */
   async push(data){
     const c = this.cfg;
     if (c.provider === 'supabase'){
@@ -1048,7 +1021,6 @@ const Cloud = {
     throw new Error('未設定同步 Not configured');
   },
 
-  /* ---------- 主同步流程 ---------- */
   async sync(silent){
     if (!this.configured || this.busy) return;
     this.busy = true;
@@ -1062,7 +1034,6 @@ const Cloud = {
         await this.push(state);
         this.setStatus('ok', '已上傳雲端');
       } else if (remoteTs > localTs){
-        // 雲端較新 → 覆蓋本地
         state = normalizeState(remote);
         state.editingFbId = null;
         state.fbAdding = false;
@@ -1088,7 +1059,6 @@ const Cloud = {
     }
   },
 
-  /* ---------- 強制上傳 / 下載 ---------- */
   async forcePush(){
     if (!this.configured) { toast('⚠️ 尚未設定同步'); return; }
     this.busy = true; this.setStatus('syncing', '上傳中…');
@@ -1152,7 +1122,6 @@ const Cloud = {
     }, sec * 1000);
   },
 
-  /* 建立 JSONBin 新 bin */
   async createJsonBin(){
     const key = this.cfg.jsonbin.masterKey;
     if (!key){ toast('⚠️ 請先填入 X-Master-Key'); return; }
@@ -1194,17 +1163,13 @@ const NAV = [
   {id:'settings', icon:'⚙️', zh:'設定',     en:'Settings'}
 ];
 
-/* =====================================================================
-   6. VIEWS
-   ===================================================================== */
 const VIEWS = {};
 
-/* ---------- 6.1 MASTER ---------- */
+/* ---------- MASTER ---------- */
 VIEWS.master = function(){
   const t = todayISO();
   const hour = new Date().getHours();
   const greet = hour < 12 ? '早安 Good morning' : hour < 18 ? '午安 Good afternoon' : '晚安 Good evening';
-
   const todayTasks = state.todos.filter(x => x.date === t);
   const doneToday  = todayTasks.filter(x => x.done).length;
   const revToday   = srpDueOn(t);
@@ -1212,15 +1177,12 @@ VIEWS.master = function(){
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d,i) => !done[i] && d < t);
   }).length;
-
   const upcomingAssess = state.assessments
     .filter(a => a.due && diffDays(t, a.due) >= 0)
     .sort((a,b) => a.due.localeCompare(b.due));
-
   const nearAssign = state.assignments
     .filter(a => a.due && !isFinished(a))
     .sort((a,b) => a.due.localeCompare(b.due));
-
   const ws = weekStats(weekStart(t));
   const totalToday = todayTasks.length + revToday.length;
   const pct = totalToday ? Math.round(doneToday / totalToday * 100) : (todayTasks.length === 0 && revToday.length === 0 ? 100 : 0);
@@ -1249,26 +1211,18 @@ VIEWS.master = function(){
 
   const stats = `
   <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat">
-      <div class="stat-icon" style="background:rgba(91,94,240,.14)">📝</div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📝</div>
       <div><div class="stat-val">${doneToday}<span class="muted" style="font-size:15px">/${todayTasks.length}</span></div>
-      <div class="stat-lbl">今日待辦 To-Do</div></div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon" style="background:rgba(225,29,72,.14)">⏰</div>
+      <div class="stat-lbl">今日待辦 To-Do</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">⏰</div>
       <div><div class="stat-val" style="color:${revToday.length ? 'var(--urgent)' : 'inherit'}">${revToday.length}</div>
-      <div class="stat-lbl">今日複習 Revisions</div></div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon" style="background:rgba(16,185,129,.14)">📚</div>
+      <div class="stat-lbl">今日複習 Revisions</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">📚</div>
       <div><div class="stat-val">${upcomingAssess.length}</div>
-      <div class="stat-lbl">待考評估 Assessments</div></div>
-    </div>
-    <div class="stat">
-      <div class="stat-icon" style="background:rgba(245,158,11,.16)">⚠️</div>
+      <div class="stat-lbl">待考評估 Assessments</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">⚠️</div>
       <div><div class="stat-val" style="color:${revLate ? 'var(--warn)' : 'inherit'}">${revLate}</div>
-      <div class="stat-lbl">逾期複習 Overdue</div></div>
-    </div>
+      <div class="stat-lbl">逾期複習 Overdue</div></div></div>
   </div>`;
 
   const revList = revToday.length
@@ -1348,17 +1302,13 @@ VIEWS.master = function(){
   <div class="grid g-2">
     <div class="stack">
       <div class="card">
-        <div class="card-head">
-          <div class="card-title">⏰ 今日複習任務 <span class="muted" style="font-weight:500;font-size:12px">Today's Revisions</span></div>
-          <button class="btn btn-sm" data-nav="srp">全部 →</button>
-        </div>
+        <div class="card-head"><div class="card-title">⏰ 今日複習任務 <span class="muted" style="font-weight:500;font-size:12px">Today's Revisions</span></div>
+          <button class="btn btn-sm" data-nav="srp">全部 →</button></div>
         ${revList}
       </div>
       <div class="card">
-        <div class="card-head">
-          <div class="card-title">📝 今日待辦 <span class="muted" style="font-weight:500;font-size:12px">Today's To-Do</span></div>
-          <button class="btn btn-sm" data-nav="todo">全部 →</button>
-        </div>
+        <div class="card-head"><div class="card-title">📝 今日待辦 <span class="muted" style="font-weight:500;font-size:12px">Today's To-Do</span></div>
+          <button class="btn btn-sm" data-nav="todo">全部 →</button></div>
         ${todoList}
       </div>
       <div class="card">
@@ -1368,17 +1318,13 @@ VIEWS.master = function(){
     </div>
     <div class="stack">
       <div class="card">
-        <div class="card-head">
-          <div class="card-title">📚 即將到來的考試 <span class="muted" style="font-weight:500;font-size:12px">Upcoming Assessments</span></div>
-          <button class="btn btn-sm" data-nav="assess">全部 →</button>
-        </div>
+        <div class="card-head"><div class="card-title">📚 即將到來的考試 <span class="muted" style="font-weight:500;font-size:12px">Upcoming Assessments</span></div>
+          <button class="btn btn-sm" data-nav="assess">全部 →</button></div>
         ${assessList}
       </div>
       <div class="card">
-        <div class="card-head">
-          <div class="card-title">✍️ 作業追蹤 <span class="muted" style="font-weight:500;font-size:12px">Assignments</span></div>
-          <button class="btn btn-sm" data-nav="assign">全部 →</button>
-        </div>
+        <div class="card-head"><div class="card-title">✍️ 作業追蹤 <span class="muted" style="font-weight:500;font-size:12px">Assignments</span></div>
+          <button class="btn btn-sm" data-nav="assign">全部 →</button></div>
         ${assignList}
       </div>
       <div class="card">
@@ -1389,7 +1335,7 @@ VIEWS.master = function(){
   </div>`;
 };
 
-/* ---------- 6.2 TO-DO ---------- */
+/* ---------- TO-DO ---------- */
 VIEWS.todo = function(){
   const t = todayISO();
   const anchor = state.weekAnchor || t;
@@ -1459,7 +1405,7 @@ VIEWS.todo = function(){
   </div>`;
 };
 
-/* ---------- 6.3 SRP ---------- */
+/* ---------- SRP ---------- */
 VIEWS.srp = function(){
   const t = todayISO();
   const sorted = [...state.srp].sort((a, b) => {
@@ -1521,17 +1467,16 @@ VIEWS.srp = function(){
     <div class="card-head"><div class="card-title">➕ 新增知識點 <span class="muted" style="font-weight:500;font-size:12px">Add Concept</span></div></div>
     <div class="form-row">
       <select class="input" id="srpSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-      <input class="input" id="srpConcept" placeholder="知識點 Concept（越小越好 — e.g. 「頂點式配方」而非「二次函數」）" style="flex:1 1 300px">
+      <input class="input" id="srpConcept" placeholder="知識點 Concept（越小越好）" style="flex:1 1 300px">
       <input class="input" type="date" id="srpStart" value="${t}" style="flex:0 0 160px">
       <button class="btn btn-primary" data-act="srp-add">＋ 新增</button>
     </div>
-    <div class="tiny muted" style="margin-top:9px">💡 系統會自動排出 <b>第 2 / 3 / 5 / 7 天</b> 的複習節點，並在「待辦事項」與主控台提醒你。</div>
   </div>
 
   <div class="card">${body}</div>`;
 };
 
-/* ---------- 6.4 ASSIGNMENTS ---------- */
+/* ---------- ASSIGNMENTS ---------- */
 VIEWS.assign = function(){
   const t = todayISO();
   const sorted = [...state.assignments].sort((a, b) => (a.due || '9999').localeCompare(b.due || '9999'));
@@ -1589,7 +1534,7 @@ VIEWS.assign = function(){
   <div class="card">${body}</div>`;
 };
 
-/* ---------- 6.5 ASSESSMENTS ---------- */
+/* ---------- ASSESSMENTS ---------- */
 VIEWS.assess = function(){
   const t = todayISO();
   const sorted = [...state.assessments].sort((a, b) => {
@@ -1621,7 +1566,6 @@ VIEWS.assess = function(){
           : `<div style="font-size:20px">📌</div><div class="tiny muted" style="font-weight:700">TBD</div>`}
         </div>
       </div>
-
       <div>
         <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;margin-bottom:6px">
           <span class="muted">準備進度 Prepare progress</span><span>${p}%</span>
@@ -1629,9 +1573,7 @@ VIEWS.assess = function(){
         <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
         <input type="range" min="0" max="100" step="5" value="${p}" data-act="assess-progress" data-id="${a.id}">
       </div>
-
       <div class="tiny muted" style="line-height:1.6">${esc(assessSuggest(a))}</div>
-
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="pill ${st.tone}">${st.label}</span>
         <button class="icon-btn" data-act="assess-del" data-id="${a.id}" title="刪除">✕</button>
@@ -1666,21 +1608,34 @@ VIEWS.assess = function(){
       <input class="input" type="date" id="evDue" style="flex:0 0 150px">
       <button class="btn btn-primary" data-act="assess-add">＋ 新增</button>
     </div>
-    <div class="tiny muted" style="margin-top:9px">💡 考前 14 天新增，系統會自動提醒你「考前兩週 → 可開始進入 SRP」。</div>
   </div>
 
   ${body}`;
 };
 
-/* ---------- 6.6 FEEDBACK (editable) ---------- */
+/* ---------- FEEDBACK（含年級分類） ---------- */
 VIEWS.feedback = function(){
+  const grades = ['All', ...new Set(state.feedback.map(f => f.grade || '未分類'))];
   const subs = ['All', ...new Set(state.feedback.map(f => f.subject))];
+  const gradeFilter = state.fbGradeFilter || 'All';
   const filter = state.fbFilter || 'All';
-  const list = state.feedback.filter(f => filter === 'All' || f.subject === filter);
+
+  const list = state.feedback.filter(f => {
+    const g = f.grade || '未分類';
+    return (gradeFilter === 'All' || g === gradeFilter) &&
+           (filter === 'All' || f.subject === filter);
+  });
+
   const editingId = state.editingFbId;
   const isNew = state.fbAdding;
 
-  const chips = subs.map(s => `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部 All' : esc(s)}</button>`).join('');
+  const gradeChips = grades.map(g =>
+    `<button class="chip ${g===gradeFilter?'active':''}" data-act="fb-grade-filter" data-grade="${esc(g)}">${g === 'All' ? '全部年級 All' : esc(g)}</button>`
+  ).join('');
+
+  const subjChips = subs.map(s =>
+    `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部科目 All' : esc(s)}</button>`
+  ).join('');
 
   const newForm = isNew ? `
     <div class="card" style="margin-bottom:14px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
@@ -1690,6 +1645,7 @@ VIEWS.feedback = function(){
       <div class="form-row">
         <input class="input" id="fbNewName" placeholder="考試名稱 Name" style="flex:1 1 220px">
         <select class="input" id="fbNewSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+        <input class="input" id="fbNewGrade" placeholder="年級 e.g. Grade 9" style="flex:0 0 130px">
         <input class="input" id="fbNewCrit" placeholder="評分準則 e.g. A, B, D" style="flex:0 0 200px">
       </div>
       <textarea class="input" id="fbNewText" placeholder="反饋內容 Feedback（每行一項，可用 - 開頭）" rows="5" style="margin-top:8px"></textarea>
@@ -1699,13 +1655,22 @@ VIEWS.feedback = function(){
       </div>
     </div>` : '';
 
-  const items = list.map(f => {
+  const grouped = {};
+  list.forEach(f => {
+    const g = f.grade || '未分類';
+    if (!grouped[g]) grouped[g] = [];
+    grouped[g].push(f);
+  });
+  const groupNames = Object.keys(grouped).sort();
+
+  const renderItem = (f) => {
     if (editingId === f.id){
       return `
         <div class="card" style="margin-bottom:10px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
           <div class="form-row">
             <input class="input" id="fbEditName-${f.id}" value="${esc(f.name)}" placeholder="名稱 Name" style="flex:1 1 200px">
             <select class="input" id="fbEditSubj-${f.id}" style="flex:0 0 130px">${state.subjects.map(s => `<option ${s===f.subject?'selected':''}>${esc(s)}</option>`).join('')}</select>
+            <input class="input" id="fbEditGrade-${f.id}" value="${esc(f.grade || '')}" placeholder="年級 Grade" style="flex:0 0 120px">
             <input class="input" id="fbEditCrit-${f.id}" value="${esc(f.crit)}" placeholder="Crit" style="flex:0 0 150px">
           </div>
           <textarea class="input" id="fbEditText-${f.id}" rows="6" style="margin-top:8px">${esc(f.text)}</textarea>
@@ -1733,7 +1698,18 @@ VIEWS.feedback = function(){
         </div>
       </div>
     </details>`;
-  }).join('');
+  };
+
+  const groupedHTML = groupNames.length
+    ? groupNames.map(g => `
+      <div style="margin-bottom:20px">
+        <div class="sec-title" style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="font-size:14px">🎓 ${esc(g)}</span>
+          <span class="tiny muted" style="font-weight:600">${grouped[g].length} 筆</span>
+        </div>
+        ${grouped[g].map(renderItem).join('')}
+      </div>`).join('')
+    : `<div class="empty"><b>沒有符合的反饋</b>No feedback matches this filter.</div>`;
 
   return `
   <div class="card" style="margin-bottom:14px">
@@ -1744,16 +1720,22 @@ VIEWS.feedback = function(){
         <button class="btn btn-primary btn-sm" data-act="fb-add">＋ 新增反饋 Add</button>
       </div>
     </div>
-    <div class="chip-row">${chips}</div>
+    <div style="margin-bottom:10px">
+      <div class="tiny muted" style="font-weight:700;letter-spacing:.5px;margin-bottom:6px">年級 GRADE</div>
+      <div class="chip-row">${gradeChips}</div>
+    </div>
+    <div>
+      <div class="tiny muted" style="font-weight:700;letter-spacing:.5px;margin-bottom:6px">科目 SUBJECT</div>
+      <div class="chip-row">${subjChips}</div>
+    </div>
   </div>
   ${newForm}
-  <div>${items || `<div class="empty"><b>沒有符合的反饋</b>No feedback matches this filter. 點擊「＋ 新增反饋」開始記錄。</div>`}</div>`;
+  <div>${groupedHTML}</div>`;
 };
 
-/* ---------- 6.7 REPORT CARDS ---------- */
+/* ---------- REPORT CARDS ---------- */
 VIEWS.report = function(){
   const grades = state.reportGrades || [];
-
   const gradeRows = grades.length ? grades.map(g => {
     const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
     const cells = [...Array(5)].map((_, i) => {
@@ -1762,9 +1744,7 @@ VIEWS.report = function(){
       const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
       return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="8" step="1"
         value="${v}" ${active ? '' : 'disabled'}
-        data-act="rcg-score" data-id="${g.id}" data-idx="${i}"
-        placeholder="–"
-        title="${active ? def.key + ' · Criterion ' + def.crit[i] : '不適用 N/A'}">`;
+        data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
     }).join('');
     return `<div class="rcg-row">
       <input class="input" value="${esc(g.name)}" placeholder="評估名稱 Name" data-act="rcg-name" data-id="${g.id}">
@@ -1779,21 +1759,17 @@ VIEWS.report = function(){
   const gradeTable = grades.length ? `
     <div class="scroll-x"><div style="min-width:640px">
       <div class="rcg-row rcg-head">
-        <div>評估名稱 Name</div>
-        <div>科目 Subject</div>
-        <div style="text-align:center">A</div>
-        <div style="text-align:center">B</div>
-        <div style="text-align:center">C</div>
-        <div style="text-align:center">D</div>
-        <div style="text-align:center">E</div>
-        <div></div>
+        <div>評估名稱 Name</div><div>科目 Subject</div>
+        <div style="text-align:center">A</div><div style="text-align:center">B</div>
+        <div style="text-align:center">C</div><div style="text-align:center">D</div>
+        <div style="text-align:center">E</div><div></div>
       </div>
       ${gradeRows}
     </div></div>`
     : `<div class="empty"><b>尚無評估成績 No assessment grades</b>先在上方新增一筆評估，再逐格填入各 Criterion 的分數（0–8）。</div>`;
 
-  const bounds4 = [[28,'7','卓越 Excellent'],[24,'6','優秀 Very Good'],[19,'5','良好 Good'],[15,'4','滿意 Satisfactory'],[10,'3','基本 Basic'],[6,'2','不足 Limited'],[0,'1','入門 Emerging']];
-  const bounds5 = [[35,'7','卓越 Excellent'],[30,'6','優秀 Very Good'],[24,'5','良好 Good'],[19,'4','滿意 Satisfactory'],[13,'3','基本 Basic'],[8,'2','不足 Limited'],[0,'1','入門 Emerging']];
+  const bounds4 = [[28,'7','卓越'],[24,'6','優秀'],[19,'5','良好'],[15,'4','滿意'],[10,'3','基本'],[6,'2','不足'],[0,'1','入門']];
+  const bounds5 = [[35,'7','卓越'],[30,'6','優秀'],[24,'5','良好'],[19,'4','滿意'],[13,'3','基本'],[8,'2','不足'],[0,'1','入門']];
   const boundBlock = (title, arr) => `
     <div>
       <div class="sec-title">${title}</div>
@@ -1811,8 +1787,8 @@ VIEWS.report = function(){
 
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">📝 單次評估成績 <span class="muted" style="font-weight:500;font-size:12px">Individual Assessment Grades</span></div>
-      <span class="tiny muted">每項 0–8 分 · 留空表示該評估未評此 Criterion</span>
+      <div class="card-title">📝 單次評估成績</div>
+      <span class="tiny muted">每項 0–8 分</span>
     </div>
     <div class="form-row" style="margin-bottom:14px">
       <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
@@ -1826,18 +1802,14 @@ VIEWS.report = function(){
 
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">💯 科目 Criterion 彙總 <span class="muted" style="font-weight:500;font-size:12px">Subject Criteria Summary</span></div>
-      <span class="tiny muted">自動計算：該科所有評估的 Criterion 平均分（向下取整）</span>
+      <div class="card-title">💯 科目 Criterion 彙總</div>
+      <span class="tiny muted">自動計算平均（向下取整）</span>
     </div>
     <div id="rcSummary">${rcSummaryHTML()}</div>
-    <div class="tiny muted" style="margin-top:10px">
-      💡 一般科目使用 4 個 Criterion（A–D，滿分 32）；Biotech 使用 5 個 Criterion（I–V，對應 A–E 欄，滿分 40）。
-      系統會將該科所有評估的同一 Criterion 分數取平均並向下取整，作為該科的 Criterion 成績，再換算 MYP 等級。
-    </div>
   </div>
 
   <div class="card">
-    <div class="card-head"><div class="card-title">📏 MYP 等級換算表 <span class="muted" style="font-weight:500;font-size:12px">Grade Boundaries</span></div></div>
+    <div class="card-head"><div class="card-title">📏 MYP 等級換算表</div></div>
     <div class="grid g-2" style="gap:18px">
       ${boundBlock('4 Criterion（滿分 32）', bounds4)}
       ${boundBlock('5 Criterion（Biotech · 滿分 40）', bounds5)}
@@ -1845,7 +1817,7 @@ VIEWS.report = function(){
   </div>`;
 };
 
-/* ---------- 6.8 SCHEDULE (editable) ---------- */
+/* ---------- SCHEDULE ---------- */
 VIEWS.schedule = function(){
   const d = state.schedDay || 1;
   const periods = (state.schedule[d] || ['','','','','']);
@@ -1897,23 +1869,23 @@ VIEWS.schedule = function(){
     <div class="card-head">
       <div class="card-title">📅 我的課表 <span class="muted" style="font-weight:500;font-size:12px">My Schedule</span></div>
       <div style="display:flex;gap:8px;align-items:center">
-        <span class="tiny muted">10 天循環 · 10-day cycle</span>
+        <span class="tiny muted">10 天循環</span>
         ${edit
           ? `<button class="btn btn-primary btn-sm" data-act="sched-done">✓ 完成編輯 Done</button>`
           : `<button class="btn btn-sm" data-act="sched-edit-toggle">✏️ 編輯課表 Edit</button>`}
       </div>
     </div>
-    ${edit ? `<div class="tiny muted" style="margin-bottom:12px">💡 直接點擊欄位修改，格式建議 <b>科目 (教室)</b>，例如 <code>Chinese (B310)</code>。修改會即時儲存。</div>` : ''}
+    ${edit ? `<div class="tiny muted" style="margin-bottom:12px">💡 直接點擊欄位修改，格式建議 <b>科目 (教室)</b></div>` : ''}
     <div class="day-tabs">${tabs}</div>
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">🕐 Day ${d} 課堂 <span class="muted" style="font-weight:500;font-size:12px">Day ${d} Lessons</span></div></div>
+    <div class="card-head"><div class="card-title">🕐 Day ${d} 課堂</div></div>
     <div class="sched-grid">${todayCards}</div>
   </div>
 
   <div class="card">
-    <div class="card-head"><div class="card-title">🗓️ 全循環總表 <span class="muted" style="font-weight:500;font-size:12px">Full Cycle</span></div></div>
+    <div class="card-head"><div class="card-title">🗓️ 全循環總表</div></div>
     <div class="scroll-x">
       <table class="tbl" style="min-width:900px">
         <thead><tr><th>節次 Period</th>${[...Array(10).keys()].map(k => `<th style="text-align:center">D${k+1}</th>`).join('')}</tr></thead>
@@ -1923,14 +1895,13 @@ VIEWS.schedule = function(){
   </div>`;
 };
 
-/* ---------- 6.9 GUIDE ---------- */
+/* ---------- GUIDE ---------- */
 VIEWS.guide = function(){
   const sec = (title, sub, body, open = false) =>
     `<details class="acc" ${open ? 'open' : ''}>
       <summary><span>${title}</span><span class="tiny muted" style="margin-left:auto;margin-right:8px;font-weight:600">${sub}</span></summary>
       <div class="acc-body">${body}</div>
     </details>`;
-
   const tbl = (head, rows) => `
     <div class="scroll-x"><table class="tbl" style="min-width:520px">
       <thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead>
@@ -1940,86 +1911,61 @@ VIEWS.guide = function(){
   return `
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">🚀 每日、每週、每科具體操作指南</div>
+      <div class="card-title">🚀 操作指南</div>
       <span class="tiny muted">Daily · Weekly · Per-subject playbook</span>
     </div>
     <p class="tiny muted" style="line-height:1.7">
-      這套系統的核心只有一句話：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習，讓記憶自然沉澱。</b><br>
-      The whole system in one line: break content into small concepts, review them on days 2-3-5-7, and let memory settle naturally.
+      核心只有一句話：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習。</b>
     </p>
   </div>
 
-  ${sec('一、每日例行流程 <span class="tiny muted">Daily Routine</span>', '約 5–10 分鐘', tbl(
-    ['時間點 When', '動作 Action', '目的 Purpose'],
+  ${sec('一、每日例行流程', '約 5–10 分鐘', tbl(
+    ['時間點', '動作', '目的'],
     [
-      ['🌅 早晨（上學前）', '打開「待辦事項」，看當天複習任務列顯示哪些知識點', '預先知道今天要複習什麼'],
-      ['🏫 課間／下課', '對照「課表」與 SRP，有空檔優先完成「第 2 天」的複習', '把握黃金 24 小時'],
-      ['🌆 放學後', '① 檢查作業追蹤是否有今天到期<br>② 新學習內容到 SRP 新增一列<br>③ 完成當天複習任務', '不累積、不遺漏'],
-      ['🌙 睡前', '快速回顧今天學到的「一個重點」，在腦中想一遍（費曼技巧）', '鞏固當天所學']
+      ['🌅 早晨', '打開「待辦事項」，看當天複習任務', '預先知道今天要複習什麼'],
+      ['🏫 課間', '對照「課表」與 SRP，有空檔優先完成複習', '把握黃金 24 小時'],
+      ['🌆 放學後', '① 檢查作業追蹤 ② 新內容到 SRP 新增 ③ 完成複習', '不累積、不遺漏'],
+      ['🌙 睡前', '快速回顧今天學到的一個重點', '鞏固當天所學']
     ]), true)}
 
-  ${sec('二、每週例行流程 <span class="tiny muted">Weekly Routine</span>', '約 15–20 分鐘 · 建議週日晚上', tbl(
-    ['步驟 Step', '動作 Action', '目的 Purpose'],
+  ${sec('二、每週例行流程', '約 15–20 分鐘', tbl(
+    ['步驟', '動作', '目的'],
     [
-      ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期（狀態欄顯示「📅 等待第 1 次複習」）', '提前規劃下週複習節奏'],
-      ['2️⃣ 檢查作業與考試', '到「作業追蹤」與「考試計劃」檢視下週所有到期項目', '避免臨時抱佛腳'],
-      ['3️⃣ 調整待辦日期', '把「待辦事項」切換到下週', '保持待辦清單準確'],
-      ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標（例：完成數學作業、複習英文詩歌）', '有方向地前進'],
-      ['5️⃣ 回顧本週', '統計完成多少複習任務、哪些逾期、哪些卡關', '持續優化系統']
+      ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期', '提前規劃下週'],
+      ['2️⃣ 檢查作業與考試', '檢視下週所有到期項目', '避免臨時抱佛腳'],
+      ['3️⃣ 調整待辦日期', '把待辦清單切換到下週', '保持準確'],
+      ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標', '有方向地前進']
     ]))}
 
-  ${sec('三、學了新內容時 <span class="tiny muted">When You Learn Something New</span>', '拆解知識點範例', tbl(
-    ['科目類型 Subject', '拆解範例 Breakdown', 'SRP 輸入方式'],
+  ${sec('三、學了新內容時', '拆解知識點', tbl(
+    ['科目類型', '拆解範例', 'SRP 輸入方式'],
     [
-      ['🔢 數學 Math', '不要寫「二次函數全部」，要拆成：「頂點式配方」「最大最小值」「平移關係」', '每個小概念獨立一列'],
-      ['📖 語文（中／英）', '不要寫「詩歌單元」，要拆成：「修辭手法」「作者背景」「主題分析」', '每個技巧或文本獨立一列'],
-      ['🔬 科學 Sciences', '不要寫「細胞單元」，要拆成：「細胞結構」「細胞分裂」「顯微鏡操作」', '每個關鍵概念獨立一列'],
-      ['🌏 人文社會 Humanities', '不要寫「工業革命」，要拆成：「起因」「影響」「重要人物」', '每個面向獨立一列']
+      ['🔢 數學', '「二次函數」→「頂點式配方」「最大最小值」', '每個小概念獨立一列'],
+      ['📖 語文', '「詩歌單元」→「修辭手法」「作者背景」', '每個技巧獨立一列'],
+      ['🔬 科學', '「細胞單元」→「細胞結構」「細胞分裂」', '每個概念獨立一列'],
+      ['🌏 人文', '「工業革命」→「起因」「影響」「人物」', '每個面向獨立一列']
     ]))}
 
-  ${sec('四、複習日到來時 <span class="tiny muted">On Revision Days</span>', '每次 5–15 分鐘', tbl(
-    ['次數', '時間點', '一句話心法', '具體動作（各科通用）'],
+  ${sec('四、複習日到來時', '每次 5–15 分鐘', tbl(
+    ['次數', '時間點', '心法', '動作'],
     [
-      ['第 1 次', '第 2 天', '重做經典，連結舊知', '不看解答，重做課本例題或重述核心概念，並說出它跟之前的關聯'],
-      ['第 2 次', '第 3 天', '閉卷輸出，抓出漏洞', '闔書默寫公式／流程／關鍵字，紅筆訂正漏掉的地方'],
-      ['第 3 次', '第 5 天', '限時實戰，偵測盲點', '計時做 2 道新題目或新閱讀，檢討錯因（不是只對答案）'],
-      ['第 4 次', '第 7 天', '化身老師，系統串聯', '用生活化比喻講解給空氣聽，並說明與前後單元的關聯']
+      ['第 1 次', '第 2 天', '重做經典', '不看解答重做例題'],
+      ['第 2 次', '第 3 天', '閉卷輸出', '默寫公式／流程'],
+      ['第 3 次', '第 5 天', '限時實戰', '計時做新題目'],
+      ['第 4 次', '第 7 天', '化身老師', '講解給空氣聽']
     ]))}
-
-  ${sec('五、考試將近時 <span class="tiny muted">When Exams Approach</span>', '考前 7–14 天', tbl(
-    ['時間點', '動作 Action', '目的 Purpose'],
-    [
-      ['考前 14 天', '到「考試計劃」新增該考試，設定日期', '啟動倒數提醒'],
-      ['考前 7 天', '系統顯示「🔔 距離考試僅剩 X 天，建議用考試倒數法密集複習！」', '開始密集練習'],
-      ['考前 3–5 天', '做歷屆試題或模擬卷，計時並檢討', '適應考試節奏'],
-      ['考前 1 天', '做一次完整的模擬考（計時、計分）', '調整狀態，找出最後弱點']
-    ]))}
-
-  <div class="card" style="margin-top:14px">
-    <div class="card-head"><div class="card-title">🍅 番茄鐘使用建議 <span class="muted" style="font-weight:500;font-size:12px">Pomodoro Tips</span></div></div>
-    <div class="grid g-3" style="gap:10px">
-      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
-        <b style="font-size:15px;color:var(--primary)">25 分鐘</b><span class="tiny muted">專注 Focus — 一次只做一個知識點</span>
-      </div>
-      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
-        <b style="font-size:15px;color:var(--primary)">5 分鐘</b><span class="tiny muted">短休息 Short Break — 起身走動、喝水</span>
-      </div>
-      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
-        <b style="font-size:15px;color:var(--primary)">15 分鐘</b><span class="tiny muted">長休息 Long Break — 每 4 個番茄後</span>
-      </div>
-    </div>
-  </div>`;
+  `;
 };
 
-/* ---------- 6.10 SETTINGS ---------- */
+/* ---------- SETTINGS ---------- */
 VIEWS.settings = function(){
   const subs = state.subjects || [];
   const chips = subs.map(s => `
     <span class="subj-chip">
       <span class="dot" style="background:${subjColor(s)}"></span>
       ${esc(s)}
-      <button data-act="subj-rename" data-name="${esc(s)}" title="重新命名 Rename">✏️</button>
-      <button data-act="subj-del" data-name="${esc(s)}" title="刪除 Delete">✕</button>
+      <button data-act="subj-rename" data-name="${esc(s)}" title="重新命名">✏️</button>
+      <button data-act="subj-del" data-name="${esc(s)}" title="刪除">✕</button>
     </span>`).join('');
 
   const usage = {};
@@ -2029,7 +1975,6 @@ VIEWS.settings = function(){
   state.assessments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.feedback.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
 
-  /* ---- 雲端同步區塊 ---- */
   const cf = Cloud.cfg;
   const provider = cf.provider;
   const statusLabel = Cloud.configured
@@ -2041,41 +1986,24 @@ VIEWS.settings = function(){
       <div class="form-row">
         <input class="input" data-cloud="supabase.url" value="${esc(cf.supabase.url)}" placeholder="Supabase URL  e.g. https://xxxx.supabase.co" style="flex:1 1 320px">
         <input class="input" data-cloud="supabase.anonKey" value="${esc(cf.supabase.anonKey)}" placeholder="anon public key" style="flex:1 1 260px">
-        <input class="input" data-cloud="supabase.roomId" value="${esc(cf.supabase.roomId)}" placeholder="房間 ID（自行亂打一串，例如 nathan-9a7f3）" style="flex:1 1 220px">
+        <input class="input" data-cloud="supabase.roomId" value="${esc(cf.supabase.roomId)}" placeholder="房間 ID（自行亂打一串）" style="flex:1 1 220px">
       </div>
       <div class="tiny muted" style="margin-top:8px;line-height:1.7">
-        ① 到 <b>supabase.com</b> 免費註冊 → New Project<br>
-        ② 左側 <b>SQL Editor</b> 貼上下面這段 SQL 並 Run：
-        <pre style="background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px;margin-top:7px;font-size:11px;overflow-x:auto;line-height:1.6">create table study_state (
-  room text primary key,
-  data jsonb not null,
-  updated_at timestamptz default now()
-);
-alter table study_state enable row level security;
-create policy "r" on study_state for select using (true);
-create policy "w" on study_state for insert with check (true);
-create policy "u" on study_state for update using (true);</pre>
-        ③ 左側 <b>Project Settings → API</b> 複製 <b>Project URL</b> 與 <b>anon public key</b> 貼到上面<br>
-        ④ 「房間 ID」自己亂打一串英數（愈長愈好），所有裝置填同一串即會同步。
+        ① 到 <b>supabase.com</b> 註冊 → New Project<br>
+        ② SQL Editor 跑建立 study_state 表的 SQL<br>
+        ③ Project Settings → API Keys 複製 URL 與 anon key<br>
+        ④ 房間 ID 自己亂打一串，所有裝置填同一串
       </div>`;
     if (provider === 'jsonbin') return `
       <div class="form-row">
-        <input class="input" data-cloud="jsonbin.masterKey" value="${esc(cf.jsonbin.masterKey)}" placeholder="X-Master-Key（jsonbin.io → API Keys）" style="flex:1 1 300px">
+        <input class="input" data-cloud="jsonbin.masterKey" value="${esc(cf.jsonbin.masterKey)}" placeholder="X-Master-Key" style="flex:1 1 300px">
         <input class="input" data-cloud="jsonbin.binId" value="${esc(cf.jsonbin.binId)}" placeholder="Bin ID（留空 → 點右邊建立）" style="flex:1 1 260px">
         <button class="btn" data-act="cloud-create-bin">＋ 建立新 Bin</button>
-      </div>
-      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
-        ① 到 <b>jsonbin.io</b> 免費註冊 → <b>API KEYS</b> 複製 <b>X-MASTER-KEY</b><br>
-        ② 貼上 Master Key，按「建立新 Bin」就會自動產生一個 Bin ID<br>
-        ③ 其他裝置只要填同一組 Master Key + Bin ID 即可同步。
       </div>`;
     return `
       <div class="form-row">
         <input class="input" data-cloud="custom.url" value="${esc(cf.custom.url)}" placeholder="GET / POST 端點 URL" style="flex:1 1 340px">
         <input class="input" data-cloud="custom.token" value="${esc(cf.custom.token)}" placeholder="Bearer token（可留空）" style="flex:1 1 240px">
-      </div>
-      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
-        自訂端點：GET 回傳狀態 JSON，POST 接收完整狀態 JSON。適合自架 Cloudflare Worker / Vercel Function。
       </div>`;
   })();
 
@@ -2099,7 +2027,6 @@ create policy "u" on study_state for update using (true);</pre>
       <div class="card-title">☁️ 雲端同步 <span class="muted" style="font-weight:500;font-size:12px">Cloud Sync（無 Firebase）</span></div>
       <span class="pill ${Cloud.configured ? (Cloud.status==='error'?'danger':'ok') : 'muted'}">${Cloud.configured ? '已啟用' : '未設定'}</span>
     </div>
-
     <div class="form-row" style="margin-bottom:12px">
       <select class="input" id="cloudProvider" style="flex:0 0 200px">
         <option value="supabase" ${provider==='supabase'?'selected':''}>Supabase（推薦）</option>
@@ -2112,16 +2039,13 @@ create policy "u" on study_state for update using (true);</pre>
       <input class="input" type="number" id="cloudInterval" value="${cf.intervalSec}" min="30" step="10" style="flex:0 0 110px" title="同步間隔（秒）">
       <span class="tiny muted" style="flex:0 0 auto;align-self:center">秒 / interval</span>
     </div>
-
     ${providerFields}
-
     <div class="form-row" style="margin-top:12px">
       <button class="btn btn-primary" data-act="cloud-save">💾 儲存並同步</button>
       <button class="btn" data-act="cloud-sync-now">🔄 立即同步</button>
       <button class="btn" data-act="cloud-push-now">⬆️ 上傳本地</button>
       <button class="btn" data-act="cloud-pull-now">⬇️ 下載雲端</button>
     </div>
-
     <div class="kv" style="margin-top:12px">
       <span>目前狀態 Status</span>
       <b id="cloudStatusText">${statusLabel}</b>
@@ -2131,14 +2055,13 @@ create policy "u" on study_state for update using (true);</pre>
       <b>${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
     </div>
     <div class="tiny muted" style="margin-top:10px;line-height:1.7">
-      💡 同步策略：以「最後修改時間」為準。本機改動較新 → 上傳；雲端較新 → 下載並覆蓋本機。
-      所有裝置請填<b>同一組設定</b>。網址可加上 <code>?room=xxx</code> 快速切換房間。
+      💡 同步策略：以「最後修改時間」為準。本機改動較新 → 上傳；雲端較新 → 下載覆蓋本機。
     </div>
   </div>
 
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">🏷️ 科目管理 <span class="muted" style="font-weight:500;font-size:12px">Subject Management</span></div>
+      <div class="card-title">🏷️ 科目管理</div>
       <span class="tiny muted">用於 SRP、作業、考試、反饋的下拉選單</span>
     </div>
     <div class="chip-row" style="margin-bottom:14px">${chips || '<span class="tiny muted">尚無科目</span>'}</div>
@@ -2146,11 +2069,10 @@ create policy "u" on study_state for update using (true);</pre>
       <input class="input" id="subjNewInput" placeholder="新增科目名稱 e.g. Drama" style="flex:1 1 260px">
       <button class="btn btn-primary" data-act="subj-add">＋ 新增科目</button>
     </div>
-    <div class="tiny muted" style="margin-top:10px">💡 重新命名時，系統會自動更新所有引用此科目的紀錄。</div>
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">📊 科目使用統計 <span class="muted" style="font-weight:500;font-size:12px">Usage Stats</span></div></div>
+    <div class="card-head"><div class="card-title">📊 科目使用統計</div></div>
     <div style="display:flex;flex-direction:column;gap:7px">
       ${subs.map(s => {
         const u = usage[s] || 0;
@@ -2166,21 +2088,19 @@ create policy "u" on study_state for update using (true);</pre>
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">💾 資料管理 <span class="muted" style="font-weight:500;font-size:12px">Data Management</span></div></div>
+    <div class="card-head"><div class="card-title">💾 資料管理</div></div>
     <div class="form-row">
       <button class="btn" data-act="data-export">⬇️ 匯出 JSON Export</button>
       <button class="btn" data-act="data-import">⬆️ 匯入 JSON Import</button>
       <button class="btn btn-danger" data-act="data-reset">🗑 重設所有資料 Reset All</button>
     </div>
-    <div class="tiny muted" style="margin-top:10px">💡 所有資料儲存在瀏覽器的 localStorage，開啟雲端同步後才會上傳到您指定的後端。</div>
   </div>
 
   <div class="card">
-    <div class="card-head"><div class="card-title">ℹ️ 關於 <span class="muted" style="font-weight:500;font-size:12px">About</span></div></div>
-    <div class="kv"><span>版本 Version</span><b>1.3（Cloud Sync）</b></div>
+    <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
+    <div class="kv"><span>版本 Version</span><b>1.4（年級分類）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
-    <div class="kv"><span>捷徑 Shortcut</span><b>資料自動儲存</b></div>
   </div>`;
 };
 
@@ -2222,7 +2142,6 @@ document.addEventListener('click', e => {
   const act = el.dataset.act;
 
   switch(act){
-    /* ---- cloud ---- */
     case 'sync-chip': {
       state.view = 'settings';
       save(); render();
@@ -2243,7 +2162,6 @@ document.addEventListener('click', e => {
     case 'cloud-push-now': { Cloud.forcePush(); break; }
     case 'cloud-pull-now': { Cloud.forcePull(); break; }
 
-    /* ---- to-do ---- */
     case 'todo-toggle': {
       const it = state.todos.find(x => x.id === el.dataset.id);
       if (it){ it.done = !it.done; save(); render(); }
@@ -2275,8 +2193,6 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-
-    /* ---- SRP ---- */
     case 'srp-toggle': {
       const it = state.srp.find(x => x.id === el.dataset.id);
       if (!it) break;
@@ -2302,8 +2218,6 @@ document.addEventListener('click', e => {
       toast('✅ 已新增知識點 Added');
       break;
     }
-
-    /* ---- assignments ---- */
     case 'assign-add': {
       const name = $('#asName').value.trim();
       if (!name){ $('#asName').focus(); return; }
@@ -2333,8 +2247,6 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-
-    /* ---- assessments ---- */
     case 'assess-add': {
       const name = $('#evName').value.trim();
       if (!name){ $('#evName').focus(); return; }
@@ -2355,10 +2267,13 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-
-    /* ---- feedback ---- */
     case 'fb-filter': {
       state.fbFilter = el.dataset.subj;
+      save(); render();
+      break;
+    }
+    case 'fb-grade-filter': {
+      state.fbGradeFilter = el.dataset.grade;
       save(); render();
       break;
     }
@@ -2378,10 +2293,11 @@ document.addEventListener('click', e => {
     case 'fb-save-new': {
       const name = $('#fbNewName').value.trim();
       const subj = $('#fbNewSubj').value;
+      const grade = $('#fbNewGrade').value.trim() || '未分類';
       const crit = $('#fbNewCrit').value.trim() || '—';
       const text = $('#fbNewText').value;
       if (!name){ $('#fbNewName').focus(); return; }
-      state.feedback.unshift({id: uid(), name, subject: subj, crit, text});
+      state.feedback.unshift({id: uid(), name, subject: subj, grade, crit, text});
       state.fbAdding = false;
       save(); render();
       toast('✅ 已新增反饋 Feedback added');
@@ -2399,6 +2315,7 @@ document.addEventListener('click', e => {
       if (!f) break;
       f.name = $('#fbEditName-' + id).value.trim() || f.name;
       f.subject = $('#fbEditSubj-' + id).value;
+      f.grade = $('#fbEditGrade-' + id).value.trim() || '未分類';
       f.crit = $('#fbEditCrit-' + id).value.trim() || '—';
       f.text = $('#fbEditText-' + id).value;
       state.editingFbId = null;
@@ -2413,15 +2330,12 @@ document.addEventListener('click', e => {
       toast('🗑 已刪除 Deleted');
       break;
     }
-
-    /* ---- report cards ---- */
     case 'rcg-add': {
       const name = $('#rcgNewName').value.trim();
       if (!name){ $('#rcgNewName').focus(); return; }
       if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
       state.reportGrades.push({
-        id: uid(),
-        name,
+        id: uid(), name,
         subject: $('#rcgNewSubj').value,
         scores: [null, null, null, null, null]
       });
@@ -2434,8 +2348,6 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-
-    /* ---- schedule ---- */
     case 'sched-day': {
       state.schedDay = parseInt(el.dataset.day, 10);
       save(); render();
@@ -2452,8 +2364,6 @@ document.addEventListener('click', e => {
       toast('✅ 課表已儲存 Schedule saved');
       break;
     }
-
-    /* ---- subjects ---- */
     case 'subj-add': {
       const inp = $('#subjNewInput');
       const name = inp ? inp.value.trim() : '';
@@ -2466,7 +2376,7 @@ document.addEventListener('click', e => {
     }
     case 'subj-del': {
       const name = el.dataset.name;
-      if (!confirm(`刪除科目「${name}」？\nDelete subject "${name}"?\n\n（已存在的紀錄不會被刪除，只是無法再從下拉選單選擇此科目）`)) break;
+      if (!confirm(`刪除科目「${name}」？`)) break;
       state.subjects = state.subjects.filter(s => s !== name);
       save(); render();
       toast('🗑 已刪除科目 Subject removed');
@@ -2474,7 +2384,7 @@ document.addEventListener('click', e => {
     }
     case 'subj-rename': {
       const oldName = el.dataset.name;
-      const newName = prompt(`重新命名科目 Rename subject:\n（會同步更新所有引用此科目的紀錄）`, oldName);
+      const newName = prompt(`重新命名科目：`, oldName);
       if (!newName || !newName.trim() || newName === oldName) return;
       const trimmed = newName.trim();
       if (state.subjects.includes(trimmed) && trimmed !== oldName){
@@ -2489,8 +2399,6 @@ document.addEventListener('click', e => {
       toast('✅ 已重新命名 Renamed');
       break;
     }
-
-    /* ---- data ---- */
     case 'data-export': {
       const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
       const url = URL.createObjectURL(blob);
@@ -2530,7 +2438,7 @@ document.addEventListener('click', e => {
       break;
     }
     case 'data-reset': {
-      if (!confirm('⚠️ 這會清除所有資料，包含您新增的反饋、科目、課表修改與成績紀錄。\n確定要重設嗎？Reset ALL data?')) return;
+      if (!confirm('⚠️ 這會清除所有資料。確定要重設嗎？')) return;
       localStorage.removeItem(LS_KEY);
       state = structuredClone(DEFAULT_STATE);
       state.editingFbId = null;
@@ -2543,9 +2451,7 @@ document.addEventListener('click', e => {
   }
 });
 
-/* 即時輸入更新（不重建 DOM） */
 document.addEventListener('input', e => {
-  /* --- 雲端設定欄位 --- */
   const cloudPath = e.target.dataset && e.target.dataset.cloud;
   if (cloudPath){
     const [grp, key] = cloudPath.split('.');
@@ -2558,7 +2464,6 @@ document.addEventListener('input', e => {
     Cloud.persist();
     return;
   }
-
   const el = e.target.closest('[data-act]');
   if (!el) return;
   const act = el.dataset.act;
@@ -2571,7 +2476,6 @@ document.addEventListener('input', e => {
     save();
     return;
   }
-
   if (act === 'assess-progress'){
     const a = state.assessments.find(x => x.id === el.dataset.id);
     if (!a) return;
@@ -2587,13 +2491,11 @@ document.addEventListener('input', e => {
     save();
     return;
   }
-
   if (act === 'rcg-name'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (g){ g.name = el.value; save(); }
     return;
   }
-
   if (act === 'rcg-score'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
@@ -2613,7 +2515,6 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('change', e => {
-  /* --- 雲端 provider / auto --- */
   if (e.target.id === 'cloudProvider'){
     Cloud.cfg.provider = e.target.value;
     Cloud.persist();
@@ -2636,13 +2537,11 @@ document.addEventListener('change', e => {
   const act = el.dataset.act;
 
   if (act === 'assess-progress'){ render(); return; }
-
   if (act === 'rcg-subject'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (g){ g.subject = el.value; save(); render(); }
     return;
   }
-
   if (act === 'rcg-score'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
@@ -2657,7 +2556,6 @@ document.addEventListener('change', e => {
     refreshReportSummary();
     return;
   }
-
   if (act === 'sched-edit'){
     const day = parseInt(el.dataset.day, 10);
     const period = parseInt(el.dataset.period, 10);
@@ -2667,29 +2565,24 @@ document.addEventListener('change', e => {
   }
 });
 
-/* Enter to add */
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey){
     if (e.target.id === 'newTodoInput'){
       const btn = document.querySelector('[data-act="todo-add"]');
-      btn && btn.click();
-      e.preventDefault();
+      btn && btn.click(); e.preventDefault();
     }
     if (e.target.id === 'subjNewInput'){
       const btn = document.querySelector('[data-act="subj-add"]');
-      btn && btn.click();
-      e.preventDefault();
+      btn && btn.click(); e.preventDefault();
     }
     if (e.target.id === 'rcgNewName'){
       const btn = document.querySelector('[data-act="rcg-add"]');
-      btn && btn.click();
-      e.preventDefault();
+      btn && btn.click(); e.preventDefault();
     }
     if (['srpConcept','asName','evName','fbNewName'].includes(e.target.id)){
       const map = {srpConcept:'srp-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new'};
       const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`);
-      btn && btn.click();
-      e.preventDefault();
+      btn && btn.click(); e.preventDefault();
     }
   }
 });
@@ -2710,7 +2603,7 @@ $('#themeBtn').addEventListener('click', () => {
    10. RESET BUTTON
    ===================================================================== */
 $('#resetBtn').addEventListener('click', () => {
-  if (!confirm('確定要重設所有資料嗎？此動作無法復原。\nReset all data? This cannot be undone.')) return;
+  if (!confirm('確定要重設所有資料嗎？')) return;
   localStorage.removeItem(LS_KEY);
   state = structuredClone(DEFAULT_STATE);
   state.editingFbId = null;
@@ -2725,10 +2618,7 @@ $('#resetBtn').addEventListener('click', () => {
    ===================================================================== */
 const POMO = {
   modes: {focus:{label:'專注 FOCUS', min:25}, short:{label:'短休 SHORT', min:5}, long:{label:'長休 LONG', min:15}},
-  mode: 'focus',
-  remaining: 25 * 60,
-  running: false,
-  tick: null
+  mode: 'focus', remaining: 25 * 60, running: false, tick: null
 };
 function pomoRender(){
   const m = Math.floor(POMO.remaining / 60), s = POMO.remaining % 60;
@@ -2762,7 +2652,7 @@ $('#pomoToggle').addEventListener('click', () => {
         POMO.remaining = POMO.modes[POMO.mode].min * 60;
         pomoBeep();
         if (Notification && Notification.permission === 'granted'){
-          new Notification('⏰ 番茄鐘結束 Time is up!', {body:'休息一下，或開始下一個番茄。'});
+          new Notification('⏰ 番茄鐘結束 Time is up!', {body:'休息一下。'});
         }
       }
       pomoRender();
@@ -2789,8 +2679,6 @@ $('#pomoMode').addEventListener('click', () => {
    12. BOOT
    ===================================================================== */
 loadState();
-
-/* URL 參數：?room=xxx 可快速指定同步房間 */
 (function applyUrlRoom(){
   const params = new URLSearchParams(location.search);
   const room = params.get('room');
@@ -2800,7 +2688,6 @@ loadState();
     Cloud.persist();
   }
 })();
-
 state.editingFbId = null;
 state.fbAdding = false;
 state.editingSchedule = false;
@@ -2809,7 +2696,6 @@ render();
 pomoRender();
 Cloud.renderChip();
 
-/* 視窗重新聚焦時同步一次 */
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible' && Cloud.configured){
     Cloud.sync(true);
@@ -2819,7 +2705,6 @@ window.addEventListener('online', () => {
   if (Cloud.configured) Cloud.sync(true);
 });
 
-/* 啟動自動同步 */
 if (Cloud.configured){
   setTimeout(() => Cloud.sync(true), 1500);
 }
