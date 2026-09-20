@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>學習總覽 · Studying Overview</title>
+<style>
+/* ============ RESET & TOKENS ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f4f5fa;
+  --glow1:#e6ebff; --glow2:#ffe8f2;
+  --surface:#ffffff;
+  --surface-2:#f6f7fc;
+  --surface-3:#eef0f8;
+  --text:#141728;
+  --muted:#6b7280;
+  --border:#e6e8f2;
+  --primary:#5b5ef0;
+  --primary-2:#8b5cf6;
+  --ok:#10b981; --warn:#f59e0b; --danger:#ef4444; --info:#3b82f6; --urgent:#e11d48;
+  --r:16px; --r-sm:10px;
+  --shadow:0 1px 2px rgba(20,23,40,.04), 0 14px 30px -22px rgba(20,23,40,.5);
+}
+[data-theme="dark"]{
+  --bg:#0d0f16;
+  --glow1:#1a1d33; --glow2:#251a2b;
+  --surface:#161923;
+  --surface-2:#1d2130;
+  --surface-3:#242938;
+  --text:#e9ebf5;
+  --muted:#98a1b8;
+  --border:#272c3c;
+  --primary:#818cf8;
+  --primary-2:#a78bfa;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 30px -22px rgba(0,0,0,.9);
+}
+html,body{height:100%}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+  background:var(--bg);
+  background-image:radial-gradient(1100px 600px at 8% -8%, var(--glow1) 0%, transparent 58%),
+                   radial-gradient(900px 520px at 102% 0%, var(--glow2) 0%, transparent 55%);
+  background-attachment:fixed;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:99px;border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:var(--border);background-clip:content-box}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ============ LAYOUT ============ */
+.app{display:flex;min-height:100vh}
+.sidebar{
+  width:246px;flex:0 0 246px;
+  position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;gap:6px;
+  padding:22px 16px;
+  background:color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter:blur(14px);
+  border-right:1px solid var(--border);
+  overflow-y:auto;
+}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 6px 18px}
+.brand-icon{
+  width:40px;height:40px;flex:0 0 40px;border-radius:13px;
+  display:grid;place-items:center;font-size:20px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  box-shadow:0 10px 22px -12px var(--primary);
+}
+.brand h1{font-size:15px;font-weight:800;letter-spacing:.2px}
+.brand p{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.4px}
+.nav{display:flex;flex-direction:column;gap:3px;flex:1}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 11px;border-radius:12px;border:1px solid transparent;
+  background:transparent;cursor:pointer;text-align:left;
+  color:var(--muted);font:inherit;transition:.16s ease;width:100%;
+}
+.nav-item:hover{background:var(--surface-2);color:var(--text)}
+.nav-item.active{
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  color:#fff;box-shadow:0 10px 22px -14px var(--primary);
+}
+.nav-icon{font-size:15px;line-height:1;width:18px;text-align:center}
+.nav-text{display:flex;flex-direction:column;line-height:1.2}
+.nav-text b{font-size:13px;font-weight:650}
+.nav-text small{font-size:10px;opacity:.72;font-weight:500;letter-spacing:.2px}
+.sidebar-foot{display:flex;gap:6px;padding-top:12px;border-top:1px solid var(--border)}
+.sidebar-foot button{
+  flex:1;padding:8px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);color:var(--muted);font:inherit;font-size:12px;
+  cursor:pointer;transition:.15s;font-weight:600;
+}
+.sidebar-foot button:hover{background:var(--surface-2);color:var(--text)}
+
+.main{flex:1;min-width:0;padding:22px 28px 70px;max-width:1460px;margin:0 auto;width:100%}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.topbar h2{font-size:22px;font-weight:800;letter-spacing:-.3px}
+.topbar .sub{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:1.2px;text-transform:uppercase}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.today-chip{
+  display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--border);font-size:12.5px;font-weight:650;
+  box-shadow:var(--shadow);
+}
+.today-chip .dot{width:7px;height:7px;border-radius:99px;background:var(--ok);box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+
+/* pomodoro */
+.pomo{
+  display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-radius:99px;
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
+}
+.pomo-mode{
+  font-size:10.5px;font-weight:750;letter-spacing:.4px;color:var(--muted);
+  cursor:pointer;user-select:none;padding:3px 7px;border-radius:99px;background:var(--surface-2);
+  transition:.15s;
+}
+.pomo-mode:hover{color:var(--text)}
+.pomo-time{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.5px;min-width:46px;text-align:center}
+.icon-btn{
+  width:28px;height:28px;border-radius:99px;border:1px solid var(--border);
+  background:var(--surface-2);color:var(--text);cursor:pointer;font-size:12px;
+  display:grid;place-items:center;transition:.15s;line-height:1;
+}
+.icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.pomo.running .pomo-time{color:var(--primary)}
+
+/* ============ COMPONENTS ============ */
+.grid{display:grid;gap:14px}
+.g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.g-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g-4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.stack{display:flex;flex-direction:column;gap:14px}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:18px;box-shadow:var(--shadow);
+}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.card-title{font-size:14.5px;font-weight:750;display:flex;align-items:center;gap:8px}
+.card-sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+
+/* hero */
+.hero{
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
+  padding:26px 28px;border-radius:20px;margin-bottom:16px;
+  background:linear-gradient(120deg,var(--primary) 0%,var(--primary-2) 55%,#ec4899 130%);
+  color:#fff;box-shadow:0 24px 50px -30px var(--primary);
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(500px 260px at 88% -20%, rgba(255,255,255,.28), transparent 70%);
+  pointer-events:none;
+}
+.hero h3{font-size:23px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px}
+.hero p{font-size:13px;opacity:.9;font-weight:500;max-width:560px}
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.hero-chips span{
+  font-size:11.5px;font-weight:650;padding:4px 11px;border-radius:99px;
+  background:rgba(255,255,255,.19);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);
+}
+.ring-wrap{position:relative;width:104px;height:104px;flex:0 0 104px}
+.ring{width:104px;height:104px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+.ring .bg{stroke:rgba(255,255,255,.24)}
+.ring .fg{stroke:#fff;transition:stroke-dasharray .7s cubic-bezier(.4,0,.2,1)}
+.ring-label{
+  position:absolute;inset:0;display:grid;place-content:center;text-align:center;
+}
+.ring-label b{font-size:22px;font-weight:800;line-height:1}
+.ring-label small{font-size:9.5px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:3px}
+
+/* stats */
+.stat{
+  display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r);
+  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
+  transition:.18s;
+}
+.stat:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 35%,var(--border))}
+.stat-icon{
+  width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:grid;place-items:center;
+  font-size:18px;background:var(--surface-2);
+}
+.stat-val{font-size:22px;font-weight:800;line-height:1.05;letter-spacing:-.5px}
+.stat-lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px}
+
+/* badges & pills */
+.badge{
+  display:inline-flex;align-items:center;padding:2.5px 9px;border-radius:99px;
+  font-size:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;
+  font-size:11px;font-weight:700;white-space:nowrap;line-height:1.5;
+}
+.pill.ok{background:rgba(16,185,129,.15);color:#0d9c6e}
+.pill.warn{background:rgba(245,158,11,.16);color:#c47a06}
+.pill.danger{background:rgba(239,68,68,.15);color:#dc2626}
+.pill.urgent{background:rgba(225,29,72,.15);color:#e11d48}
+.pill.info{background:rgba(59,130,246,.15);color:#2563eb}
+.pill.muted{background:var(--surface-2);color:var(--muted)}
+
+/* lists */
+.list{display:flex;flex-direction:column;gap:2px}
+.item{
+  display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border-radius:12px;
+  transition:.15s;border:1px solid transparent;
+}
+.item:hover{background:var(--surface-2)}
+.item + .item{border-top:1px solid var(--border)}
+.item-main{flex:1;min-width:0}
+.item-title{font-size:13.5px;font-weight:600;word-break:break-word}
+.item-title.done{text-decoration:line-through;color:var(--muted);opacity:.72}
+.item-meta{font-size:11.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:3px}
+.item-actions{display:flex;gap:5px;opacity:0;transition:.15s}
+.item:hover .item-actions{opacity:1}
+
+/* checkbox */
+.cb{
+  width:20px;height:20px;flex:0 0 20px;border-radius:7px;border:2px solid var(--border);
+  background:var(--surface);cursor:pointer;display:grid;place-items:center;
+  transition:.16s;margin-top:1px;font-size:11px;color:transparent;line-height:1;
+}
+.cb:hover{border-color:var(--primary);transform:scale(1.06)}
+.cb.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));border-color:transparent;color:#fff}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:9px 15px;border-radius:11px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text);font:inherit;font-size:13px;font-weight:650;
+  cursor:pointer;transition:.16s;white-space:nowrap;
+}
+.btn:hover{background:var(--surface-2);transform:translateY(-1px)}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  color:#fff;border-color:transparent;box-shadow:0 10px 22px -14px var(--primary);
+}
+.btn-primary:hover{filter:brightness(1.07);background:linear-gradient(135deg,var(--primary),var(--primary-2))}
+.btn-sm{padding:6px 11px;font-size:12px;border-radius:9px}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn-ghost:hover{background:var(--surface-2);color:var(--danger)}
+.btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))}
+.btn-danger:hover{background:rgba(239,68,68,.1);color:var(--danger)}
+
+/* inputs */
+.input{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:9px 12px;font:inherit;font-size:13px;color:var(--text);outline:none;
+  transition:.15s;min-width:0;width:100%;
+}
+.input::placeholder{color:var(--muted);opacity:.75}
+.input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+select.input{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:32px}
+textarea.input{font-family:inherit;resize:vertical;line-height:1.55}
+.form-row{display:flex;gap:8px;flex-wrap:wrap}
+.form-row > *{flex:1 1 150px}
+.form-row > .btn{flex:0 0 auto}
+
+/* progress bar */
+.bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;width:100%}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary-2));transition:width .5s cubic-bezier(.4,0,.2,1)}
+.bar-fill.ok{background:linear-gradient(90deg,#10b981,#34d399)}
+.bar-fill.warn{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.bar-fill.danger{background:linear-gradient(90deg,#ef4444,#f87171)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;
+  background:var(--surface-3);outline:none;cursor:pointer;margin-top:10px;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:99px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  cursor:pointer;box-shadow:0 2px 8px -2px var(--primary);border:2px solid var(--surface);
+}
+input[type=range]::-moz-range-thumb{
+  width:14px;height:14px;border-radius:99px;border:2px solid var(--surface);
+  background:var(--primary);cursor:pointer;
+}
+
+/* week strip */
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.day-chip{
+  padding:11px 8px;border-radius:13px;border:1px solid var(--border);background:var(--surface);
+  cursor:pointer;text-align:center;transition:.16s;position:relative;overflow:hidden;
+}
+.day-chip:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--border));transform:translateY(-2px)}
+.day-chip.sel{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 16%,transparent)}
+.day-chip.today::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--primary-2));
+}
+.day-chip .wd{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.3px}
+.day-chip .dd{font-size:16px;font-weight:800;margin:2px 0 6px;letter-spacing:-.3px}
+.day-chip .mini{height:4px;border-radius:99px;background:var(--surface-3);overflow:hidden}
+.day-chip .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:99px;transition:width .4s}
+
+/* srp chips */
+.rev-row{display:flex;gap:6px;flex-wrap:wrap}
+.rev-chip{
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  min-width:56px;padding:6px 9px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface-2);cursor:pointer;transition:.16s;
+}
+.rev-chip:hover{border-color:var(--primary);transform:translateY(-2px)}
+.rev-chip .rl{font-size:9.5px;font-weight:750;color:var(--muted);letter-spacing:.3px}
+.rev-chip .rd{font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums}
+.rev-chip.on{background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.45)}
+.rev-chip.on .rd,.rev-chip.on .rl{color:#0d9c6e}
+.rev-chip.due{background:rgba(225,29,72,.13);border-color:rgba(225,29,72,.4);animation:pulse 2s infinite}
+.rev-chip.due .rd,.rev-chip.due .rl{color:#e11d48}
+.rev-chip.late{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4)}
+.rev-chip.late .rd,.rev-chip.late .rl{color:#c47a06}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(225,29,72,.35)}50%{box-shadow:0 0 0 6px rgba(225,29,72,0)}}
+
+/* table */
+.scroll-x{overflow-x:auto;margin:0 -6px;padding:0 6px}
+table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:620px}
+table.tbl th{
+  text-align:left;font-size:10.5px;font-weight:750;color:var(--muted);
+  letter-spacing:.7px;text-transform:uppercase;padding:0 12px 9px;white-space:nowrap;
+}
+table.tbl td{padding:11px 12px;border-top:1px solid var(--border);vertical-align:middle}
+table.tbl tbody tr{transition:.14s}
+table.tbl tbody tr:hover{background:var(--surface-2)}
+table.tbl tbody tr:first-child td{border-top:1px solid var(--border)}
+table.tbl input.cell-input{
+  width:100%;border:1px solid transparent;background:transparent;
+  padding:5px 7px;border-radius:7px;font:inherit;font-size:12.5px;color:inherit;outline:none;
+  transition:.15s;
+}
+table.tbl input.cell-input:hover{background:var(--surface-2);border-color:var(--border)}
+table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+
+/* schedule */
+.sched-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.period{
+  padding:11px 12px;border-radius:12px;border:1px solid var(--border);
+  background:var(--surface-2);transition:.16s;
+}
+.period:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
+.period .pn{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;margin-bottom:4px}
+.period .pc{font-size:12.5px;font-weight:650;line-height:1.35}
+.period input{
+  width:100%;border:1px solid var(--border);background:var(--surface);
+  padding:6px 8px;border-radius:8px;font:inherit;font-size:12.5px;color:var(--text);outline:none;
+  transition:.15s;margin-top:2px;
+}
+.period input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+.day-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;flex-wrap:wrap}
+.day-tab{
+  padding:7px 14px;border-radius:99px;border:1px solid var(--border);background:var(--surface);
+  font-size:12.5px;font-weight:650;cursor:pointer;transition:.15s;color:var(--muted);white-space:nowrap;
+}
+.day-tab:hover{color:var(--text);border-color:var(--primary)}
+.day-tab.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 8px 18px -12px var(--primary)}
+
+/* accordion */
+details.acc{
+  border:1px solid var(--border);border-radius:14px;background:var(--surface);
+  overflow:hidden;transition:.16s;
+}
+details.acc + details.acc{margin-top:9px}
+details.acc[open]{border-color:color-mix(in srgb,var(--primary) 30%,var(--border));box-shadow:var(--shadow)}
+details.acc summary{
+  padding:13px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;
+  gap:11px;font-size:13.5px;font-weight:650;transition:.15s;
+}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{
+  content:'＋';margin-left:auto;color:var(--muted);font-weight:600;font-size:15px;transition:.2s;
+}
+details.acc[open] summary::after{content:'－'}
+details.acc summary:hover{background:var(--surface-2)}
+.acc-body{padding:2px 16px 16px;font-size:13px;color:var(--text)}
+.fb-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.fb-list li{
+  padding-left:14px;position:relative;color:var(--muted);line-height:1.65;font-size:12.8px;
+  white-space:pre-wrap;
+}
+.fb-list li::before{
+  content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:99px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+}
+.fb-list li strong{color:var(--text)}
+
+/* chips row */
+.chip-row{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+  padding:5px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);
+  font-size:12px;font-weight:600;cursor:pointer;transition:.15s;color:var(--muted);
+}
+.chip:hover{color:var(--text);border-color:var(--primary)}
+.chip.active{background:var(--primary);color:#fff;border-color:transparent}
+
+/* subject editor chips */
+.subj-chip{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 10px 7px 13px;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--border);font-size:12.5px;font-weight:650;
+  transition:.15s;
+}
+.subj-chip:hover{border-color:var(--primary)}
+.subj-chip .dot{width:8px;height:8px;border-radius:99px}
+.subj-chip button{
+  width:20px;height:20px;border-radius:99px;border:none;background:transparent;
+  color:var(--muted);cursor:pointer;font-size:11px;display:grid;place-items:center;
+  transition:.15s;line-height:1;
+}
+.subj-chip button:hover{background:var(--surface-3);color:var(--text)}
+
+/* misc */
+.empty{
+  padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px;
+  border:1.5px dashed var(--border);border-radius:14px;line-height:1.7;
+}
+.empty b{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+.muted{color:var(--muted)}
+.tiny{font-size:11px}
+.sec-title{font-size:12px;font-weight:750;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:4px 0 10px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:12.5px;border-bottom:1px dashed var(--border)}
+.kv:last-child{border-bottom:none}
+.kv b{font-weight:700}
+
+/* report card */
+.rc-row{display:grid;grid-template-columns:130px repeat(4,1fr) 74px;gap:8px;align-items:center;padding:9px 10px;border-radius:12px;transition:.14s}
+.rc-row:hover{background:var(--surface-2)}
+.rc-row.head{font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase}
+.rc-sub{font-size:13px;font-weight:700}
+.rc-grade{
+  font-size:15px;font-weight:800;text-align:center;border-radius:10px;padding:5px 0;
+  background:var(--surface-2);color:var(--muted);
+}
+.rc-grade.hi{background:rgba(16,185,129,.15);color:#0d9c6e}
+.rc-grade.mid{background:rgba(245,158,11,.16);color:#c47a06}
+.rc-grade.lo{background:rgba(239,68,68,.14);color:#dc2626}
+select.mini-sel{padding:5px 6px;font-size:12.5px;text-align:center;border-radius:8px;background-position:calc(100% - 10px) 50%,calc(100% - 6px) 50%;padding-right:18px;background-size:4px 4px,4px 4px}
+
+/* ---- NEW: report-card grade entry grid ---- */
+.rcg-row{
+  display:grid;
+  grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;
+  gap:6px;align-items:center;padding:5px 6px;border-radius:10px;transition:.14s;
+}
+.rcg-row:hover{background:var(--surface-2)}
+.rcg-row.rcg-head{
+  font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.6px;
+  text-transform:uppercase;padding-bottom:2px;
+}
+.rcg-row.rcg-head:hover{background:transparent}
+.rcg-row .input{padding:6px 7px;font-size:12.5px;border-radius:9px}
+.rcg-num{text-align:center;font-variant-numeric:tabular-nums}
+.rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
+
+/* toast */
+.toast{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
+  background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;
+  font-size:13px;font-weight:650;z-index:999;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);
+  opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media(max-width:900px){
+  .app{flex-direction:column}
+  .sidebar{
+    width:auto;flex:none;height:auto;position:sticky;top:0;z-index:50;
+    flex-direction:row;align-items:center;gap:8px;overflow-x:auto;
+    padding:10px 12px;border-right:none;border-bottom:1px solid var(--border);
+  }
+  .brand{padding:0 10px 0 0;flex:0 0 auto}
+  .brand h1,.brand p{display:none}
+  .brand-icon{width:34px;height:34px;flex:0 0 34px;font-size:17px;border-radius:11px}
+  .nav{flex-direction:row;flex:none;gap:4px}
+  .nav-text small{display:none}
+  .nav-item{padding:7px 11px;white-space:nowrap;border-radius:99px}
+  .nav-item.active{box-shadow:none}
+  .sidebar-foot{border-top:none;padding-top:0;flex:0 0 auto}
+  .sidebar-foot button{padding:7px 10px;white-space:nowrap}
+  .main{padding:16px 14px 60px}
+  .hero{padding:20px;border-radius:16px}
+  .hero h3{font-size:19px}
+  .ring-wrap,.ring{width:84px;height:84px;flex-basis:84px}
+  .week-strip{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+  .day-chip{padding:8px 3px;border-radius:10px}
+  .day-chip .dd{font-size:13px}
+  .day-chip .wd{font-size:9.5px}
+  .sched-grid{grid-template-columns:1fr}
+  .rc-row{grid-template-columns:90px repeat(4,1fr) 54px;gap:4px;padding:7px 6px}
+  .rc-sub{font-size:11.5px}
+  .topbar h2{font-size:18px}
+  .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
+  .rcg-row .input{padding:5px 4px;font-size:11.5px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">📚</div>
+      <div>
+        <h1>學習總覽</h1>
+        <p>STUDYING OVERVIEW</p>
+      </div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sidebar-foot">
+      <button id="themeBtn" title="切換主題 Toggle theme">🌙 深色</button>
+      <button id="resetBtn" title="重設為預設資料 Reset data">↺ 重設</button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h2 id="viewTitle">主控台</h2>
+        <div class="sub" id="viewSub">Master Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="today-chip"><span class="dot"></span><span id="todayDate">—</span></div>
+        <div class="pomo" id="pomo">
+          <span class="pomo-mode" id="pomoMode" title="點擊切換模式 Click to switch">專注 FOCUS</span>
+          <span class="pomo-time" id="pomoTime">25:00</span>
+          <button class="icon-btn" id="pomoToggle" title="開始/暫停 Start/Pause">▶</button>
+          <button class="icon-btn" id="pomoReset" title="重設 Reset">↺</button>
+        </div>
+      </div>
+    </header>
+    <div id="viewHost"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   1. UTILITIES
+   ===================================================================== */
+const $  = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const uid = () => Math.random().toString(36).slice(2, 9);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad = n => String(n).padStart(2, '0');
+
+const toISO    = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const parseISO = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+const addDays  = (iso, n) => { const d = parseISO(iso); d.setDate(d.getDate()+n); return toISO(d); };
+const todayISO = () => toISO(new Date());
+const diffDays = (a, b) => Math.round((parseISO(b) - parseISO(a)) / 86400000);
+const fmtMD    = iso => { const d = parseISO(iso); return `${d.getMonth()+1}/${d.getDate()}`; };
+const fmtLong  = iso => { const d = parseISO(iso); return `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())} 週${'日一二三四五六'[d.getDay()]}`; };
+const WD       = ['日','一','二','三','四','五','六'];
+const weekStart = iso => { const d = parseISO(iso); return addDays(iso, -((d.getDay()+6)%7)); };
+
+let toastTimer;
+function toast(msg){
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+/* subject colours */
+const SUBJECT_COLORS = {
+  chinese:'#ef4444', 中文:'#ef4444', english:'#3b82f6', math:'#8b5cf6', 數學:'#8b5cf6',
+  sciences:'#10b981', science:'#10b981', ins:'#f59e0b', 'i&s':'#f59e0b',
+  humanities:'#f59e0b', 人文:'#f59e0b', biotech:'#14b8a6', phe:'#ec4899',
+  mfe:'#6366f1', design:'#06b6d4', arts:'#f43f5e', music:'#a855f7'
+};
+function subjColor(s){
+  const k = String(s||'').toLowerCase().trim();
+  if (SUBJECT_COLORS[k]) return SUBJECT_COLORS[k];
+  for (const key in SUBJECT_COLORS) if (k.includes(key)) return SUBJECT_COLORS[key];
+  return '#8b93a8';
+}
+const subjBadge = s => s
+  ? `<span class="badge" style="color:${subjColor(s)};background:${subjColor(s)}1f">${esc(s)}</span>`
+  : '';
+
+/* =====================================================================
+   2. DATA MODEL
+   ===================================================================== */
+const LS_KEY = 'nathan-study-dashboard-v1';
+const REV_OFFSETS = [1, 2, 4, 6];
+const REV_DAYNUM  = [2, 3, 5, 7];
+
+const DEFAULT_SUBJECTS = ['Chinese','English','Math','Sciences','INS','Humanities','Biotech','PHE','MfE','Design','Arts','Other'];
+
+const DEFAULT_FEEDBACK = [
+  {id:'f01', name:'Visual Arts', subject:'Arts', crit:'A, D', text:'- Criterion D: To describe development as an artist comprehensively in relation to the SOI\n- Criterion D: To evaluate how I could MODIFY artwork to improve communication of the SOI'},
+  {id:'f02', name:'妙筆生花閱讀理解', subject:'Chinese', crit:'A', text:'- 表述能力可以加強\n- 更好地理解文章內容的含義'},
+  {id:'f03', name:'妙筆生花寫作', subject:'Chinese', crit:'B, C, D', text:'- 情節之間可以更過渡得更自然，如描寫時間的流逝'},
+  {id:'f04', name:'言之有理閱讀理解', subject:'Chinese', crit:'A', text:'- 更敏銳地識別修辭手法\n- 分析手法及作者意圖時適當地展開'},
+  {id:'f05', name:'中文口語 Chinese Oral', subject:'Chinese', crit:'B, C, D', text:'- B 組織: 演講架構完整、邏輯清晰，以提問搭配本地調查數據開場，先闡述 AI 對學習的正面幫助，再轉折探討學術不誠信的風險，最後提出具體使用指引，層次分明、前後呼應。可改進之處在於專家引言與論點的銜接可更緊密，同時可嘗試增加更自然的過渡語句。\n- C 創作: 對議題理解全面、觀點客觀，既能結合親身經歷、可汗名言與研究數據肯定 AI 價值，也以港大真實案例強調學術誠信的重要性，論據權威且具說服力。論證的聚焦性可進一步突出。\n- D 運用語言: 演講語氣穩重得體，用詞準確專業，開場互動性強，受眾意識良好。建議精簡長句、優化語句節奏，在引用名言與核心建議時加強語氣，提升感染力與說服力。'},
+  {id:'f06', name:'拾香紀寫作（非創意寫作）', subject:'Chinese', crit:'A, B, D', text:'- A 分析: 對於八寶形象的理解準確，且既能解釋時代對八寶的影響，又能解釋出八寶身上所反映出的時代特點。在解釋「社會特點」時可以概述得更加準確。\n- B 組織: 結構基本清晰，不過在表述時，語句有重複的現象，可以進一步訓練形成更清晰的論證順序和思路。\n- D 語言: 錯誤很少，令人欣賞。鼓勵你繼續積累更豐富的語言表達方式！'},
+  {id:'f07', name:'House Spirit Criterion D', subject:'Design', crit:'D', text:'- Di: Detailing further by including the exact test questions you asked your target audience.\n- Dii: Expand on your "Overall Success" to create a stronger bridge to your Diii improvement plan.'},
+  {id:'f08', name:'LOTF Analytical Essay', subject:'English', crit:'A, B, D', text:'- Criterion A: Detailed analysis, particularly in paragraph 1. A more detailed annotation may have helped you.\n- Criterion B: Clear thesis statement and three topic sentences provide a strong foundation for your essay.\n- Criterion D: Communicate ideas clearly, errors don\'t cloud meaning.'},
+  {id:'f09', name:'Poetry Analysis + Oral', subject:'English', crit:'A, D', text:'- A detailed presentation referring to specific lines and giving relevant examples.\n- Oral delivery would benefit from further practice.\n- Maintained an appropriate academic register.\n- Develop more varied sentence structures.'},
+  {id:'f10', name:'人文研習 Humanities Research', subject:'Humanities', crit:'B, C, D', text:'- Bi: 研究課題清晰且具焦點，合理解釋了選題原因與研究目的。\n- Bii: 使用了多種資料來源，但還可增加一手文獻資料。\n- Bi: 研究範圍涵蓋服飾、器具、墓葬及信仰等多個方面，內容豐富，但部分段落可進一步聚焦，避免範圍過廣。\n- Ci: 文章大致流暢，風格符合研習論文的要求。\n- Cii: 組織結構合理，段落分明，論述有條理，邏輯清晰。\n- Ciii: 參考資料按照哈佛註引格式列出，但部分引用可更明確標示直接摘錄與概括內容。\n- Di: 對研究課題進行了適當分析，能回答研究問題，並結合文物與歷史文獻進行論證。\n- Dii: 能總結和概括所搜集資料的信息，並對觀點作出有效論證。\n- Diii: 可進一步深化對資料的分析，尤其是對不同資料之間的關聯性及其局限性進行更細緻的探討。'},
+  {id:'f11', name:'Natural Disasters + Notebook Check', subject:'INS', crit:'A, C, D', text:'- Work on explanations\n- Follow the given structure\n- Elaborate more'},
+  {id:'f12', name:'INS Research + OPVL + Evaluation', subject:'INS', crit:'B, C, D', text:'- Biii: Documentary fits social aspect more, you could "SEE" how people "LIVED" back then. Government statistics for economic changes.\n- Biii: Don\'t only focus on one topic within an SQ.\n- Diii: Very good. I feel your paragraph in limitation is better. You elaborated more on what the implications are of these limitations. Try and do that for values, too.'},
+  {id:'f13', name:'Political Revolution Essay', subject:'INS', crit:'A, C, D', text:'- PEEEL Structure could be further refined\n- Some parts weren\'t explained/elaborated well\n- Too much info in some paragraphs — could be broken down into more paragraphs\n- Explain and elaborate on the implications'},
+  {id:'f14', name:'Algebra Crit B', subject:'Math', crit:'B', text:'N/A'},
+  {id:'f15', name:'Trigonometry Crit C', subject:'Math', crit:'C', text:'N/A'},
+  {id:'f16', name:'Coordinate Geometry Crit D', subject:'Math', crit:'D', text:'- Link the DoA more to the context\n- Fully discuss whether the solution makes sense from different perspectives (e.g. 2D → 3D)'},
+  {id:'f17', name:'Glide Ride Stride Workbook', subject:'PHE', crit:'B, D', text:'- Bi: To improve, design a sequence that allows you to practice the skill first, then apply it in the work set.\n- Dii: To improve, describe an example of when the plan had an impact on you achieving your goal.'},
+  {id:'f18', name:'3x3 Basketball', subject:'PHE', crit:'A, C', text:'- Ai Area of Strength: You have described a highly detailed, logical step-by-step sequence.\n- Aii Area of Growth: To improve, continue to analyse challenges by looking at both your team\'s actions and the opponent\'s response.'},
+  {id:'f19', name:'Disease Crit D', subject:'Sciences', crit:'D', text:'- More explicit explanations in terms of the implications of the solution\n- Use statistics to support benefits and limitations\n- More details in describing the issue and solution'},
+  {id:'f20', name:'Physics Crit B', subject:'Sciences', crit:'B', text:'- Avoid using "amount": "amount of mass" does not make sense\n- Specify CVs (e.g. CV: Same type of paper, explanation: + Paper from what brand?)\n- Explicitly state how CVs are being controlled in stepwise method'},
+  {id:'f21', name:'Physics Crit C', subject:'Sciences', crit:'C', text:'- State what the IVs and DVs are when writing the conclusion'},
+  {id:'f22', name:'Statistics', subject:'Math', crit:'C, D', text:''}
+];
+
+const DEFAULT_SCHEDULE = {
+  1:['Chinese (B310)','I&S (A604)','MfE (B506)','Math (A504)','Biotech (A101)'],
+  2:['English (B308)','Chi Human (B310)','Biotech (A101)','PHE (/)','I&S (A604)'],
+  3:['English (B308)','Chinese (B306C)','Sciences (A404)','Music&DJ (A302)','Chi Vlog (B503)'],
+  4:['PHE (/)','I&S (A604)','Chinese (B306C)','Math (A504)','Biotech (A101)'],
+  5:['MfE (B506)','Chinese (B310)','Chi Human (B310)','I&S (A604)','Sciences (A404)'],
+  6:['Chi Human (B310)','Sciences (A404)','PHE (/)','English (B308)','MfE (B506)'],
+  7:['Biotech (A101)','Sciences (A404)','PHE (/)','Chinese (B310)','English (B308)'],
+  8:['Math (A504)','Chinese (B306C)','I&S (A604)','Music&DJ (A302)','Chi Vlog (B503)'],
+  9:['Math (A504)','Chinese (B310)','Tutor (A304)','MfE (B506)','Sciences (A404)'],
+  10:['English (B308)','MfE (B506)','Biotech (A101)','PHE (/)','Math (A504)']
+};
+
+const DEFAULT_STATE = {
+  theme: 'light',
+  view: 'master',
+  weekAnchor: '2026-09-20',
+  selDate: '2026-09-20',
+  schedDay: 1,
+  fbFilter: 'All',
+  editingSchedule: false,
+  editingFbId: null,
+  fbAdding: false,
+
+  subjects: [...DEFAULT_SUBJECTS],
+  feedback: structuredClone(DEFAULT_FEEDBACK),
+  schedule: structuredClone(DEFAULT_SCHEDULE),
+
+  /* NEW: 單次評估成績紀錄 */
+  reportGrades: [],
+
+  todos: [
+    {id:'t01', date:'2026-09-14', text:'中文複習 Chinese Revision', done:true},
+    {id:'t02', date:'2026-09-14', text:'人文複習 Humanities Revision', done:false},
+    {id:'t03', date:'2026-09-15', text:'中文複習 Chinese Revision', done:true},
+    {id:'t04', date:'2026-09-16', text:'Organise INS vocab', done:true},
+    {id:'t05', date:'2026-09-16', text:'English PEEL', done:true},
+    {id:'t06', date:'2026-09-16', text:'Review past INS test and feedback', done:true},
+    {id:'t07', date:'2026-09-17', text:'INS review + research prep', done:true},
+    {id:'t08', date:'2026-09-17', text:'PHE AI feedback', done:true},
+    {id:'t09', date:'2026-09-18', text:'Science Crit B revision', done:true},
+    {id:'t10', date:'2026-09-19', text:'English PEEL Review + practice resource', done:false},
+    {id:'t11', date:'2026-09-19', text:'Science Crit B revision', done:true},
+    {id:'t12', date:'2026-09-19', text:'NTK text review', done:true},
+    {id:'t13', date:'2026-09-20', text:'Science Crit B revision', done:false},
+    {id:'t14', date:'2026-09-20', text:'English PEEL Review', done:false},
+    {id:'t15', date:'2026-09-20', text:'Madrid Derby @22:15', done:false},
+    {id:'t16', date:'2026-09-20', text:'人文個人創作口述 Humanities Oral', done:false}
+  ],
+
+  srp: [
+    {id:'s1', subject:'Sciences', concept:'化學評量 B — 變數控制 Variables & CVs', start:'2026-09-19', done:[false,false,false,false]},
+    {id:'s2', subject:'English',  concept:'PEEL 段落結構 PEEL Paragraph Structure', start:'2026-09-18', done:[true,false,false,false]},
+    {id:'s3', subject:'INS',      concept:'OPVL 資料評估 OPVL Source Evaluation', start:'2026-09-16', done:[true,true,false,false]},
+    {id:'s4', subject:'Chinese',  concept:'修辭手法 Rhetorical Devices', start:'2026-09-17', done:[true,true,false,false]},
+    {id:'s5', subject:'Math',     concept:'指數定律 Laws of Indices', start:'2026-09-20', done:[false,false,false,false]},
+    {id:'s6', subject:'Humanities', concept:'劇本結構三幕劇 Three-Act Structure', start:'2026-09-14', done:[true,true,true,true]}
+  ],
+
+  assignments: [
+    {id:'a1', name:'Science Crit B Revision Notes', subject:'Sciences', status:'進行中 In Progress', due:'2026-09-21', time:'45 min', remarks:'Focus on variables + method'},
+    {id:'a2', name:'English PEEL Practice Resource', subject:'English', status:'進行中 In Progress', due:'2026-09-22', time:'60 min', remarks:'Analytical assessment prep'},
+    {id:'a3', name:'INS Research Prep', subject:'INS', status:'進行中 In Progress', due:'2026-09-24', time:'90 min', remarks:'Add primary sources'},
+    {id:'a4', name:'人文個人創作口述 Humanities Oral', subject:'Humanities', status:'未開始 Not Started', due:'2026-09-28', time:'2 hr', remarks:'Script + rehearsal'},
+    {id:'a5', name:'Math Indices Practice Set', subject:'Math', status:'未開始 Not Started', due:'2026-10-05', time:'40 min', remarks:'Exercise 7B'}
+  ],
+
+  assessments: [
+    {id:'e1', name:'Chemistry Crit B', subject:'Sciences', criteria:'B', due:'2026-09-21', dueNote:'', progress:50, remarks:''},
+    {id:'e2', name:'English Analytical Assessment', subject:'English', criteria:'A, B, D', due:'2026-09-22', dueNote:'', progress:20, remarks:''},
+    {id:'e3', name:'人文劇本評估 Drama Script', subject:'Humanities', criteria:'A, C, D', due:'2026-09-28', dueNote:'', progress:60, remarks:''},
+    {id:'e4', name:'分析寫作 Analytical Writing', subject:'Chinese', criteria:'A', due:'2026-09-28', dueNote:'', progress:0, remarks:''},
+    {id:'e5', name:'Lab Assessment', subject:'Biotech', criteria:'—', due:null, dueNote:'Late 7B – Early 8A', progress:0, remarks:'Date TBC'},
+    {id:'e6', name:'Indices', subject:'Math', criteria:'A', due:'2026-10-22', dueNote:'', progress:0, remarks:''},
+    {id:'e7', name:'English Creative Writing', subject:'English', criteria:'—', due:null, dueNote:'November', progress:0, remarks:''}
+  ]
+};
+
+/* =====================================================================
+   3. STATE
+   ===================================================================== */
+let state;
+function loadState(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw){
+      const parsed = JSON.parse(raw);
+      state = Object.assign(structuredClone(DEFAULT_STATE), parsed);
+      if (!Array.isArray(state.subjects) || !state.subjects.length) state.subjects = [...DEFAULT_SUBJECTS];
+      if (!Array.isArray(state.feedback)) state.feedback = structuredClone(DEFAULT_FEEDBACK);
+      if (!state.schedule || typeof state.schedule !== 'object') state.schedule = structuredClone(DEFAULT_SCHEDULE);
+      if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
+      return;
+    }
+  }catch(e){ console.warn('load failed', e); }
+  state = structuredClone(DEFAULT_STATE);
+}
+function save(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+/* =====================================================================
+   4. DERIVED HELPERS
+   ===================================================================== */
+const isFinished = a => /完成|已繳|finished|submitted/i.test(a.status || '');
+
+function srpDates(item){
+  return item.start ? REV_OFFSETS.map(o => addDays(item.start, o)) : [];
+}
+function srpDueOn(date){
+  const out = [];
+  state.srp.forEach(it => {
+    const ds = srpDates(it);
+    const done = it.done || [false,false,false,false];
+    ds.forEach((d, i) => { if (d === date && !done[i]) out.push({item: it, idx: i}); });
+  });
+  return out;
+}
+function srpStatus(it){
+  const ds = srpDates(it);
+  if (!ds.length) return {label:'📋 待安排 To schedule', tone:'muted'};
+  const done = it.done || [false,false,false,false];
+  const t = todayISO();
+  if (done.every(Boolean)) return {label:'✅ 已完成所有複習 All revisions done', tone:'ok'};
+  const iToday = ds.findIndex((d,i) => !done[i] && d === t);
+  if (iToday >= 0) return {label:`🔴 今日第 ${iToday+1} 次複習（第 ${REV_DAYNUM[iToday]} 天）`, tone:'urgent'};
+  const iOver = ds.findIndex((d,i) => !done[i] && d < t);
+  if (iOver >= 0) return {label:`⏰ 第 ${iOver+1} 次複習已逾期 Overdue`, tone:'danger'};
+  const iNext = ds.findIndex((d,i) => !done[i]);
+  return {label:`📅 等待第 ${iNext+1} 次複習（第 ${REV_DAYNUM[iNext]} 天）`, tone:'info'};
+}
+function assignStatus(a){
+  if (isFinished(a)) return {label:'✅ 已完成 Done', tone:'ok'};
+  if (!a.due) return {label:'📋 待安排 To schedule', tone:'muted'};
+  const d = diffDays(todayISO(), a.due);
+  if (d < 0)  return {label:'⚠️ 逾期 Overdue', tone:'danger'};
+  if (d === 0) return {label:'⏰ 今天到期 Due today', tone:'urgent'};
+  if (d <= 3) return {label:'🔔 即將到期 Due soon', tone:'warn'};
+  return {label:'📋 進行中 In progress', tone:'info'};
+}
+function assessStatus(a){
+  if (!a.due) return {label:'📋 日期待定 Date TBD', tone:'muted'};
+  const d = diffDays(todayISO(), a.due);
+  const p = a.progress || 0;
+  if (d < 0) return {label:'⚠️ 已過期 Past due', tone:'danger'};
+  if (d <= 3 && p < 80) return {label:'⚠️ 剩餘 3 天內但準備未達 80%，請緊急加強！', tone:'danger'};
+  if (d <= 10 && p < 50) return {label:'🔔 剩餘 10 天，進度落後', tone:'warn'};
+  if (p >= 80) return {label:'✅ 準備充分 Well prepared', tone:'ok'};
+  if (p >= 50) return {label:'🔄 進行中 In progress', tone:'info'};
+  return {label:'📝 未開始 Not started', tone:'muted'};
+}
+function assessSuggest(a){
+  if (!a.due) return '📌 先確認評估日期，再納入 SRP 規劃。';
+  const d = diffDays(todayISO(), a.due);
+  if (d < 0) return '⚠️ 已過期，請立即與老師確認補交安排。';
+  if (d <= 7) return `🔔 距離考試僅剩 ${d} 天，建議用考試倒數法密集複習！`;
+  if (d <= 14) return '📌 考前兩週，可開始規劃此科知識點進入 SRP。';
+  return '✅ 時間充裕，先建立知識點清單。';
+}
+function weekStats(startISO){
+  const days = [...Array(7)].map((_, i) => addDays(startISO, i));
+  const list = state.todos.filter(t => days.includes(t.date));
+  const done = list.filter(t => t.done).length;
+  return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
+}
+function smartTips(){
+  const t = todayISO(), tips = [];
+  state.assessments.forEach(a => {
+    if (!a.due) return;
+    const d = diffDays(t, a.due);
+    if (d >= 0 && d <= 7 && (a.progress||0) < 80)
+      tips.push({tone:'danger', txt:`《${a.name}》剩 ${d} 天，準備進度 ${a.progress||0}% — 今天先攻克一個知識點。`});
+  });
+  const overdueA = state.assignments.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) < 0);
+  if (overdueA.length) tips.push({tone:'danger', txt:`有 ${overdueA.length} 項作業已逾期，先處理最舊的一項。`});
+  const lateSRP = state.srp.filter(it => {
+    const ds = srpDates(it), done = it.done || [];
+    return ds.some((d, i) => !done[i] && d < t);
+  });
+  if (lateSRP.length) tips.push({tone:'warn', txt:`有 ${lateSRP.length} 個知識點複習逾期，趁空堂補上（間隔複習最忌斷線）。`});
+  const dueToday = srpDueOn(t).length;
+  if (dueToday) tips.push({tone:'info', txt:`今天有 ${dueToday} 個複習任務，每個只需 5–15 分鐘，先做最舊的。`});
+  const soonA = state.assignments.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 3);
+  if (soonA.length) tips.push({tone:'warn', txt:`有 ${soonA.length} 項作業 3 天內到期，建議今天先完成一項。`});
+  if (!tips.length) tips.push({tone:'ok', txt:'一切在軌道上 ✅ 保持節奏，睡前用費曼技巧回顧今天的一個重點。'});
+  return tips.slice(0, 5);
+}
+
+/* =====================================================================
+   4b. REPORT CARD CALCULATION (NEW)
+   ===================================================================== */
+const RC_SUBJECTS = [
+  {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'MfE',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'English',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'Math',       crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'INS',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'Sciences',   crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'PHE',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'Humanities', crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
+  {key:'Biotech',    crit:['I','II','III','IV','V'], cuts:[35,30,24,19,13,8]}
+];
+
+/* 由總分換算 MYP 1–7 等級 */
+function ibGradeFromTotal(total, cuts){
+  for (let i = 0; i < cuts.length; i++) if (total >= cuts[i]) return 7 - i;
+  return 1;
+}
+
+/* 計算所有科目的 criterion 平均（向下取整，等同 ROUNDDOWN(AVERAGE(...))） */
+function rcCalc(){
+  const grades = state.reportGrades || [];
+  return RC_SUBJECTS.map(def => {
+    const recs = grades.filter(r => r.subject === def.key);
+    const avgs = def.crit.map((_, i) => {
+      const vals = recs
+        .map(r => (r.scores || [])[i])
+        .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v))
+        .map(Number);
+      if (!vals.length) return null;
+      return Math.floor(vals.reduce((a, b) => a + b, 0) / vals.length);
+    });
+    const filled = avgs.filter(v => v !== null);
+    const total = filled.reduce((a, b) => a + b, 0);
+    const complete = filled.length === def.crit.length;
+    const grade = complete ? ibGradeFromTotal(total, def.cuts) : null;
+    return { def, avgs, total, complete, grade, count: recs.length, filledCount: filled.length };
+  });
+}
+
+/* 頂部統計卡片 HTML */
+function rcStatsHTML(){
+  const subjData = rcCalc();
+  let sumAll = 0, cntAll = 0;
+  const graded = [];
+  subjData.forEach(sd => {
+    sd.avgs.forEach(v => { if (v !== null){ sumAll += v; cntAll++; } });
+    if (sd.grade !== null) graded.push(sd.grade);
+  });
+  const avg = cntAll ? sumAll / cntAll : null;
+  const oa  = graded.length ? graded.reduce((a, b) => a + b, 0) / graded.length : null;
+  return `
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📊</div>
+      <div><div class="stat-val">${graded.length}/9</div><div class="stat-lbl">已評科目 Subjects graded</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">🏆</div>
+      <div><div class="stat-val">${oa !== null ? oa.toFixed(2) : '—'}</div><div class="stat-lbl">Total OA（科目等級平均）</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">📐</div>
+      <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均分 (0–8)</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">Σ</div>
+      <div><div class="stat-val">${sumAll}</div><div class="stat-lbl">總分（已填 ${cntAll} 項）</div></div></div>
+  `;
+}
+
+/* 科目 Criterion 彙總表 HTML */
+function rcSummaryHTML(){
+  const subjData = rcCalc();
+  const rows = subjData.map(sd => {
+    const cells = [...Array(5)].map((_, i) => {
+      if (i >= sd.def.crit.length) return `<td style="text-align:center" class="tiny muted">·</td>`;
+      const v = sd.avgs[i];
+      return `<td style="text-align:center;font-weight:750;font-size:14px;font-variant-numeric:tabular-nums">${
+        v === null ? '<span class="muted" style="font-weight:400">–</span>' : v
+      }</td>`;
+    }).join('');
+    const gc = sd.grade === null ? '' : sd.grade >= 6 ? 'hi' : sd.grade >= 4 ? 'mid' : 'lo';
+    const hasAny = sd.filledCount > 0;
+    return `<tr>
+      <td><span style="display:flex;align-items:center;gap:8px">
+        <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(sd.def.key)};flex:0 0 8px"></span>
+        <b style="font-size:13px">${sd.def.key}</b>
+      </span></td>
+      ${cells}
+      <td style="text-align:center;font-weight:800;font-size:14px">${
+        hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'
+      }</td>
+      <td style="text-align:center">
+        <span class="rc-grade ${gc}" style="display:inline-block;min-width:36px;padding:3px 0;font-size:14px">${
+          sd.grade ?? '—'
+        }</span>
+      </td>
+      <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
+    </tr>`;
+  }).join('');
+
+  return `<div class="scroll-x"><table class="tbl" style="min-width:600px">
+    <thead><tr>
+      <th>科目 Subject</th>
+      <th style="text-align:center">A</th>
+      <th style="text-align:center">B</th>
+      <th style="text-align:center">C</th>
+      <th style="text-align:center">D</th>
+      <th style="text-align:center">E</th>
+      <th style="text-align:center">總分</th>
+      <th style="text-align:center">等級</th>
+      <th style="text-align:right">紀錄</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
+}
+
+/* 即時刷新（不重建整個 view，避免輸入失焦） */
+function refreshReportSummary(){
+  const s = document.getElementById('rcStats');
+  const m = document.getElementById('rcSummary');
+  if (s) s.innerHTML = rcStatsHTML();
+  if (m) m.innerHTML = rcSummaryHTML();
+}
+
+/* =====================================================================
+   5. NAVIGATION
+   ===================================================================== */
+const NAV = [
+  {id:'master',   icon:'🏠', zh:'主控台',   en:'Dashboard'},
+  {id:'todo',     icon:'📝', zh:'待辦事項', en:'To-Do List'},
+  {id:'srp',      icon:'⏰', zh:'間隔複習', en:'Spaced Revision'},
+  {id:'assign',   icon:'✍️', zh:'作業追蹤', en:'Assignments'},
+  {id:'assess',   icon:'📚', zh:'考試計劃', en:'Assessments'},
+  {id:'feedback', icon:'💬', zh:'考試反饋', en:'Feedback'},
+  {id:'report',   icon:'💯', zh:'成績單',   en:'Report Cards'},
+  {id:'schedule', icon:'📅', zh:'課表',     en:'Schedule'},
+  {id:'guide',    icon:'📋', zh:'操作指南', en:'Guide'},
+  {id:'settings', icon:'⚙️', zh:'設定',     en:'Settings'}
+];
+
+/* =====================================================================
+   6. VIEWS
+   ===================================================================== */
+const VIEWS = {};
+
+/* ---------- 6.1 MASTER ---------- */
+VIEWS.master = function(){
+  const t = todayISO();
+  const hour = new Date().getHours();
+  const greet = hour < 12 ? '早安 Good morning' : hour < 18 ? '午安 Good afternoon' : '晚安 Good evening';
+
+  const todayTasks = state.todos.filter(x => x.date === t);
+  const doneToday  = todayTasks.filter(x => x.done).length;
+  const revToday   = srpDueOn(t);
+  const revLate    = state.srp.filter(it => {
+    const ds = srpDates(it), done = it.done || [];
+    return ds.some((d,i) => !done[i] && d < t);
+  }).length;
+
+  const upcomingAssess = state.assessments
+    .filter(a => a.due && diffDays(t, a.due) >= 0)
+    .sort((a,b) => a.due.localeCompare(b.due));
+
+  const nearAssign = state.assignments
+    .filter(a => a.due && !isFinished(a))
+    .sort((a,b) => a.due.localeCompare(b.due));
+
+  const ws = weekStats(weekStart(t));
+  const totalToday = todayTasks.length + revToday.length;
+  const pct = totalToday ? Math.round(doneToday / totalToday * 100) : (todayTasks.length === 0 && revToday.length === 0 ? 100 : 0);
+  const circ = 2 * Math.PI * 16;
+
+  const hero = `
+  <div class="hero">
+    <div>
+      <h3>${greet}，Nathan 👋</h3>
+      <p>${fmtLong(t)} · ${todayTasks.length ? `今日有 <b>${todayTasks.length}</b> 項待辦` : '今日暫無待辦'}${revToday.length ? `、<b>${revToday.length}</b> 個複習任務` : ''}。</p>
+      <div class="hero-chips">
+        <span>✅ 今日完成 ${doneToday}/${todayTasks.length || 0}</span>
+        <span>⏰ 複習 ${revToday.length} 項</span>
+        <span>📚 考試 ${upcomingAssess.length} 場</span>
+      </div>
+    </div>
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 42 42">
+        <circle class="bg" cx="21" cy="21" r="16"></circle>
+        <circle class="fg" cx="21" cy="21" r="16"
+          stroke-dasharray="${(pct/100*circ).toFixed(1)} ${circ.toFixed(1)}"></circle>
+      </svg>
+      <div class="ring-label"><b>${pct}%</b><small>TODAY</small></div>
+    </div>
+  </div>`;
+
+  const stats = `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat">
+      <div class="stat-icon" style="background:rgba(91,94,240,.14)">📝</div>
+      <div><div class="stat-val">${doneToday}<span class="muted" style="font-size:15px">/${todayTasks.length}</span></div>
+      <div class="stat-lbl">今日待辦 To-Do</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon" style="background:rgba(225,29,72,.14)">⏰</div>
+      <div><div class="stat-val" style="color:${revToday.length ? 'var(--urgent)' : 'inherit'}">${revToday.length}</div>
+      <div class="stat-lbl">今日複習 Revisions</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon" style="background:rgba(16,185,129,.14)">📚</div>
+      <div><div class="stat-val">${upcomingAssess.length}</div>
+      <div class="stat-lbl">待考評估 Assessments</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-icon" style="background:rgba(245,158,11,.16)">⚠️</div>
+      <div><div class="stat-val" style="color:${revLate ? 'var(--warn)' : 'inherit'}">${revLate}</div>
+      <div class="stat-lbl">逾期複習 Overdue</div></div>
+    </div>
+  </div>`;
+
+  const revList = revToday.length
+    ? `<div class="list">${revToday.map(({item, idx}) => `
+        <div class="item">
+          <button class="cb" data-act="srp-toggle" data-id="${item.id}" data-idx="${idx}" title="標記完成">✓</button>
+          <div class="item-main">
+            <div class="item-title">${esc(item.concept)}</div>
+            <div class="item-meta">${subjBadge(item.subject)}
+              <span>第 ${idx+1} 次複習 · 第 ${REV_DAYNUM[idx]} 天</span></div>
+          </div>
+          <span class="pill urgent">今日</span>
+        </div>`).join('')}</div>`
+    : `<div class="empty"><b>📖 無複習任務</b>No revision task today — 好好休息或預習新內容！</div>`;
+
+  const todoList = todayTasks.length
+    ? `<div class="list">${todayTasks.map(x => `
+        <div class="item">
+          <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
+          <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
+        </div>`).join('')}</div>`
+    : `<div class="empty"><b>✨ 今天沒有待辦</b>No tasks for today — 到「待辦事項」新增吧！</div>`;
+
+  const assessList = upcomingAssess.length
+    ? `<div class="list">${upcomingAssess.slice(0,5).map(a => {
+        const d = diffDays(t, a.due);
+        const p = a.progress || 0;
+        const cls = d <= 3 ? 'danger' : d <= 10 ? 'warn' : 'ok';
+        return `<div class="item" style="flex-direction:column;align-items:stretch;gap:8px">
+          <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
+            <div class="item-main">
+              <div class="item-title">${esc(a.name)}</div>
+              <div class="item-meta">${subjBadge(a.subject)}
+                <span>${fmtMD(a.due)}</span>${a.criteria && a.criteria!=='—' ? `<span>Crit ${esc(a.criteria)}</span>` : ''}</div>
+            </div>
+            <div style="text-align:right;flex:0 0 auto">
+              <div style="font-size:20px;font-weight:800;line-height:1;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d}</div>
+              <div class="tiny muted" style="font-weight:700">天 LEFT</div>
+            </div>
+          </div>
+          <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
+        </div>`;
+      }).join('')}</div>`
+    : `<div class="empty"><b>🎉 暫無近期考試</b>No upcoming assessments</div>`;
+
+  const assignList = nearAssign.length
+    ? `<div class="list">${nearAssign.slice(0,5).map(a => {
+        const st = assignStatus(a);
+        const d = a.due ? diffDays(t, a.due) : null;
+        return `<div class="item">
+          <div class="item-main">
+            <div class="item-title">${esc(a.name)}</div>
+            <div class="item-meta">${subjBadge(a.subject)}
+              <span>${a.due ? fmtMD(a.due) : '—'}</span>
+              ${d !== null ? `<span>${d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天' : `剩 ${d} 天`}</span>` : ''}</div>
+          </div>
+          <span class="pill ${st.tone}">${st.label}</span>
+        </div>`;
+      }).join('')}</div>`
+    : `<div class="empty"><b>✅ 沒有待辦作業</b>No pending assignments</div>`;
+
+  const tips = smartTips().map(x => `
+    <div class="item" style="border-left:3px solid var(--${x.tone==='ok'?'ok':x.tone==='warn'?'warn':x.tone==='info'?'info':'danger'})">
+      <div class="item-main"><div class="item-title" style="font-weight:600;font-size:12.8px">${esc(x.txt)}</div></div>
+    </div>`).join('');
+
+  const weekBar = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
+      <span class="tiny muted" style="font-weight:700">本週完成度 Weekly completion</span>
+      <b style="font-size:14px">${ws.done}/${ws.total} · ${ws.pct}%</b>
+    </div>
+    <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>`;
+
+  return `
+  ${hero}
+  ${stats}
+  <div class="grid g-2">
+    <div class="stack">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">⏰ 今日複習任務 <span class="muted" style="font-weight:500;font-size:12px">Today's Revisions</span></div>
+          <button class="btn btn-sm" data-nav="srp">全部 →</button>
+        </div>
+        ${revList}
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">📝 今日待辦 <span class="muted" style="font-weight:500;font-size:12px">Today's To-Do</span></div>
+          <button class="btn btn-sm" data-nav="todo">全部 →</button>
+        </div>
+        ${todoList}
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">📊 本週概況 <span class="muted" style="font-weight:500;font-size:12px">Weekly Overview</span></div></div>
+        ${weekBar}
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">📚 即將到來的考試 <span class="muted" style="font-weight:500;font-size:12px">Upcoming Assessments</span></div>
+          <button class="btn btn-sm" data-nav="assess">全部 →</button>
+        </div>
+        ${assessList}
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">✍️ 作業追蹤 <span class="muted" style="font-weight:500;font-size:12px">Assignments</span></div>
+          <button class="btn btn-sm" data-nav="assign">全部 →</button>
+        </div>
+        ${assignList}
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">💡 智慧提醒 <span class="muted" style="font-weight:500;font-size:12px">Smart Tips</span></div></div>
+        <div class="list">${tips}</div>
+      </div>
+    </div>
+  </div>`;
+};
+
+/* ---------- 6.2 TO-DO ---------- */
+VIEWS.todo = function(){
+  const t = todayISO();
+  const anchor = state.weekAnchor || t;
+  const start = weekStart(anchor);
+  const days = [...Array(7)].map((_, i) => addDays(start, i));
+  const sel = state.selDate || t;
+  const selTasks = state.todos.filter(x => x.date === sel);
+
+  const dayChips = days.map(d => {
+    const list = state.todos.filter(x => x.date === d);
+    const done = list.filter(x => x.done).length;
+    const pct = list.length ? Math.round(done/list.length*100) : 0;
+    const dt = parseISO(d);
+    return `<div class="day-chip ${d===sel?'sel':''} ${d===t?'today':''}" data-act="pick-day" data-date="${d}">
+      <div class="wd">週${WD[dt.getDay()]}</div>
+      <div class="dd">${dt.getDate()}</div>
+      <div class="mini"><i style="width:${pct}%"></i></div>
+    </div>`;
+  }).join('');
+
+  const ws = weekStats(start);
+
+  const taskList = selTasks.length
+    ? `<div class="list">${selTasks.map(x => `
+        <div class="item">
+          <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
+          <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
+          <div class="item-actions">
+            <button class="icon-btn" data-act="todo-del" data-id="${x.id}" title="刪除">✕</button>
+          </div>
+        </div>`).join('')}</div>`
+    : `<div class="empty"><b>尚無待辦 No tasks yet</b>在下方輸入框新增今天要做的事吧！</div>`;
+
+  const doneCount = selTasks.filter(x => x.done).length;
+  const pct = selTasks.length ? Math.round(doneCount/selTasks.length*100) : 0;
+
+  return `
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">📅 一週待辦 1-Week To-Do List</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <button class="icon-btn" data-act="week-shift" data-delta="-7" title="上一週">‹</button>
+        <button class="btn btn-sm" data-act="week-shift" data-delta="0">本週 This week</button>
+        <button class="icon-btn" data-act="week-shift" data-delta="7" title="下一週">›</button>
+      </div>
+    </div>
+    <div class="week-strip">${dayChips}</div>
+    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="tiny muted" style="font-weight:700">本週整體完成度 Weekly completion</span>
+      <b style="font-size:13px">${ws.done}/${ws.total} · ${ws.pct}%</b>
+    </div>
+    <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <div>
+        <div class="card-title">${fmtLong(sel)} ${sel===t?'<span class="pill info" style="margin-left:6px">今天 Today</span>':''}</div>
+        <div class="tiny muted" style="margin-top:3px">${selTasks.length} 項任務 · 完成 ${doneCount} 項 · ${pct}%</div>
+      </div>
+    </div>
+    ${taskList}
+    <div class="form-row" style="margin-top:14px">
+      <input class="input" id="newTodoInput" placeholder="新增任務… Add a task…" style="flex:1 1 260px">
+      <button class="btn btn-primary" data-act="todo-add">＋ 新增 Add</button>
+    </div>
+  </div>`;
+};
+
+/* ---------- 6.3 SRP ---------- */
+VIEWS.srp = function(){
+  const t = todayISO();
+  const sorted = [...state.srp].sort((a, b) => {
+    const da = srpDates(a)[0] || '9999';
+    const db = srpDates(b)[0] || '9999';
+    return da.localeCompare(db);
+  });
+
+  const rows = sorted.length ? sorted.map(it => {
+    const ds = srpDates(it);
+    const done = it.done || [false,false,false,false];
+    const st = srpStatus(it);
+    const chips = ds.length ? ds.map((d, i) => {
+      const isDone = done[i];
+      const isDue  = !isDone && d === t;
+      const isLate = !isDone && d < t;
+      const cls = isDone ? 'on' : isDue ? 'due' : isLate ? 'late' : '';
+      return `<div class="rev-chip ${cls}" data-act="srp-toggle" data-id="${it.id}" data-idx="${i}" title="點擊切換完成狀態">
+        <span class="rl">D${REV_DAYNUM[i]}</span>
+        <span class="rd">${fmtMD(d)}</span>
+      </div>`;
+    }).join('') : '<span class="muted tiny">—</span>';
+
+    return `<tr>
+      <td>${subjBadge(it.subject)}</td>
+      <td><div style="font-weight:600;max-width:280px">${esc(it.concept)}</div></td>
+      <td><span class="tiny" style="font-weight:700">${it.start ? fmtMD(it.start) : '—'}</span></td>
+      <td><div class="rev-row">${chips}</div></td>
+      <td><span class="pill ${st.tone}">${st.label}</span></td>
+      <td style="text-align:right"><button class="icon-btn" data-act="srp-del" data-id="${it.id}" title="刪除">✕</button></td>
+    </tr>`;
+  }).join('') : '';
+
+  const body = sorted.length
+    ? `<div class="scroll-x"><table class="tbl">
+        <thead><tr>
+          <th>科目 Subject</th><th>知識點 Concept</th><th>第 1 天 Day 1</th>
+          <th>複習節點 Revision nodes（點擊切換）</th><th>狀態 Status</th><th></th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>`
+    : `<div class="empty"><b>尚無知識點 No concepts yet</b>每學完一個新內容，就把它拆成小知識點加進來。</div>`;
+
+  const dueToday = srpDueOn(t);
+
+  return `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🧠</div>
+      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">知識點 Concepts</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">🔴</div>
+      <div><div class="stat-val">${dueToday.length}</div><div class="stat-lbl">今日複習 Due today</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">⏰</div>
+      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'danger').length}</div><div class="stat-lbl">逾期 Overdue</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
+      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'ok').length}</div><div class="stat-lbl">已完成 Completed</div></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">➕ 新增知識點 <span class="muted" style="font-weight:500;font-size:12px">Add Concept</span></div></div>
+    <div class="form-row">
+      <select class="input" id="srpSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+      <input class="input" id="srpConcept" placeholder="知識點 Concept（越小越好 — e.g. 「頂點式配方」而非「二次函數」）" style="flex:1 1 300px">
+      <input class="input" type="date" id="srpStart" value="${t}" style="flex:0 0 160px">
+      <button class="btn btn-primary" data-act="srp-add">＋ 新增</button>
+    </div>
+    <div class="tiny muted" style="margin-top:9px">💡 系統會自動排出 <b>第 2 / 3 / 5 / 7 天</b> 的複習節點，並在「待辦事項」與主控台提醒你。</div>
+  </div>
+
+  <div class="card">${body}</div>`;
+};
+
+/* ---------- 6.4 ASSIGNMENTS ---------- */
+VIEWS.assign = function(){
+  const t = todayISO();
+  const sorted = [...state.assignments].sort((a, b) => (a.due || '9999').localeCompare(b.due || '9999'));
+  const overdue = sorted.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) < 0).length;
+  const soon = sorted.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 3).length;
+  const finished = sorted.filter(isFinished).length;
+
+  const rows = sorted.length ? sorted.map(a => {
+    const st = assignStatus(a);
+    const d = a.due ? diffDays(t, a.due) : null;
+    const dTxt = d === null ? '—' : d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天 Today' : `${d} 天`;
+    return `<tr>
+      <td><div style="font-weight:650">${esc(a.name)}</div>${a.remarks ? `<div class="tiny muted">${esc(a.remarks)}</div>` : ''}</td>
+      <td>${subjBadge(a.subject)}</td>
+      <td><span class="tiny" style="font-weight:700">${a.due ? fmtMD(a.due) : '—'}</span></td>
+      <td><span style="font-weight:800;color:${d!==null && d<0 ? 'var(--danger)' : d!==null && d<=3 ? 'var(--warn)' : 'inherit'}">${dTxt}</span></td>
+      <td><span class="tiny muted">${esc(a.time || '—')}</span></td>
+      <td><span class="pill ${st.tone}">${st.label}</span></td>
+      <td style="text-align:right;white-space:nowrap">
+        <button class="icon-btn" data-act="assign-cycle" data-id="${a.id}" title="切換狀態">↻</button>
+        <button class="icon-btn" data-act="assign-del" data-id="${a.id}" title="刪除">✕</button>
+      </td>
+    </tr>`;
+  }).join('') : '';
+
+  const body = sorted.length
+    ? `<div class="scroll-x"><table class="tbl">
+        <thead><tr><th>名稱 Name</th><th>科目</th><th>到期日 Due</th><th>剩餘天數</th><th>所需時間</th><th>狀態 Status</th><th></th></tr></thead>
+        <tbody>${rows}</tbody></table></div>`
+    : `<div class="empty"><b>尚無作業 No assignments</b>在下方新增一項作業來追蹤吧。</div>`;
+
+  return `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📋</div>
+      <div><div class="stat-val">${sorted.length - finished}</div><div class="stat-lbl">進行中 In progress</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">🔔</div>
+      <div><div class="stat-val">${soon}</div><div class="stat-lbl">3 天內到期 Due soon</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(239,68,68,.15)">⚠️</div>
+      <div><div class="stat-val">${overdue}</div><div class="stat-lbl">逾期 Overdue</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
+      <div><div class="stat-val">${finished}</div><div class="stat-lbl">已完成 Completed</div></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">➕ 新增作業 <span class="muted" style="font-weight:500;font-size:12px">Add Assignment</span></div></div>
+    <div class="form-row">
+      <input class="input" id="asName" placeholder="作業名稱 Name" style="flex:1 1 220px">
+      <select class="input" id="asSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+      <input class="input" type="date" id="asDue" style="flex:0 0 150px">
+      <input class="input" id="asTime" placeholder="所需時間 e.g. 45 min" style="flex:0 0 150px">
+      <button class="btn btn-primary" data-act="assign-add">＋ 新增</button>
+    </div>
+  </div>
+
+  <div class="card">${body}</div>`;
+};
+
+/* ---------- 6.5 ASSESSMENTS ---------- */
+VIEWS.assess = function(){
+  const t = todayISO();
+  const sorted = [...state.assessments].sort((a, b) => {
+    if (!a.due && !b.due) return 0;
+    if (!a.due) return 1;
+    if (!b.due) return -1;
+    return a.due.localeCompare(b.due);
+  });
+
+  const cards = sorted.map(a => {
+    const st = assessStatus(a);
+    const p = a.progress || 0;
+    const hasDue = !!a.due;
+    const d = hasDue ? diffDays(t, a.due) : null;
+    const cls = d === null ? '' : d <= 3 ? 'danger' : d <= 10 ? 'warn' : 'ok';
+    return `<div class="card" style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
+        <div style="min-width:0">
+          <div style="font-size:15px;font-weight:750;letter-spacing:-.2px">${esc(a.name)}</div>
+          <div class="item-meta" style="margin-top:6px">
+            ${subjBadge(a.subject)}
+            ${a.criteria && a.criteria !== '—' ? `<span class="pill muted">Crit ${esc(a.criteria)}</span>` : ''}
+            <span>${hasDue ? fmtMD(a.due) : (a.dueNote || 'TBD')}</span>
+          </div>
+        </div>
+        <div style="text-align:right;flex:0 0 auto">
+          ${hasDue ? `<div style="font-size:26px;font-weight:850;line-height:1;letter-spacing:-1px;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d < 0 ? '—' : d}</div>
+            <div class="tiny muted" style="font-weight:750;letter-spacing:.5px">${d < 0 ? 'PAST' : 'DAYS LEFT'}</div>`
+          : `<div style="font-size:20px">📌</div><div class="tiny muted" style="font-weight:700">TBD</div>`}
+        </div>
+      </div>
+
+      <div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;margin-bottom:6px">
+          <span class="muted">準備進度 Prepare progress</span><span>${p}%</span>
+        </div>
+        <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
+        <input type="range" min="0" max="100" step="5" value="${p}" data-act="assess-progress" data-id="${a.id}">
+      </div>
+
+      <div class="tiny muted" style="line-height:1.6">${esc(assessSuggest(a))}</div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+        <span class="pill ${st.tone}">${st.label}</span>
+        <button class="icon-btn" data-act="assess-del" data-id="${a.id}" title="刪除">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+
+  const body = sorted.length
+    ? `<div class="grid g-2">${cards}</div>`
+    : `<div class="card"><div class="empty"><b>尚無考試 No assessments</b>新增一場考試，系統會自動倒數並給出複習建議。</div></div>`;
+
+  const urgent = sorted.filter(a => a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 7).length;
+
+  return `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📚</div>
+      <div><div class="stat-val">${sorted.length}</div><div class="stat-lbl">總評估 Total</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">🔔</div>
+      <div><div class="stat-val">${urgent}</div><div class="stat-lbl">7 天內 Within 7 days</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
+      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) >= 80).length}</div><div class="stat-lbl">準備充分 ≥80%</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📝</div>
+      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) < 50).length}</div><div class="stat-lbl">進度落後 &lt;50%</div></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">➕ 新增評估 <span class="muted" style="font-weight:500;font-size:12px">Add Assessment</span></div></div>
+    <div class="form-row">
+      <input class="input" id="evName" placeholder="評估名稱 Name" style="flex:1 1 220px">
+      <select class="input" id="evSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+      <input class="input" id="evCrit" placeholder="評分準則 e.g. A, B, D" style="flex:0 0 160px">
+      <input class="input" type="date" id="evDue" style="flex:0 0 150px">
+      <button class="btn btn-primary" data-act="assess-add">＋ 新增</button>
+    </div>
+    <div class="tiny muted" style="margin-top:9px">💡 考前 14 天新增，系統會自動提醒你「考前兩週 → 可開始進入 SRP」。</div>
+  </div>
+
+  ${body}`;
+};
+
+/* ---------- 6.6 FEEDBACK (editable) ---------- */
+VIEWS.feedback = function(){
+  const subs = ['All', ...new Set(state.feedback.map(f => f.subject))];
+  const filter = state.fbFilter || 'All';
+  const list = state.feedback.filter(f => filter === 'All' || f.subject === filter);
+  const editingId = state.editingFbId;
+  const isNew = state.fbAdding;
+
+  const chips = subs.map(s => `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部 All' : esc(s)}</button>`).join('');
+
+  const newForm = isNew ? `
+    <div class="card" style="margin-bottom:14px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
+      <div class="card-head">
+        <div class="card-title">➕ 新增反饋 <span class="muted" style="font-weight:500;font-size:12px">New Feedback</span></div>
+      </div>
+      <div class="form-row">
+        <input class="input" id="fbNewName" placeholder="考試名稱 Name" style="flex:1 1 220px">
+        <select class="input" id="fbNewSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+        <input class="input" id="fbNewCrit" placeholder="評分準則 e.g. A, B, D" style="flex:0 0 200px">
+      </div>
+      <textarea class="input" id="fbNewText" placeholder="反饋內容 Feedback（每行一項，可用 - 開頭）" rows="5" style="margin-top:8px"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button class="btn" data-act="fb-cancel">取消 Cancel</button>
+        <button class="btn btn-primary" data-act="fb-save-new">💾 儲存 Save</button>
+      </div>
+    </div>` : '';
+
+  const items = list.map(f => {
+    if (editingId === f.id){
+      return `
+        <div class="card" style="margin-bottom:10px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
+          <div class="form-row">
+            <input class="input" id="fbEditName-${f.id}" value="${esc(f.name)}" placeholder="名稱 Name" style="flex:1 1 200px">
+            <select class="input" id="fbEditSubj-${f.id}" style="flex:0 0 130px">${state.subjects.map(s => `<option ${s===f.subject?'selected':''}>${esc(s)}</option>`).join('')}</select>
+            <input class="input" id="fbEditCrit-${f.id}" value="${esc(f.crit)}" placeholder="Crit" style="flex:0 0 150px">
+          </div>
+          <textarea class="input" id="fbEditText-${f.id}" rows="6" style="margin-top:8px">${esc(f.text)}</textarea>
+          <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+            <button class="btn" data-act="fb-cancel">取消 Cancel</button>
+            <button class="btn btn-primary" data-act="fb-save" data-id="${f.id}">💾 儲存 Save</button>
+          </div>
+        </div>`;
+    }
+    const txt = f.text && f.text.trim() && f.text.trim() !== 'N/A'
+      ? `<ul class="fb-list">${f.text.split('\n').map(l => l.trim()).filter(Boolean)
+          .map(l => `<li>${esc(l.replace(/^-\s*/, ''))}</li>`).join('')}</ul>`
+      : `<p class="muted tiny">N/A — 暫無反饋 No feedback recorded</p>`;
+    return `<details class="acc">
+      <summary>
+        ${subjBadge(f.subject)}
+        <span>${esc(f.name)}</span>
+        <span class="pill muted" style="margin-left:auto;margin-right:6px">Crit ${esc(f.crit)}</span>
+      </summary>
+      <div class="acc-body">
+        ${txt}
+        <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end">
+          <button class="btn btn-sm" data-act="fb-edit" data-id="${f.id}">✏️ 編輯 Edit</button>
+          <button class="btn btn-sm btn-danger" data-act="fb-del" data-id="${f.id}">🗑 刪除 Delete</button>
+        </div>
+      </div>
+    </details>`;
+  }).join('');
+
+  return `
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">💬 考試反饋 Assessment Feedback</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span class="tiny muted">${list.length} 筆 records</span>
+        <button class="btn btn-primary btn-sm" data-act="fb-add">＋ 新增反饋 Add</button>
+      </div>
+    </div>
+    <div class="chip-row">${chips}</div>
+  </div>
+  ${newForm}
+  <div>${items || `<div class="empty"><b>沒有符合的反饋</b>No feedback matches this filter. 點擊「＋ 新增反饋」開始記錄。</div>`}</div>`;
+};
+
+/* ---------- 6.7 REPORT CARDS (NEW) ---------- */
+VIEWS.report = function(){
+  const grades = state.reportGrades || [];
+
+  /* ---- 單次評估成績輸入列 ---- */
+  const gradeRows = grades.length ? grades.map(g => {
+    const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
+    const cells = [...Array(5)].map((_, i) => {
+      const active = i < def.crit.length;
+      const raw = (g.scores || [])[i];
+      const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
+      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="8" step="1"
+        value="${v}" ${active ? '' : 'disabled'}
+        data-act="rcg-score" data-id="${g.id}" data-idx="${i}"
+        placeholder="–"
+        title="${active ? def.key + ' · Criterion ' + def.crit[i] : '不適用 N/A'}">`;
+    }).join('');
+    return `<div class="rcg-row">
+      <input class="input" value="${esc(g.name)}" placeholder="評估名稱 Name" data-act="rcg-name" data-id="${g.id}">
+      <select class="input" data-act="rcg-subject" data-id="${g.id}">
+        ${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}
+      </select>
+      ${cells}
+      <button class="icon-btn" data-act="rcg-del" data-id="${g.id}" title="刪除 Delete">✕</button>
+    </div>`;
+  }).join('') : '';
+
+  const gradeTable = grades.length ? `
+    <div class="scroll-x"><div style="min-width:640px">
+      <div class="rcg-row rcg-head">
+        <div>評估名稱 Name</div>
+        <div>科目 Subject</div>
+        <div style="text-align:center">A</div>
+        <div style="text-align:center">B</div>
+        <div style="text-align:center">C</div>
+        <div style="text-align:center">D</div>
+        <div style="text-align:center">E</div>
+        <div></div>
+      </div>
+      ${gradeRows}
+    </div></div>`
+    : `<div class="empty"><b>尚無評估成績 No assessment grades</b>先在上方新增一筆評估，再逐格填入各 Criterion 的分數（0–8）。</div>`;
+
+  /* ---- 換算表 ---- */
+  const bounds4 = [[28,'7','卓越 Excellent'],[24,'6','優秀 Very Good'],[19,'5','良好 Good'],[15,'4','滿意 Satisfactory'],[10,'3','基本 Basic'],[6,'2','不足 Limited'],[0,'1','入門 Emerging']];
+  const bounds5 = [[35,'7','卓越 Excellent'],[30,'6','優秀 Very Good'],[24,'5','良好 Good'],[19,'4','滿意 Satisfactory'],[13,'3','基本 Basic'],[8,'2','不足 Limited'],[0,'1','入門 Emerging']];
+  const boundBlock = (title, arr) => `
+    <div>
+      <div class="sec-title">${title}</div>
+      ${arr.map(([min, g, lbl]) => `<div class="kv" style="padding:6px 0">
+        <span style="display:flex;align-items:center;gap:9px">
+          <b style="font-size:15px;color:var(--primary);min-width:14px">${g}</b>
+          <span class="tiny muted" style="font-weight:600">${lbl}</span>
+        </span>
+        <span class="tiny muted">≥ ${min} 分</span>
+      </div>`).join('')}
+    </div>`;
+
+  return `
+  <div class="grid g-4" id="rcStats" style="margin-bottom:16px">${rcStatsHTML()}</div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">📝 單次評估成績 <span class="muted" style="font-weight:500;font-size:12px">Individual Assessment Grades</span></div>
+      <span class="tiny muted">每項 0–8 分 · 留空表示該評估未評此 Criterion</span>
+    </div>
+    <div class="form-row" style="margin-bottom:14px">
+      <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
+      <select class="input" id="rcgNewSubj" style="flex:0 0 150px">
+        ${RC_SUBJECTS.map(s => `<option value="${s.key}">${s.key}</option>`).join('')}
+      </select>
+      <button class="btn btn-primary" data-act="rcg-add">＋ 新增評估</button>
+    </div>
+    ${gradeTable}
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">💯 科目 Criterion 彙總 <span class="muted" style="font-weight:500;font-size:12px">Subject Criteria Summary</span></div>
+      <span class="tiny muted">自動計算：該科所有評估的 Criterion 平均分（向下取整）</span>
+    </div>
+    <div id="rcSummary">${rcSummaryHTML()}</div>
+    <div class="tiny muted" style="margin-top:10px">
+      💡 一般科目使用 4 個 Criterion（A–D，滿分 32）；Biotech 使用 5 個 Criterion（I–V，對應 A–E 欄，滿分 40）。
+      系統會將該科所有評估的同一 Criterion 分數取平均並向下取整，作為該科的 Criterion 成績，再換算 MYP 等級。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><div class="card-title">📏 MYP 等級換算表 <span class="muted" style="font-weight:500;font-size:12px">Grade Boundaries</span></div></div>
+    <div class="grid g-2" style="gap:18px">
+      ${boundBlock('4 Criterion（滿分 32）', bounds4)}
+      ${boundBlock('5 Criterion（Biotech · 滿分 40）', bounds5)}
+    </div>
+  </div>`;
+};
+
+/* ---------- 6.8 SCHEDULE (editable) ---------- */
+VIEWS.schedule = function(){
+  const d = state.schedDay || 1;
+  const periods = (state.schedule[d] || ['','','','','']);
+  const PERIOD_NAMES = ['Period 1','Period 2','Period 3','Period 4','Period 5'];
+  const TIMES = ['08:15','09:15','10:25','11:25','13:30'];
+  const edit = state.editingSchedule;
+
+  const tabs = [...Array(10).keys()].map(i => {
+    const n = i + 1;
+    return `<button class="day-tab ${n===d?'active':''}" data-act="sched-day" data-day="${n}">Day ${n}</button>`;
+  }).join('');
+
+  const todayCards = periods.map((p, i) => {
+    if (edit){
+      return `<div class="period">
+        <div class="pn">${PERIOD_NAMES[i]} · ${TIMES[i]}</div>
+        <input data-act="sched-edit" data-day="${d}" data-period="${i}" value="${esc(p)}" placeholder="e.g. Chinese (B310)">
+      </div>`;
+    }
+    const m = String(p||'').match(/^(.+?)\s*\((.+)\)$/);
+    const name = m ? m[1] : p;
+    const room = m ? m[2] : '';
+    return `<div class="period">
+      <div class="pn">${PERIOD_NAMES[i]} · ${TIMES[i]}</div>
+      <div class="pc" style="color:${subjColor(name)}">${esc(name || '—')}</div>
+      ${room && room !== '/' ? `<div class="tiny muted" style="margin-top:3px">📍 ${esc(room)}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  const tableRows = PERIOD_NAMES.map((pn, i) => `
+    <tr>
+      <td style="font-weight:750;white-space:nowrap">${pn}</td>
+      ${[...Array(10).keys()].map(k => {
+        const n = k + 1;
+        const cell = (state.schedule[n] || [])[i] || '';
+        const m = String(cell).match(/^(.+?)\s*\((.+)\)$/);
+        const nm = m ? m[1] : cell;
+        if (edit){
+          return `<td><input class="cell-input" data-act="sched-edit" data-day="${n}" data-period="${i}" value="${esc(cell)}" placeholder="—" style="${n===d ? 'background:color-mix(in srgb,var(--primary) 8%,transparent)' : ''}"></td>`;
+        }
+        return `<td style="${n===d ? 'background:color-mix(in srgb,var(--primary) 8%,transparent)' : ''}">
+          <span style="font-size:12.5px;font-weight:600;color:${cell ? subjColor(nm) : 'var(--muted)'}">${esc(nm || '—')}</span>
+        </td>`;
+      }).join('')}
+    </tr>`).join('');
+
+  return `
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">📅 我的課表 <span class="muted" style="font-weight:500;font-size:12px">My Schedule</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="tiny muted">10 天循環 · 10-day cycle</span>
+        ${edit
+          ? `<button class="btn btn-primary btn-sm" data-act="sched-done">✓ 完成編輯 Done</button>`
+          : `<button class="btn btn-sm" data-act="sched-edit-toggle">✏️ 編輯課表 Edit</button>`}
+      </div>
+    </div>
+    ${edit ? `<div class="tiny muted" style="margin-bottom:12px">💡 直接點擊欄位修改，格式建議 <b>科目 (教室)</b>，例如 <code>Chinese (B310)</code>。修改會即時儲存。</div>` : ''}
+    <div class="day-tabs">${tabs}</div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">🕐 Day ${d} 課堂 <span class="muted" style="font-weight:500;font-size:12px">Day ${d} Lessons</span></div></div>
+    <div class="sched-grid">${todayCards}</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><div class="card-title">🗓️ 全循環總表 <span class="muted" style="font-weight:500;font-size:12px">Full Cycle</span></div></div>
+    <div class="scroll-x">
+      <table class="tbl" style="min-width:900px">
+        <thead><tr><th>節次 Period</th>${[...Array(10).keys()].map(k => `<th style="text-align:center">D${k+1}</th>`).join('')}</tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>
+  </div>`;
+};
+
+/* ---------- 6.9 GUIDE ---------- */
+VIEWS.guide = function(){
+  const sec = (title, sub, body, open = false) =>
+    `<details class="acc" ${open ? 'open' : ''}>
+      <summary><span>${title}</span><span class="tiny muted" style="margin-left:auto;margin-right:8px;font-weight:600">${sub}</span></summary>
+      <div class="acc-body">${body}</div>
+    </details>`;
+
+  const tbl = (head, rows) => `
+    <div class="scroll-x"><table class="tbl" style="min-width:520px">
+      <thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>
+    </table></div>`;
+
+  return `
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">🚀 每日、每週、每科具體操作指南</div>
+      <span class="tiny muted">Daily · Weekly · Per-subject playbook</span>
+    </div>
+    <p class="tiny muted" style="line-height:1.7">
+      這套系統的核心只有一句話：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習，讓記憶自然沉澱。</b><br>
+      The whole system in one line: break content into small concepts, review them on days 2-3-5-7, and let memory settle naturally.
+    </p>
+  </div>
+
+  ${sec('一、每日例行流程 <span class="tiny muted">Daily Routine</span>', '約 5–10 分鐘', tbl(
+    ['時間點 When', '動作 Action', '目的 Purpose'],
+    [
+      ['🌅 早晨（上學前）', '打開「待辦事項」，看當天複習任務列顯示哪些知識點', '預先知道今天要複習什麼'],
+      ['🏫 課間／下課', '對照「課表」與 SRP，有空檔優先完成「第 2 天」的複習', '把握黃金 24 小時'],
+      ['🌆 放學後', '① 檢查作業追蹤是否有今天到期<br>② 新學習內容到 SRP 新增一列<br>③ 完成當天複習任務', '不累積、不遺漏'],
+      ['🌙 睡前', '快速回顧今天學到的「一個重點」，在腦中想一遍（費曼技巧）', '鞏固當天所學']
+    ]), true)}
+
+  ${sec('二、每週例行流程 <span class="tiny muted">Weekly Routine</span>', '約 15–20 分鐘 · 建議週日晚上', tbl(
+    ['步驟 Step', '動作 Action', '目的 Purpose'],
+    [
+      ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期（狀態欄顯示「📅 等待第 1 次複習」）', '提前規劃下週複習節奏'],
+      ['2️⃣ 檢查作業與考試', '到「作業追蹤」與「考試計劃」檢視下週所有到期項目', '避免臨時抱佛腳'],
+      ['3️⃣ 調整待辦日期', '把「待辦事項」切換到下週', '保持待辦清單準確'],
+      ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標（例：完成數學作業、複習英文詩歌）', '有方向地前進'],
+      ['5️⃣ 回顧本週', '統計完成多少複習任務、哪些逾期、哪些卡關', '持續優化系統']
+    ]))}
+
+  ${sec('三、學了新內容時 <span class="tiny muted">When You Learn Something New</span>', '拆解知識點範例', tbl(
+    ['科目類型 Subject', '拆解範例 Breakdown', 'SRP 輸入方式'],
+    [
+      ['🔢 數學 Math', '不要寫「二次函數全部」，要拆成：「頂點式配方」「最大最小值」「平移關係」', '每個小概念獨立一列'],
+      ['📖 語文（中／英）', '不要寫「詩歌單元」，要拆成：「修辭手法」「作者背景」「主題分析」', '每個技巧或文本獨立一列'],
+      ['🔬 科學 Sciences', '不要寫「細胞單元」，要拆成：「細胞結構」「細胞分裂」「顯微鏡操作」', '每個關鍵概念獨立一列'],
+      ['🌏 人文社會 Humanities', '不要寫「工業革命」，要拆成：「起因」「影響」「重要人物」', '每個面向獨立一列']
+    ]))}
+
+  ${sec('四、複習日到來時 <span class="tiny muted">On Revision Days</span>', '每次 5–15 分鐘', tbl(
+    ['次數', '時間點', '一句話心法', '具體動作（各科通用）'],
+    [
+      ['第 1 次', '第 2 天', '重做經典，連結舊知', '不看解答，重做課本例題或重述核心概念，並說出它跟之前的關聯'],
+      ['第 2 次', '第 3 天', '閉卷輸出，抓出漏洞', '闔書默寫公式／流程／關鍵字，紅筆訂正漏掉的地方'],
+      ['第 3 次', '第 5 天', '限時實戰，偵測盲點', '計時做 2 道新題目或新閱讀，檢討錯因（不是只對答案）'],
+      ['第 4 次', '第 7 天', '化身老師，系統串聯', '用生活化比喻講解給空氣聽，並說明與前後單元的關聯']
+    ]))}
+
+  ${sec('五、考試將近時 <span class="tiny muted">When Exams Approach</span>', '考前 7–14 天', tbl(
+    ['時間點', '動作 Action', '目的 Purpose'],
+    [
+      ['考前 14 天', '到「考試計劃」新增該考試，設定日期', '啟動倒數提醒'],
+      ['考前 7 天', '系統顯示「🔔 距離考試僅剩 X 天，建議用考試倒數法密集複習！」', '開始密集練習'],
+      ['考前 3–5 天', '做歷屆試題或模擬卷，計時並檢討', '適應考試節奏'],
+      ['考前 1 天', '做一次完整的模擬考（計時、計分）', '調整狀態，找出最後弱點']
+    ]))}
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-head"><div class="card-title">🍅 番茄鐘使用建議 <span class="muted" style="font-weight:500;font-size:12px">Pomodoro Tips</span></div></div>
+    <div class="grid g-3" style="gap:10px">
+      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
+        <b style="font-size:15px;color:var(--primary)">25 分鐘</b><span class="tiny muted">專注 Focus — 一次只做一個知識點</span>
+      </div>
+      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
+        <b style="font-size:15px;color:var(--primary)">5 分鐘</b><span class="tiny muted">短休息 Short Break — 起身走動、喝水</span>
+      </div>
+      <div class="kv" style="border:none;background:var(--surface-2);border-radius:12px;padding:12px;flex-direction:column;align-items:flex-start;gap:2px">
+        <b style="font-size:15px;color:var(--primary)">15 分鐘</b><span class="tiny muted">長休息 Long Break — 每 4 個番茄後</span>
+      </div>
+    </div>
+  </div>`;
+};
+
+/* ---------- 6.10 SETTINGS ---------- */
+VIEWS.settings = function(){
+  const subs = state.subjects || [];
+  const chips = subs.map(s => `
+    <span class="subj-chip">
+      <span class="dot" style="background:${subjColor(s)}"></span>
+      ${esc(s)}
+      <button data-act="subj-rename" data-name="${esc(s)}" title="重新命名 Rename">✏️</button>
+      <button data-act="subj-del" data-name="${esc(s)}" title="刪除 Delete">✕</button>
+    </span>`).join('');
+
+  const usage = {};
+  subs.forEach(s => usage[s] = 0);
+  state.srp.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+  state.assignments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+  state.assessments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+  state.feedback.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+
+  const stat = `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🏷️</div>
+      <div><div class="stat-val">${subs.length}</div><div class="stat-lbl">科目 Subjects</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">💬</div>
+      <div><div class="stat-val">${state.feedback.length}</div><div class="stat-lbl">反饋 Feedback</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📅</div>
+      <div><div class="stat-val">${Object.keys(state.schedule).length}</div><div class="stat-lbl">課表天數 Days</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">🧠</div>
+      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">SRP 知識點</div></div></div>
+  </div>`;
+
+  return `
+  ${stat}
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">🏷️ 科目管理 <span class="muted" style="font-weight:500;font-size:12px">Subject Management</span></div>
+      <span class="tiny muted">用於 SRP、作業、考試、反饋的下拉選單</span>
+    </div>
+    <div class="chip-row" style="margin-bottom:14px">${chips || '<span class="tiny muted">尚無科目</span>'}</div>
+    <div class="form-row">
+      <input class="input" id="subjNewInput" placeholder="新增科目名稱 e.g. Drama" style="flex:1 1 260px">
+      <button class="btn btn-primary" data-act="subj-add">＋ 新增科目</button>
+    </div>
+    <div class="tiny muted" style="margin-top:10px">💡 重新命名時，系統會自動更新所有引用此科目的紀錄。</div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">📊 科目使用統計 <span class="muted" style="font-weight:500;font-size:12px">Usage Stats</span></div></div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      ${subs.map(s => {
+        const u = usage[s] || 0;
+        return `<div class="kv">
+          <span style="display:flex;align-items:center;gap:8px">
+            <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(s)}"></span>
+            <b>${esc(s)}</b>
+          </span>
+          <span class="tiny muted">${u} 筆紀錄</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head"><div class="card-title">💾 資料管理 <span class="muted" style="font-weight:500;font-size:12px">Data Management</span></div></div>
+    <div class="form-row">
+      <button class="btn" data-act="data-export">⬇️ 匯出 JSON Export</button>
+      <button class="btn" data-act="data-import">⬆️ 匯入 JSON Import</button>
+      <button class="btn btn-danger" data-act="data-reset">🗑 重設所有資料 Reset All</button>
+    </div>
+    <div class="tiny muted" style="margin-top:10px">💡 所有資料儲存在瀏覽器的 localStorage，不會上傳到任何伺服器。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><div class="card-title">ℹ️ 關於 <span class="muted" style="font-weight:500;font-size:12px">About</span></div></div>
+    <div class="kv"><span>版本 Version</span><b>1.2</b></div>
+    <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
+    <div class="kv"><span>儲存 Storage</span><b>Local (browser)</b></div>
+    <div class="kv"><span>捷徑 Shortcut</span><b>資料自動儲存</b></div>
+  </div>`;
+};
+
+/* =====================================================================
+   7. RENDER
+   ===================================================================== */
+function render(){
+  $('#nav').innerHTML = NAV.map(n => `
+    <button class="nav-item ${state.view === n.id ? 'active' : ''}" data-nav="${n.id}">
+      <span class="nav-icon">${n.icon}</span>
+      <span class="nav-text"><b>${n.zh}</b><small>${n.en}</small></span>
+    </button>`).join('');
+
+  const meta = NAV.find(n => n.id === state.view) || NAV[0];
+  $('#viewTitle').textContent = meta.zh;
+  $('#viewSub').textContent = meta.en;
+
+  const t = new Date();
+  $('#todayDate').textContent = `${t.getFullYear()}/${pad(t.getMonth()+1)}/${pad(t.getDate())} 週${WD[t.getDay()]}`;
+
+  $('#viewHost').innerHTML = VIEWS[state.view] ? VIEWS[state.view]() : '';
+}
+
+/* =====================================================================
+   8. ACTIONS
+   ===================================================================== */
+document.addEventListener('click', e => {
+  const navBtn = e.target.closest('[data-nav]');
+  if (navBtn){
+    state.view = navBtn.dataset.nav;
+    save(); render();
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const act = el.dataset.act;
+
+  switch(act){
+    /* ---- to-do ---- */
+    case 'todo-toggle': {
+      const it = state.todos.find(x => x.id === el.dataset.id);
+      if (it){ it.done = !it.done; save(); render(); }
+      break;
+    }
+    case 'todo-del': {
+      state.todos = state.todos.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      break;
+    }
+    case 'todo-add': {
+      const inp = $('#newTodoInput');
+      const txt = inp ? inp.value.trim() : '';
+      if (!txt) { inp && inp.focus(); return; }
+      state.todos.push({id: uid(), date: state.selDate || todayISO(), text: txt, done: false});
+      save(); render();
+      setTimeout(() => { const i = $('#newTodoInput'); i && i.focus(); }, 0);
+      break;
+    }
+    case 'pick-day': {
+      state.selDate = el.dataset.date;
+      save(); render();
+      break;
+    }
+    case 'week-shift': {
+      const delta = parseInt(el.dataset.delta, 10);
+      state.weekAnchor = delta === 0 ? todayISO() : addDays(state.weekAnchor || todayISO(), delta);
+      state.selDate = weekStart(state.weekAnchor);
+      save(); render();
+      break;
+    }
+
+    /* ---- SRP ---- */
+    case 'srp-toggle': {
+      const it = state.srp.find(x => x.id === el.dataset.id);
+      if (!it) break;
+      const idx = parseInt(el.dataset.idx, 10);
+      if (!it.done) it.done = [false,false,false,false];
+      it.done[idx] = !it.done[idx];
+      save(); render();
+      break;
+    }
+    case 'srp-del': {
+      state.srp = state.srp.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      break;
+    }
+    case 'srp-add': {
+      const subj = $('#srpSubj').value;
+      const concept = $('#srpConcept').value.trim();
+      const start = $('#srpStart').value;
+      if (!concept){ $('#srpConcept').focus(); return; }
+      if (!start) return;
+      state.srp.push({id: uid(), subject: subj, concept, start, done:[false,false,false,false]});
+      save(); render();
+      toast('✅ 已新增知識點 Added');
+      break;
+    }
+
+    /* ---- assignments ---- */
+    case 'assign-add': {
+      const name = $('#asName').value.trim();
+      if (!name){ $('#asName').focus(); return; }
+      state.assignments.push({
+        id: uid(), name,
+        subject: $('#asSubj').value,
+        status: '未開始 Not Started',
+        due: $('#asDue').value || null,
+        time: $('#asTime').value.trim(),
+        remarks: ''
+      });
+      save(); render();
+      toast('✅ 已新增作業 Assignment added');
+      break;
+    }
+    case 'assign-del': {
+      state.assignments = state.assignments.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      break;
+    }
+    case 'assign-cycle': {
+      const a = state.assignments.find(x => x.id === el.dataset.id);
+      if (!a) break;
+      const cycle = ['未開始 Not Started','進行中 In Progress','已完成 Finished','已繳交 Submitted'];
+      const i = cycle.indexOf(a.status);
+      a.status = cycle[(i + 1) % cycle.length];
+      save(); render();
+      break;
+    }
+
+    /* ---- assessments ---- */
+    case 'assess-add': {
+      const name = $('#evName').value.trim();
+      if (!name){ $('#evName').focus(); return; }
+      state.assessments.push({
+        id: uid(), name,
+        subject: $('#evSubj').value,
+        criteria: $('#evCrit').value.trim() || '—',
+        due: $('#evDue').value || null,
+        dueNote: '',
+        progress: 0, remarks: ''
+      });
+      save(); render();
+      toast('✅ 已新增評估 Assessment added');
+      break;
+    }
+    case 'assess-del': {
+      state.assessments = state.assessments.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      break;
+    }
+
+    /* ---- feedback ---- */
+    case 'fb-filter': {
+      state.fbFilter = el.dataset.subj;
+      save(); render();
+      break;
+    }
+    case 'fb-add': {
+      state.fbAdding = true;
+      state.editingFbId = null;
+      save(); render();
+      setTimeout(() => { const i = $('#fbNewName'); i && i.focus(); }, 0);
+      break;
+    }
+    case 'fb-cancel': {
+      state.fbAdding = false;
+      state.editingFbId = null;
+      save(); render();
+      break;
+    }
+    case 'fb-save-new': {
+      const name = $('#fbNewName').value.trim();
+      const subj = $('#fbNewSubj').value;
+      const crit = $('#fbNewCrit').value.trim() || '—';
+      const text = $('#fbNewText').value;
+      if (!name){ $('#fbNewName').focus(); return; }
+      state.feedback.unshift({id: uid(), name, subject: subj, crit, text});
+      state.fbAdding = false;
+      save(); render();
+      toast('✅ 已新增反饋 Feedback added');
+      break;
+    }
+    case 'fb-edit': {
+      state.editingFbId = el.dataset.id;
+      state.fbAdding = false;
+      save(); render();
+      break;
+    }
+    case 'fb-save': {
+      const id = el.dataset.id;
+      const f = state.feedback.find(x => x.id === id);
+      if (!f) break;
+      f.name = $('#fbEditName-' + id).value.trim() || f.name;
+      f.subject = $('#fbEditSubj-' + id).value;
+      f.crit = $('#fbEditCrit-' + id).value.trim() || '—';
+      f.text = $('#fbEditText-' + id).value;
+      state.editingFbId = null;
+      save(); render();
+      toast('✅ 已更新反饋 Feedback updated');
+      break;
+    }
+    case 'fb-del': {
+      if (!confirm('刪除此反饋？Delete this feedback?')) break;
+      state.feedback = state.feedback.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      toast('🗑 已刪除 Deleted');
+      break;
+    }
+
+    /* ---- report cards (NEW) ---- */
+    case 'rcg-add': {
+      const name = $('#rcgNewName').value.trim();
+      if (!name){ $('#rcgNewName').focus(); return; }
+      if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
+      state.reportGrades.push({
+        id: uid(),
+        name,
+        subject: $('#rcgNewSubj').value,
+        scores: [null, null, null, null, null]
+      });
+      save(); render();
+      toast('✅ 已新增評估 Added');
+      break;
+    }
+    case 'rcg-del': {
+      state.reportGrades = (state.reportGrades || []).filter(x => x.id !== el.dataset.id);
+      save(); render();
+      break;
+    }
+
+    /* ---- schedule ---- */
+    case 'sched-day': {
+      state.schedDay = parseInt(el.dataset.day, 10);
+      save(); render();
+      break;
+    }
+    case 'sched-edit-toggle': {
+      state.editingSchedule = true;
+      save(); render();
+      break;
+    }
+    case 'sched-done': {
+      state.editingSchedule = false;
+      save(); render();
+      toast('✅ 課表已儲存 Schedule saved');
+      break;
+    }
+
+    /* ---- subjects ---- */
+    case 'subj-add': {
+      const inp = $('#subjNewInput');
+      const name = inp ? inp.value.trim() : '';
+      if (!name){ inp && inp.focus(); return; }
+      if (state.subjects.includes(name)){ toast('⚠️ 此科目已存在 Already exists'); return; }
+      state.subjects.push(name);
+      save(); render();
+      toast('✅ 已新增科目 Subject added');
+      break;
+    }
+    case 'subj-del': {
+      const name = el.dataset.name;
+      if (!confirm(`刪除科目「${name}」？\nDelete subject "${name}"?\n\n（已存在的紀錄不會被刪除，只是無法再從下拉選單選擇此科目）`)) break;
+      state.subjects = state.subjects.filter(s => s !== name);
+      save(); render();
+      toast('🗑 已刪除科目 Subject removed');
+      break;
+    }
+    case 'subj-rename': {
+      const oldName = el.dataset.name;
+      const newName = prompt(`重新命名科目 Rename subject:\n（會同步更新所有引用此科目的紀錄）`, oldName);
+      if (!newName || !newName.trim() || newName === oldName) return;
+      const trimmed = newName.trim();
+      if (state.subjects.includes(trimmed) && trimmed !== oldName){
+        toast('⚠️ 名稱重複 Duplicate name'); return;
+      }
+      state.subjects = state.subjects.map(s => s === oldName ? trimmed : s);
+      state.srp.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      state.assignments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      state.assessments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      state.feedback.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      save(); render();
+      toast('✅ 已重新命名 Renamed');
+      break;
+    }
+
+    /* ---- data ---- */
+    case 'data-export': {
+      const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `study-dashboard-${todayISO()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('⬇️ 已匯出 Exported');
+      break;
+    }
+    case 'data-import': {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json,application/json';
+      input.onchange = (ev) => {
+        const file = ev.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (re) => {
+          try{
+            const data = JSON.parse(re.target.result);
+            if (!data || typeof data !== 'object') throw new Error('invalid');
+            state = Object.assign(structuredClone(DEFAULT_STATE), data);
+            if (!Array.isArray(state.subjects) || !state.subjects.length) state.subjects = [...DEFAULT_SUBJECTS];
+            if (!Array.isArray(state.feedback)) state.feedback = structuredClone(DEFAULT_FEEDBACK);
+            if (!state.schedule) state.schedule = structuredClone(DEFAULT_SCHEDULE);
+            if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
+            save(); applyTheme(); render();
+            toast('✅ 已匯入 Imported');
+          }catch(err){
+            toast('⚠️ 匯入失敗 Import failed');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+      break;
+    }
+    case 'data-reset': {
+      if (!confirm('⚠️ 這會清除所有資料，包含您新增的反饋、科目、課表修改與成績紀錄。\n確定要重設嗎？Reset ALL data?')) return;
+      localStorage.removeItem(LS_KEY);
+      state = structuredClone(DEFAULT_STATE);
+      state.editingFbId = null;
+      state.fbAdding = false;
+      state.editingSchedule = false;
+      save(); applyTheme(); render();
+      toast('↺ 已重設 Reset complete');
+      break;
+    }
+  }
+});
+
+/* 即時輸入更新（不重建 DOM） */
+document.addEventListener('input', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const act = el.dataset.act;
+
+  /* schedule inline edit */
+  if (act === 'sched-edit'){
+    const day = parseInt(el.dataset.day, 10);
+    const period = parseInt(el.dataset.period, 10);
+    if (!state.schedule[day]) state.schedule[day] = ['','','','',''];
+    state.schedule[day][period] = el.value;
+    save();
+    return;
+  }
+
+  /* assessment progress slider */
+  if (act === 'assess-progress'){
+    const a = state.assessments.find(x => x.id === el.dataset.id);
+    if (!a) return;
+    a.progress = parseInt(el.value, 10);
+    const wrap = el.closest('div.card');
+    if (wrap){
+      const bar = wrap.querySelector('.bar-fill');
+      if (bar) bar.style.width = a.progress + '%';
+      wrap.querySelectorAll('span').forEach(s => {
+        if (/^\d+%$/.test(s.textContent.trim())) s.textContent = a.progress + '%';
+      });
+    }
+    save();
+    return;
+  }
+
+  /* report grade: name */
+  if (act === 'rcg-name'){
+    const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
+    if (g){ g.name = el.value; save(); }
+    return;
+  }
+
+  /* report grade: criterion score */
+  if (act === 'rcg-score'){
+    const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
+    if (!g) return;
+    const idx = parseInt(el.dataset.idx, 10);
+    if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
+    const raw = el.value.trim();
+    if (raw === '') g.scores[idx] = null;
+    else {
+      let n = parseInt(raw, 10);
+      if (isNaN(n)) g.scores[idx] = null;
+      else g.scores[idx] = Math.max(0, Math.min(8, n));
+    }
+    save();
+    refreshReportSummary();
+    return;
+  }
+});
+
+document.addEventListener('change', e => {
+  const el = e.target.closest('[data-act]');
+  if (!el) return;
+  const act = el.dataset.act;
+
+  if (act === 'assess-progress'){ render(); return; }
+
+  /* report grade: subject switch */
+  if (act === 'rcg-subject'){
+    const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
+    if (g){ g.subject = el.value; save(); render(); }
+    return;
+  }
+
+  /* report grade: blur/enter — clamp value */
+  if (act === 'rcg-score'){
+    const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
+    if (!g) return;
+    const idx = parseInt(el.dataset.idx, 10);
+    if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
+    let v = parseInt(el.value, 10);
+    if (isNaN(v)) v = null;
+    else v = Math.max(0, Math.min(8, v));
+    g.scores[idx] = v;
+    save();
+    el.value = v === null ? '' : v;
+    refreshReportSummary();
+    return;
+  }
+
+  /* schedule inline edit (blur) */
+  if (act === 'sched-edit'){
+    const day = parseInt(el.dataset.day, 10);
+    const period = parseInt(el.dataset.period, 10);
+    if (!state.schedule[day]) state.schedule[day] = ['','','','',''];
+    state.schedule[day][period] = el.value;
+    save();
+  }
+});
+
+/* Enter to add */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey){
+    if (e.target.id === 'newTodoInput'){
+      const btn = document.querySelector('[data-act="todo-add"]');
+      btn && btn.click();
+      e.preventDefault();
+    }
+    if (e.target.id === 'subjNewInput'){
+      const btn = document.querySelector('[data-act="subj-add"]');
+      btn && btn.click();
+      e.preventDefault();
+    }
+    if (e.target.id === 'rcgNewName'){
+      const btn = document.querySelector('[data-act="rcg-add"]');
+      btn && btn.click();
+      e.preventDefault();
+    }
+    if (['srpConcept','asName','evName','fbNewName'].includes(e.target.id)){
+      const map = {srpConcept:'srp-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new'};
+      const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`);
+      btn && btn.click();
+      e.preventDefault();
+    }
+  }
+});
+
+/* =====================================================================
+   9. THEME
+   ===================================================================== */
+function applyTheme(){
+  document.documentElement.dataset.theme = state.theme;
+  $('#themeBtn').textContent = state.theme === 'dark' ? '☀️ 淺色' : '🌙 深色';
+}
+$('#themeBtn').addEventListener('click', () => {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  save(); applyTheme();
+});
+
+/* =====================================================================
+   10. RESET BUTTON
+   ===================================================================== */
+$('#resetBtn').addEventListener('click', () => {
+  if (!confirm('確定要重設所有資料嗎？此動作無法復原。\nReset all data? This cannot be undone.')) return;
+  localStorage.removeItem(LS_KEY);
+  state = structuredClone(DEFAULT_STATE);
+  state.editingFbId = null;
+  state.fbAdding = false;
+  state.editingSchedule = false;
+  save(); applyTheme(); render();
+  toast('↺ 已重設 Reset complete');
+});
+
+/* =====================================================================
+   11. POMODORO
+   ===================================================================== */
+const POMO = {
+  modes: {focus:{label:'專注 FOCUS', min:25}, short:{label:'短休 SHORT', min:5}, long:{label:'長休 LONG', min:15}},
+  mode: 'focus',
+  remaining: 25 * 60,
+  running: false,
+  tick: null
+};
+function pomoRender(){
+  const m = Math.floor(POMO.remaining / 60), s = POMO.remaining % 60;
+  $('#pomoTime').textContent = `${pad(m)}:${pad(s)}`;
+  $('#pomoMode').textContent = POMO.modes[POMO.mode].label;
+  $('#pomoToggle').textContent = POMO.running ? '❚❚' : '▶';
+  $('#pomo').classList.toggle('running', POMO.running);
+  document.title = POMO.running ? `${pad(m)}:${pad(s)} · 學習總覽` : '學習總覽 · Studying Overview';
+}
+function pomoBeep(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 0.18, 0.36].forEach(t => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = 880; o.type = 'sine';
+      g.gain.setValueAtTime(0.0001, ctx.currentTime + t);
+      g.gain.exponentialRampToValueAtTime(0.15, ctx.currentTime + t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + t + 0.15);
+      o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + 0.2);
+    });
+  }catch(e){}
+}
+$('#pomoToggle').addEventListener('click', () => {
+  POMO.running = !POMO.running;
+  if (POMO.running){
+    POMO.tick = setInterval(() => {
+      POMO.remaining--;
+      if (POMO.remaining <= 0){
+        clearInterval(POMO.tick); POMO.running = false;
+        POMO.remaining = POMO.modes[POMO.mode].min * 60;
+        pomoBeep();
+        if (Notification && Notification.permission === 'granted'){
+          new Notification('⏰ 番茄鐘結束 Time is up!', {body:'休息一下，或開始下一個番茄。'});
+        }
+      }
+      pomoRender();
+    }, 1000);
+  } else {
+    clearInterval(POMO.tick);
+  }
+  pomoRender();
+});
+$('#pomoReset').addEventListener('click', () => {
+  clearInterval(POMO.tick); POMO.running = false;
+  POMO.remaining = POMO.modes[POMO.mode].min * 60;
+  pomoRender();
+});
+$('#pomoMode').addEventListener('click', () => {
+  const order = ['focus','short','long'];
+  POMO.mode = order[(order.indexOf(POMO.mode) + 1) % order.length];
+  clearInterval(POMO.tick); POMO.running = false;
+  POMO.remaining = POMO.modes[POMO.mode].min * 60;
+  pomoRender();
+});
+
+/* =====================================================================
+   12. BOOT
+   ===================================================================== */
+loadState();
+state.editingFbId = null;
+state.fbAdding = false;
+state.editingSchedule = false;
+applyTheme();
+render();
+pomoRender();
+
+if ('Notification' in window && Notification.permission === 'default'){
+  setTimeout(() => { try{ Notification.requestPermission(); }catch(e){} }, 3000);
+}
+</script>
+</body>
+</html>
