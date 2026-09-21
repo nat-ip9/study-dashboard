@@ -339,6 +339,81 @@ details.acc summary:hover{background:var(--surface-2)}
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;font-size:13px;font-weight:650;z-index:999;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
+/* ============ SPOTIFY FLOAT PLAYER（跨頁面持續播放） ============ */
+.spotify-float{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:500;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:10px;
+  pointer-events:none;
+}
+.spotify-float > *{pointer-events:auto}
+.spotify-fab{
+  width:52px;height:52px;
+  border-radius:99px;
+  border:none;
+  background:linear-gradient(135deg,#1db954,#1ed760);
+  color:#fff;
+  font-size:24px;
+  cursor:pointer;
+  box-shadow:0 12px 30px -10px rgba(29,185,84,.6);
+  transition:.22s cubic-bezier(.34,1.56,.64,1);
+  display:grid;place-items:center;
+  line-height:1;
+}
+.spotify-fab:hover{
+  transform:scale(1.1) rotate(-8deg);
+  box-shadow:0 16px 40px -10px rgba(29,185,84,.8);
+}
+.spotify-panel{
+  width:340px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:12px;
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.55);
+  display:none;
+  transform-origin:bottom right;
+}
+.spotify-float.open .spotify-panel{
+  display:block;
+  animation:spotifyIn .28s cubic-bezier(.34,1.56,.64,1);
+}
+.spotify-float.open .spotify-fab{ display:none; }
+@keyframes spotifyIn{
+  from{opacity:0;transform:translateY(12px) scale(.92)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.spotify-panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  font-weight:750;
+  color:var(--text);
+  margin-bottom:8px;
+  letter-spacing:.3px;
+}
+.spotify-panel-head span{display:flex;align-items:center;gap:6px}
+.spotify-close{
+  width:24px;height:24px;
+  border-radius:99px;
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  color:var(--muted);
+  cursor:pointer;
+  font-size:11px;
+  display:grid;place-items:center;
+  transition:.15s;
+  line-height:1;
+}
+.spotify-close:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.spotify-panel iframe{border-radius:12px;display:block;width:100%}
+
 /* ============ DETOX PAGE ============ */
 .detox-page{
   --d-bg:#1a0f1a;
@@ -366,55 +441,9 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .detox-page > *{position:relative;z-index:1}
 
-/* —— Detox 頁首（標題 + Spotify 並排） —— */
-.detox-head{
-  margin-bottom:22px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:24px;
-  flex-wrap:wrap;
-}
-.detox-title{
-  flex:1 1 auto;
-  min-width:200px;
-}
+.detox-head{margin-bottom:22px}
 .detox-head h2{font-size:24px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
 .detox-head p{font-size:12px;color:var(--d-text-dim);margin-top:4px;letter-spacing:.5px}
-
-.d-spotify-mini{
-  flex:0 1 360px;
-  min-width:260px;
-  background:var(--d-surface);
-  border:1px solid var(--d-border);
-  border-radius:14px;
-  padding:12px 14px;
-  backdrop-filter:blur(14px);
-}
-.d-spotify-mini .d-card-title{
-  font-size:11.5px;
-  margin-bottom:8px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-  color:var(--d-text);
-  font-weight:750;
-  letter-spacing:.3px;
-}
-.d-spotify-mini .d-card-title small{
-  font-size:10px;
-  color:var(--d-text-dim);
-  font-weight:600;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  margin-left:auto;
-}
-.d-spotify-mini iframe{
-  border-radius:12px;
-  width:100%;
-  display:block;
-  filter:brightness(0.95) contrast(1.05);
-}
 
 .detox-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.detox-grid{grid-template-columns:1fr}}
@@ -434,7 +463,6 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .d-card-title small{font-size:10.5px;color:var(--d-text-dim);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 
-/* 隨機一句話 */
 .d-quote{
   cursor:pointer;user-select:none;padding:26px 24px;text-align:center;border-radius:16px;
   background:linear-gradient(135deg, rgba(255,154,118,.10), rgba(255,123,138,.06));
@@ -452,7 +480,6 @@ details.acc summary:hover{background:var(--surface-2)}
   100%{opacity:1;transform:translateY(0)}
 }
 
-/* ===== 寫下來燒掉 ===== */
 .d-write-wrap{position:relative}
 .d-write-area{
   width:100%;min-height:120px;
@@ -470,7 +497,6 @@ details.acc summary:hover{background:var(--surface-2)}
 
 .d-write-wrap.burning .d-write-area{pointer-events:none}
 
-/* 火床 */
 .d-burn-bed{
   position:absolute;left:0;right:0;bottom:0;height:40%;
   border-radius:0 0 14px 14px;
@@ -490,7 +516,6 @@ details.acc summary:hover{background:var(--surface-2)}
   100%{opacity:0;transform:scaleY(1.4)}
 }
 
-/* 水床 */
 .d-burn-bed.water{
   height:100%;
   background:linear-gradient(180deg,
@@ -541,7 +566,6 @@ details.acc summary:hover{background:var(--surface-2)}
   100%{transform:translateY(-45%);opacity:0}
 }
 
-/* 風床 */
 .d-burn-bed.wind{
   height:100%;
   background:linear-gradient(90deg,
@@ -563,7 +587,6 @@ details.acc summary:hover{background:var(--surface-2)}
   100%{opacity:0;transform:translateX(30%)}
 }
 
-/* 文字遮罩動畫 */
 .d-write-wrap.burning .d-write-area{
   -webkit-mask-repeat:no-repeat;
   mask-repeat:no-repeat;
@@ -599,7 +622,6 @@ details.acc summary:hover{background:var(--surface-2)}
   }
 }
 
-/* 粒子 */
 .d-burn-particle{position:absolute;pointer-events:none;will-change:transform,opacity}
 .d-burn-particle.fire{
   width:var(--size);height:var(--size);border-radius:50%;
@@ -666,7 +688,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-burn-btn.wind:hover:not(:disabled){box-shadow:0 8px 22px -12px #ffffff}
 .d-write-hint{font-size:11px;color:var(--d-text-dim);opacity:.7;margin-top:10px;text-align:center;letter-spacing:.3px}
 
-/* 環境音 */
 .d-audio-list{display:flex;flex-direction:column;gap:10px}
 .d-audio-row{
   display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;
@@ -689,7 +710,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-audio-play:hover{background:rgba(255,154,118,.18);color:var(--d-accent)}
 .d-audio-row.playing .d-audio-play{background:rgba(255,154,118,.2);color:var(--d-accent);border-color:var(--d-accent)}
 
-/* 泡泡 */
 .d-bubbles-wrap{
   position:relative;height:280px;border-radius:16px;
   background:radial-gradient(circle at 50% 100%, rgba(255,154,118,.08), transparent 60%),
@@ -730,8 +750,6 @@ details.acc summary:hover{background:var(--surface-2)}
   .topbar h2{font-size:18px}
   .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
   .rcg-row .input{padding:5px 4px;font-size:11.5px}
-  .detox-head{flex-direction:column;gap:16px}
-  .d-spotify-mini{flex:1 1 100%;min-width:0}
 }
 @media(max-width:600px){
   .detox-page{padding:18px 14px;border-radius:14px}
@@ -740,6 +758,8 @@ details.acc summary:hover{background:var(--surface-2)}
   .d-quote-zh{font-size:15px}
   .d-quote-en{font-size:12px}
   .d-bubbles-wrap{height:220px}
+  .spotify-float{right:12px;bottom:12px}
+  .spotify-panel{width:calc(100vw - 24px);max-width:340px}
 }
 </style>
 </head>
@@ -782,6 +802,23 @@ details.acc summary:hover{background:var(--surface-2)}
     </header>
     <div id="viewHost"></div>
   </main>
+</div>
+
+<!-- Spotify 浮動播放器（跨頁面持續播放，不隨 render 重建） -->
+<div class="spotify-float" id="spotifyFloat">
+  <div class="spotify-panel" id="spotifyPanel">
+    <div class="spotify-panel-head">
+      <span>🎧 我的歌單</span>
+      <button class="spotify-close" data-act="spotify-toggle" title="收起">✕</button>
+    </div>
+    <iframe style="border-radius:12px" 
+      src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
+      width="100%" height="152" frameBorder="0" allowfullscreen="" 
+      allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" 
+      loading="lazy">
+    </iframe>
+  </div>
+  <button class="spotify-fab" data-act="spotify-toggle" title="開啟播放器">🎧</button>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -1108,25 +1145,33 @@ function rcCalc(){
   });
 }
 
+/* 標準平均分與標準化總分：把 Biotech（10 分制）按 ×0.8 換算成 8 分制 */
 function rcStatsHTML(){
   const subjData = rcCalc();
   let sumAll = 0, cntAll = 0;
   const graded = [];
   subjData.forEach(sd => {
-    sd.avgs.forEach(v => { if (v !== null){ sumAll += v; cntAll++; } });
+    const isBiotech = sd.def.key === 'Biotech';
+    sd.avgs.forEach(v => {
+      if (v !== null){
+        sumAll += isBiotech ? v * 0.8 : v;
+        cntAll++;
+      }
+    });
     if (sd.grade !== null) graded.push(sd.grade);
   });
   const avg = cntAll ? sumAll / cntAll : null;
   const oa  = graded.length ? graded.reduce((a, b) => a + b, 0) / graded.length : null;
+  const sumDisplay = Number.isInteger(sumAll) ? sumAll : sumAll.toFixed(1);
   return `
     <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📊</div>
       <div><div class="stat-val">${graded.length}/9</div><div class="stat-lbl">已評科目 Subjects graded</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">🏆</div>
       <div><div class="stat-val">${oa !== null ? oa.toFixed(2) : '—'}</div><div class="stat-lbl">Total OA（科目等級平均）</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">📐</div>
-      <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均分</div></div></div>
+      <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均分 (0–8)</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">Σ</div>
-      <div><div class="stat-val">${sumAll}</div><div class="stat-lbl">總分（已填 ${cntAll} 項）</div></div></div>
+      <div><div class="stat-val">${sumDisplay}</div><div class="stat-lbl">標準化總分（已填 ${cntAll} 項）</div></div></div>
   `;
 }
 
@@ -2688,6 +2733,7 @@ VIEWS.report = function(){
     <div id="rcSummary">${rcSummaryHTML()}</div>
     <div class="tiny muted" style="margin-top:10px">
       💡 一般科目使用 4 個 Criterion（A–D，每項 0–8，滿分 32）；Biotech 使用 5 個 Criterion（I–V，每項 0–10，滿分 50）。
+      <br>統計「標準平均分」與「標準化總分」時，Biotech 會按比例（×0.8）換算成 8 分制，讓跨科目比較更公平。
     </div>
   </div>
 
@@ -2777,9 +2823,7 @@ VIEWS.schedule = function(){
   </div>`;
 };
 
-/* =====================================================================
-   Detox 頁面（Spotify 移到頁首）
-   ===================================================================== */
+/* Detox 頁面（Spotify 已移出，改為全局浮動播放器） */
 VIEWS.detox = function(){
   const volumes = state.detoxVolumes || {};
 
@@ -2808,19 +2852,8 @@ VIEWS.detox = function(){
   return `
   <div class="detox-page">
     <div class="detox-head">
-      <div class="detox-title">
-        <h2>🌿 解壓空間</h2>
-        <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
-      </div>
-      <div class="d-spotify-mini">
-        <div class="d-card-title">🎧 我的歌單 <small>Spotify</small></div>
-        <iframe style="border-radius:12px" 
-          src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
-          width="100%" height="152" frameBorder="0" allowfullscreen="" 
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-          loading="lazy">
-        </iframe>
-      </div>
+      <h2>🌿 解壓空間</h2>
+      <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
     </div>
 
     <div class="detox-grid">
@@ -3067,7 +3100,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>2.0（Spotify 置頂 + 泡泡修復）</b></div>
+    <div class="kv"><span>版本 Version</span><b>2.1（Spotify 全域播放器 + 標準化分數）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3118,16 +3151,6 @@ document.addEventListener('click', e => {
     if (oldView === 'detox' && newView !== 'detox'){
       Ambience.stopAll();
       Bubbles.destroy();
-      const spotifyIframe = document.querySelector('.detox-page iframe[src*="spotify"]');
-      if (spotifyIframe) {
-        const originalSrc = spotifyIframe.src;
-        spotifyIframe.src = '';
-        setTimeout(() => {
-          if (spotifyIframe.isConnected) {
-            spotifyIframe.src = originalSrc;
-          }
-        }, 100);
-      }
     }
     state.view = newView;
     save(); render();
@@ -3540,7 +3563,6 @@ document.addEventListener('click', e => {
     }
 
     case 'detox-toggle': {
-      /* 只更新這一行 UI，不重新渲染整個頁面（否則泡泡會消失） */
       const track = el.dataset.track;
       if (!state.detoxVolumes) state.detoxVolumes = {};
       const cur = state.detoxVolumes[track] || 0;
@@ -3558,7 +3580,6 @@ document.addEventListener('click', e => {
         Ambience.setVolume(track, memo);
       }
 
-      // 直接更新這一行的 DOM
       const row = el.closest('.d-audio-row');
       if (row){
         row.classList.toggle('playing', newVol > 0);
@@ -3568,6 +3589,13 @@ document.addEventListener('click', e => {
       }
 
       save();
+      break;
+    }
+
+    /* ---- spotify 浮動播放器 ---- */
+    case 'spotify-toggle': {
+      const box = document.getElementById('spotifyFloat');
+      if (box) box.classList.toggle('open');
       break;
     }
   }
