@@ -6,7 +6,6 @@
 <meta name="color-scheme" content="light dark">
 <title>學習總覽 · Studying Overview</title>
 <style>
-/* ============ RESET & TOKENS ============ */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#f4f5fa;
@@ -169,6 +168,36 @@ body{
 .ring-label{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
 .ring-label b{font-size:22px;font-weight:800;line-height:1}
 .ring-label small{font-size:9.5px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:3px}
+
+/* ============ 自動提醒橫幅 ============ */
+.reminder-bar{
+  border-radius:16px;
+  padding:14px 18px;
+  margin-bottom:16px;
+  background:linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--surface)) 0%, color-mix(in srgb, var(--primary-2) 5%, var(--surface)) 100%);
+  border:1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
+}
+.reminder-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.reminder-head b{font-size:13.5px;font-weight:750}
+.reminder-list{display:flex;flex-direction:column;gap:4px}
+.reminder-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 10px;border-radius:10px;
+  font-size:12.8px;line-height:1.4;
+  cursor:pointer;transition:.15s;
+  border:1px solid transparent;
+}
+.reminder-item:hover{background:var(--surface);border-color:var(--border)}
+.reminder-item .rm-icon{font-size:15px;flex:0 0 auto;line-height:1}
+.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
+.reminder-item .rm-arrow{color:var(--muted);font-size:11px;font-weight:700;opacity:.7}
+.reminder-item.tone-danger{border-left:3px solid var(--danger)}
+.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
+.reminder-item.tone-warn{border-left:3px solid var(--warn)}
+.reminder-item.tone-info{border-left:3px solid var(--info)}
+.reminder-item.tone-ok{border-left:3px solid var(--ok)}
 
 .stat{
   display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r);
@@ -336,101 +365,76 @@ details.acc summary:hover{background:var(--surface-2)}
 .rcg-num{text-align:center;font-variant-numeric:tabular-nums}
 .rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
 
+/* ============ 錯題本 ============ */
+.wb-record{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px 16px;
+  transition:.18s;
+  position:relative;
+}
+.wb-record:hover{
+  border-color:color-mix(in srgb,var(--primary) 35%,var(--border));
+}
+.wb-record.mastered{opacity:.62}
+.wb-record.mastered .wb-question{text-decoration:line-through}
+.wb-question{
+  font-size:13.8px;font-weight:650;line-height:1.45;
+  margin:6px 0 8px;word-break:break-word;
+}
+.wb-row{
+  font-size:12.5px;line-height:1.55;margin-top:6px;
+  color:var(--muted);white-space:pre-wrap;word-break:break-word;
+}
+.wb-row b{color:var(--text);font-weight:700}
+.wb-wrong b{color:var(--danger)}
+.wb-correct b{color:var(--ok)}
+
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;font-size:13px;font-weight:650;z-index:999;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* ============ SPOTIFY FLOAT PLAYER（跨頁面持續播放） ============ */
+/* ============ SPOTIFY FLOAT ============ */
 .spotify-float{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:500;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:10px;
+  position:fixed;right:20px;bottom:20px;z-index:500;
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
   pointer-events:none;
 }
 .spotify-float > *{pointer-events:auto}
 .spotify-fab{
-  width:52px;height:52px;
-  border-radius:99px;
-  border:none;
-  background:linear-gradient(135deg,#1db954,#1ed760);
-  color:#fff;
-  font-size:24px;
-  cursor:pointer;
-  box-shadow:0 12px 30px -10px rgba(29,185,84,.6);
+  width:52px;height:52px;border-radius:99px;border:none;
+  background:linear-gradient(135deg,#1db954,#1ed760);color:#fff;font-size:24px;
+  cursor:pointer;box-shadow:0 12px 30px -10px rgba(29,185,84,.6);
   transition:.22s cubic-bezier(.34,1.56,.64,1);
-  display:grid;place-items:center;
-  line-height:1;
+  display:grid;place-items:center;line-height:1;
 }
-.spotify-fab:hover{
-  transform:scale(1.1) rotate(-8deg);
-  box-shadow:0 16px 40px -10px rgba(29,185,84,.8);
-}
+.spotify-fab:hover{transform:scale(1.1) rotate(-8deg);box-shadow:0 16px 40px -10px rgba(29,185,84,.8)}
 .spotify-panel{
-  width:340px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:12px;
+  width:340px;background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:12px;
   box-shadow:0 24px 60px -20px rgba(0,0,0,.55);
-  display:none;
-  transform-origin:bottom right;
+  display:none;transform-origin:bottom right;
 }
-.spotify-float.open .spotify-panel{
-  display:block;
-  animation:spotifyIn .28s cubic-bezier(.34,1.56,.64,1);
-}
-.spotify-float.open .spotify-fab{ display:none; }
-@keyframes spotifyIn{
-  from{opacity:0;transform:translateY(12px) scale(.92)}
-  to{opacity:1;transform:translateY(0) scale(1)}
-}
-.spotify-panel-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:12px;
-  font-weight:750;
-  color:var(--text);
-  margin-bottom:8px;
-  letter-spacing:.3px;
-}
+.spotify-float.open .spotify-panel{display:block;animation:spotifyIn .28s cubic-bezier(.34,1.56,.64,1)}
+.spotify-float.open .spotify-fab{display:none}
+@keyframes spotifyIn{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+.spotify-panel-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:750;color:var(--text);margin-bottom:8px;letter-spacing:.3px}
 .spotify-panel-head span{display:flex;align-items:center;gap:6px}
-.spotify-close{
-  width:24px;height:24px;
-  border-radius:99px;
-  border:1px solid var(--border);
-  background:var(--surface-2);
-  color:var(--muted);
-  cursor:pointer;
-  font-size:11px;
-  display:grid;place-items:center;
-  transition:.15s;
-  line-height:1;
-}
+.spotify-close{width:24px;height:24px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
 .spotify-close:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
 .spotify-panel iframe{border-radius:12px;display:block;width:100%}
 
-/* ============ DETOX PAGE ============ */
+/* ============ DETOX ============ */
 .detox-page{
-  --d-bg:#1a0f1a;
   --d-surface:rgba(42,24,40,.65);
-  --d-surface-2:rgba(60,34,56,.5);
   --d-text:#f5e6e0;
   --d-text-dim:#b8a0b0;
   --d-accent:#ff9a76;
   --d-accent-2:#ff7b8a;
   --d-border:rgba(255,154,118,.15);
   background:radial-gradient(circle at 30% 15%, #2a1828 0%, #1a0f1a 55%, #120812 100%);
-  border-radius:20px;
-  padding:28px 24px;
-  margin:-4px;
-  color:var(--d-text);
-  position:relative;
-  overflow:hidden;
+  border-radius:20px;padding:28px 24px;margin:-4px;
+  color:var(--d-text);position:relative;overflow:hidden;
   min-height:calc(100vh - 44px);
 }
 .detox-page::before{
@@ -440,247 +444,64 @@ details.acc summary:hover{background:var(--surface-2)}
     radial-gradient(circle at 8% 45%, rgba(255,123,138,.07), transparent 50%);
 }
 .detox-page > *{position:relative;z-index:1}
-
 .detox-head{margin-bottom:22px}
 .detox-head h2{font-size:24px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
 .detox-head p{font-size:12px;color:var(--d-text-dim);margin-top:4px;letter-spacing:.5px}
-
 .detox-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.detox-grid{grid-template-columns:1fr}}
-
-.d-card{
-  background:var(--d-surface);
-  backdrop-filter:blur(14px);
-  border:1px solid var(--d-border);
-  border-radius:18px;
-  padding:22px;
-  transition:.2s;
-}
+.d-card{background:var(--d-surface);backdrop-filter:blur(14px);border:1px solid var(--d-border);border-radius:18px;padding:22px;transition:.2s}
 .d-card:hover{border-color:rgba(255,154,118,.28)}
-.d-card-title{
-  font-size:13px;font-weight:750;letter-spacing:.3px;color:var(--d-text);
-  display:flex;align-items:center;gap:8px;margin-bottom:16px;
-}
+.d-card-title{font-size:13px;font-weight:750;letter-spacing:.3px;color:var(--d-text);display:flex;align-items:center;gap:8px;margin-bottom:16px}
 .d-card-title small{font-size:10.5px;color:var(--d-text-dim);font-weight:600;letter-spacing:1px;text-transform:uppercase}
-
-.d-quote{
-  cursor:pointer;user-select:none;padding:26px 24px;text-align:center;border-radius:16px;
-  background:linear-gradient(135deg, rgba(255,154,118,.10), rgba(255,123,138,.06));
-  border:1px solid rgba(255,154,118,.18);
-  min-height:120px;display:flex;flex-direction:column;justify-content:center;gap:10px;
-  transition:.3s;
-}
+.d-quote{cursor:pointer;user-select:none;padding:26px 24px;text-align:center;border-radius:16px;background:linear-gradient(135deg, rgba(255,154,118,.10), rgba(255,123,138,.06));border:1px solid rgba(255,154,118,.18);min-height:120px;display:flex;flex-direction:column;justify-content:center;gap:10px;transition:.3s}
 .d-quote:hover{background:linear-gradient(135deg, rgba(255,154,118,.16), rgba(255,123,138,.10));transform:translateY(-1px)}
 .d-quote-zh{font-size:17px;font-weight:600;line-height:1.5;color:var(--d-text)}
 .d-quote-en{font-size:13px;color:var(--d-text-dim);font-style:italic;line-height:1.5}
 .d-quote-hint{font-size:10.5px;color:var(--d-text-dim);opacity:.65;letter-spacing:1px;margin-top:6px}
 .d-quote.fade{animation:quoteFade .5s ease}
-@keyframes quoteFade{
-  0%{opacity:0;transform:translateY(8px)}
-  100%{opacity:1;transform:translateY(0)}
-}
+@keyframes quoteFade{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
 
 .d-write-wrap{position:relative}
-.d-write-area{
-  width:100%;min-height:120px;
-  background:rgba(0,0,0,.22);
-  border:1px solid var(--d-border);
-  border-radius:14px;
-  padding:14px 16px;
-  color:var(--d-text);
-  font:inherit;font-size:14px;line-height:1.6;
-  resize:vertical;outline:none;
-  transition:.2s;position:relative;display:block;
-}
+.d-write-area{width:100%;min-height:120px;background:rgba(0,0,0,.22);border:1px solid var(--d-border);border-radius:14px;padding:14px 16px;color:var(--d-text);font:inherit;font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:.2s;position:relative;display:block}
 .d-write-area::placeholder{color:var(--d-text-dim);opacity:.55}
 .d-write-area:focus{border-color:var(--d-accent);box-shadow:0 0 0 3px rgba(255,154,118,.15)}
-
 .d-write-wrap.burning .d-write-area{pointer-events:none}
 
-.d-burn-bed{
-  position:absolute;left:0;right:0;bottom:0;height:40%;
-  border-radius:0 0 14px 14px;
-  opacity:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at 50% 100%, #fff3c4 0%, #ffcc33 15%, #ff6600 40%, #b30000 65%, transparent 90%);
-  filter:blur(4px);
-  mix-blend-mode:screen;
-}
-.d-write-wrap.burning .d-burn-bed.fire{
-  animation:bedFire 2s cubic-bezier(.4,0,.3,1) forwards;
-}
-@keyframes bedFire{
-  0%{opacity:0;transform:scaleY(.2)}
-  15%{opacity:1;transform:scaleY(.6)}
-  60%{opacity:1;transform:scaleY(1.1)}
-  100%{opacity:0;transform:scaleY(1.4)}
-}
+.d-burn-bed{position:absolute;left:0;right:0;bottom:0;height:40%;border-radius:0 0 14px 14px;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 50% 100%, #fff3c4 0%, #ffcc33 15%, #ff6600 40%, #b30000 65%, transparent 90%);filter:blur(4px);mix-blend-mode:screen}
+.d-write-wrap.burning .d-burn-bed.fire{animation:bedFire 2s cubic-bezier(.4,0,.3,1) forwards}
+@keyframes bedFire{0%{opacity:0;transform:scaleY(.2)}15%{opacity:1;transform:scaleY(.6)}60%{opacity:1;transform:scaleY(1.1)}100%{opacity:0;transform:scaleY(1.4)}}
+.d-burn-bed.water{height:100%;background:linear-gradient(180deg,transparent 0%,rgba(0,150,255,.15) 30%,rgba(0,100,200,.5) 55%,rgba(0,50,120,.85) 80%,#002a5c 100%);filter:blur(0);mix-blend-mode:normal;border-radius:14px;opacity:1;overflow:hidden}
+.d-burn-bed.water::before{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:radial-gradient(ellipse at 30% 20%, rgba(180,240,255,.4) 0%, transparent 30%),radial-gradient(ellipse at 70% 60%, rgba(150,220,255,.3) 0%, transparent 25%),radial-gradient(ellipse at 50% 80%, rgba(200,250,255,.35) 0%, transparent 35%);animation:waterGlow 3s ease-in-out infinite alternate}
+.d-burn-bed.water::after{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:repeating-linear-gradient(180deg,transparent 0px, transparent 8px,rgba(180,240,255,.2) 8px, rgba(180,240,255,.2) 9px);animation:waterRipple 2s ease-in-out infinite;mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%);-webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%)}
+@keyframes waterGlow{0%{opacity:.6;transform:scale(1)}100%{opacity:1;transform:scale(1.05)}}
+@keyframes waterRipple{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.02)}}
+.d-write-wrap.burning .d-burn-bed.water{animation:bedWater 2.2s cubic-bezier(.4,0,.3,1) forwards}
+@keyframes bedWater{0%{transform:translateY(100%)}25%{transform:translateY(65%)}55%{transform:translateY(20%)}85%{transform:translateY(-5%)}100%{transform:translateY(-45%);opacity:0}}
+.d-burn-bed.wind{height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.03) 20%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.03) 80%,transparent 100%);filter:blur(1px);mix-blend-mode:screen;border-radius:14px}
+.d-write-wrap.burning .d-burn-bed.wind{animation:bedWind 1.8s cubic-bezier(.3,0,.4,1) forwards}
+@keyframes bedWind{0%{opacity:0;transform:translateX(-20%)}25%{opacity:1}100%{opacity:0;transform:translateX(30%)}}
 
-.d-burn-bed.water{
-  height:100%;
-  background:linear-gradient(180deg,
-    transparent 0%,
-    rgba(0,150,255,.15) 30%,
-    rgba(0,100,200,.5) 55%,
-    rgba(0,50,120,.85) 80%,
-    #002a5c 100%);
-  filter:blur(0);
-  mix-blend-mode:normal;
-  border-radius:14px;
-  opacity:1;
-  overflow:hidden;
-}
-.d-burn-bed.water::before{
-  content:'';position:absolute;left:0;right:0;top:0;height:100%;
-  background:
-    radial-gradient(ellipse at 30% 20%, rgba(180,240,255,.4) 0%, transparent 30%),
-    radial-gradient(ellipse at 70% 60%, rgba(150,220,255,.3) 0%, transparent 25%),
-    radial-gradient(ellipse at 50% 80%, rgba(200,250,255,.35) 0%, transparent 35%);
-  animation:waterGlow 3s ease-in-out infinite alternate;
-}
-.d-burn-bed.water::after{
-  content:'';position:absolute;left:0;right:0;top:0;height:100%;
-  background:repeating-linear-gradient(180deg,
-    transparent 0px, transparent 8px,
-    rgba(180,240,255,.2) 8px, rgba(180,240,255,.2) 9px);
-  animation:waterRipple 2s ease-in-out infinite;
-  mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%);
-  -webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%);
-}
-@keyframes waterGlow{
-  0%{opacity:.6;transform:scale(1)}
-  100%{opacity:1;transform:scale(1.05)}
-}
-@keyframes waterRipple{
-  0%,100%{transform:translateY(0) scaleY(1)}
-  50%{transform:translateY(-2px) scaleY(1.02)}
-}
-.d-write-wrap.burning .d-burn-bed.water{
-  animation:bedWater 2.2s cubic-bezier(.4,0,.3,1) forwards;
-}
-@keyframes bedWater{
-  0%{transform:translateY(100%)}
-  25%{transform:translateY(65%)}
-  55%{transform:translateY(20%)}
-  85%{transform:translateY(-5%)}
-  100%{transform:translateY(-45%);opacity:0}
-}
-
-.d-burn-bed.wind{
-  height:100%;
-  background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(255,255,255,.03) 20%,
-    rgba(255,255,255,.15) 50%,
-    rgba(255,255,255,.03) 80%,
-    transparent 100%);
-  filter:blur(1px);
-  mix-blend-mode:screen;
-  border-radius:14px;
-}
-.d-write-wrap.burning .d-burn-bed.wind{
-  animation:bedWind 1.8s cubic-bezier(.3,0,.4,1) forwards;
-}
-@keyframes bedWind{
-  0%{opacity:0;transform:translateX(-20%)}
-  25%{opacity:1}
-  100%{opacity:0;transform:translateX(30%)}
-}
-
-.d-write-wrap.burning .d-write-area{
-  -webkit-mask-repeat:no-repeat;
-  mask-repeat:no-repeat;
-  -webkit-mask-size:100% 100%;
-  mask-size:100% 100%;
-  animation:textBurnMask 1.8s cubic-bezier(.4,0,.3,1) forwards;
-}
+.d-write-wrap.burning .d-write-area{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;animation:textBurnMask 1.8s cubic-bezier(.4,0,.3,1) forwards}
 @keyframes textBurnMask{
-  0%{
-    -webkit-mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);
-    mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);
-    opacity:1;filter:brightness(1);
-  }
-  20%{
-    -webkit-mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);
-    mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);
-    filter:brightness(1.4) blur(0.3px);
-  }
-  50%{
-    -webkit-mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);
-    mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);
-    filter:brightness(1.7) blur(0.6px);
-  }
-  80%{
-    -webkit-mask-image:linear-gradient(to top, transparent 80%, black 95%);
-    mask-image:linear-gradient(to top, transparent 80%, black 95%);
-    filter:brightness(2) blur(1px);
-  }
-  100%{
-    -webkit-mask-image:linear-gradient(to top, transparent 100%, black 100%);
-    mask-image:linear-gradient(to top, transparent 100%, black 100%);
-    filter:brightness(2.5) blur(2px);opacity:0;
-  }
+  0%{-webkit-mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);opacity:1;filter:brightness(1)}
+  20%{-webkit-mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);filter:brightness(1.4) blur(0.3px)}
+  50%{-webkit-mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);filter:brightness(1.7) blur(0.6px)}
+  80%{-webkit-mask-image:linear-gradient(to top, transparent 80%, black 95%);mask-image:linear-gradient(to top, transparent 80%, black 95%);filter:brightness(2) blur(1px)}
+  100%{-webkit-mask-image:linear-gradient(to top, transparent 100%, black 100%);mask-image:linear-gradient(to top, transparent 100%, black 100%);filter:brightness(2.5) blur(2px);opacity:0}
 }
 
 .d-burn-particle{position:absolute;pointer-events:none;will-change:transform,opacity}
-.d-burn-particle.fire{
-  width:var(--size);height:var(--size);border-radius:50%;
-  background:radial-gradient(circle, #ffffff 0%, #fff3c4 25%, #ffb84d 50%, #ff6600 75%, transparent 100%);
-  box-shadow:0 0 6px rgba(255,200,80,.9), 0 0 12px rgba(255,120,0,.6);
-  animation:particleFire var(--dur) cubic-bezier(.4,.1,.5,1) forwards;
-  animation-delay:var(--delay);opacity:0;
-}
-@keyframes particleFire{
-  0%{transform:translate(0,0) scale(.3);opacity:0}
-  8%{opacity:1}
-  30%{transform:translate(calc(var(--tx)*.3), calc(var(--ty)*.3)) scale(1.1)}
-  70%{opacity:.9;transform:translate(calc(var(--tx)*.8), calc(var(--ty)*.8)) scale(.7)}
-  100%{transform:translate(var(--tx), var(--ty)) scale(.1);opacity:0}
-}
-.d-burn-particle.ash{
-  width:calc(var(--size)*.6);height:calc(var(--size)*.6);border-radius:40%;
-  background:radial-gradient(circle, #d0c8c0 0%, #8a7f78 50%, #3a332e 100%);
-  animation:particleAsh var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0;
-}
-@keyframes particleAsh{
-  0%{transform:translate(0,0) scale(.8) rotate(0);opacity:0}
-  15%{opacity:.85}
-  60%{opacity:.7}
-  100%{transform:translate(var(--tx), var(--ty)) scale(.3) rotate(540deg);opacity:0}
-}
-.d-burn-particle.water{
-  width:var(--size);height:calc(var(--size)*1.6);border-radius:50%;
-  background:radial-gradient(circle at 30% 20%, #ffffff 0%, #b8e8ff 30%, #55aaff 70%, rgba(85,170,255,0) 100%);
-  box-shadow:0 0 6px rgba(120,200,255,.7);
-  animation:particleWater var(--dur) cubic-bezier(.5,0,.8,.5) forwards;
-  animation-delay:var(--delay);opacity:0;
-}
-@keyframes particleWater{
-  0%{transform:translate(0,0) scale(.5);opacity:0}
-  10%{opacity:.95}
-  100%{transform:translate(var(--tx), var(--ty)) scale(1.3);opacity:0}
-}
-.d-burn-particle.wind{
-  width:var(--len);height:var(--size);border-radius:99px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
-  filter:blur(.3px);
-  animation:particleWind var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0;
-  transform-origin:center;
-}
-@keyframes particleWind{
-  0%{transform:translate(0,0) rotate(var(--rot)) scaleX(0);opacity:0}
-  20%{opacity:1;transform:translate(calc(var(--tx)*.2), calc(var(--ty)*.2)) rotate(var(--rot)) scaleX(1)}
-  100%{transform:translate(var(--tx), var(--ty)) rotate(var(--rot)) scaleX(1.4);opacity:0}
-}
+.d-burn-particle.fire{width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle, #ffffff 0%, #fff3c4 25%, #ffb84d 50%, #ff6600 75%, transparent 100%);box-shadow:0 0 6px rgba(255,200,80,.9), 0 0 12px rgba(255,120,0,.6);animation:particleFire var(--dur) cubic-bezier(.4,.1,.5,1) forwards;animation-delay:var(--delay);opacity:0}
+@keyframes particleFire{0%{transform:translate(0,0) scale(.3);opacity:0}8%{opacity:1}30%{transform:translate(calc(var(--tx)*.3), calc(var(--ty)*.3)) scale(1.1)}70%{opacity:.9;transform:translate(calc(var(--tx)*.8), calc(var(--ty)*.8)) scale(.7)}100%{transform:translate(var(--tx), var(--ty)) scale(.1);opacity:0}}
+.d-burn-particle.ash{width:calc(var(--size)*.6);height:calc(var(--size)*.6);border-radius:40%;background:radial-gradient(circle, #d0c8c0 0%, #8a7f78 50%, #3a332e 100%);animation:particleAsh var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0}
+@keyframes particleAsh{0%{transform:translate(0,0) scale(.8) rotate(0);opacity:0}15%{opacity:.85}60%{opacity:.7}100%{transform:translate(var(--tx), var(--ty)) scale(.3) rotate(540deg);opacity:0}}
+.d-burn-particle.water{width:var(--size);height:calc(var(--size)*1.6);border-radius:50%;background:radial-gradient(circle at 30% 20%, #ffffff 0%, #b8e8ff 30%, #55aaff 70%, rgba(85,170,255,0) 100%);box-shadow:0 0 6px rgba(120,200,255,.7);animation:particleWater var(--dur) cubic-bezier(.5,0,.8,.5) forwards;animation-delay:var(--delay);opacity:0}
+@keyframes particleWater{0%{transform:translate(0,0) scale(.5);opacity:0}10%{opacity:.95}100%{transform:translate(var(--tx), var(--ty)) scale(1.3);opacity:0}}
+.d-burn-particle.wind{width:var(--len);height:var(--size);border-radius:99px;background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);filter:blur(.3px);animation:particleWind var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0;transform-origin:center}
+@keyframes particleWind{0%{transform:translate(0,0) rotate(var(--rot)) scaleX(0);opacity:0}20%{opacity:1;transform:translate(calc(var(--tx)*.2), calc(var(--ty)*.2)) rotate(var(--rot)) scaleX(1)}100%{transform:translate(var(--tx), var(--ty)) rotate(var(--rot)) scaleX(1.4);opacity:0}}
 
 .d-write-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.d-burn-btn{
-  flex:1 1 0;min-width:100px;padding:11px 16px;border-radius:12px;
-  border:1px solid var(--d-border);background:rgba(255,255,255,.04);
-  color:var(--d-text);font:inherit;font-size:13px;font-weight:650;
-  cursor:pointer;transition:.18s;
-  display:flex;align-items:center;justify-content:center;gap:6px;
-}
+.d-burn-btn{flex:1 1 0;min-width:100px;padding:11px 16px;border-radius:12px;border:1px solid var(--d-border);background:rgba(255,255,255,.04);color:var(--d-text);font:inherit;font-size:13px;font-weight:650;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center;gap:6px}
 .d-burn-btn:hover:not(:disabled){background:rgba(255,154,118,.14);border-color:var(--d-accent);transform:translateY(-1px)}
 .d-burn-btn:disabled{opacity:.35;cursor:not-allowed}
 .d-burn-btn.fire:hover:not(:disabled){box-shadow:0 8px 22px -12px #ff6a00}
@@ -689,10 +510,7 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-write-hint{font-size:11px;color:var(--d-text-dim);opacity:.7;margin-top:10px;text-align:center;letter-spacing:.3px}
 
 .d-audio-list{display:flex;flex-direction:column;gap:10px}
-.d-audio-row{
-  display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;
-  padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.18);transition:.18s;
-}
+.d-audio-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.18);transition:.18s}
 .d-audio-row.playing{background:rgba(255,154,118,.10);border:1px solid rgba(255,154,118,.22)}
 .d-audio-row:hover{background:rgba(255,154,118,.06)}
 .d-audio-icon{font-size:22px;text-align:center;line-height:1;filter:grayscale(.5);transition:.2s}
@@ -702,33 +520,17 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-audio-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;background:rgba(255,255,255,.1);outline:none;cursor:pointer}
 .d-audio-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:99px;background:linear-gradient(135deg,var(--d-accent),var(--d-accent-2));cursor:pointer;border:2px solid rgba(255,255,255,.15);box-shadow:0 2px 8px -2px rgba(255,154,118,.6)}
 .d-audio-slider::-moz-range-thumb{width:12px;height:12px;border-radius:99px;border:2px solid rgba(255,255,255,.15);background:var(--d-accent);cursor:pointer}
-.d-audio-play{
-  width:32px;height:32px;border-radius:99px;border:1px solid var(--d-border);
-  background:rgba(255,255,255,.04);color:var(--d-text-dim);
-  cursor:pointer;font-size:12px;display:grid;place-items:center;transition:.18s;line-height:1;
-}
+.d-audio-play{width:32px;height:32px;border-radius:99px;border:1px solid var(--d-border);background:rgba(255,255,255,.04);color:var(--d-text-dim);cursor:pointer;font-size:12px;display:grid;place-items:center;transition:.18s;line-height:1}
 .d-audio-play:hover{background:rgba(255,154,118,.18);color:var(--d-accent)}
 .d-audio-row.playing .d-audio-play{background:rgba(255,154,118,.2);color:var(--d-accent);border-color:var(--d-accent)}
 
-.d-bubbles-wrap{
-  position:relative;height:280px;border-radius:16px;
-  background:radial-gradient(circle at 50% 100%, rgba(255,154,118,.08), transparent 60%),
-             linear-gradient(180deg, rgba(20,10,20,.6), rgba(30,15,30,.4));
-  border:1px solid var(--d-border);overflow:hidden;cursor:crosshair;
-}
+.d-bubbles-wrap{position:relative;height:280px;border-radius:16px;background:radial-gradient(circle at 50% 100%, rgba(255,154,118,.08), transparent 60%),linear-gradient(180deg, rgba(20,10,20,.6), rgba(30,15,30,.4));border:1px solid var(--d-border);overflow:hidden;cursor:crosshair}
 #bubblesCanvas{display:block;width:100%;height:100%}
-.d-bubbles-hint{
-  position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10.5px;
-  color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px;
-}
+.d-bubbles-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10.5px;color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px}
 
 @media(max-width:900px){
   .app{flex-direction:column}
-  .sidebar{
-    width:auto;flex:none;height:auto;position:sticky;top:0;z-index:50;
-    flex-direction:row;align-items:center;gap:8px;overflow-x:auto;
-    padding:10px 12px;border-right:none;border-bottom:1px solid var(--border);
-  }
+  .sidebar{width:auto;flex:none;height:auto;position:sticky;top:0;z-index:50;flex-direction:row;align-items:center;gap:8px;overflow-x:auto;padding:10px 12px;border-right:none;border-bottom:1px solid var(--border)}
   .brand{padding:0 10px 0 0;flex:0 0 auto}
   .brand h1,.brand p{display:none}
   .brand-icon{width:34px;height:34px;flex:0 0 34px;font-size:17px;border-radius:11px}
@@ -804,7 +606,6 @@ details.acc summary:hover{background:var(--surface-2)}
   </main>
 </div>
 
-<!-- Spotify 浮動播放器（跨頁面持續播放，不隨 render 重建） -->
 <div class="spotify-float" id="spotifyFloat">
   <div class="spotify-panel" id="spotifyPanel">
     <div class="spotify-panel-head">
@@ -928,6 +729,17 @@ const DEFAULT_STATE = {
   fbAdding: false,
   updatedAt: 0,
 
+  /* 錯題本 */
+  wrongBook: [],
+  wbAdding: false,
+  wbSubjectFilter: 'All',
+  wbStatusFilter: 'All',
+  wbExpandedId: null,
+
+  /* 考試詳情展開 */
+  expandedAssessId: null,
+  highlightFeedbackId: null,
+
   subjects: [...DEFAULT_SUBJECTS],
   feedback: structuredClone(DEFAULT_FEEDBACK),
   schedule: structuredClone(DEFAULT_SCHEDULE),
@@ -997,6 +809,12 @@ function normalizeState(raw){
   if (!Array.isArray(merged.srp)) merged.srp = [];
   if (!Array.isArray(merged.assignments)) merged.assignments = [];
   if (!Array.isArray(merged.assessments)) merged.assessments = [];
+    if (!Array.isArray(merged.wrongBook)) merged.wrongBook = [];
+  merged.wrongBook = merged.wrongBook.map(w => {
+    if (!w || typeof w !== 'object') return null;
+    if (!w.id) w.id = uid();
+    return w;
+  }).filter(Boolean);
   if (typeof merged.updatedAt !== 'number') merged.updatedAt = 0;
   merged.feedback.forEach(f => { if (!f.grade) f.grade = 'Grade 8'; });
   if (!merged.detoxVolumes || typeof merged.detoxVolumes !== 'object'){
@@ -1082,31 +900,123 @@ function weekStats(startISO){
   const done = list.filter(t => t.done).length;
   return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
 }
-function smartTips(){
-  const t = todayISO(), tips = [];
+
+/* =====================================================================
+   4a. 自動提醒收集
+   ===================================================================== */
+function collectReminders(){
+  const t = todayISO();
+  const reminders = [];
+
+  // 即將到來的考試（7 天內 + 準備 < 80%）
   state.assessments.forEach(a => {
     if (!a.due) return;
     const d = diffDays(t, a.due);
-    if (d >= 0 && d <= 7 && (a.progress||0) < 80)
-      tips.push({tone:'danger', txt:`《${a.name}》剩 ${d} 天，準備進度 ${a.progress||0}% — 今天先攻克一個知識點。`});
+    if (d < 0 || d > 7) return;
+    if ((a.progress || 0) >= 80) return;
+    const tone = d <= 3 ? 'danger' : 'warn';
+    reminders.push({
+      tone,
+      icon: '📚',
+      text: `${a.name} 剩 ${d} 天（準備 ${a.progress || 0}%）`,
+      nav: 'assess'
+    });
   });
-  const overdueA = state.assignments.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) < 0);
-  if (overdueA.length) tips.push({tone:'danger', txt:`有 ${overdueA.length} 項作業已逾期，先處理最舊的一項。`});
+
+  // 作業到期 / 逾期
+  state.assignments.forEach(a => {
+    if (!a.due || isFinished(a)) return;
+    const d = diffDays(t, a.due);
+    if (d < 0){
+      reminders.push({
+        tone: 'danger',
+        icon: '⚠️',
+        text: `${a.name} 已逾期 ${-d} 天`,
+        nav: 'assign'
+      });
+    } else if (d <= 3){
+      reminders.push({
+        tone: d === 0 ? 'urgent' : 'warn',
+        icon: '✍️',
+        text: `${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`,
+        nav: 'assign'
+      });
+    }
+  });
+
+  // SRP 逾期
   const lateSRP = state.srp.filter(it => {
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d, i) => !done[i] && d < t);
   });
-  if (lateSRP.length) tips.push({tone:'warn', txt:`有 ${lateSRP.length} 個知識點複習逾期，趁空堂補上（間隔複習最忌斷線）。`});
+  if (lateSRP.length){
+    reminders.push({
+      tone: 'warn',
+      icon: '⏰',
+      text: `有 ${lateSRP.length} 個知識點複習逾期`,
+      nav: 'srp'
+    });
+  }
+
+  // 今日 SRP
   const dueToday = srpDueOn(t).length;
-  if (dueToday) tips.push({tone:'info', txt:`今天有 ${dueToday} 個複習任務，每個只需 5–15 分鐘，先做最舊的。`});
-  const soonA = state.assignments.filter(a => !isFinished(a) && a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 3);
-  if (soonA.length) tips.push({tone:'warn', txt:`有 ${soonA.length} 項作業 3 天內到期，建議今天先完成一項。`});
-  if (!tips.length) tips.push({tone:'ok', txt:'一切在軌道上 ✅ 保持節奏，睡前用費曼技巧回顧今天的一個重點。'});
-  return tips.slice(0, 5);
+  if (dueToday){
+    reminders.push({
+      tone: 'info',
+      icon: '🔴',
+      text: `今天有 ${dueToday} 個複習任務待完成`,
+      nav: 'srp'
+    });
+  }
+
+  // 錯題本未掌握提醒
+  const oldWrong = (state.wrongBook || []).filter(w => {
+    if (w.mastered) return false;
+    const d = diffDays(w.date, t);
+    return d >= 7;
+  });
+  if (oldWrong.length){
+    reminders.push({
+      tone: 'warn',
+      icon: '📕',
+      text: `有 ${oldWrong.length} 筆錯題已超過一週未掌握`,
+      nav: 'wrongbook'
+    });
+  }
+
+  const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
+  reminders.sort((a, b) => order[a.tone] - order[b.tone]);
+
+  return reminders.slice(0, 5);
 }
 
 /* =====================================================================
-   4b. REPORT CARD CALCULATION
+   4b. 考試相關資料關聯
+   ===================================================================== */
+function getAssessRelated(subject, criteria){
+  const parseCrit = (s) => new Set(
+    String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean)
+  );
+  const targetCrit = parseCrit(criteria);
+
+  // 反饋：只顯示「同科目」且「至少一個共同 Criterion」的
+  const feedbacks = state.feedback.filter(f => {
+    if (f.subject !== subject) return false;
+    if (!targetCrit.size) return true;   // 若該考試沒填 criteria，就顯示該科全部
+    const fCrit = parseCrit(f.crit);
+    for (const c of targetCrit) if (fCrit.has(c)) return true;
+    return false;
+  }).slice(0, 3);
+
+  return {
+    feedbacks,
+    wrongs: (state.wrongBook || []).filter(w => w.subject === subject).slice(0, 5),
+    assignments: state.assignments.filter(a => a.subject === subject && !isFinished(a))
+  };
+}
+
+/* =====================================================================
+   4c. REPORT CARD CALCULATION
    ===================================================================== */
 const RC_SUBJECTS = [
   {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
@@ -1145,7 +1055,6 @@ function rcCalc(){
   });
 }
 
-/* 標準平均分與標準化總分：把 Biotech（10 分制）按 ×0.8 換算成 8 分制 */
 function rcStatsHTML(){
   const subjData = rcCalc();
   let sumAll = 0, cntAll = 0;
@@ -1237,7 +1146,7 @@ const Cloud = {
   cfg: {
     provider: 'supabase',
     auto: true,
-    intervalSec: 120,
+    intervalSec: 60,
     supabase: { url: '', anonKey: '', roomId: '' },
     jsonbin:  { masterKey: '', binId: '' },
     custom:   { url: '', token: '' }
@@ -1251,7 +1160,16 @@ const Cloud = {
   load(){
     try{
       const raw = localStorage.getItem(CLOUD_CFG_KEY);
-      if (raw) Object.assign(this.cfg, JSON.parse(raw));
+      if (raw){
+        const parsed = JSON.parse(raw);
+        Object.assign(this.cfg, parsed);
+        // 如果之前存的是舊版 120 秒，改成 60（僅升級一次）
+        if (!parsed._v2){
+          this.cfg.intervalSec = 60;
+          this.cfg._v2 = true;
+          this.persist();
+        }
+      }
     }catch(e){}
   },
   persist(){
@@ -1352,6 +1270,9 @@ const Cloud = {
         state.editingFbId = null;
         state.fbAdding = false;
         state.editingSchedule = false;
+        state.wbAdding = false;
+        state.wbExpandedId = null;
+        state.expandedAssessId = null;
         localStorage.setItem(LS_KEY, JSON.stringify(state));
         applyTheme();
         render();
@@ -1364,6 +1285,7 @@ const Cloud = {
         this.setStatus('ok', '已是最新');
       }
       this.lastSyncAt = Date.now();
+      this.updateLastSyncUI();
     }catch(err){
       console.warn('sync error', err);
       this.setStatus('error', err.message || '同步失敗');
@@ -1380,7 +1302,9 @@ const Cloud = {
       state.updatedAt = Date.now();
       localStorage.setItem(LS_KEY, JSON.stringify(state));
       await this.push(state);
+      this.lastSyncAt = Date.now();
       this.setStatus('ok', '已上傳'); toast('⬆️ 已上傳本地資料');
+      this.updateLastSyncUI();
     }catch(e){ this.setStatus('error', e.message); toast('⚠️ 上傳失敗'); }
     finally{ this.busy = false; this.renderChip(); }
   },
@@ -1392,9 +1316,12 @@ const Cloud = {
       if (!remote){ this.setStatus('ok', '雲端無資料'); toast('雲端尚無資料'); return; }
       state = normalizeState(remote);
       state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+      state.wbAdding = false; state.wbExpandedId = null; state.expandedAssessId = null;
       localStorage.setItem(LS_KEY, JSON.stringify(state));
       applyTheme(); render();
+      this.lastSyncAt = Date.now();
       this.setStatus('ok', '已下載'); toast('⬇️ 已下載雲端資料');
+      this.updateLastSyncUI();
     }catch(e){ this.setStatus('error', e.message); toast('⚠️ 下載失敗'); }
     finally{ this.busy = false; this.renderChip(); }
   },
@@ -1404,6 +1331,16 @@ const Cloud = {
     this.renderChip();
     const el = document.getElementById('cloudStatusText');
     if (el) el.textContent = msg || s;
+  },
+
+  /* 更新設置頁的「上次同步」時間（即使不重新渲染） */
+  updateLastSyncUI(){
+    const el = document.getElementById('lastSyncText');
+    if (el){
+      el.textContent = this.lastSyncAt
+        ? new Date(this.lastSyncAt).toLocaleTimeString()
+        : '—';
+    }
   },
 
   renderChip(){
@@ -1430,7 +1367,7 @@ const Cloud = {
   restartTimer(){
     clearInterval(this.timer);
     if (!this.cfg.auto || !this.configured) return;
-    const sec = Math.max(30, this.cfg.intervalSec || 120);
+    const sec = Math.max(30, this.cfg.intervalSec || 60);
     this.timer = setInterval(() => {
       if (document.visibilityState === 'visible') this.sync(true);
     }, sec * 1000);
@@ -1471,6 +1408,7 @@ const NAV = [
   {id:'assign',   icon:'✍️', zh:'作業追蹤', en:'Assignments'},
   {id:'assess',   icon:'📚', zh:'考試計劃', en:'Assessments'},
   {id:'feedback', icon:'💬', zh:'考試反饋', en:'Feedback'},
+  {id:'wrongbook',icon:'📕', zh:'錯題本',   en:'Mistake Book'},
   {id:'report',   icon:'💯', zh:'成績單',   en:'Report Cards'},
   {id:'detox',    icon:'🌿', zh:'解壓空間', en:'Detox Space'},
   {id:'schedule', icon:'📅', zh:'課表',     en:'Schedule'},
@@ -1547,10 +1485,7 @@ const DETOX_QUOTES = [
 ];
 
 const Ambience = {
-  ctx: null,
-  master: null,
-  tracks: {},
-  timers: {},
+  ctx: null, master: null, tracks: {}, timers: {},
 
   init(){
     if (this.ctx) return true;
@@ -1562,17 +1497,15 @@ const Ambience = {
       this.master.gain.value = 0.6;
       this.master.connect(this.ctx.destination);
       return true;
-    }catch(e){ console.warn('Audio init failed', e); return false; }
+    }catch(e){ return false; }
   },
 
   makeNoise(type){
-    const sr = this.ctx.sampleRate;
-    const len = sr * 4;
+    const sr = this.ctx.sampleRate, len = sr * 4;
     const buf = this.ctx.createBuffer(1, len, sr);
     const d = buf.getChannelData(0);
-    if (type === 'white'){
-      for (let i=0;i<len;i++) d[i] = Math.random()*2-1;
-    } else if (type === 'pink'){
+    if (type === 'white'){ for (let i=0;i<len;i++) d[i] = Math.random()*2-1; }
+    else if (type === 'pink'){
       let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
       for (let i=0;i<len;i++){
         const w = Math.random()*2-1;
@@ -1597,26 +1530,17 @@ const Ambience = {
   },
 
   buildRain(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const src = c.createBufferSource();
-    src.buffer = this.makeNoise('pink');
-    src.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const src = c.createBufferSource(); src.buffer = this.makeNoise('pink'); src.loop = true;
     const hp = c.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=800;
     const lp = c.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=8000;
     const layer = c.createGain(); layer.gain.value = 0.5;
-    src.connect(hp); hp.connect(lp); lp.connect(layer); layer.connect(out);
-    src.start();
-
+    src.connect(hp); hp.connect(lp); lp.connect(layer); layer.connect(out); src.start();
     const dropTimer = setInterval(()=>{
       if (out.gain.value < 0.02) return;
       try{
-        const numDrops = 1 + Math.floor(Math.random()*3);
-        for (let i=0;i<numDrops;i++){
-          const o = c.createOscillator();
-          const g = c.createGain();
+        for (let i=0;i<1+Math.floor(Math.random()*3);i++){
+          const o = c.createOscillator(), g = c.createGain();
           o.type = 'triangle';
           const freq = 4000 + Math.random()*4000;
           o.frequency.setValueAtTime(freq, c.currentTime);
@@ -1624,73 +1548,51 @@ const Ambience = {
           g.gain.setValueAtTime(0.0001, c.currentTime);
           g.gain.exponentialRampToValueAtTime(0.05 + Math.random()*0.05, c.currentTime+0.002);
           g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime+0.04);
-          o.connect(g); g.connect(out);
-          o.start(); o.stop(c.currentTime+0.05);
+          o.connect(g); g.connect(out); o.start(); o.stop(c.currentTime+0.05);
         }
       }catch(e){}
     }, 60);
-
     return {out, timers:[dropTimer]};
   },
 
   buildWaves(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const src = c.createBufferSource();
-    src.buffer = this.makeNoise('brown');
-    src.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const src = c.createBufferSource(); src.buffer = this.makeNoise('brown'); src.loop = true;
     const lp = c.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=800;
     const waveGain = c.createGain(); waveGain.gain.value = 0.5;
     src.connect(lp); lp.connect(waveGain); waveGain.connect(out);
-
     const lfo = c.createOscillator(); lfo.frequency.value = 0.08;
     const lfoGain = c.createGain(); lfoGain.gain.value = 0.45;
     lfo.connect(lfoGain); lfoGain.connect(waveGain.gain);
-
-    const foam = c.createBufferSource();
-    foam.buffer = this.makeNoise('white');
-    foam.loop = true;
+    const foam = c.createBufferSource(); foam.buffer = this.makeNoise('white'); foam.loop = true;
     const foamHP = c.createBiquadFilter(); foamHP.type='highpass'; foamHP.frequency.value=2500;
     const foamGain = c.createGain(); foamGain.gain.value = 0.15;
     foam.connect(foamHP); foamHP.connect(foamGain); foamGain.connect(out);
-
     const lfo2 = c.createOscillator(); lfo2.frequency.value = 0.08;
     const lfoGain2 = c.createGain(); lfoGain2.gain.value = 0.13;
     lfo2.connect(lfoGain2); lfoGain2.connect(foamGain.gain);
-
     src.start(); lfo.start(); foam.start(); lfo2.start();
     return {out, nodes:[src, lfo, foam, lfo2]};
   },
 
   buildFire(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const src = c.createBufferSource();
-    src.buffer = this.makeNoise('brown');
-    src.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const src = c.createBufferSource(); src.buffer = this.makeNoise('brown'); src.loop = true;
     const lp = c.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=400;
     const rumble = c.createGain(); rumble.gain.value = 0.55;
-    src.connect(lp); lp.connect(rumble); rumble.connect(out);
-    src.start();
-
+    src.connect(lp); lp.connect(rumble); rumble.connect(out); src.start();
     let nextCrackle = 0;
     const crackleTimer = setInterval(()=>{
       if (out.gain.value < 0.02) return;
       const now = Date.now();
       if (now < nextCrackle) return;
       nextCrackle = now + 40 + Math.random()*250;
-
       const isBig = Math.random() < 0.15;
       const count = isBig ? 3 + Math.floor(Math.random()*4) : 1;
       for (let i=0;i<count;i++){
         setTimeout(()=>{
           try{
-            const o = c.createOscillator();
-            const g = c.createGain();
+            const o = c.createOscillator(), g = c.createGain();
             o.type = Math.random() < 0.7 ? 'square' : 'triangle';
             const freq = 1500 + Math.random()*4000;
             o.frequency.setValueAtTime(freq, c.currentTime);
@@ -1699,95 +1601,63 @@ const Ambience = {
             g.gain.setValueAtTime(0.0001, c.currentTime);
             g.gain.exponentialRampToValueAtTime(amp, c.currentTime+0.003);
             g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime+0.04 + Math.random()*0.05);
-            o.connect(g); g.connect(out);
-            o.start(); o.stop(c.currentTime+0.1);
+            o.connect(g); g.connect(out); o.start(); o.stop(c.currentTime+0.1);
           }catch(e){}
         }, i * (10 + Math.random()*30));
       }
     }, 50);
-
     return {out, timers:[crackleTimer]};
   },
 
   buildCoffee(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const voice = c.createBufferSource();
-    voice.buffer = this.makeNoise('pink');
-    voice.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const voice = c.createBufferSource(); voice.buffer = this.makeNoise('pink'); voice.loop = true;
     const vbp = c.createBiquadFilter(); vbp.type='bandpass'; vbp.frequency.value=500; vbp.Q.value=0.4;
     const vgain = c.createGain(); vgain.gain.value = 0.6;
-    voice.connect(vbp); vbp.connect(vgain); vgain.connect(out);
-    voice.start();
-
-    const rumble = c.createBufferSource();
-    rumble.buffer = this.makeNoise('brown');
-    rumble.loop = true;
+    voice.connect(vbp); vbp.connect(vgain); vgain.connect(out); voice.start();
+    const rumble = c.createBufferSource(); rumble.buffer = this.makeNoise('brown'); rumble.loop = true;
     const rlp = c.createBiquadFilter(); rlp.type='lowpass'; rlp.frequency.value=250;
     const rgain = c.createGain(); rgain.gain.value = 0.4;
-    rumble.connect(rlp); rlp.connect(rgain); rgain.connect(out);
-    rumble.start();
-
+    rumble.connect(rlp); rlp.connect(rgain); rgain.connect(out); rumble.start();
     const voiceLFO = c.createOscillator(); voiceLFO.frequency.value = 0.3;
     const voiceLFOGain = c.createGain(); voiceLFOGain.gain.value = 0.15;
-    voiceLFO.connect(voiceLFOGain); voiceLFOGain.connect(vgain.gain);
-    voiceLFO.start();
-
+    voiceLFO.connect(voiceLFOGain); voiceLFOGain.connect(vgain.gain); voiceLFO.start();
     const clinkTimer = setInterval(()=>{
       if (out.gain.value < 0.02) return;
       if (Math.random() > 0.35) return;
-
       const baseFreq = 2500 + Math.random()*3000;
-      const harmonics = [1, 2.1, 3.4, 5.2];
-      harmonics.forEach((h, i)=>{
+      [1, 2.1, 3.4, 5.2].forEach((h, i)=>{
         try{
-          const o = c.createOscillator();
-          const g = c.createGain();
-          o.type = 'sine';
-          o.frequency.value = baseFreq * h;
+          const o = c.createOscillator(), g = c.createGain();
+          o.type = 'sine'; o.frequency.value = baseFreq * h;
           const amp = 0.06 / (i + 1);
           g.gain.setValueAtTime(0.0001, c.currentTime);
           g.gain.exponentialRampToValueAtTime(amp, c.currentTime+0.005);
           g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 0.3 + Math.random()*0.5);
-          o.connect(g); g.connect(out);
-          o.start(); o.stop(c.currentTime+1.2);
+          o.connect(g); g.connect(out); o.start(); o.stop(c.currentTime+1.2);
         }catch(e){}
       });
     }, 3000);
-
     return {out, timers:[clinkTimer], nodes:[voice, rumble, voiceLFO]};
   },
 
   buildForest(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const leaves = c.createBufferSource();
-    leaves.buffer = this.makeNoise('pink');
-    leaves.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const leaves = c.createBufferSource(); leaves.buffer = this.makeNoise('pink'); leaves.loop = true;
     const lbp = c.createBiquadFilter(); lbp.type='bandpass'; lbp.frequency.value=4000; lbp.Q.value=0.3;
     const lgain = c.createGain(); lgain.gain.value = 0.5;
-    leaves.connect(lbp); lbp.connect(lgain); lgain.connect(out);
-    leaves.start();
-
+    leaves.connect(lbp); lbp.connect(lgain); lgain.connect(out); leaves.start();
     const leafLFO = c.createOscillator(); leafLFO.frequency.value = 0.4;
     const leafLFOGain = c.createGain(); leafLFOGain.gain.value = 0.2;
-    leafLFO.connect(leafLFOGain); leafLFOGain.connect(lgain.gain);
-    leafLFO.start();
-
+    leafLFO.connect(leafLFOGain); leafLFOGain.connect(lgain.gain); leafLFO.start();
     const birdTimer = setInterval(()=>{
       if (out.gain.value < 0.02) return;
       if (Math.random() > 0.5) return;
-
       const chirpCount = 1 + Math.floor(Math.random()*3);
       for (let i=0;i<chirpCount;i++){
         setTimeout(()=>{
           try{
-            const o = c.createOscillator();
-            const g = c.createGain();
+            const o = c.createOscillator(), g = c.createGain();
             o.type = 'sine';
             const base = 2000 + Math.random()*2000;
             const now = c.currentTime;
@@ -1797,51 +1667,36 @@ const Ambience = {
             g.gain.setValueAtTime(0.0001, now);
             g.gain.exponentialRampToValueAtTime(0.06, now+0.005);
             g.gain.exponentialRampToValueAtTime(0.0001, now+0.15);
-            o.connect(g); g.connect(out);
-            o.start(now); o.stop(now+0.2);
+            o.connect(g); g.connect(out); o.start(now); o.stop(now+0.2);
           }catch(e){}
         }, i * (80 + Math.random()*100));
       }
     }, 2500);
-
     return {out, timers:[birdTimer], nodes:[leaves, leafLFO]};
   },
 
   buildChime(){
-    const c = this.ctx;
-    const out = c.createGain();
-    out.gain.value = 0;
-
-    const wind = c.createBufferSource();
-    wind.buffer = this.makeNoise('pink');
-    wind.loop = true;
+    const c = this.ctx, out = c.createGain(); out.gain.value = 0;
+    const wind = c.createBufferSource(); wind.buffer = this.makeNoise('pink'); wind.loop = true;
     const wbp = c.createBiquadFilter(); wbp.type='bandpass'; wbp.frequency.value=800; wbp.Q.value=0.5;
     const wgain = c.createGain(); wgain.gain.value = 0.15;
-    wind.connect(wbp); wbp.connect(wgain); wgain.connect(out);
-    wind.start();
-
+    wind.connect(wbp); wbp.connect(wgain); wgain.connect(out); wind.start();
     const chimeTimer = setInterval(()=>{
       if (out.gain.value < 0.02) return;
-
       const baseFreq = 500 + Math.random()*500;
-      const partials = [1, 2.76, 5.4, 8.9];
-      partials.forEach((p, i)=>{
+      [1, 2.76, 5.4, 8.9].forEach((p, i)=>{
         try{
-          const o = c.createOscillator();
-          const g = c.createGain();
-          o.type = 'sine';
-          o.frequency.value = baseFreq * p;
+          const o = c.createOscillator(), g = c.createGain();
+          o.type = 'sine'; o.frequency.value = baseFreq * p;
           const amp = 0.1 / (i + 1);
           const dur = 3 + Math.random()*2;
           g.gain.setValueAtTime(0.0001, c.currentTime);
           g.gain.exponentialRampToValueAtTime(amp, c.currentTime+0.01);
           g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + dur);
-          o.connect(g); g.connect(out);
-          o.start(); o.stop(c.currentTime + dur + 0.5);
+          o.connect(g); g.connect(out); o.start(); o.stop(c.currentTime + dur + 0.5);
         }catch(e){}
       });
     }, 3500 + Math.random()*3000);
-
     return {out, timers:[chimeTimer], nodes:[wind]};
   },
 
@@ -1874,17 +1729,10 @@ const Ambience = {
   setVolume(id, v){
     if (!state.detoxVolumes) state.detoxVolumes = {};
     state.detoxVolumes[id] = v;
-
-    if (v > 0 && !this.ctx){
-      this.init();
-    }
+    if (v > 0 && !this.ctx) this.init();
     if (!this.ctx) return;
     if (this.ctx.state === 'suspended') this.ctx.resume();
-
-    if (v > 0 && !this.tracks[id]){
-      this.tracks[id] = this.buildTrack(id);
-    }
-
+    if (v > 0 && !this.tracks[id]) this.tracks[id] = this.buildTrack(id);
     if (this.tracks[id]){
       const g = this.tracks[id].out.gain;
       g.cancelScheduledValues(this.ctx.currentTime);
@@ -1907,15 +1755,10 @@ const Ambience = {
 
 function popSound(){
   try{
-    if (!Ambience.ctx){
-      if (!Ambience.init()) return;
-    }
+    if (!Ambience.ctx){ if (!Ambience.init()) return; }
     if (Ambience.ctx.state === 'suspended') Ambience.ctx.resume();
-    const c = Ambience.ctx;
-    const t = c.currentTime;
-
-    const o = c.createOscillator();
-    const g = c.createGain();
+    const c = Ambience.ctx, t = c.currentTime;
+    const o = c.createOscillator(), g = c.createGain();
     o.type = 'sine';
     o.frequency.setValueAtTime(900 + Math.random()*300, t);
     o.frequency.exponentialRampToValueAtTime(160, t + 0.08);
@@ -1924,9 +1767,7 @@ function popSound(){
     g.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
     o.connect(g); g.connect(c.destination);
     o.start(t); o.stop(t + 0.14);
-
-    const o2 = c.createOscillator();
-    const g2 = c.createGain();
+    const o2 = c.createOscillator(), g2 = c.createGain();
     o2.type = 'triangle';
     o2.frequency.setValueAtTime(2200 + Math.random()*800, t);
     o2.frequency.exponentialRampToValueAtTime(800, t + 0.03);
@@ -1939,13 +1780,7 @@ function popSound(){
 }
 
 const Bubbles = {
-  canvas: null,
-  ctx: null,
-  raf: null,
-  list: [],
-  spawnTimer: null,
-  running: false,
-  W: 0, H: 0,
+  canvas: null, ctx: null, raf: null, list: [], spawnTimer: null, running: false, W: 0, H: 0,
 
   init(canvasEl){
     if (this.running) return;
@@ -1957,7 +1792,6 @@ const Bubbles = {
     this.loop();
     this.spawnTimer = setInterval(()=>this.spawn(), 550);
     for (let i=0;i<6;i++) setTimeout(()=>this.spawn(), i*180);
-
     this._resizeHandler = () => this.resize();
     window.addEventListener('resize', this._resizeHandler);
   },
@@ -1970,8 +1804,7 @@ const Bubbles = {
     this.canvas.width = r.width * dpr;
     this.canvas.height = r.height * dpr;
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.W = r.width;
-    this.H = r.height;
+    this.W = r.width; this.H = r.height;
   },
 
   spawn(){
@@ -1980,8 +1813,7 @@ const Bubbles = {
     const r = 18 + Math.random()*26;
     this.list.push({
       x: r + Math.random()*(this.W - r*2),
-      y: this.H + r,
-      r,
+      y: this.H + r, r,
       vy: -(0.35 + Math.random()*0.5),
       vx: (Math.random()-0.5) * 0.3,
       wobble: Math.random()*Math.PI*2,
@@ -1996,10 +1828,8 @@ const Bubbles = {
     this.raf = requestAnimationFrame(()=>this.loop());
     if (!this.ctx) return;
     this.ctx.clearRect(0, 0, this.W, this.H);
-
     for (let i=this.list.length-1;i>=0;i--){
       const b = this.list[i];
-
       if (b.popped > 0){
         b.popped += 0.08;
         if (b.popped >= 1){ this.list.splice(i, 1); continue; }
@@ -2013,32 +1843,21 @@ const Bubbles = {
         this.ctx.globalAlpha = 1;
         continue;
       }
-
       b.y += b.vy;
       b.wobble += 0.02;
       b.x += b.vx + Math.sin(b.wobble) * b.wobbleAmp * 0.15;
-
       if (b.y + b.r < -20){ this.list.splice(i, 1); continue; }
-
-      const grad = this.ctx.createRadialGradient(
-        b.x - b.r*0.3, b.y - b.r*0.3, b.r*0.1,
-        b.x, b.y, b.r
-      );
+      const grad = this.ctx.createRadialGradient(b.x - b.r*0.3, b.y - b.r*0.3, b.r*0.1, b.x, b.y, b.r);
       grad.addColorStop(0, `hsla(${b.hue},90%,85%,0.55)`);
       grad.addColorStop(0.7, `hsla(${b.hue},80%,65%,0.18)`);
       grad.addColorStop(1, `hsla(${b.hue},80%,55%,0.05)`);
-
       this.ctx.beginPath();
       this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-      this.ctx.fillStyle = grad;
-      this.ctx.fill();
-
+      this.ctx.fillStyle = grad; this.ctx.fill();
       this.ctx.beginPath();
       this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
       this.ctx.strokeStyle = `hsla(${b.hue},85%,75%,0.5)`;
-      this.ctx.lineWidth = 1.2;
-      this.ctx.stroke();
-
+      this.ctx.lineWidth = 1.2; this.ctx.stroke();
       this.ctx.beginPath();
       this.ctx.arc(b.x - b.r*0.35, b.y - b.r*0.4, b.r*0.2, 0, Math.PI*2);
       this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
@@ -2065,14 +1884,11 @@ const Bubbles = {
     if (this.raf) cancelAnimationFrame(this.raf);
     if (this.spawnTimer) clearInterval(this.spawnTimer);
     if (this._resizeHandler) window.removeEventListener('resize', this._resizeHandler);
-    this.list = [];
-    this.canvas = null;
-    this.ctx = null;
+    this.list = []; this.canvas = null; this.ctx = null;
   }
 };
 
 let detoxState = { currentQuoteIdx: -1 };
-
 function pickQuoteIdx(){
   if (DETOX_QUOTES.length <= 1) return 0;
   let i;
@@ -2095,6 +1911,7 @@ const AUDIO_TRACKS = [
    ===================================================================== */
 const VIEWS = {};
 
+/* ---------- MASTER ---------- */
 VIEWS.master = function(){
   const t = todayISO();
   const hour = new Date().getHours();
@@ -2116,6 +1933,24 @@ VIEWS.master = function(){
   const totalToday = todayTasks.length + revToday.length;
   const pct = totalToday ? Math.round(doneToday / totalToday * 100) : (todayTasks.length === 0 && revToday.length === 0 ? 100 : 0);
   const circ = 2 * Math.PI * 16;
+
+  const reminders = collectReminders();
+  const reminderBar = reminders.length ? `
+    <div class="reminder-bar">
+      <div class="reminder-head">
+        <span style="font-size:16px">🔔</span>
+        <b>智慧提醒 Smart Alerts</b>
+        <span class="pill ${reminders.some(r => r.tone==='danger'||r.tone==='urgent') ? 'danger' : 'info'}" style="margin-left:auto">${reminders.length} 項</span>
+      </div>
+      <div class="reminder-list">
+        ${reminders.map(r => `
+          <div class="reminder-item tone-${r.tone}" data-nav="${r.nav}">
+            <span class="rm-icon">${r.icon}</span>
+            <span class="rm-text">${esc(r.text)}</span>
+            <span class="rm-arrow">查看 →</span>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
 
   const hero = `
   <div class="hero">
@@ -2157,7 +1992,7 @@ VIEWS.master = function(){
   const revList = revToday.length
     ? `<div class="list">${revToday.map(({item, idx}) => `
         <div class="item">
-          <button class="cb" data-act="srp-toggle" data-id="${item.id}" data-idx="${idx}" title="標記完成">✓</button>
+          <button class="cb" data-act="srp-toggle" data-id="${item.id}" data-idx="${idx}">✓</button>
           <div class="item-main">
             <div class="item-title">${esc(item.concept)}</div>
             <div class="item-meta">${subjBadge(item.subject)}
@@ -2173,7 +2008,7 @@ VIEWS.master = function(){
           <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
           <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
         </div>`).join('')}</div>`
-    : `<div class="empty"><b>✨ 今天沒有待辦</b>No tasks for today — 到「待辦事項」新增吧！</div>`;
+    : `<div class="empty"><b>✨ 今天沒有待辦</b>No tasks for today</div>`;
 
   const assessList = upcomingAssess.length
     ? `<div class="list">${upcomingAssess.slice(0,5).map(a => {
@@ -2195,7 +2030,7 @@ VIEWS.master = function(){
           <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
         </div>`;
       }).join('')}</div>`
-    : `<div class="empty"><b>🎉 暫無近期考試</b>No upcoming assessments</div>`;
+    : `<div class="empty"><b>🎉 暫無近期考試</b></div>`;
 
   const assignList = nearAssign.length
     ? `<div class="list">${nearAssign.slice(0,5).map(a => {
@@ -2211,12 +2046,7 @@ VIEWS.master = function(){
           <span class="pill ${st.tone}">${st.label}</span>
         </div>`;
       }).join('')}</div>`
-    : `<div class="empty"><b>✅ 沒有待辦作業</b>No pending assignments</div>`;
-
-  const tips = smartTips().map(x => `
-    <div class="item" style="border-left:3px solid var(--${x.tone==='ok'?'ok':x.tone==='warn'?'warn':x.tone==='info'?'info':'danger'})">
-      <div class="item-main"><div class="item-title" style="font-weight:600;font-size:12.8px">${esc(x.txt)}</div></div>
-    </div>`).join('');
+    : `<div class="empty"><b>✅ 沒有待辦作業</b></div>`;
 
   const weekBar = `
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
@@ -2226,44 +2056,42 @@ VIEWS.master = function(){
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>`;
 
   return `
+  ${reminderBar}
   ${hero}
   ${stats}
   <div class="grid g-2">
     <div class="stack">
       <div class="card">
-        <div class="card-head"><div class="card-title">⏰ 今日複習任務 <span class="muted" style="font-weight:500;font-size:12px">Today's Revisions</span></div>
+        <div class="card-head"><div class="card-title">⏰ 今日複習任務</div>
           <button class="btn btn-sm" data-nav="srp">全部 →</button></div>
         ${revList}
       </div>
       <div class="card">
-        <div class="card-head"><div class="card-title">📝 今日待辦 <span class="muted" style="font-weight:500;font-size:12px">Today's To-Do</span></div>
+        <div class="card-head"><div class="card-title">📝 今日待辦</div>
           <button class="btn btn-sm" data-nav="todo">全部 →</button></div>
         ${todoList}
       </div>
       <div class="card">
-        <div class="card-head"><div class="card-title">📊 本週概況 <span class="muted" style="font-weight:500;font-size:12px">Weekly Overview</span></div></div>
+        <div class="card-head"><div class="card-title">📊 本週概況</div></div>
         ${weekBar}
       </div>
     </div>
     <div class="stack">
       <div class="card">
-        <div class="card-head"><div class="card-title">📚 即將到來的考試 <span class="muted" style="font-weight:500;font-size:12px">Upcoming Assessments</span></div>
+        <div class="card-head"><div class="card-title">📚 即將到來的考試</div>
           <button class="btn btn-sm" data-nav="assess">全部 →</button></div>
         ${assessList}
       </div>
       <div class="card">
-        <div class="card-head"><div class="card-title">✍️ 作業追蹤 <span class="muted" style="font-weight:500;font-size:12px">Assignments</span></div>
+        <div class="card-head"><div class="card-title">✍️ 作業追蹤</div>
           <button class="btn btn-sm" data-nav="assign">全部 →</button></div>
         ${assignList}
-      </div>
-      <div class="card">
-        <div class="card-head"><div class="card-title">💡 智慧提醒 <span class="muted" style="font-weight:500;font-size:12px">Smart Tips</span></div></div>
-        <div class="list">${tips}</div>
       </div>
     </div>
   </div>`;
 };
 
+/* ---------- TO-DO ---------- */
 VIEWS.todo = function(){
   const t = todayISO();
   const anchor = state.weekAnchor || t;
@@ -2285,17 +2113,16 @@ VIEWS.todo = function(){
   }).join('');
 
   const ws = weekStats(start);
-
   const taskList = selTasks.length
     ? `<div class="list">${selTasks.map(x => `
         <div class="item">
           <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
           <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
           <div class="item-actions">
-            <button class="icon-btn" data-act="todo-del" data-id="${x.id}" title="刪除">✕</button>
+            <button class="icon-btn" data-act="todo-del" data-id="${x.id}">✕</button>
           </div>
         </div>`).join('')}</div>`
-    : `<div class="empty"><b>尚無待辦 No tasks yet</b>在下方輸入框新增今天要做的事吧！</div>`;
+    : `<div class="empty"><b>尚無待辦</b>在下方輸入框新增</div>`;
 
   const doneCount = selTasks.filter(x => x.done).length;
   const pct = selTasks.length ? Math.round(doneCount/selTasks.length*100) : 0;
@@ -2305,14 +2132,14 @@ VIEWS.todo = function(){
     <div class="card-head">
       <div class="card-title">📅 一週待辦 1-Week To-Do List</div>
       <div style="display:flex;gap:6px;align-items:center">
-        <button class="icon-btn" data-act="week-shift" data-delta="-7" title="上一週">‹</button>
+        <button class="icon-btn" data-act="week-shift" data-delta="-7">‹</button>
         <button class="btn btn-sm" data-act="week-shift" data-delta="0">本週 This week</button>
-        <button class="icon-btn" data-act="week-shift" data-delta="7" title="下一週">›</button>
+        <button class="icon-btn" data-act="week-shift" data-delta="7">›</button>
       </div>
     </div>
     <div class="week-strip">${dayChips}</div>
     <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <span class="tiny muted" style="font-weight:700">本週整體完成度 Weekly completion</span>
+      <span class="tiny muted" style="font-weight:700">本週整體完成度</span>
       <b style="font-size:13px">${ws.done}/${ws.total} · ${ws.pct}%</b>
     </div>
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>
@@ -2333,6 +2160,7 @@ VIEWS.todo = function(){
   </div>`;
 };
 
+/* ---------- SRP ---------- */
 VIEWS.srp = function(){
   const t = todayISO();
   const sorted = [...state.srp].sort((a, b) => {
@@ -2350,7 +2178,7 @@ VIEWS.srp = function(){
       const isDue  = !isDone && d === t;
       const isLate = !isDone && d < t;
       const cls = isDone ? 'on' : isDue ? 'due' : isLate ? 'late' : '';
-      return `<div class="rev-chip ${cls}" data-act="srp-toggle" data-id="${it.id}" data-idx="${i}" title="點擊切換完成狀態">
+      return `<div class="rev-chip ${cls}" data-act="srp-toggle" data-id="${it.id}" data-idx="${i}">
         <span class="rl">D${REV_DAYNUM[i]}</span>
         <span class="rd">${fmtMD(d)}</span>
       </div>`;
@@ -2362,7 +2190,7 @@ VIEWS.srp = function(){
       <td><span class="tiny" style="font-weight:700">${it.start ? fmtMD(it.start) : '—'}</span></td>
       <td><div class="rev-row">${chips}</div></td>
       <td><span class="pill ${st.tone}">${st.label}</span></td>
-      <td style="text-align:right"><button class="icon-btn" data-act="srp-del" data-id="${it.id}" title="刪除">✕</button></td>
+      <td style="text-align:right"><button class="icon-btn" data-act="srp-del" data-id="${it.id}">✕</button></td>
     </tr>`;
   }).join('') : '';
 
@@ -2370,14 +2198,13 @@ VIEWS.srp = function(){
     ? `<div class="scroll-x"><table class="tbl">
         <thead><tr>
           <th>科目 Subject</th><th>知識點 Concept</th><th>第 1 天 Day 1</th>
-          <th>複習節點 Revision nodes（點擊切換）</th><th>狀態 Status</th><th></th>
+          <th>複習節點</th><th>狀態 Status</th><th></th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table></div>`
-    : `<div class="empty"><b>尚無知識點 No concepts yet</b>每學完一個新內容，就把它拆成小知識點加進來。</div>`;
+    : `<div class="empty"><b>尚無知識點</b>每學完一個新內容，就把它拆成小知識點加進來。</div>`;
 
   const dueToday = srpDueOn(t);
-
   return `
   <div class="grid g-4" style="margin-bottom:16px">
     <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🧠</div>
@@ -2391,10 +2218,10 @@ VIEWS.srp = function(){
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">➕ 新增知識點 <span class="muted" style="font-weight:500;font-size:12px">Add Concept</span></div></div>
+    <div class="card-head"><div class="card-title">➕ 新增知識點</div></div>
     <div class="form-row">
       <select class="input" id="srpSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-      <input class="input" id="srpConcept" placeholder="知識點 Concept（越小越好）" style="flex:1 1 300px">
+      <input class="input" id="srpConcept" placeholder="知識點 Concept" style="flex:1 1 300px">
       <input class="input" type="date" id="srpStart" value="${t}" style="flex:0 0 160px">
       <button class="btn btn-primary" data-act="srp-add">＋ 新增</button>
     </div>
@@ -2403,6 +2230,7 @@ VIEWS.srp = function(){
   <div class="card">${body}</div>`;
 };
 
+/* ---------- ASSIGNMENTS ---------- */
 VIEWS.assign = function(){
   const t = todayISO();
   const sorted = [...state.assignments].sort((a, b) => (a.due || '9999').localeCompare(b.due || '9999'));
@@ -2413,7 +2241,7 @@ VIEWS.assign = function(){
   const rows = sorted.length ? sorted.map(a => {
     const st = assignStatus(a);
     const d = a.due ? diffDays(t, a.due) : null;
-    const dTxt = d === null ? '—' : d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天 Today' : `${d} 天`;
+    const dTxt = d === null ? '—' : d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天' : `${d} 天`;
     return `<tr>
       <td><div style="font-weight:650">${esc(a.name)}</div>${a.remarks ? `<div class="tiny muted">${esc(a.remarks)}</div>` : ''}</td>
       <td>${subjBadge(a.subject)}</td>
@@ -2422,24 +2250,24 @@ VIEWS.assign = function(){
       <td><span class="tiny muted">${esc(a.time || '—')}</span></td>
       <td><span class="pill ${st.tone}">${st.label}</span></td>
       <td style="text-align:right;white-space:nowrap">
-        <button class="icon-btn" data-act="assign-cycle" data-id="${a.id}" title="切換狀態">↻</button>
-        <button class="icon-btn" data-act="assign-del" data-id="${a.id}" title="刪除">✕</button>
+        <button class="icon-btn" data-act="assign-cycle" data-id="${a.id}">↻</button>
+        <button class="icon-btn" data-act="assign-del" data-id="${a.id}">✕</button>
       </td>
     </tr>`;
   }).join('') : '';
 
   const body = sorted.length
     ? `<div class="scroll-x"><table class="tbl">
-        <thead><tr><th>名稱 Name</th><th>科目</th><th>到期日 Due</th><th>剩餘天數</th><th>所需時間</th><th>狀態 Status</th><th></th></tr></thead>
+        <thead><tr><th>名稱</th><th>科目</th><th>到期日</th><th>剩餘天數</th><th>所需時間</th><th>狀態</th><th></th></tr></thead>
         <tbody>${rows}</tbody></table></div>`
-    : `<div class="empty"><b>尚無作業 No assignments</b>在下方新增一項作業來追蹤吧。</div>`;
+    : `<div class="empty"><b>尚無作業</b>在下方新增</div>`;
 
   return `
   <div class="grid g-4" style="margin-bottom:16px">
     <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📋</div>
       <div><div class="stat-val">${sorted.length - finished}</div><div class="stat-lbl">進行中 In progress</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">🔔</div>
-      <div><div class="stat-val">${soon}</div><div class="stat-lbl">3 天內到期 Due soon</div></div></div>
+      <div><div class="stat-val">${soon}</div><div class="stat-lbl">3 天內到期</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(239,68,68,.15)">⚠️</div>
       <div><div class="stat-val">${overdue}</div><div class="stat-lbl">逾期 Overdue</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
@@ -2447,12 +2275,12 @@ VIEWS.assign = function(){
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">➕ 新增作業 <span class="muted" style="font-weight:500;font-size:12px">Add Assignment</span></div></div>
+    <div class="card-head"><div class="card-title">➕ 新增作業</div></div>
     <div class="form-row">
       <input class="input" id="asName" placeholder="作業名稱 Name" style="flex:1 1 220px">
       <select class="input" id="asSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
       <input class="input" type="date" id="asDue" style="flex:0 0 150px">
-      <input class="input" id="asTime" placeholder="所需時間 e.g. 45 min" style="flex:0 0 150px">
+      <input class="input" id="asTime" placeholder="所需時間" style="flex:0 0 150px">
       <button class="btn btn-primary" data-act="assign-add">＋ 新增</button>
     </div>
   </div>
@@ -2460,6 +2288,7 @@ VIEWS.assign = function(){
   <div class="card">${body}</div>`;
 };
 
+/* ---------- ASSESSMENTS（含展開詳情） ---------- */
 VIEWS.assess = function(){
   const t = todayISO();
   const sorted = [...state.assessments].sort((a, b) => {
@@ -2475,6 +2304,56 @@ VIEWS.assess = function(){
     const hasDue = !!a.due;
     const d = hasDue ? diffDays(t, a.due) : null;
     const cls = d === null ? '' : d <= 3 ? 'danger' : d <= 10 ? 'warn' : 'ok';
+    const isExpanded = state.expandedAssessId === a.id;
+
+    let relatedHTML = '';
+    if (isExpanded){
+      const rel = getAssessRelated(a.subject, a.criteria);
+      const hasFb = rel.feedbacks.length > 0;
+      const hasWb = rel.wrongs.length > 0;
+      const hasAs = rel.assignments.length > 0;
+      relatedHTML = `
+        <div style="border-top:1px dashed var(--border);padding-top:14px;margin-top:6px;display:flex;flex-direction:column;gap:14px">
+          ${hasFb ? `
+            <div>
+              <div class="sec-title" style="margin-bottom:6px">💬 該科反饋 Feedback（同 Criterion）</div>
+              ${rel.feedbacks.map(f => `
+                <div class="item" data-act="jump-to-feedback" data-id="${f.id}" style="cursor:pointer;flex-direction:column;align-items:stretch;gap:5px;padding:9px 11px;background:var(--surface-2);border-radius:10px;margin-bottom:6px">
+                  <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+                    <span style="font-size:12.5px;font-weight:650">${esc(f.name)}</span>
+                    ${f.crit && f.crit!=='—' ? `<span class="pill muted" style="font-size:10px">Crit ${esc(f.crit)}</span>` : ''}
+                    <span class="tiny muted" style="margin-left:auto;font-weight:700">點擊查看 →</span>
+                  </div>
+                  <div class="tiny muted" style="line-height:1.55;white-space:pre-wrap">${esc((f.text || '').split('\n').slice(0,3).join('\n') || 'N/A')}</div>
+                </div>`).join('')}
+            </div>` : ''}
+          ${hasWb ? `
+            <div>
+              <div class="sec-title" style="margin-bottom:6px">📕 相關錯題 Mistake Book</div>
+              ${rel.wrongs.map(w => `
+                <div style="padding:8px 10px;border-radius:10px;background:var(--surface-2);margin-bottom:6px;${w.mastered ? 'opacity:.6' : ''}">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+                    ${w.mastered ? '<span class="pill ok" style="font-size:10px">✅ 已掌握</span>' : '<span class="pill warn" style="font-size:10px">未掌握</span>'}
+                    ${w.topic ? `<span class="tiny muted" style="font-weight:650">${esc(w.topic)}</span>` : ''}
+                    <span class="tiny muted" style="margin-left:auto">${fmtMD(w.date)}</span>
+                  </div>
+                  <div style="font-size:12.5px;font-weight:600;margin-bottom:3px">${esc(w.question || '')}</div>
+                  ${w.reason ? `<div class="tiny muted">❌ ${esc(w.reason)}</div>` : ''}
+                </div>`).join('')}
+            </div>` : ''}
+          ${hasAs ? `
+            <div>
+              <div class="sec-title" style="margin-bottom:6px">✍️ 該科待辦作業 Assignments</div>
+              ${rel.assignments.map(asg => `
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;background:var(--surface-2);margin-bottom:4px;font-size:12.5px">
+                  <span>${esc(asg.name)}</span>
+                  ${asg.due ? `<span class="tiny muted" style="margin-left:auto">${fmtMD(asg.due)}</span>` : ''}
+                </div>`).join('')}
+            </div>` : ''}
+          ${(!hasFb && !hasWb && !hasAs) ? '<div class="tiny muted" style="text-align:center;padding:8px">該科暫無相關紀錄</div>' : ''}
+        </div>`;
+    }
+
     return `<div class="card" style="display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
         <div style="min-width:0">
@@ -2501,14 +2380,20 @@ VIEWS.assess = function(){
       <div class="tiny muted" style="line-height:1.6">${esc(assessSuggest(a))}</div>
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="pill ${st.tone}">${st.label}</span>
-        <button class="icon-btn" data-act="assess-del" data-id="${a.id}" title="刪除">✕</button>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-sm" data-act="assess-toggle-detail" data-id="${a.id}">
+            ${isExpanded ? '▲ 收起相關資料' : '▼ 查看相關資料'}
+          </button>
+          <button class="icon-btn" data-act="assess-del" data-id="${a.id}">✕</button>
+        </div>
       </div>
+      ${relatedHTML}
     </div>`;
   }).join('');
 
   const body = sorted.length
     ? `<div class="grid g-2">${cards}</div>`
-    : `<div class="card"><div class="empty"><b>尚無考試 No assessments</b>新增一場考試，系統會自動倒數並給出複習建議。</div></div>`;
+    : `<div class="card"><div class="empty"><b>尚無考試</b>新增一場考試，系統會自動倒數並給出複習建議。</div></div>`;
 
   const urgent = sorted.filter(a => a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 7).length;
 
@@ -2525,7 +2410,7 @@ VIEWS.assess = function(){
   </div>
 
   <div class="card" style="margin-bottom:14px">
-    <div class="card-head"><div class="card-title">➕ 新增評估 <span class="muted" style="font-weight:500;font-size:12px">Add Assessment</span></div></div>
+    <div class="card-head"><div class="card-title">➕ 新增評估</div></div>
     <div class="form-row">
       <input class="input" id="evName" placeholder="評估名稱 Name" style="flex:1 1 220px">
       <select class="input" id="evSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
@@ -2538,6 +2423,7 @@ VIEWS.assess = function(){
   ${body}`;
 };
 
+/* ---------- FEEDBACK ---------- */
 VIEWS.feedback = function(){
   const grades = ['All', ...new Set(state.feedback.map(f => f.grade || '未分類'))];
   const subs = ['All', ...new Set(state.feedback.map(f => f.subject))];
@@ -2554,28 +2440,26 @@ VIEWS.feedback = function(){
   const isNew = state.fbAdding;
 
   const gradeChips = grades.map(g =>
-    `<button class="chip ${g===gradeFilter?'active':''}" data-act="fb-grade-filter" data-grade="${esc(g)}">${g === 'All' ? '全部年級 All' : esc(g)}</button>`
+    `<button class="chip ${g===gradeFilter?'active':''}" data-act="fb-grade-filter" data-grade="${esc(g)}">${g === 'All' ? '全部年級' : esc(g)}</button>`
   ).join('');
 
   const subjChips = subs.map(s =>
-    `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部科目 All' : esc(s)}</button>`
+    `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部科目' : esc(s)}</button>`
   ).join('');
 
   const newForm = isNew ? `
-    <div class="card" style="margin-bottom:14px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
-      <div class="card-head">
-        <div class="card-title">➕ 新增反饋 <span class="muted" style="font-weight:500;font-size:12px">New Feedback</span></div>
-      </div>
+    <div class="card" style="margin-bottom:14px;border-color:var(--primary)">
+      <div class="card-head"><div class="card-title">➕ 新增反饋</div></div>
       <div class="form-row">
-        <input class="input" id="fbNewName" placeholder="考試名稱 Name" style="flex:1 1 220px">
+        <input class="input" id="fbNewName" placeholder="考試名稱" style="flex:1 1 220px">
         <select class="input" id="fbNewSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
         <input class="input" id="fbNewGrade" placeholder="年級 e.g. Grade 9" style="flex:0 0 130px">
-        <input class="input" id="fbNewCrit" placeholder="評分準則 e.g. A, B, D" style="flex:0 0 200px">
+        <input class="input" id="fbNewCrit" placeholder="評分準則" style="flex:0 0 200px">
       </div>
-      <textarea class="input" id="fbNewText" placeholder="反饋內容 Feedback（每行一項，可用 - 開頭）" rows="5" style="margin-top:8px"></textarea>
+      <textarea class="input" id="fbNewText" placeholder="反饋內容（每行一項）" rows="5" style="margin-top:8px"></textarea>
       <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
-        <button class="btn" data-act="fb-cancel">取消 Cancel</button>
-        <button class="btn btn-primary" data-act="fb-save-new">💾 儲存 Save</button>
+        <button class="btn" data-act="fb-cancel">取消</button>
+        <button class="btn btn-primary" data-act="fb-save-new">💾 儲存</button>
       </div>
     </div>` : '';
 
@@ -2590,17 +2474,17 @@ VIEWS.feedback = function(){
   const renderItem = (f) => {
     if (editingId === f.id){
       return `
-        <div class="card" style="margin-bottom:10px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
+        <div class="card" style="margin-bottom:10px;border-color:var(--primary)">
           <div class="form-row">
-            <input class="input" id="fbEditName-${f.id}" value="${esc(f.name)}" placeholder="名稱 Name" style="flex:1 1 200px">
+            <input class="input" id="fbEditName-${f.id}" value="${esc(f.name)}" style="flex:1 1 200px">
             <select class="input" id="fbEditSubj-${f.id}" style="flex:0 0 130px">${state.subjects.map(s => `<option ${s===f.subject?'selected':''}>${esc(s)}</option>`).join('')}</select>
-            <input class="input" id="fbEditGrade-${f.id}" value="${esc(f.grade || '')}" placeholder="年級 Grade" style="flex:0 0 120px">
-            <input class="input" id="fbEditCrit-${f.id}" value="${esc(f.crit)}" placeholder="Crit" style="flex:0 0 150px">
+            <input class="input" id="fbEditGrade-${f.id}" value="${esc(f.grade || '')}" style="flex:0 0 120px">
+            <input class="input" id="fbEditCrit-${f.id}" value="${esc(f.crit)}" style="flex:0 0 150px">
           </div>
           <textarea class="input" id="fbEditText-${f.id}" rows="6" style="margin-top:8px">${esc(f.text)}</textarea>
           <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
-            <button class="btn" data-act="fb-cancel">取消 Cancel</button>
-            <button class="btn btn-primary" data-act="fb-save" data-id="${f.id}">💾 儲存 Save</button>
+            <button class="btn" data-act="fb-cancel">取消</button>
+            <button class="btn btn-primary" data-act="fb-save" data-id="${f.id}">💾 儲存</button>
           </div>
         </div>`;
     }
@@ -2608,7 +2492,8 @@ VIEWS.feedback = function(){
       ? `<ul class="fb-list">${f.text.split('\n').map(l => l.trim()).filter(Boolean)
           .map(l => `<li>${esc(l.replace(/^-\s*/, ''))}</li>`).join('')}</ul>`
       : `<p class="muted tiny">N/A — 暫無反饋 No feedback recorded</p>`;
-    return `<details class="acc">
+    const isHl = state.highlightFeedbackId === f.id;
+    return `<details class="acc" data-fb-id="${f.id}" ${isHl ? 'open' : ''} style="${isHl ? 'border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 22%,transparent)' : ''}">
       <summary>
         ${subjBadge(f.subject)}
         <span>${esc(f.name)}</span>
@@ -2617,8 +2502,8 @@ VIEWS.feedback = function(){
       <div class="acc-body">
         ${txt}
         <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end">
-          <button class="btn btn-sm" data-act="fb-edit" data-id="${f.id}">✏️ 編輯 Edit</button>
-          <button class="btn btn-sm btn-danger" data-act="fb-del" data-id="${f.id}">🗑 刪除 Delete</button>
+          <button class="btn btn-sm" data-act="fb-edit" data-id="${f.id}">✏️ 編輯</button>
+          <button class="btn btn-sm btn-danger" data-act="fb-del" data-id="${f.id}">🗑 刪除</button>
         </div>
       </div>
     </details>`;
@@ -2633,23 +2518,23 @@ VIEWS.feedback = function(){
         </div>
         ${grouped[g].map(renderItem).join('')}
       </div>`).join('')
-    : `<div class="empty"><b>沒有符合的反饋</b>No feedback matches this filter.</div>`;
+    : `<div class="empty"><b>沒有符合的反饋</b></div>`;
 
   return `
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">💬 考試反饋 Assessment Feedback</div>
+      <div class="card-title">💬 考試反饋</div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-        <span class="tiny muted">${list.length} 筆 records</span>
-        <button class="btn btn-primary btn-sm" data-act="fb-add">＋ 新增反饋 Add</button>
+        <span class="tiny muted">${list.length} 筆</span>
+        <button class="btn btn-primary btn-sm" data-act="fb-add">＋ 新增反饋</button>
       </div>
     </div>
     <div style="margin-bottom:10px">
-      <div class="tiny muted" style="font-weight:700;letter-spacing:.5px;margin-bottom:6px">年級 GRADE</div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">年級 GRADE</div>
       <div class="chip-row">${gradeChips}</div>
     </div>
     <div>
-      <div class="tiny muted" style="font-weight:700;letter-spacing:.5px;margin-bottom:6px">科目 SUBJECT</div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目 SUBJECT</div>
       <div class="chip-row">${subjChips}</div>
     </div>
   </div>
@@ -2657,6 +2542,134 @@ VIEWS.feedback = function(){
   <div>${groupedHTML}</div>`;
 };
 
+/* ---------- 📕 錯題本 ---------- */
+VIEWS.wrongbook = function(){
+  const t = todayISO();
+  const all = state.wrongBook || [];
+  const subjectFilter = state.wbSubjectFilter || 'All';
+  const statusFilter = state.wbStatusFilter || 'All';
+  const isAdding = state.wbAdding;
+  const expandedId = state.wbExpandedId;
+
+  const subjects = ['All', ...new Set(all.map(w => w.subject))];
+
+  const filtered = all.filter(w => {
+    if (subjectFilter !== 'All' && w.subject !== subjectFilter) return false;
+    if (statusFilter === 'mastered' && !w.mastered) return false;
+    if (statusFilter === 'unmastered' && w.mastered) return false;
+    return true;
+  }).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  const total = all.length;
+  const mastered = all.filter(w => w.mastered).length;
+  const unmastered = total - mastered;
+  const oldUnmastered = all.filter(w => {
+    if (w.mastered) return false;
+    const d = diffDays(w.date, t);
+    return d >= 7;
+  }).length;
+
+  const subjChips = subjects.map(s => {
+    const n = s === 'All' ? total : all.filter(w => w.subject === s).length;
+    return `<button class="chip ${s===subjectFilter?'active':''}" data-act="wb-filter-subj" data-subj="${esc(s)}">${s === 'All' ? '全部科目' : esc(s)} <span style="opacity:.65">(${n})</span></button>`;
+  }).join('');
+
+  const statusChips = [
+    {id:'All',        label:`全部 (${total})`},
+    {id:'unmastered', label:`未掌握 (${unmastered})`},
+    {id:'mastered',   label:`已掌握 (${mastered})`}
+  ].map(s => `<button class="chip ${s.id===statusFilter?'active':''}" data-act="wb-filter-status" data-status="${s.id}">${s.label}</button>`).join('');
+
+  const addForm = isAdding ? `
+    <div class="card" style="margin-bottom:14px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
+      <div class="card-head">
+        <div class="card-title">➕ 新增錯題</div>
+        <span class="tiny muted">只儲存於你的帳號，不會上傳給任何人</span>
+      </div>
+      <div class="form-row">
+        <select class="input" id="wbNewSubj" style="flex:0 0 140px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+        <input class="input" id="wbNewTopic" placeholder="題型 / 知識點 e.g. 指數律" style="flex:1 1 200px">
+        <input class="input" type="date" id="wbNewDate" value="${t}" style="flex:0 0 150px">
+      </div>
+      <textarea class="input" id="wbNewQuestion" placeholder="題目描述（簡略即可，例如「化簡 (2³)² 誤寫成 2⁵」）" rows="2" style="margin-top:8px"></textarea>
+      <textarea class="input" id="wbNewReason" placeholder="❌ 錯誤原因（為什麼會錯？）" rows="2" style="margin-top:8px"></textarea>
+      <textarea class="input" id="wbNewCorrect" placeholder="✅ 正確解法 / 關鍵觀念" rows="2" style="margin-top:8px"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button class="btn" data-act="wb-cancel">取消</button>
+        <button class="btn btn-primary" data-act="wb-save-new">💾 新增</button>
+      </div>
+    </div>` : '';
+
+  const recordsHTML = filtered.length ? filtered.map(w => {
+    const isExp = expandedId === w.id;
+    const dSince = w.date ? diffDays(w.date, t) : null;
+    return `
+    <div class="wb-record ${w.mastered ? 'mastered' : ''}">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            ${subjBadge(w.subject)}
+            ${w.topic ? `<span class="pill muted">${esc(w.topic)}</span>` : ''}
+            <span class="tiny muted">${fmtMD(w.date)}${dSince !== null ? ` · ${dSince} 天前` : ''}</span>
+            ${w.mastered ? '<span class="pill ok">✅ 已掌握</span>' : '<span class="pill warn">📝 未掌握</span>'}
+          </div>
+          <div class="wb-question">${esc(w.question || '（未填寫題目）')}</div>
+        </div>
+                <div style="display:flex;gap:6px;flex:0 0 auto">
+          <button type="button" class="icon-btn" data-act="wb-toggle-master" data-id="${w.id}" title="${w.mastered ? '標記為未掌握' : '標記為已掌握'}" style="width:34px;height:34px;font-size:14px">
+            ${w.mastered ? '↩️' : '✓'}
+          </button>
+          <button type="button" class="icon-btn" data-act="wb-del" data-id="${w.id}" title="刪除" style="width:34px;height:34px;font-size:14px;color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,var(--border));background:color-mix(in srgb,var(--danger) 8%,var(--surface-2))">
+            🗑
+          </button>
+        </div>
+      </div>
+
+      <button class="btn btn-sm" data-act="wb-toggle-detail" data-id="${w.id}" style="margin-top:10px">
+        ${isExp ? '▲ 收起詳情' : '▼ 查看原因與解法'}
+      </button>
+
+      ${isExp ? `
+        <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)">
+          <div class="wb-row wb-wrong"><b>❌ 錯誤原因：</b>${esc(w.reason || '（未填寫）')}</div>
+          <div class="wb-row wb-correct"><b>✅ 正確解法：</b>${esc(w.correct || '（未填寫）')}</div>
+        </div>` : ''}
+    </div>`;
+  }).join('') : `<div class="empty"><b>${all.length === 0 ? '尚無錯題紀錄' : '沒有符合的紀錄'}</b>${all.length === 0 ? '點擊「＋ 新增錯題」開始記錄你的弱點，錯題會集中管理，方便複習。' : '試試其他篩選條件。'}</div>`;
+
+  return `
+  <div class="grid g-4" style="margin-bottom:16px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📕</div>
+      <div><div class="stat-val">${total}</div><div class="stat-lbl">總錯題 Total</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📝</div>
+      <div><div class="stat-val" style="color:${unmastered ? 'var(--warn)' : 'inherit'}">${unmastered}</div><div class="stat-lbl">未掌握 Unmastered</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
+      <div><div class="stat-val">${mastered}</div><div class="stat-lbl">已掌握 Mastered</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">⏳</div>
+      <div><div class="stat-val" style="color:${oldUnmastered ? 'var(--danger)' : 'inherit'}">${oldUnmastered}</div><div class="stat-lbl">超過 7 天未掌握</div></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:14px">
+    <div class="card-head">
+      <div class="card-title">📕 錯題本 Mistake Book</div>
+      <button class="btn btn-primary btn-sm" data-act="wb-add-toggle">${isAdding ? '取消' : '＋ 新增錯題'}</button>
+    </div>
+    <div style="margin-bottom:10px">
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目 SUBJECT</div>
+      <div class="chip-row">${subjChips}</div>
+    </div>
+    <div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">狀態 STATUS</div>
+      <div class="chip-row">${statusChips}</div>
+    </div>
+  </div>
+
+  ${addForm}
+
+  <div class="grid g-2">${recordsHTML}</div>`;
+};
+
+/* ---------- REPORT CARDS ---------- */
 VIEWS.report = function(){
   const grades = state.reportGrades || [];
   const gradeRows = grades.length ? grades.map(g => {
@@ -2668,30 +2681,29 @@ VIEWS.report = function(){
       const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
       return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1"
         value="${v}" ${active ? '' : 'disabled'}
-        data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–"
-        title="${active ? def.key + ' · Criterion ' + def.crit[i] + '（0–' + maxScore + '）' : '不適用 N/A'}">`;
+        data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
     }).join('');
     return `<div class="rcg-row">
-      <input class="input" value="${esc(g.name)}" placeholder="評估名稱 Name" data-act="rcg-name" data-id="${g.id}">
+      <input class="input" value="${esc(g.name)}" placeholder="評估名稱" data-act="rcg-name" data-id="${g.id}">
       <select class="input" data-act="rcg-subject" data-id="${g.id}">
         ${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}
       </select>
       ${cells}
-      <button class="icon-btn" data-act="rcg-del" data-id="${g.id}" title="刪除 Delete">✕</button>
+      <button class="icon-btn" data-act="rcg-del" data-id="${g.id}">✕</button>
     </div>`;
   }).join('') : '';
 
   const gradeTable = grades.length ? `
     <div class="scroll-x"><div style="min-width:640px">
       <div class="rcg-row rcg-head">
-        <div>評估名稱 Name</div><div>科目 Subject</div>
+        <div>評估名稱</div><div>科目</div>
         <div style="text-align:center">A/I</div><div style="text-align:center">B/II</div>
         <div style="text-align:center">C/III</div><div style="text-align:center">D/IV</div>
         <div style="text-align:center">E/V</div><div></div>
       </div>
       ${gradeRows}
     </div></div>`
-    : `<div class="empty"><b>尚無評估成績 No assessment grades</b>先在上方新增一筆評估，再逐格填入各 Criterion 的分數。</div>`;
+    : `<div class="empty"><b>尚無評估成績</b>先在上方新增一筆評估。</div>`;
 
   const bounds4 = [[28,'7','卓越'],[24,'6','優秀'],[19,'5','良好'],[15,'4','滿意'],[10,'3','基本'],[6,'2','不足'],[0,'1','入門']];
   const bounds5 = [[44,'7','卓越'],[38,'6','優秀'],[30,'5','良好'],[24,'4','滿意'],[16,'3','基本'],[10,'2','不足'],[0,'1','入門']];
@@ -2713,7 +2725,7 @@ VIEWS.report = function(){
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
       <div class="card-title">📝 單次評估成績</div>
-      <span class="tiny muted">一般科目每項 0–8 分 · Biotech 每項 0–10 分</span>
+      <span class="tiny muted">一般科目 0–8 分 · Biotech 0–10 分</span>
     </div>
     <div class="form-row" style="margin-bottom:14px">
       <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
@@ -2731,10 +2743,6 @@ VIEWS.report = function(){
       <span class="tiny muted">自動計算平均（向下取整）</span>
     </div>
     <div id="rcSummary">${rcSummaryHTML()}</div>
-    <div class="tiny muted" style="margin-top:10px">
-      💡 一般科目使用 4 個 Criterion（A–D，每項 0–8，滿分 32）；Biotech 使用 5 個 Criterion（I–V，每項 0–10，滿分 50）。
-      <br>統計「標準平均分」與「標準化總分」時，Biotech 會按比例（×0.8）換算成 8 分制，讓跨科目比較更公平。
-    </div>
   </div>
 
   <div class="card">
@@ -2746,6 +2754,7 @@ VIEWS.report = function(){
   </div>`;
 };
 
+/* ---------- SCHEDULE ---------- */
 VIEWS.schedule = function(){
   const d = state.schedDay || 1;
   const periods = (state.schedule[d] || ['','','','','']);
@@ -2784,7 +2793,7 @@ VIEWS.schedule = function(){
         const m = String(cell).match(/^(.+?)\s*\((.+)\)$/);
         const nm = m ? m[1] : cell;
         if (edit){
-          return `<td><input class="cell-input" data-act="sched-edit" data-day="${n}" data-period="${i}" value="${esc(cell)}" placeholder="—" style="${n===d ? 'background:color-mix(in srgb,var(--primary) 8%,transparent)' : ''}"></td>`;
+          return `<td><input class="cell-input" data-act="sched-edit" data-day="${n}" data-period="${i}" value="${esc(cell)}" placeholder="—"></td>`;
         }
         return `<td style="${n===d ? 'background:color-mix(in srgb,var(--primary) 8%,transparent)' : ''}">
           <span style="font-size:12.5px;font-weight:600;color:${cell ? subjColor(nm) : 'var(--muted)'}">${esc(nm || '—')}</span>
@@ -2795,15 +2804,14 @@ VIEWS.schedule = function(){
   return `
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
-      <div class="card-title">📅 我的課表 <span class="muted" style="font-weight:500;font-size:12px">My Schedule</span></div>
+      <div class="card-title">📅 我的課表</div>
       <div style="display:flex;gap:8px;align-items:center">
         <span class="tiny muted">10 天循環</span>
         ${edit
-          ? `<button class="btn btn-primary btn-sm" data-act="sched-done">✓ 完成編輯 Done</button>`
-          : `<button class="btn btn-sm" data-act="sched-edit-toggle">✏️ 編輯課表 Edit</button>`}
+          ? `<button class="btn btn-primary btn-sm" data-act="sched-done">✓ 完成編輯</button>`
+          : `<button class="btn btn-sm" data-act="sched-edit-toggle">✏️ 編輯課表</button>`}
       </div>
     </div>
-    ${edit ? `<div class="tiny muted" style="margin-bottom:12px">💡 直接點擊欄位修改，格式建議 <b>科目 (教室)</b></div>` : ''}
     <div class="day-tabs">${tabs}</div>
   </div>
 
@@ -2823,13 +2831,10 @@ VIEWS.schedule = function(){
   </div>`;
 };
 
-/* Detox 頁面（Spotify 已移出，改為全局浮動播放器） */
+/* ---------- DETOX ---------- */
 VIEWS.detox = function(){
   const volumes = state.detoxVolumes || {};
-
-  if (detoxState.currentQuoteIdx === -1){
-    detoxState.currentQuoteIdx = pickQuoteIdx();
-  }
+  if (detoxState.currentQuoteIdx === -1) detoxState.currentQuoteIdx = pickQuoteIdx();
   const q = DETOX_QUOTES[detoxState.currentQuoteIdx];
 
   const audioRows = AUDIO_TRACKS.map(t => {
@@ -2855,11 +2860,9 @@ VIEWS.detox = function(){
       <h2>🌿 解壓空間</h2>
       <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
     </div>
-
     <div class="detox-grid">
-
       <div class="d-card" style="grid-column:1/-1">
-        <div class="d-card-title">🎲 隨機的一句話 <small>Random Quote</small></div>
+        <div class="d-card-title">🎲 隨機的一句話</div>
         <div class="d-quote" data-act="detox-quote" id="detoxQuote">
           <div class="d-quote-zh">${esc(q.zh)}</div>
           <div class="d-quote-en">${esc(q.en)}</div>
@@ -2868,7 +2871,7 @@ VIEWS.detox = function(){
       </div>
 
       <div class="d-card">
-        <div class="d-card-title">📝 寫下來，然後燒掉 <small>Write & Burn</small></div>
+        <div class="d-card-title">📝 寫下來，然後燒掉</div>
         <div class="d-write-wrap" id="dWriteWrap">
           <textarea class="d-write-area" id="dWriteArea"
             placeholder="今天有什麼壓在心上嗎？寫下來，然後讓它離開⋯"></textarea>
@@ -2883,22 +2886,22 @@ VIEWS.detox = function(){
       </div>
 
       <div class="d-card">
-        <div class="d-card-title">🎵 環境音 <small>Ambient Sounds</small></div>
+        <div class="d-card-title">🎵 環境音</div>
         <div class="d-audio-list">${audioRows}</div>
       </div>
 
       <div class="d-card" style="grid-column:1/-1">
-        <div class="d-card-title">🫧 戳泡泡 <small>Pop Bubbles</small></div>
+        <div class="d-card-title">🫧 戳泡泡</div>
         <div class="d-bubbles-wrap" id="dBubblesWrap">
           <canvas id="bubblesCanvas"></canvas>
           <div class="d-bubbles-hint">點擊泡泡讓它破掉 · 沒有分數、沒有排行榜</div>
         </div>
       </div>
-
     </div>
   </div>`;
 };
 
+/* ---------- GUIDE ---------- */
 VIEWS.guide = function(){
   const sec = (title, sub, body, open = false) =>
     `<details class="acc" ${open ? 'open' : ''}>
@@ -2936,7 +2939,7 @@ VIEWS.guide = function(){
     [
       ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期', '提前規劃下週'],
       ['2️⃣ 檢查作業與考試', '檢視下週所有到期項目', '避免臨時抱佛腳'],
-      ['3️⃣ 調整待辦日期', '把待辦清單切換到下週', '保持準確'],
+      ['3️⃣ 檢查錯題本', '把這週的錯題復習一次，已掌握的打勾', '強化弱點'],
       ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標', '有方向地前進']
     ]))}
 
@@ -2957,17 +2960,27 @@ VIEWS.guide = function(){
       ['第 3 次', '第 5 天', '限時實戰', '計時做新題目'],
       ['第 4 次', '第 7 天', '化身老師', '講解給空氣聽']
     ]))}
+
+  ${sec('五、錯題本使用心法', '每週 10 分鐘', tbl(
+    ['時間點', '動作', '目的'],
+    [
+      ['做完題當下', '把錯的題目記到「錯題本」，寫下原因', '趁記憶猶新'],
+      ['隔 1–2 天', '看一遍原因，自己講一次正確解法', '加深印象'],
+      ['超過 7 天未掌握', '系統會提醒你，優先處理', '避免弱點累積'],
+      ['已掌握', '打勾，從此不再焦慮', '給自己成就感']
+    ]))}
   `;
 };
 
+/* ---------- SETTINGS ---------- */
 VIEWS.settings = function(){
   const subs = state.subjects || [];
   const chips = subs.map(s => `
     <span class="subj-chip">
       <span class="dot" style="background:${subjColor(s)}"></span>
       ${esc(s)}
-      <button data-act="subj-rename" data-name="${esc(s)}" title="重新命名">✏️</button>
-      <button data-act="subj-del" data-name="${esc(s)}" title="刪除">✕</button>
+      <button data-act="subj-rename" data-name="${esc(s)}">✏️</button>
+      <button data-act="subj-del" data-name="${esc(s)}">✕</button>
     </span>`).join('');
 
   const usage = {};
@@ -2976,6 +2989,7 @@ VIEWS.settings = function(){
   state.assignments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.assessments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.feedback.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+  (state.wrongBook || []).forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
 
   const cf = Cloud.cfg;
   const provider = cf.provider;
@@ -2986,26 +3000,20 @@ VIEWS.settings = function(){
   const providerFields = (() => {
     if (provider === 'supabase') return `
       <div class="form-row">
-        <input class="input" data-cloud="supabase.url" value="${esc(cf.supabase.url)}" placeholder="Supabase URL  e.g. https://xxxx.supabase.co" style="flex:1 1 320px">
+        <input class="input" data-cloud="supabase.url" value="${esc(cf.supabase.url)}" placeholder="Supabase URL" style="flex:1 1 320px">
         <input class="input" data-cloud="supabase.anonKey" value="${esc(cf.supabase.anonKey)}" placeholder="anon public key" style="flex:1 1 260px">
-        <input class="input" data-cloud="supabase.roomId" value="${esc(cf.supabase.roomId)}" placeholder="房間 ID（自行亂打一串）" style="flex:1 1 220px">
-      </div>
-      <div class="tiny muted" style="margin-top:8px;line-height:1.7">
-        ① 到 <b>supabase.com</b> 註冊 → New Project<br>
-        ② SQL Editor 跑建立 study_state 表的 SQL<br>
-        ③ Project Settings → API Keys 複製 URL 與 anon key<br>
-        ④ 房間 ID 自己亂打一串，所有裝置填同一串
+        <input class="input" data-cloud="supabase.roomId" value="${esc(cf.supabase.roomId)}" placeholder="房間 ID" style="flex:1 1 220px">
       </div>`;
     if (provider === 'jsonbin') return `
       <div class="form-row">
         <input class="input" data-cloud="jsonbin.masterKey" value="${esc(cf.jsonbin.masterKey)}" placeholder="X-Master-Key" style="flex:1 1 300px">
-        <input class="input" data-cloud="jsonbin.binId" value="${esc(cf.jsonbin.binId)}" placeholder="Bin ID（留空 → 點右邊建立）" style="flex:1 1 260px">
+        <input class="input" data-cloud="jsonbin.binId" value="${esc(cf.jsonbin.binId)}" placeholder="Bin ID" style="flex:1 1 260px">
         <button class="btn" data-act="cloud-create-bin">＋ 建立新 Bin</button>
       </div>`;
     return `
       <div class="form-row">
-        <input class="input" data-cloud="custom.url" value="${esc(cf.custom.url)}" placeholder="GET / POST 端點 URL" style="flex:1 1 340px">
-        <input class="input" data-cloud="custom.token" value="${esc(cf.custom.token)}" placeholder="Bearer token（可留空）" style="flex:1 1 240px">
+        <input class="input" data-cloud="custom.url" value="${esc(cf.custom.url)}" placeholder="端點 URL" style="flex:1 1 340px">
+        <input class="input" data-cloud="custom.token" value="${esc(cf.custom.token)}" placeholder="Bearer token" style="flex:1 1 240px">
       </div>`;
   })();
 
@@ -3015,8 +3023,8 @@ VIEWS.settings = function(){
       <div><div class="stat-val">${subs.length}</div><div class="stat-lbl">科目 Subjects</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">💬</div>
       <div><div class="stat-val">${state.feedback.length}</div><div class="stat-lbl">反饋 Feedback</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📅</div>
-      <div><div class="stat-val">${Object.keys(state.schedule).length}</div><div class="stat-lbl">課表天數 Days</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📕</div>
+      <div><div class="stat-val">${(state.wrongBook||[]).length}</div><div class="stat-lbl">錯題 Mistakes</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">🧠</div>
       <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">SRP 知識點</div></div></div>
   </div>`;
@@ -3026,20 +3034,20 @@ VIEWS.settings = function(){
 
   <div class="card" style="margin-bottom:14px;border-color:${Cloud.configured?'color-mix(in srgb,var(--ok) 35%,var(--border))':'var(--border)'}">
     <div class="card-head">
-      <div class="card-title">☁️ 雲端同步 <span class="muted" style="font-weight:500;font-size:12px">Cloud Sync（無 Firebase）</span></div>
+      <div class="card-title">☁️ 雲端同步</div>
       <span class="pill ${Cloud.configured ? (Cloud.status==='error'?'danger':'ok') : 'muted'}">${Cloud.configured ? '已啟用' : '未設定'}</span>
     </div>
     <div class="form-row" style="margin-bottom:12px">
       <select class="input" id="cloudProvider" style="flex:0 0 200px">
         <option value="supabase" ${provider==='supabase'?'selected':''}>Supabase（推薦）</option>
-        <option value="jsonbin"  ${provider==='jsonbin' ?'selected':''}>JSONBin.io（最快）</option>
+        <option value="jsonbin"  ${provider==='jsonbin' ?'selected':''}>JSONBin.io</option>
         <option value="custom"   ${provider==='custom'  ?'selected':''}>自訂 API</option>
       </select>
       <label style="display:flex;align-items:center;gap:7px;flex:0 0 auto;font-size:12.5px;font-weight:600;cursor:pointer">
         <input type="checkbox" id="cloudAuto" ${cf.auto?'checked':''}> 自動同步
       </label>
-      <input class="input" type="number" id="cloudInterval" value="${cf.intervalSec}" min="30" step="10" style="flex:0 0 110px" title="同步間隔（秒）">
-      <span class="tiny muted" style="flex:0 0 auto;align-self:center">秒 / interval</span>
+      <input class="input" type="number" id="cloudInterval" value="${cf.intervalSec}" min="30" step="10" style="flex:0 0 110px">
+      <span class="tiny muted" style="flex:0 0 auto;align-self:center">秒</span>
     </div>
     ${providerFields}
     <div class="form-row" style="margin-top:12px">
@@ -3054,21 +3062,17 @@ VIEWS.settings = function(){
     </div>
     <div class="kv">
       <span>上次同步 Last sync</span>
-      <b>${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
-    </div>
-    <div class="tiny muted" style="margin-top:10px;line-height:1.7">
-      💡 同步策略：以「最後修改時間」為準。本機改動較新 → 上傳；雲端較新 → 下載覆蓋本機。
+      <b id="lastSyncText">${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
     </div>
   </div>
 
   <div class="card" style="margin-bottom:14px">
     <div class="card-head">
       <div class="card-title">🏷️ 科目管理</div>
-      <span class="tiny muted">用於 SRP、作業、考試、反饋的下拉選單</span>
     </div>
     <div class="chip-row" style="margin-bottom:14px">${chips || '<span class="tiny muted">尚無科目</span>'}</div>
     <div class="form-row">
-      <input class="input" id="subjNewInput" placeholder="新增科目名稱 e.g. Drama" style="flex:1 1 260px">
+      <input class="input" id="subjNewInput" placeholder="新增科目名稱" style="flex:1 1 260px">
       <button class="btn btn-primary" data-act="subj-add">＋ 新增科目</button>
     </div>
   </div>
@@ -3100,7 +3104,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>2.1（Spotify 全域播放器 + 標準化分數）</b></div>
+    <div class="kv"><span>版本 Version</span><b>2.2（錯題本 + 考試關聯 + 提醒）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3153,6 +3157,7 @@ document.addEventListener('click', e => {
       Bubbles.destroy();
     }
     state.view = newView;
+    state.expandedAssessId = null;
     save(); render();
     window.scrollTo({top:0, behavior:'smooth'});
     return;
@@ -3183,6 +3188,104 @@ document.addEventListener('click', e => {
     case 'cloud-push-now': { Cloud.forcePush(); break; }
     case 'cloud-pull-now': { Cloud.forcePull(); break; }
 
+    /* ---- 錯題本 ---- */
+    case 'wb-add-toggle': {
+      state.wbAdding = !state.wbAdding;
+      save(); render();
+      setTimeout(() => {
+        const el2 = document.getElementById('wbNewTopic');
+        el2 && el2.focus();
+      }, 0);
+      break;
+    }
+    case 'wb-cancel': {
+      state.wbAdding = false;
+      save(); render();
+      break;
+    }
+    case 'wb-save-new': {
+      const subject = $('#wbNewSubj').value;
+      const topic = $('#wbNewTopic').value.trim();
+      const date = $('#wbNewDate').value || todayISO();
+      const question = $('#wbNewQuestion').value.trim();
+      const reason = $('#wbNewReason').value.trim();
+      const correct = $('#wbNewCorrect').value.trim();
+      if (!question && !topic){ toast('⚠️ 請至少填寫題型或題目'); return; }
+      state.wrongBook = state.wrongBook || [];
+      state.wrongBook.unshift({
+        id: uid(), subject, topic, question, reason, correct,
+        date, mastered: false
+      });
+      state.wbAdding = false;
+      save(); render();
+      toast('✅ 已新增錯題');
+      break;
+    }
+     case 'wb-del': {
+      e.stopPropagation();
+      const id = el.dataset.id;
+      if (!id) break;
+      const target = (state.wrongBook || []).find(x => x.id === id);
+      if (!target) break;
+      if (!confirm('刪除此錯題紀錄？\nDelete this mistake?')) break;
+      state.wrongBook = state.wrongBook.filter(x => x.id !== id);
+      save(); render();
+      toast('🗑 已刪除 Deleted');
+      break;
+    }
+    case 'wb-toggle-master': {
+      const w = (state.wrongBook || []).find(x => x.id === el.dataset.id);
+      if (!w) break;
+      w.mastered = !w.mastered;
+      save(); render();
+      toast(w.mastered ? '✅ 已標記為掌握' : '📝 已標記為未掌握');
+      break;
+    }
+    case 'wb-toggle-detail': {
+      const id = el.dataset.id;
+      state.wbExpandedId = state.wbExpandedId === id ? null : id;
+      save(); render();
+      break;
+    }
+    case 'wb-filter-subj': {
+      state.wbSubjectFilter = el.dataset.subj;
+      save(); render();
+      break;
+    }
+    case 'wb-filter-status': {
+      state.wbStatusFilter = el.dataset.status;
+      save(); render();
+      break;
+    }
+
+    /* ---- 考試詳情展開 ---- */
+    case 'assess-toggle-detail': {
+      const id = el.dataset.id;
+      state.expandedAssessId = state.expandedAssessId === id ? null : id;
+      save(); render();
+      break;
+    }
+
+    /* ---- 跳到考試反饋頁面並高亮 ---- */
+    case 'jump-to-feedback': {
+      const id = el.dataset.id;
+      state.view = 'feedback';
+      state.highlightFeedbackId = id;
+      state.editingFbId = null;
+      state.fbAdding = false;
+      save(); render();
+      setTimeout(() => {
+        const target = document.querySelector(`[data-fb-id="${id}"]`);
+        if (target) target.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 120);
+      setTimeout(() => {
+        state.highlightFeedbackId = null;
+        save(false);
+      }, 4500);
+      break;
+    }
+
+    /* ---- 其他（原有） ---- */
     case 'todo-toggle': {
       const it = state.todos.find(x => x.id === el.dataset.id);
       if (it){ it.done = !it.done; save(); render(); }
@@ -3236,7 +3339,7 @@ document.addEventListener('click', e => {
       if (!start) return;
       state.srp.push({id: uid(), subject: subj, concept, start, done:[false,false,false,false]});
       save(); render();
-      toast('✅ 已新增知識點 Added');
+      toast('✅ 已新增知識點');
       break;
     }
     case 'assign-add': {
@@ -3251,7 +3354,7 @@ document.addEventListener('click', e => {
         remarks: ''
       });
       save(); render();
-      toast('✅ 已新增作業 Assignment added');
+      toast('✅ 已新增作業');
       break;
     }
     case 'assign-del': {
@@ -3280,7 +3383,7 @@ document.addEventListener('click', e => {
         progress: 0, remarks: ''
       });
       save(); render();
-      toast('✅ 已新增評估 Assessment added');
+      toast('✅ 已新增評估');
       break;
     }
     case 'assess-del': {
@@ -3321,7 +3424,7 @@ document.addEventListener('click', e => {
       state.feedback.unshift({id: uid(), name, subject: subj, grade, crit, text});
       state.fbAdding = false;
       save(); render();
-      toast('✅ 已新增反饋 Feedback added');
+      toast('✅ 已新增反饋');
       break;
     }
     case 'fb-edit': {
@@ -3341,14 +3444,13 @@ document.addEventListener('click', e => {
       f.text = $('#fbEditText-' + id).value;
       state.editingFbId = null;
       save(); render();
-      toast('✅ 已更新反饋 Feedback updated');
+      toast('✅ 已更新反饋');
       break;
     }
     case 'fb-del': {
-      if (!confirm('刪除此反饋？Delete this feedback?')) break;
+      if (!confirm('刪除此反饋？')) break;
       state.feedback = state.feedback.filter(x => x.id !== el.dataset.id);
       save(); render();
-      toast('🗑 已刪除 Deleted');
       break;
     }
     case 'rcg-add': {
@@ -3361,7 +3463,7 @@ document.addEventListener('click', e => {
         scores: [null, null, null, null, null]
       });
       save(); render();
-      toast('✅ 已新增評估 Added');
+      toast('✅ 已新增評估');
       break;
     }
     case 'rcg-del': {
@@ -3382,17 +3484,17 @@ document.addEventListener('click', e => {
     case 'sched-done': {
       state.editingSchedule = false;
       save(); render();
-      toast('✅ 課表已儲存 Schedule saved');
+      toast('✅ 課表已儲存');
       break;
     }
     case 'subj-add': {
       const inp = $('#subjNewInput');
       const name = inp ? inp.value.trim() : '';
       if (!name){ inp && inp.focus(); return; }
-      if (state.subjects.includes(name)){ toast('⚠️ 此科目已存在 Already exists'); return; }
+      if (state.subjects.includes(name)){ toast('⚠️ 此科目已存在'); return; }
       state.subjects.push(name);
       save(); render();
-      toast('✅ 已新增科目 Subject added');
+      toast('✅ 已新增科目');
       break;
     }
     case 'subj-del': {
@@ -3400,7 +3502,6 @@ document.addEventListener('click', e => {
       if (!confirm(`刪除科目「${name}」？`)) break;
       state.subjects = state.subjects.filter(s => s !== name);
       save(); render();
-      toast('🗑 已刪除科目 Subject removed');
       break;
     }
     case 'subj-rename': {
@@ -3409,15 +3510,15 @@ document.addEventListener('click', e => {
       if (!newName || !newName.trim() || newName === oldName) return;
       const trimmed = newName.trim();
       if (state.subjects.includes(trimmed) && trimmed !== oldName){
-        toast('⚠️ 名稱重複 Duplicate name'); return;
+        toast('⚠️ 名稱重複'); return;
       }
       state.subjects = state.subjects.map(s => s === oldName ? trimmed : s);
       state.srp.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.assignments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.assessments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.feedback.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      (state.wrongBook || []).forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       save(); render();
-      toast('✅ 已重新命名 Renamed');
       break;
     }
     case 'data-export': {
@@ -3428,7 +3529,7 @@ document.addEventListener('click', e => {
       a.download = `study-dashboard-${todayISO()}.json`;
       a.click();
       URL.revokeObjectURL(url);
-      toast('⬇️ 已匯出 Exported');
+      toast('⬇️ 已匯出');
       break;
     }
     case 'data-import': {
@@ -3447,10 +3548,13 @@ document.addEventListener('click', e => {
             state.editingFbId = null;
             state.fbAdding = false;
             state.editingSchedule = false;
+            state.wbAdding = false;
+            state.wbExpandedId = null;
+            state.expandedAssessId = null;
             save(); applyTheme(); render();
-            toast('✅ 已匯入 Imported');
+            toast('✅ 已匯入');
           }catch(err){
-            toast('⚠️ 匯入失敗 Import failed');
+            toast('⚠️ 匯入失敗');
           }
         };
         reader.readAsText(file);
@@ -3467,8 +3571,11 @@ document.addEventListener('click', e => {
       state.editingFbId = null;
       state.fbAdding = false;
       state.editingSchedule = false;
+      state.wbAdding = false;
+      state.wbExpandedId = null;
+      state.expandedAssessId = null;
       save(); applyTheme(); render();
-      toast('↺ 已重設 Reset complete');
+      toast('↺ 已重設');
       break;
     }
 
@@ -3502,7 +3609,6 @@ document.addEventListener('click', e => {
       const kind = el.dataset.kind;
       wrap.classList.add('burning');
       bed.className = 'd-burn-bed ' + kind;
-
       wrap.querySelectorAll('.d-burn-particle').forEach(p => p.remove());
 
       const isFire  = kind === 'fire';
@@ -3513,13 +3619,9 @@ document.addEventListener('click', e => {
       for (let i = 0; i < count; i++){
         const p = document.createElement('span');
         let type;
-        if (isFire){
-          type = Math.random() < 0.65 ? 'fire' : 'ash';
-        } else if (isWater){
-          type = 'water';
-        } else {
-          type = 'wind';
-        }
+        if (isFire) type = Math.random() < 0.65 ? 'fire' : 'ash';
+        else if (isWater) type = 'water';
+        else type = 'wind';
         p.className = 'd-burn-particle ' + type;
 
         const startX = 5 + Math.random() * 90;
@@ -3566,7 +3668,6 @@ document.addEventListener('click', e => {
       const track = el.dataset.track;
       if (!state.detoxVolumes) state.detoxVolumes = {};
       const cur = state.detoxVolumes[track] || 0;
-
       let newVol;
       if (cur > 0){
         state.detoxVolumes['_memo_' + track] = cur;
@@ -3579,7 +3680,6 @@ document.addEventListener('click', e => {
         newVol = memo;
         Ambience.setVolume(track, memo);
       }
-
       const row = el.closest('.d-audio-row');
       if (row){
         row.classList.toggle('playing', newVol > 0);
@@ -3587,12 +3687,10 @@ document.addEventListener('click', e => {
         if (slider) slider.value = Math.round(newVol * 100);
         if (el) el.textContent = newVol > 0 ? '❚❚' : '▶';
       }
-
       save();
       break;
     }
 
-    /* ---- spotify 浮動播放器 ---- */
     case 'spotify-toggle': {
       const box = document.getElementById('spotifyFloat');
       if (box) box.classList.toggle('open');
@@ -3632,7 +3730,7 @@ document.addEventListener('input', e => {
     return;
   }
   if (e.target.id === 'cloudInterval'){
-    Cloud.cfg.intervalSec = Math.max(30, parseInt(e.target.value, 10) || 120);
+    Cloud.cfg.intervalSec = Math.max(30, parseInt(e.target.value, 10) || 60);
     Cloud.persist();
     return;
   }
@@ -3743,22 +3841,26 @@ document.addEventListener('change', e => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey){
-    if (e.target.id === 'newTodoInput'){
-      const btn = document.querySelector('[data-act="todo-add"]');
-      btn && btn.click(); e.preventDefault();
-    }
-    if (e.target.id === 'subjNewInput'){
-      const btn = document.querySelector('[data-act="subj-add"]');
-      btn && btn.click(); e.preventDefault();
-    }
-    if (e.target.id === 'rcgNewName'){
-      const btn = document.querySelector('[data-act="rcg-add"]');
-      btn && btn.click(); e.preventDefault();
-    }
-    if (['srpConcept','asName','evName','fbNewName'].includes(e.target.id)){
-      const map = {srpConcept:'srp-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new'};
+    const map = {
+      newTodoInput: 'todo-add',
+      subjNewInput: 'subj-add',
+      rcgNewName: 'rcg-add',
+      srpConcept: 'srp-add',
+      asName: 'assign-add',
+      evName: 'assess-add',
+      fbNewName: 'fb-save-new'
+    };
+    if (map[e.target.id]){
+      e.preventDefault();
       const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`);
-      btn && btn.click(); e.preventDefault();
+      btn && btn.click();
+      return;
+    }
+    // 錯題本用 textarea，所以用 Ctrl/Cmd+Enter 送出
+    if (e.target.id === 'wbNewCorrect' && (e.ctrlKey || e.metaKey)){
+      e.preventDefault();
+      const btn = document.querySelector('[data-act="wb-save-new"]');
+      btn && btn.click();
     }
   }
 });
@@ -3795,7 +3897,7 @@ $('#themeBtn').addEventListener('click', () => {
 });
 
 /* =====================================================================
-   10. RESET BUTTON
+   10. RESET
    ===================================================================== */
 $('#resetBtn').addEventListener('click', () => {
   if (!confirm('確定要重設所有資料嗎？')) return;
@@ -3806,8 +3908,11 @@ $('#resetBtn').addEventListener('click', () => {
   state.editingFbId = null;
   state.fbAdding = false;
   state.editingSchedule = false;
+  state.wbAdding = false;
+  state.wbExpandedId = null;
+  state.expandedAssessId = null;
   save(); applyTheme(); render();
-  toast('↺ 已重設 Reset complete');
+  toast('↺ 已重設');
 });
 
 /* =====================================================================
@@ -3848,9 +3953,6 @@ $('#pomoToggle').addEventListener('click', () => {
         clearInterval(POMO.tick); POMO.running = false;
         POMO.remaining = POMO.modes[POMO.mode].min * 60;
         pomoBeep();
-        if (Notification && Notification.permission === 'granted'){
-          new Notification('⏰ 番茄鐘結束 Time is up!', {body:'休息一下。'});
-        }
       }
       pomoRender();
     }, 1000);
@@ -3888,10 +3990,14 @@ loadState();
 state.editingFbId = null;
 state.fbAdding = false;
 state.editingSchedule = false;
+state.wbAdding = false;
+state.wbExpandedId = null;
+state.expandedAssessId = null;
 applyTheme();
 render();
 pomoRender();
 Cloud.renderChip();
+Cloud.updateLastSyncUI();
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible' && Cloud.configured){
@@ -3906,10 +4012,6 @@ if (Cloud.configured){
   setTimeout(() => Cloud.sync(true), 1500);
 }
 Cloud.restartTimer();
-
-if ('Notification' in window && Notification.permission === 'default'){
-  setTimeout(() => { try{ Notification.requestPermission(); }catch(e){} }, 3000);
-}
 </script>
 </body>
 </html>
