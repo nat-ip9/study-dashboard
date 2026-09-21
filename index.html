@@ -53,7 +53,6 @@ body{
 ::-webkit-scrollbar-thumb:hover{background:var(--border);background-clip:content-box}
 ::-webkit-scrollbar-track{background:transparent}
 
-/* ============ LAYOUT ============ */
 .app{display:flex;min-height:100vh}
 .sidebar{
   width:246px;flex:0 0 246px;
@@ -129,7 +128,6 @@ body{
 .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .pomo.running .pomo-time{color:var(--primary)}
 
-/* ============ COMPONENTS ============ */
 .grid{display:grid;gap:14px}
 .g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .g-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -144,7 +142,6 @@ body{
 .card-title{font-size:14.5px;font-weight:750;display:flex;align-items:center;gap:8px}
 .card-sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 
-/* hero */
 .hero{
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
@@ -173,7 +170,6 @@ body{
 .ring-label b{font-size:22px;font-weight:800;line-height:1}
 .ring-label small{font-size:9.5px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:3px}
 
-/* stats */
 .stat{
   display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r);
   background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
@@ -187,7 +183,6 @@ body{
 .stat-val{font-size:22px;font-weight:800;line-height:1.05;letter-spacing:-.5px}
 .stat-lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px}
 
-/* badges & pills */
 .badge{display:inline-flex;align-items:center;padding:2.5px 9px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
 .pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap;line-height:1.5}
 .pill.ok{background:rgba(16,185,129,.15);color:#0d9c6e}
@@ -197,7 +192,6 @@ body{
 .pill.info{background:rgba(59,130,246,.15);color:#2563eb}
 .pill.muted{background:var(--surface-2);color:var(--muted)}
 
-/* lists */
 .list{display:flex;flex-direction:column;gap:2px}
 .item{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border-radius:12px;transition:.15s;border:1px solid transparent}
 .item:hover{background:var(--surface-2)}
@@ -209,7 +203,6 @@ body{
 .item-actions{display:flex;gap:5px;opacity:0;transition:.15s}
 .item:hover .item-actions{opacity:1}
 
-/* checkbox */
 .cb{
   width:20px;height:20px;flex:0 0 20px;border-radius:7px;border:2px solid var(--border);
   background:var(--surface);cursor:pointer;display:grid;place-items:center;
@@ -218,7 +211,6 @@ body{
 .cb:hover{border-color:var(--primary);transform:scale(1.06)}
 .cb.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));border-color:transparent;color:#fff}
 
-/* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 15px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:13px;font-weight:650;cursor:pointer;transition:.16s;white-space:nowrap}
 .btn:hover{background:var(--surface-2);transform:translateY(-1px)}
 .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 10px 22px -14px var(--primary)}
@@ -229,7 +221,6 @@ body{
 .btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))}
 .btn-danger:hover{background:rgba(239,68,68,.1);color:var(--danger)}
 
-/* inputs */
 .input{
   background:var(--surface);border:1px solid var(--border);border-radius:10px;
   padding:9px 12px;font:inherit;font-size:13px;color:var(--text);outline:none;
@@ -243,7 +234,6 @@ textarea.input{font-family:inherit;resize:vertical;line-height:1.55}
 .form-row > *{flex:1 1 150px}
 .form-row > .btn{flex:0 0 auto}
 
-/* progress bar */
 .bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;width:100%}
 .bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary-2));transition:width .5s cubic-bezier(.4,0,.2,1)}
 .bar-fill.ok{background:linear-gradient(90deg,#10b981,#34d399)}
@@ -253,7 +243,6 @@ input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:99px;background:linear-gradient(135deg,var(--primary),var(--primary-2));cursor:pointer;box-shadow:0 2px 8px -2px var(--primary);border:2px solid var(--surface)}
 input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:99px;border:2px solid var(--surface);background:var(--primary);cursor:pointer}
 
-/* week strip */
 .week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
 .day-chip{padding:11px 8px;border-radius:13px;border:1px solid var(--border);background:var(--surface);cursor:pointer;text-align:center;transition:.16s;position:relative;overflow:hidden}
 .day-chip:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--border));transform:translateY(-2px)}
@@ -264,7 +253,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:99px;bo
 .day-chip .mini{height:4px;border-radius:99px;background:var(--surface-3);overflow:hidden}
 .day-chip .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:99px;transition:width .4s}
 
-/* srp chips */
 .rev-row{display:flex;gap:6px;flex-wrap:wrap}
 .rev-chip{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:56px;padding:6px 9px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;transition:.16s}
 .rev-chip:hover{border-color:var(--primary);transform:translateY(-2px)}
@@ -278,7 +266,6 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:99px;bo
 .rev-chip.late .rd,.rev-chip.late .rl{color:#c47a06}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(225,29,72,.35)}50%{box-shadow:0 0 0 6px rgba(225,29,72,0)}}
 
-/* table */
 .scroll-x{overflow-x:auto;margin:0 -6px;padding:0 6px}
 table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:620px}
 table.tbl th{text-align:left;font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;padding:0 12px 9px;white-space:nowrap}
@@ -290,7 +277,6 @@ table.tbl input.cell-input{width:100%;border:1px solid transparent;background:tr
 table.tbl input.cell-input:hover{background:var(--surface-2);border-color:var(--border)}
 table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
 
-/* schedule */
 .sched-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .period{padding:11px 12px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);transition:.16s}
 .period:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
@@ -303,7 +289,6 @@ table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--pr
 .day-tab:hover{color:var(--text);border-color:var(--primary)}
 .day-tab.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 8px 18px -12px var(--primary)}
 
-/* accordion */
 details.acc{border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;transition:.16s}
 details.acc + details.acc{margin-top:9px}
 details.acc[open]{border-color:color-mix(in srgb,var(--primary) 30%,var(--border));box-shadow:var(--shadow)}
@@ -318,20 +303,17 @@ details.acc summary:hover{background:var(--surface-2)}
 .fb-list li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:99px;background:linear-gradient(135deg,var(--primary),var(--primary-2))}
 .fb-list li strong{color:var(--text)}
 
-/* chips row */
 .chip-row{display:flex;gap:6px;flex-wrap:wrap}
 .chip{padding:5px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;cursor:pointer;transition:.15s;color:var(--muted)}
 .chip:hover{color:var(--text);border-color:var(--primary)}
 .chip.active{background:var(--primary);color:#fff;border-color:transparent}
 
-/* subject editor chips */
 .subj-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px 7px 13px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);font-size:12.5px;font-weight:650;transition:.15s}
 .subj-chip:hover{border-color:var(--primary)}
 .subj-chip .dot{width:8px;height:8px;border-radius:99px}
 .subj-chip button{width:20px;height:20px;border-radius:99px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
 .subj-chip button:hover{background:var(--surface-3);color:var(--text)}
 
-/* misc */
 .empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px;border:1.5px dashed var(--border);border-radius:14px;line-height:1.7}
 .empty b{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
 .muted{color:var(--muted)}
@@ -341,13 +323,11 @@ details.acc summary:hover{background:var(--surface-2)}
 .kv:last-child{border-bottom:none}
 .kv b{font-weight:700}
 
-/* report card */
 .rc-grade{font-size:15px;font-weight:800;text-align:center;border-radius:10px;padding:5px 0;background:var(--surface-2);color:var(--muted)}
 .rc-grade.hi{background:rgba(16,185,129,.15);color:#0d9c6e}
 .rc-grade.mid{background:rgba(245,158,11,.16);color:#c47a06}
 .rc-grade.lo{background:rgba(239,68,68,.14);color:#dc2626}
 
-/* report-card grade entry grid */
 .rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:10px;transition:.14s}
 .rcg-row:hover{background:var(--surface-2)}
 .rcg-row.rcg-head{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;padding-bottom:2px}
@@ -356,7 +336,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .rcg-num{text-align:center;font-variant-numeric:tabular-nums}
 .rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
 
-/* toast */
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;font-size:13px;font-weight:650;z-index:999;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
@@ -387,9 +366,55 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .detox-page > *{position:relative;z-index:1}
 
-.detox-head{margin-bottom:22px}
+/* —— Detox 頁首（標題 + Spotify 並排） —— */
+.detox-head{
+  margin-bottom:22px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+.detox-title{
+  flex:1 1 auto;
+  min-width:200px;
+}
 .detox-head h2{font-size:24px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
 .detox-head p{font-size:12px;color:var(--d-text-dim);margin-top:4px;letter-spacing:.5px}
+
+.d-spotify-mini{
+  flex:0 1 360px;
+  min-width:260px;
+  background:var(--d-surface);
+  border:1px solid var(--d-border);
+  border-radius:14px;
+  padding:12px 14px;
+  backdrop-filter:blur(14px);
+}
+.d-spotify-mini .d-card-title{
+  font-size:11.5px;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--d-text);
+  font-weight:750;
+  letter-spacing:.3px;
+}
+.d-spotify-mini .d-card-title small{
+  font-size:10px;
+  color:var(--d-text-dim);
+  font-weight:600;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-left:auto;
+}
+.d-spotify-mini iframe{
+  border-radius:12px;
+  width:100%;
+  display:block;
+  filter:brightness(0.95) contrast(1.05);
+}
 
 .detox-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:900px){.detox-grid{grid-template-columns:1fr}}
@@ -465,7 +490,7 @@ details.acc summary:hover{background:var(--surface-2)}
   100%{opacity:0;transform:scaleY(1.4)}
 }
 
-/* 水床（升級版） */
+/* 水床 */
 .d-burn-bed.water{
   height:100%;
   background:linear-gradient(180deg,
@@ -677,13 +702,6 @@ details.acc summary:hover{background:var(--surface-2)}
   color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px;
 }
 
-/* Spotify 播放器 */
-.detox-page iframe {
-  border-radius: 12px;
-  width: 100%;
-  filter: brightness(0.9) contrast(1.1);
-}
-
 @media(max-width:900px){
   .app{flex-direction:column}
   .sidebar{
@@ -712,6 +730,8 @@ details.acc summary:hover{background:var(--surface-2)}
   .topbar h2{font-size:18px}
   .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
   .rcg-row .input{padding:5px 4px;font-size:11.5px}
+  .detox-head{flex-direction:column;gap:16px}
+  .d-spotify-mini{flex:1 1 100%;min-width:0}
 }
 @media(max-width:600px){
   .detox-page{padding:18px 14px;border-radius:14px}
@@ -1531,7 +1551,6 @@ const Ambience = {
     return buf;
   },
 
-  /* 雨聲：持續雨層 + 離散雨滴 */
   buildRain(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1569,7 +1588,6 @@ const Ambience = {
     return {out, timers:[dropTimer]};
   },
 
-  /* 海浪：慢週期 + 浪花層 */
   buildWaves(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1601,7 +1619,6 @@ const Ambience = {
     return {out, nodes:[src, lfo, foam, lfo2]};
   },
 
-  /* 營火：低頻轟鳴 + 不規則劈啪 */
   buildFire(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1647,7 +1664,6 @@ const Ambience = {
     return {out, timers:[crackleTimer]};
   },
 
-  /* 咖啡店：人聲雜訊 + 偶爾杯盤碰撞 */
   buildCoffee(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1699,7 +1715,6 @@ const Ambience = {
     return {out, timers:[clinkTimer], nodes:[voice, rumble, voiceLFO]};
   },
 
-  /* 森林：樹葉沙沙 + 鳥鳴 */
   buildForest(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1747,7 +1762,6 @@ const Ambience = {
     return {out, timers:[birdTimer], nodes:[leaves, leafLFO]};
   },
 
-  /* 風鈴：泛音結構 + 背景風聲 */
   buildChime(){
     const c = this.ctx;
     const out = c.createGain();
@@ -1846,7 +1860,6 @@ const Ambience = {
   }
 };
 
-/* 泡泡爆破音效 */
 function popSound(){
   try{
     if (!Ambience.ctx){
@@ -2764,6 +2777,9 @@ VIEWS.schedule = function(){
   </div>`;
 };
 
+/* =====================================================================
+   Detox 頁面（Spotify 移到頁首）
+   ===================================================================== */
 VIEWS.detox = function(){
   const volumes = state.detoxVolumes || {};
 
@@ -2792,8 +2808,19 @@ VIEWS.detox = function(){
   return `
   <div class="detox-page">
     <div class="detox-head">
-      <h2>🌿 解壓空間</h2>
-      <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
+      <div class="detox-title">
+        <h2>🌿 解壓空間</h2>
+        <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
+      </div>
+      <div class="d-spotify-mini">
+        <div class="d-card-title">🎧 我的歌單 <small>Spotify</small></div>
+        <iframe style="border-radius:12px" 
+          src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
+          width="100%" height="152" frameBorder="0" allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+          loading="lazy">
+        </iframe>
+      </div>
     </div>
 
     <div class="detox-grid">
@@ -2825,16 +2852,6 @@ VIEWS.detox = function(){
       <div class="d-card">
         <div class="d-card-title">🎵 環境音 <small>Ambient Sounds</small></div>
         <div class="d-audio-list">${audioRows}</div>
-      </div>
-
-      <div class="d-card">
-        <div class="d-card-title">🎧 我的歌單 <small>Spotify Playlist</small></div>
-        <iframe style="border-radius:12px" 
-          src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
-          width="100%" height="352" frameBorder="0" allowfullscreen="" 
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-          loading="lazy">
-        </iframe>
       </div>
 
       <div class="d-card" style="grid-column:1/-1">
@@ -3050,7 +3067,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>1.9（精緻沖走+更多句子+Spotify）</b></div>
+    <div class="kv"><span>版本 Version</span><b>2.0（Spotify 置頂 + 泡泡修復）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3101,7 +3118,6 @@ document.addEventListener('click', e => {
     if (oldView === 'detox' && newView !== 'detox'){
       Ambience.stopAll();
       Bubbles.destroy();
-      // 停止 Spotify 播放
       const spotifyIframe = document.querySelector('.detox-page iframe[src*="spotify"]');
       if (spotifyIframe) {
         const originalSrc = spotifyIframe.src;
@@ -3524,20 +3540,34 @@ document.addEventListener('click', e => {
     }
 
     case 'detox-toggle': {
+      /* 只更新這一行 UI，不重新渲染整個頁面（否則泡泡會消失） */
       const track = el.dataset.track;
       if (!state.detoxVolumes) state.detoxVolumes = {};
       const cur = state.detoxVolumes[track] || 0;
 
+      let newVol;
       if (cur > 0){
         state.detoxVolumes['_memo_' + track] = cur;
         state.detoxVolumes[track] = 0;
+        newVol = 0;
         Ambience.setVolume(track, 0);
       } else {
         const memo = state.detoxVolumes['_memo_' + track] || 0.5;
         state.detoxVolumes[track] = memo;
+        newVol = memo;
         Ambience.setVolume(track, memo);
       }
-      save(); render();
+
+      // 直接更新這一行的 DOM
+      const row = el.closest('.d-audio-row');
+      if (row){
+        row.classList.toggle('playing', newVol > 0);
+        const slider = row.querySelector('.d-audio-slider');
+        if (slider) slider.value = Math.round(newVol * 100);
+        if (el) el.textContent = newVol > 0 ? '❚❚' : '▶';
+      }
+
+      save();
       break;
     }
   }
