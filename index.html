@@ -8,40 +8,35 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f4f5fa;
-  --glow1:#e6ebff; --glow2:#ffe8f2;
+  --bg:#f7f8fb;
   --surface:#ffffff;
-  --surface-2:#f6f7fc;
-  --surface-3:#eef0f8;
-  --text:#141728;
-  --muted:#6b7280;
-  --border:#e6e8f2;
+  --surface-2:#f7f8fb;
+  --surface-3:#eef0f6;
+  --text:#16181f;
+  --muted:#8891a3;
+  --border:#ebedf3;
   --primary:#5b5ef0;
   --primary-2:#8b5cf6;
   --ok:#10b981; --warn:#f59e0b; --danger:#ef4444; --info:#3b82f6; --urgent:#e11d48;
-  --r:16px; --r-sm:10px;
-  --shadow:0 1px 2px rgba(20,23,40,.04), 0 14px 30px -22px rgba(20,23,40,.5);
+  --r:12px; --r-sm:8px;
+  --shadow:0 1px 2px rgba(20,23,40,.03);
 }
 [data-theme="dark"]{
-  --bg:#0d0f16;
-  --glow1:#1a1d33; --glow2:#251a2b;
-  --surface:#161923;
-  --surface-2:#1d2130;
-  --surface-3:#242938;
+  --bg:#0e1015;
+  --surface:#16181f;
+  --surface-2:#1c1f28;
+  --surface-3:#22252f;
   --text:#e9ebf5;
-  --muted:#98a1b8;
-  --border:#272c3c;
+  --muted:#8891a3;
+  --border:#242832;
   --primary:#818cf8;
   --primary-2:#a78bfa;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 30px -22px rgba(0,0,0,.9);
+  --shadow:0 1px 2px rgba(0,0,0,.25);
 }
 html,body{height:100%}
 body{
   font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
   background:var(--bg);
-  background-image:radial-gradient(1100px 600px at 8% -8%, var(--glow1) 0%, transparent 58%),
-                   radial-gradient(900px 520px at 102% 0%, var(--glow2) 0%, transparent 55%);
-  background-attachment:fixed;
   color:var(--text);
   font-size:14px;
   line-height:1.55;
@@ -54,347 +49,340 @@ body{
 
 .app{display:flex;min-height:100vh}
 .sidebar{
-  width:246px;flex:0 0 246px;
+  width:230px;flex:0 0 230px;
   position:sticky;top:0;height:100vh;
-  display:flex;flex-direction:column;gap:6px;
-  padding:22px 16px;
-  background:color-mix(in srgb, var(--surface) 72%, transparent);
-  backdrop-filter:blur(14px);
+  display:flex;flex-direction:column;gap:4px;
+  padding:18px 14px;
+  background:var(--surface);
   border-right:1px solid var(--border);
   overflow-y:auto;
 }
-.brand{display:flex;align-items:center;gap:11px;padding:4px 6px 18px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 6px 16px}
 .brand-icon{
-  width:40px;height:40px;flex:0 0 40px;border-radius:13px;
-  display:grid;place-items:center;font-size:20px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-2));
-  box-shadow:0 10px 22px -12px var(--primary);
+  width:36px;height:36px;flex:0 0 36px;border-radius:11px;
+  display:grid;place-items:center;font-size:18px;
+  background:var(--primary);color:#fff;
 }
-.brand h1{font-size:15px;font-weight:800;letter-spacing:.2px}
-.brand p{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.4px}
-.nav{display:flex;flex-direction:column;gap:3px;flex:1}
+.brand h1{font-size:14px;font-weight:800;letter-spacing:.2px}
+.brand p{font-size:10.5px;color:var(--muted);font-weight:500;letter-spacing:.4px}
+.nav{display:flex;flex-direction:column;gap:2px;flex:1}
 .nav-item{
   display:flex;align-items:center;gap:10px;
-  padding:9px 11px;border-radius:12px;border:1px solid transparent;
+  padding:8px 10px;border-radius:9px;border:1px solid transparent;
   background:transparent;cursor:pointer;text-align:left;
-  color:var(--muted);font:inherit;transition:.16s ease;width:100%;
+  color:var(--muted);font:inherit;transition:.14s ease;width:100%;
 }
 .nav-item:hover{background:var(--surface-2);color:var(--text)}
 .nav-item.active{
-  background:linear-gradient(135deg,var(--primary),var(--primary-2));
-  color:#fff;box-shadow:0 10px 22px -14px var(--primary);
+  background:var(--primary);
+  color:#fff;
 }
-.nav-icon{font-size:15px;line-height:1;width:18px;text-align:center}
+.nav-icon{font-size:14px;line-height:1;width:18px;text-align:center}
 .nav-text{display:flex;flex-direction:column;line-height:1.2}
-.nav-text b{font-size:13px;font-weight:650}
+.nav-text b{font-size:12.5px;font-weight:650}
 .nav-text small{font-size:10px;opacity:.72;font-weight:500;letter-spacing:.2px}
-.sidebar-foot{display:flex;gap:6px;padding-top:12px;border-top:1px solid var(--border)}
+.sidebar-foot{display:flex;gap:6px;padding-top:10px;border-top:1px solid var(--border)}
 .sidebar-foot button{
-  flex:1;padding:8px;border-radius:10px;border:1px solid var(--border);
-  background:var(--surface);color:var(--muted);font:inherit;font-size:12px;
-  cursor:pointer;transition:.15s;font-weight:600;
+  flex:1;padding:7px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface);color:var(--muted);font:inherit;font-size:11.5px;
+  cursor:pointer;transition:.14s;font-weight:600;
 }
 .sidebar-foot button:hover{background:var(--surface-2);color:var(--text)}
 
-.main{flex:1;min-width:0;padding:22px 28px 70px;max-width:1460px;margin:0 auto;width:100%}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
-.topbar h2{font-size:22px;font-weight:800;letter-spacing:-.3px}
-.topbar .sub{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:1.2px;text-transform:uppercase}
-.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.main{flex:1;min-width:0;padding:20px 26px 70px;max-width:1400px;margin:0 auto;width:100%}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.topbar h2{font-size:20px;font-weight:800;letter-spacing:-.3px}
+.topbar .sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:1.2px;text-transform:uppercase}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .today-chip{
-  display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:99px;
-  background:var(--surface);border:1px solid var(--border);font-size:12.5px;font-weight:650;
-  box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;
+  background:var(--surface-2);border:1px solid transparent;
+  font-size:12px;font-weight:600;color:var(--muted);
 }
-.today-chip .dot{width:7px;height:7px;border-radius:99px;background:var(--ok);box-shadow:0 0 0 3px rgba(16,185,129,.2)}
+.today-chip .dot{width:6px;height:6px;border-radius:99px;background:var(--ok)}
 
 .pomo{
-  display:flex;align-items:center;gap:8px;padding:6px 8px 6px 12px;border-radius:99px;
-  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;border-radius:99px;
+  background:var(--surface-2);
 }
 .pomo-mode{
-  font-size:10.5px;font-weight:750;letter-spacing:.4px;color:var(--muted);
-  cursor:pointer;user-select:none;padding:3px 7px;border-radius:99px;background:var(--surface-2);
-  transition:.15s;
+  font-size:10px;font-weight:750;letter-spacing:.4px;color:var(--muted);
+  cursor:pointer;user-select:none;padding:3px 7px;border-radius:99px;background:var(--surface);
+  transition:.14s;
 }
 .pomo-mode:hover{color:var(--text)}
-.pomo-time{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.5px;min-width:46px;text-align:center}
+.pomo-time{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.4px;min-width:44px;text-align:center}
 .icon-btn{
-  width:28px;height:28px;border-radius:99px;border:1px solid var(--border);
-  background:var(--surface-2);color:var(--text);cursor:pointer;font-size:12px;
-  display:grid;place-items:center;transition:.15s;line-height:1;
+  width:26px;height:26px;border-radius:99px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text);cursor:pointer;font-size:11px;
+  display:grid;place-items:center;transition:.14s;line-height:1;
 }
 .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .pomo.running .pomo-time{color:var(--primary)}
 
-.grid{display:grid;gap:14px}
+.grid{display:grid;gap:12px}
 .g-2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .g-3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .g-4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-.stack{display:flex;flex-direction:column;gap:14px}
+.stack{display:flex;flex-direction:column;gap:12px}
 
 .card{
   background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
-  padding:18px;box-shadow:var(--shadow);
+  padding:16px 18px;
 }
-.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.card-title{font-size:14.5px;font-weight:750;display:flex;align-items:center;gap:8px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.card-title{font-size:13.5px;font-weight:750;display:flex;align-items:center;gap:8px}
 .card-sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 
 .hero{
   position:relative;overflow:hidden;
   display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
-  padding:26px 28px;border-radius:20px;margin-bottom:16px;
-  background:linear-gradient(120deg,var(--primary) 0%,var(--primary-2) 55%,#ec4899 130%);
-  color:#fff;box-shadow:0 24px 50px -30px var(--primary);
+  padding:22px 24px;border-radius:var(--r);margin-bottom:14px;
+  background:linear-gradient(120deg,var(--primary) 0%,var(--primary-2) 100%);
+  color:#fff;
 }
-.hero::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(500px 260px at 88% -20%, rgba(255,255,255,.28), transparent 70%);
-  pointer-events:none;
-}
-.hero h3{font-size:23px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px}
-.hero p{font-size:13px;opacity:.9;font-weight:500;max-width:560px}
-.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}
+.hero h3{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
+.hero p{font-size:12.5px;opacity:.9;font-weight:500;max-width:560px}
+.hero-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
 .hero-chips span{
-  font-size:11.5px;font-weight:650;padding:4px 11px;border-radius:99px;
-  background:rgba(255,255,255,.19);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.22);
+  font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:99px;
+  background:rgba(255,255,255,.16);
 }
-.ring-wrap{position:relative;width:104px;height:104px;flex:0 0 104px}
-.ring{width:104px;height:104px;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:5;stroke-linecap:round}
+.ring-wrap{position:relative;width:92px;height:92px;flex:0 0 92px}
+.ring{width:92px;height:92px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:4.5;stroke-linecap:round}
 .ring .bg{stroke:rgba(255,255,255,.24)}
 .ring .fg{stroke:#fff;transition:stroke-dasharray .7s cubic-bezier(.4,0,.2,1)}
 .ring-label{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
-.ring-label b{font-size:22px;font-weight:800;line-height:1}
-.ring-label small{font-size:9.5px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:3px}
-
-/* ============ 自動提醒橫幅 ============ */
-.reminder-bar{
-  border-radius:16px;
-  padding:14px 18px;
-  margin-bottom:16px;
-  background:linear-gradient(135deg, color-mix(in srgb, var(--primary) 8%, var(--surface)) 0%, color-mix(in srgb, var(--primary-2) 5%, var(--surface)) 100%);
-  border:1px solid color-mix(in srgb, var(--primary) 22%, var(--border));
-}
-.reminder-head{
-  display:flex;align-items:center;gap:8px;margin-bottom:10px;
-}
-.reminder-head b{font-size:13.5px;font-weight:750}
-.reminder-list{display:flex;flex-direction:column;gap:4px}
-.reminder-item{
-  display:flex;align-items:center;gap:10px;
-  padding:8px 10px;border-radius:10px;
-  font-size:12.8px;line-height:1.4;
-  cursor:pointer;transition:.15s;
-  border:1px solid transparent;
-}
-.reminder-item:hover{background:var(--surface);border-color:var(--border)}
-.reminder-item .rm-icon{font-size:15px;flex:0 0 auto;line-height:1}
-.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
-.reminder-item .rm-arrow{color:var(--muted);font-size:11px;font-weight:700;opacity:.7}
-.reminder-item.tone-danger{border-left:3px solid var(--danger)}
-.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
-.reminder-item.tone-warn{border-left:3px solid var(--warn)}
-.reminder-item.tone-info{border-left:3px solid var(--info)}
-.reminder-item.tone-ok{border-left:3px solid var(--ok)}
+.ring-label b{font-size:20px;font-weight:800;line-height:1}
+.ring-label small{font-size:9px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:2px}
 
 .stat{
-  display:flex;align-items:center;gap:13px;padding:15px 16px;border-radius:var(--r);
-  background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);
-  transition:.18s;
+  display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(--r);
+  background:var(--surface);border:1px solid var(--border);
+  transition:.15s;
 }
-.stat:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 35%,var(--border))}
+.stat:hover{border-color:color-mix(in srgb,var(--primary) 28%,var(--border))}
 .stat-icon{
-  width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:grid;place-items:center;
-  font-size:18px;background:var(--surface-2);
+  width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:grid;place-items:center;
+  font-size:16px;background:var(--surface-2);
 }
-.stat-val{font-size:22px;font-weight:800;line-height:1.05;letter-spacing:-.5px}
-.stat-lbl{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.2px}
+.stat-val{font-size:19px;font-weight:800;line-height:1.05;letter-spacing:-.4px}
+.stat-lbl{font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:.2px}
 
 .badge{display:inline-flex;align-items:center;padding:2.5px 9px;border-radius:99px;font-size:11px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
 .pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:700;white-space:nowrap;line-height:1.5}
-.pill.ok{background:rgba(16,185,129,.15);color:#0d9c6e}
-.pill.warn{background:rgba(245,158,11,.16);color:#c47a06}
-.pill.danger{background:rgba(239,68,68,.15);color:#dc2626}
-.pill.urgent{background:rgba(225,29,72,.15);color:#e11d48}
-.pill.info{background:rgba(59,130,246,.15);color:#2563eb}
+.pill.ok{background:rgba(16,185,129,.13);color:#0d9c6e}
+.pill.warn{background:rgba(245,158,11,.14);color:#c47a06}
+.pill.danger{background:rgba(239,68,68,.13);color:#dc2626}
+.pill.urgent{background:rgba(225,29,72,.13);color:#e11d48}
+.pill.info{background:rgba(59,130,246,.13);color:#2563eb}
 .pill.muted{background:var(--surface-2);color:var(--muted)}
 
 .list{display:flex;flex-direction:column;gap:2px}
-.item{display:flex;align-items:flex-start;gap:11px;padding:10px 12px;border-radius:12px;transition:.15s;border:1px solid transparent}
+.item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:10px;transition:.14s;border:1px solid transparent}
 .item:hover{background:var(--surface-2)}
 .item + .item{border-top:1px solid var(--border)}
 .item-main{flex:1;min-width:0}
-.item-title{font-size:13.5px;font-weight:600;word-break:break-word}
+.item-title{font-size:13px;font-weight:600;word-break:break-word}
 .item-title.done{text-decoration:line-through;color:var(--muted);opacity:.72}
-.item-meta{font-size:11.5px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:3px}
+.item-meta{font-size:11px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:3px}
 .item-actions{display:flex;gap:5px;opacity:0;transition:.15s}
 .item:hover .item-actions{opacity:1}
 
 .cb{
-  width:20px;height:20px;flex:0 0 20px;border-radius:7px;border:2px solid var(--border);
+  width:19px;height:19px;flex:0 0 19px;border-radius:6px;border:2px solid var(--border);
   background:var(--surface);cursor:pointer;display:grid;place-items:center;
-  transition:.16s;margin-top:1px;font-size:11px;color:transparent;line-height:1;
+  transition:.14s;margin-top:1px;font-size:10px;color:transparent;line-height:1;
 }
-.cb:hover{border-color:var(--primary);transform:scale(1.06)}
-.cb.on{background:linear-gradient(135deg,var(--primary),var(--primary-2));border-color:transparent;color:#fff}
+.cb:hover{border-color:var(--primary)}
+.cb.on{background:var(--primary);border-color:var(--primary);color:#fff}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 15px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:13px;font-weight:650;cursor:pointer;transition:.16s;white-space:nowrap}
-.btn:hover{background:var(--surface-2);transform:translateY(-1px)}
-.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 10px 22px -14px var(--primary)}
-.btn-primary:hover{filter:brightness(1.07);background:linear-gradient(135deg,var(--primary),var(--primary-2))}
-.btn-sm{padding:6px 11px;font-size:12px;border-radius:9px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.14s;white-space:nowrap}
+.btn:hover{background:var(--surface-2)}
+.btn-primary{background:var(--primary);color:#fff;border-color:transparent}
+.btn-primary:hover{background:color-mix(in srgb,var(--primary) 90%, black);transform:none;filter:none}
+.btn-sm{padding:5px 10px;font-size:11.5px;border-radius:7px}
 .btn-ghost{background:transparent;border-color:transparent;color:var(--muted)}
 .btn-ghost:hover{background:var(--surface-2);color:var(--danger)}
-.btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))}
-.btn-danger:hover{background:rgba(239,68,68,.1);color:var(--danger)}
+.btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 30%,var(--border))}
+.btn-danger:hover{background:rgba(239,68,68,.08);color:var(--danger)}
 
 .input{
-  background:var(--surface);border:1px solid var(--border);border-radius:10px;
-  padding:9px 12px;font:inherit;font-size:13px;color:var(--text);outline:none;
-  transition:.15s;min-width:0;width:100%;
+  background:var(--surface);border:1px solid var(--border);border-radius:9px;
+  padding:8px 11px;font:inherit;font-size:12.5px;color:var(--text);outline:none;
+  transition:.14s;min-width:0;width:100%;
 }
-.input::placeholder{color:var(--muted);opacity:.75}
-.input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
-select.input{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 16px) 50%,calc(100% - 11px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:32px}
+.input::placeholder{color:var(--muted);opacity:.7}
+.input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 14%,transparent)}
+select.input{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}
 textarea.input{font-family:inherit;resize:vertical;line-height:1.55}
 .form-row{display:flex;gap:8px;flex-wrap:wrap}
 .form-row > *{flex:1 1 150px}
 .form-row > .btn{flex:0 0 auto}
 
-.bar{height:7px;border-radius:99px;background:var(--surface-3);overflow:hidden;width:100%}
-.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--primary),var(--primary-2));transition:width .5s cubic-bezier(.4,0,.2,1)}
-.bar-fill.ok{background:linear-gradient(90deg,#10b981,#34d399)}
-.bar-fill.warn{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
-.bar-fill.danger{background:linear-gradient(90deg,#ef4444,#f87171)}
-input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--surface-3);outline:none;cursor:pointer;margin-top:10px}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:99px;background:linear-gradient(135deg,var(--primary),var(--primary-2));cursor:pointer;box-shadow:0 2px 8px -2px var(--primary);border:2px solid var(--surface)}
-input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:99px;border:2px solid var(--surface);background:var(--primary);cursor:pointer}
+.bar{height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden;width:100%}
+.bar-fill{height:100%;border-radius:99px;background:var(--primary);transition:width .5s cubic-bezier(.4,0,.2,1)}
+.bar-fill.ok{background:var(--ok)}
+.bar-fill.warn{background:var(--warn)}
+.bar-fill.danger{background:var(--danger)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;border-radius:99px;background:var(--surface-3);outline:none;cursor:pointer;margin-top:10px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:99px;background:var(--primary);cursor:pointer;border:2px solid var(--surface)}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:99px;border:2px solid var(--surface);background:var(--primary);cursor:pointer}
 
-.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.day-chip{padding:11px 8px;border-radius:13px;border:1px solid var(--border);background:var(--surface);cursor:pointer;text-align:center;transition:.16s;position:relative;overflow:hidden}
-.day-chip:hover{border-color:color-mix(in srgb,var(--primary) 45%,var(--border));transform:translateY(-2px)}
-.day-chip.sel{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 16%,transparent)}
-.day-chip.today::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--primary-2))}
-.day-chip .wd{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.3px}
-.day-chip .dd{font-size:16px;font-weight:800;margin:2px 0 6px;letter-spacing:-.3px}
-.day-chip .mini{height:4px;border-radius:99px;background:var(--surface-3);overflow:hidden}
-.day-chip .mini i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-2));border-radius:99px;transition:width .4s}
+.week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day-chip{padding:10px 6px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;text-align:center;transition:.14s;position:relative;overflow:hidden}
+.day-chip:hover{border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
+.day-chip.sel{border-color:var(--primary);background:color-mix(in srgb,var(--primary) 5%,var(--surface))}
+.day-chip.today::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--primary)}
+.day-chip .wd{font-size:10.5px;font-weight:700;color:var(--muted);letter-spacing:.3px}
+.day-chip .dd{font-size:15px;font-weight:800;margin:2px 0 6px;letter-spacing:-.3px}
+.day-chip .mini{height:3px;border-radius:99px;background:var(--surface-3);overflow:hidden}
+.day-chip .mini i{display:block;height:100%;background:var(--primary);border-radius:99px;transition:width .4s}
 
-.rev-row{display:flex;gap:6px;flex-wrap:wrap}
-.rev-chip{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:56px;padding:6px 9px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;transition:.16s}
-.rev-chip:hover{border-color:var(--primary);transform:translateY(-2px)}
-.rev-chip .rl{font-size:9.5px;font-weight:750;color:var(--muted);letter-spacing:.3px}
-.rev-chip .rd{font-size:11.5px;font-weight:700;font-variant-numeric:tabular-nums}
-.rev-chip.on{background:rgba(16,185,129,.14);border-color:rgba(16,185,129,.45)}
+.rev-row{display:flex;gap:5px;flex-wrap:wrap}
+.rev-chip{display:flex;flex-direction:column;align-items:center;gap:1px;min-width:52px;padding:5px 8px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;transition:.14s}
+.rev-chip:hover{border-color:var(--primary)}
+.rev-chip .rl{font-size:9px;font-weight:750;color:var(--muted);letter-spacing:.3px}
+.rev-chip .rd{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+.rev-chip.on{background:rgba(16,185,129,.13);border-color:rgba(16,185,129,.4)}
 .rev-chip.on .rd,.rev-chip.on .rl{color:#0d9c6e}
-.rev-chip.due{background:rgba(225,29,72,.13);border-color:rgba(225,29,72,.4);animation:pulse 2s infinite}
+.rev-chip.due{background:rgba(225,29,72,.11);border-color:rgba(225,29,72,.35)}
 .rev-chip.due .rd,.rev-chip.due .rl{color:#e11d48}
-.rev-chip.late{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4)}
+.rev-chip.late{background:rgba(245,158,11,.13);border-color:rgba(245,158,11,.35)}
 .rev-chip.late .rd,.rev-chip.late .rl{color:#c47a06}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(225,29,72,.35)}50%{box-shadow:0 0 0 6px rgba(225,29,72,0)}}
 
 .scroll-x{overflow-x:auto;margin:0 -6px;padding:0 6px}
-table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;min-width:620px}
-table.tbl th{text-align:left;font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;padding:0 12px 9px;white-space:nowrap}
-table.tbl td{padding:11px 12px;border-top:1px solid var(--border);vertical-align:middle}
-table.tbl tbody tr{transition:.14s}
+table.tbl{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;min-width:620px}
+table.tbl th{text-align:left;font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;padding:0 12px 8px;white-space:nowrap}
+table.tbl td{padding:10px 12px;border-top:1px solid var(--border);vertical-align:middle}
+table.tbl tbody tr{transition:.13s}
 table.tbl tbody tr:hover{background:var(--surface-2)}
 table.tbl tbody tr:first-child td{border-top:1px solid var(--border)}
-table.tbl input.cell-input{width:100%;border:1px solid transparent;background:transparent;padding:5px 7px;border-radius:7px;font:inherit;font-size:12.5px;color:inherit;outline:none;transition:.15s}
+table.tbl input.cell-input{width:100%;border:1px solid transparent;background:transparent;padding:5px 7px;border-radius:6px;font:inherit;font-size:12px;color:inherit;outline:none;transition:.14s}
 table.tbl input.cell-input:hover{background:var(--surface-2);border-color:var(--border)}
-table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 14%,transparent)}
 
 .sched-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.period{padding:11px 12px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);transition:.16s}
-.period:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--primary) 40%,var(--border))}
-.period .pn{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;margin-bottom:4px}
-.period .pc{font-size:12.5px;font-weight:650;line-height:1.35}
-.period input{width:100%;border:1px solid var(--border);background:var(--surface);padding:6px 8px;border-radius:8px;font:inherit;font-size:12.5px;color:var(--text);outline:none;transition:.15s;margin-top:2px}
-.period input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
-.day-tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;flex-wrap:wrap}
-.day-tab{padding:7px 14px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12.5px;font-weight:650;cursor:pointer;transition:.15s;color:var(--muted);white-space:nowrap}
+.period{padding:10px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);transition:.14s}
+.period:hover{border-color:color-mix(in srgb,var(--primary) 35%,var(--border))}
+.period .pn{font-size:9.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;margin-bottom:3px}
+.period .pc{font-size:12px;font-weight:650;line-height:1.35}
+.period input{width:100%;border:1px solid var(--border);background:var(--surface);padding:6px 8px;border-radius:7px;font:inherit;font-size:12px;color:var(--text);outline:none;transition:.14s;margin-top:2px}
+.period input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 14%,transparent)}
+.day-tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;flex-wrap:wrap}
+.day-tab{padding:6px 13px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:650;cursor:pointer;transition:.14s;color:var(--muted);white-space:nowrap}
 .day-tab:hover{color:var(--text);border-color:var(--primary)}
-.day-tab.active{background:linear-gradient(135deg,var(--primary),var(--primary-2));color:#fff;border-color:transparent;box-shadow:0 8px 18px -12px var(--primary)}
+.day-tab.active{background:var(--primary);color:#fff;border-color:transparent}
 
-details.acc{border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;transition:.16s}
-details.acc + details.acc{margin-top:9px}
-details.acc[open]{border-color:color-mix(in srgb,var(--primary) 30%,var(--border));box-shadow:var(--shadow)}
-details.acc summary{padding:13px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:11px;font-size:13.5px;font-weight:650;transition:.15s}
+details.acc{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden;transition:.14s}
+details.acc + details.acc{margin-top:8px}
+details.acc[open]{border-color:color-mix(in srgb,var(--primary) 25%,var(--border))}
+details.acc summary{padding:12px 15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:650;transition:.14s}
 details.acc summary::-webkit-details-marker{display:none}
-details.acc summary::after{content:'＋';margin-left:auto;color:var(--muted);font-weight:600;font-size:15px;transition:.2s}
+details.acc summary::after{content:'＋';margin-left:auto;color:var(--muted);font-weight:600;font-size:14px;transition:.2s}
 details.acc[open] summary::after{content:'－'}
 details.acc summary:hover{background:var(--surface-2)}
-.acc-body{padding:2px 16px 16px;font-size:13px;color:var(--text)}
-.fb-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-.fb-list li{padding-left:14px;position:relative;color:var(--muted);line-height:1.65;font-size:12.8px;white-space:pre-wrap}
-.fb-list li::before{content:'';position:absolute;left:2px;top:8px;width:5px;height:5px;border-radius:99px;background:linear-gradient(135deg,var(--primary),var(--primary-2))}
+.acc-body{padding:2px 15px 15px;font-size:12.5px;color:var(--text)}
+.fb-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.fb-list li{padding-left:14px;position:relative;color:var(--muted);line-height:1.65;font-size:12.5px;white-space:pre-wrap}
+.fb-list li::before{content:'';position:absolute;left:2px;top:8px;width:4px;height:4px;border-radius:99px;background:var(--primary)}
 .fb-list li strong{color:var(--text)}
 
-.chip-row{display:flex;gap:6px;flex-wrap:wrap}
-.chip{padding:5px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:600;cursor:pointer;transition:.15s;color:var(--muted)}
+.chip-row{display:flex;gap:5px;flex-wrap:wrap}
+.chip{padding:4px 11px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:600;cursor:pointer;transition:.14s;color:var(--muted)}
 .chip:hover{color:var(--text);border-color:var(--primary)}
 .chip.active{background:var(--primary);color:#fff;border-color:transparent}
 
-.subj-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 10px 7px 13px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);font-size:12.5px;font-weight:650;transition:.15s}
+.subj-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 6px 12px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);font-size:12px;font-weight:650;transition:.14s}
 .subj-chip:hover{border-color:var(--primary)}
-.subj-chip .dot{width:8px;height:8px;border-radius:99px}
-.subj-chip button{width:20px;height:20px;border-radius:99px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
+.subj-chip .dot{width:7px;height:7px;border-radius:99px}
+.subj-chip button{width:18px;height:18px;border-radius:99px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;transition:.14s;line-height:1}
 .subj-chip button:hover{background:var(--surface-3);color:var(--text)}
 
-.empty{padding:26px 16px;text-align:center;color:var(--muted);font-size:12.5px;border:1.5px dashed var(--border);border-radius:14px;line-height:1.7}
-.empty b{display:block;font-size:14px;color:var(--text);margin-bottom:3px}
+.empty{padding:22px 16px;text-align:center;color:var(--muted);font-size:12px;border:1.5px dashed var(--border);border-radius:10px;line-height:1.7}
+.empty b{display:block;font-size:13px;color:var(--text);margin-bottom:3px}
 .muted{color:var(--muted)}
-.tiny{font-size:11px}
-.sec-title{font-size:12px;font-weight:750;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:4px 0 10px}
+.tiny{font-size:10.5px}
+.sec-title{font-size:11px;font-weight:750;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin:4px 0 9px}
 .kv{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:12.5px;border-bottom:1px dashed var(--border)}
 .kv:last-child{border-bottom:none}
 .kv b{font-weight:700}
 
-.rc-grade{font-size:15px;font-weight:800;text-align:center;border-radius:10px;padding:5px 0;background:var(--surface-2);color:var(--muted)}
-.rc-grade.hi{background:rgba(16,185,129,.15);color:#0d9c6e}
-.rc-grade.mid{background:rgba(245,158,11,.16);color:#c47a06}
-.rc-grade.lo{background:rgba(239,68,68,.14);color:#dc2626}
+.rc-grade{font-size:14px;font-weight:800;text-align:center;border-radius:8px;padding:4px 0;background:var(--surface-2);color:var(--muted)}
+.rc-grade.hi{background:rgba(16,185,129,.13);color:#0d9c6e}
+.rc-grade.mid{background:rgba(245,158,11,.14);color:#c47a06}
+.rc-grade.lo{background:rgba(239,68,68,.13);color:#dc2626}
 
-.rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:10px;transition:.14s}
+.rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:9px;transition:.13s}
 .rcg-row:hover{background:var(--surface-2)}
 .rcg-row.rcg-head{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;padding-bottom:2px}
 .rcg-row.rcg-head:hover{background:transparent}
-.rcg-row .input{padding:6px 7px;font-size:12.5px;border-radius:9px}
+.rcg-row .input{padding:6px 7px;font-size:12px;border-radius:7px}
 .rcg-num{text-align:center;font-variant-numeric:tabular-nums}
 .rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
 
-/* ============ 錯題本 ============ */
+/* 錯題本 */
 .wb-record{
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:var(--r);
   padding:14px 16px;
-  transition:.18s;
+  transition:.14s;
   position:relative;
 }
 .wb-record:hover{
-  border-color:color-mix(in srgb,var(--primary) 35%,var(--border));
+  border-color:color-mix(in srgb,var(--primary) 30%,var(--border));
 }
 .wb-record.mastered{opacity:.62}
 .wb-record.mastered .wb-question{text-decoration:line-through}
 .wb-question{
-  font-size:13.8px;font-weight:650;line-height:1.45;
+  font-size:13px;font-weight:650;line-height:1.45;
   margin:6px 0 8px;word-break:break-word;
 }
 .wb-row{
-  font-size:12.5px;line-height:1.55;margin-top:6px;
+  font-size:12px;line-height:1.55;margin-top:6px;
   color:var(--muted);white-space:pre-wrap;word-break:break-word;
 }
 .wb-row b{color:var(--text);font-weight:700}
 .wb-wrong b{color:var(--danger)}
 .wb-correct b{color:var(--ok)}
 
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:10px 18px;border-radius:99px;font-size:13px;font-weight:650;z-index:999;box-shadow:0 12px 30px -10px rgba(0,0,0,.4);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
+/* 提醒 */
+.reminder-bar{
+  border-radius:var(--r);
+  padding:12px 14px;
+  margin-bottom:14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+}
+.reminder-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:9px;
+}
+.reminder-head b{font-size:12.5px;font-weight:750}
+.reminder-list{display:flex;flex-direction:column;gap:3px}
+.reminder-item{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 10px;border-radius:8px;
+  font-size:12px;line-height:1.4;
+  cursor:pointer;transition:.13s;
+  border:1px solid transparent;
+}
+.reminder-item:hover{background:var(--surface-2);border-color:var(--border)}
+.reminder-item .rm-icon{font-size:14px;flex:0 0 auto;line-height:1}
+.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
+.reminder-item .rm-arrow{color:var(--muted);font-size:10.5px;font-weight:700;opacity:.7}
+.reminder-item.tone-danger{border-left:3px solid var(--danger)}
+.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
+.reminder-item.tone-warn{border-left:3px solid var(--warn)}
+.reminder-item.tone-info{border-left:3px solid var(--info)}
+.reminder-item.tone-ok{border-left:3px solid var(--ok)}
+
+/* Toast */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:9px 16px;border-radius:99px;font-size:12.5px;font-weight:650;z-index:999;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* ============ SPOTIFY FLOAT ============ */
+/* Spotify 浮動 */
 .spotify-float{
   position:fixed;right:20px;bottom:20px;z-index:500;
   display:flex;flex-direction:column;align-items:flex-end;gap:10px;
@@ -402,82 +390,78 @@ details.acc summary:hover{background:var(--surface-2)}
 }
 .spotify-float > *{pointer-events:auto}
 .spotify-fab{
-  width:52px;height:52px;border-radius:99px;border:none;
-  background:linear-gradient(135deg,#1db954,#1ed760);color:#fff;font-size:24px;
-  cursor:pointer;box-shadow:0 12px 30px -10px rgba(29,185,84,.6);
-  transition:.22s cubic-bezier(.34,1.56,.64,1);
+  width:48px;height:48px;border-radius:99px;border:none;
+  background:#1db954;color:#fff;font-size:22px;
+  cursor:pointer;
+  transition:.2s;
   display:grid;place-items:center;line-height:1;
+  box-shadow:0 6px 20px -6px rgba(29,185,84,.55);
 }
-.spotify-fab:hover{transform:scale(1.1) rotate(-8deg);box-shadow:0 16px 40px -10px rgba(29,185,84,.8)}
+.spotify-fab:hover{transform:scale(1.08)}
 .spotify-panel{
-  width:340px;background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:12px;
-  box-shadow:0 24px 60px -20px rgba(0,0,0,.55);
+  width:330px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px;
+  box-shadow:0 20px 50px -16px rgba(0,0,0,.5);
   display:none;transform-origin:bottom right;
 }
-.spotify-float.open .spotify-panel{display:block;animation:spotifyIn .28s cubic-bezier(.34,1.56,.64,1)}
+.spotify-float.open .spotify-panel{display:block;animation:spotifyIn .26s cubic-bezier(.34,1.4,.64,1)}
 .spotify-float.open .spotify-fab{display:none}
-@keyframes spotifyIn{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes spotifyIn{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
 .spotify-panel-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:750;color:var(--text);margin-bottom:8px;letter-spacing:.3px}
 .spotify-panel-head span{display:flex;align-items:center;gap:6px}
-.spotify-close{width:24px;height:24px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
+.spotify-close{width:22px;height:22px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;transition:.14s;line-height:1}
 .spotify-close:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
-.spotify-panel iframe{border-radius:12px;display:block;width:100%}
+.spotify-panel iframe{border-radius:10px;display:block;width:100%}
 
-/* ============ DETOX ============ */
+/* Detox */
 .detox-page{
-  --d-surface:rgba(42,24,40,.65);
+  --d-surface:#1f1520;
+  --d-surface-2:#281a28;
   --d-text:#f5e6e0;
   --d-text-dim:#b8a0b0;
   --d-accent:#ff9a76;
   --d-accent-2:#ff7b8a;
-  --d-border:rgba(255,154,118,.15);
-  background:radial-gradient(circle at 30% 15%, #2a1828 0%, #1a0f1a 55%, #120812 100%);
-  border-radius:20px;padding:28px 24px;margin:-4px;
+  --d-border:rgba(255,154,118,.13);
+  background:#180f18;
+  border-radius:var(--r);padding:26px 22px;margin:-4px;
   color:var(--d-text);position:relative;overflow:hidden;
   min-height:calc(100vh - 44px);
 }
-.detox-page::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(circle at 82% 88%, rgba(255,154,118,.10), transparent 45%),
-    radial-gradient(circle at 8% 45%, rgba(255,123,138,.07), transparent 50%);
-}
 .detox-page > *{position:relative;z-index:1}
-.detox-head{margin-bottom:22px}
-.detox-head h2{font-size:24px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
+.detox-head{margin-bottom:20px}
+.detox-head h2{font-size:22px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
 .detox-head p{font-size:12px;color:var(--d-text-dim);margin-top:4px;letter-spacing:.5px}
-.detox-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.detox-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:900px){.detox-grid{grid-template-columns:1fr}}
-.d-card{background:var(--d-surface);backdrop-filter:blur(14px);border:1px solid var(--d-border);border-radius:18px;padding:22px;transition:.2s}
-.d-card:hover{border-color:rgba(255,154,118,.28)}
-.d-card-title{font-size:13px;font-weight:750;letter-spacing:.3px;color:var(--d-text);display:flex;align-items:center;gap:8px;margin-bottom:16px}
-.d-card-title small{font-size:10.5px;color:var(--d-text-dim);font-weight:600;letter-spacing:1px;text-transform:uppercase}
-.d-quote{cursor:pointer;user-select:none;padding:26px 24px;text-align:center;border-radius:16px;background:linear-gradient(135deg, rgba(255,154,118,.10), rgba(255,123,138,.06));border:1px solid rgba(255,154,118,.18);min-height:120px;display:flex;flex-direction:column;justify-content:center;gap:10px;transition:.3s}
-.d-quote:hover{background:linear-gradient(135deg, rgba(255,154,118,.16), rgba(255,123,138,.10));transform:translateY(-1px)}
-.d-quote-zh{font-size:17px;font-weight:600;line-height:1.5;color:var(--d-text)}
-.d-quote-en{font-size:13px;color:var(--d-text-dim);font-style:italic;line-height:1.5}
-.d-quote-hint{font-size:10.5px;color:var(--d-text-dim);opacity:.65;letter-spacing:1px;margin-top:6px}
+.d-card{background:var(--d-surface);border:1px solid var(--d-border);border-radius:var(--r);padding:20px;transition:.15s}
+.d-card:hover{border-color:rgba(255,154,118,.24)}
+.d-card-title{font-size:12.5px;font-weight:750;letter-spacing:.3px;color:var(--d-text);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.d-card-title small{font-size:10px;color:var(--d-text-dim);font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.d-quote{cursor:pointer;user-select:none;padding:24px 22px;text-align:center;border-radius:var(--r);background:var(--d-surface-2);border:1px solid rgba(255,154,118,.16);min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:9px;transition:.2s}
+.d-quote:hover{border-color:rgba(255,154,118,.3)}
+.d-quote-zh{font-size:16px;font-weight:600;line-height:1.5;color:var(--d-text)}
+.d-quote-en{font-size:12.5px;color:var(--d-text-dim);font-style:italic;line-height:1.5}
+.d-quote-hint{font-size:10px;color:var(--d-text-dim);opacity:.65;letter-spacing:1px;margin-top:6px}
 .d-quote.fade{animation:quoteFade .5s ease}
-@keyframes quoteFade{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes quoteFade{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
 
 .d-write-wrap{position:relative}
-.d-write-area{width:100%;min-height:120px;background:rgba(0,0,0,.22);border:1px solid var(--d-border);border-radius:14px;padding:14px 16px;color:var(--d-text);font:inherit;font-size:14px;line-height:1.6;resize:vertical;outline:none;transition:.2s;position:relative;display:block}
+.d-write-area{width:100%;min-height:110px;background:rgba(0,0,0,.22);border:1px solid var(--d-border);border-radius:10px;padding:13px 15px;color:var(--d-text);font:inherit;font-size:13.5px;line-height:1.6;resize:vertical;outline:none;transition:.15s;position:relative;display:block}
 .d-write-area::placeholder{color:var(--d-text-dim);opacity:.55}
-.d-write-area:focus{border-color:var(--d-accent);box-shadow:0 0 0 3px rgba(255,154,118,.15)}
+.d-write-area:focus{border-color:var(--d-accent);box-shadow:0 0 0 3px rgba(255,154,118,.13)}
 .d-write-wrap.burning .d-write-area{pointer-events:none}
 
-.d-burn-bed{position:absolute;left:0;right:0;bottom:0;height:40%;border-radius:0 0 14px 14px;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 50% 100%, #fff3c4 0%, #ffcc33 15%, #ff6600 40%, #b30000 65%, transparent 90%);filter:blur(4px);mix-blend-mode:screen}
+.d-burn-bed{position:absolute;left:0;right:0;bottom:0;height:40%;border-radius:0 0 10px 10px;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 50% 100%, #fff3c4 0%, #ffcc33 15%, #ff6600 40%, #b30000 65%, transparent 90%);filter:blur(4px);mix-blend-mode:screen}
 .d-write-wrap.burning .d-burn-bed.fire{animation:bedFire 2s cubic-bezier(.4,0,.3,1) forwards}
 @keyframes bedFire{0%{opacity:0;transform:scaleY(.2)}15%{opacity:1;transform:scaleY(.6)}60%{opacity:1;transform:scaleY(1.1)}100%{opacity:0;transform:scaleY(1.4)}}
-.d-burn-bed.water{height:100%;background:linear-gradient(180deg,transparent 0%,rgba(0,150,255,.15) 30%,rgba(0,100,200,.5) 55%,rgba(0,50,120,.85) 80%,#002a5c 100%);filter:blur(0);mix-blend-mode:normal;border-radius:14px;opacity:1;overflow:hidden}
+.d-burn-bed.water{height:100%;background:linear-gradient(180deg,transparent 0%,rgba(0,150,255,.15) 30%,rgba(0,100,200,.5) 55%,rgba(0,50,120,.85) 80%,#002a5c 100%);filter:blur(0);mix-blend-mode:normal;border-radius:10px;opacity:1;overflow:hidden}
 .d-burn-bed.water::before{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:radial-gradient(ellipse at 30% 20%, rgba(180,240,255,.4) 0%, transparent 30%),radial-gradient(ellipse at 70% 60%, rgba(150,220,255,.3) 0%, transparent 25%),radial-gradient(ellipse at 50% 80%, rgba(200,250,255,.35) 0%, transparent 35%);animation:waterGlow 3s ease-in-out infinite alternate}
 .d-burn-bed.water::after{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:repeating-linear-gradient(180deg,transparent 0px, transparent 8px,rgba(180,240,255,.2) 8px, rgba(180,240,255,.2) 9px);animation:waterRipple 2s ease-in-out infinite;mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%);-webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%)}
 @keyframes waterGlow{0%{opacity:.6;transform:scale(1)}100%{opacity:1;transform:scale(1.05)}}
 @keyframes waterRipple{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.02)}}
 .d-write-wrap.burning .d-burn-bed.water{animation:bedWater 2.2s cubic-bezier(.4,0,.3,1) forwards}
 @keyframes bedWater{0%{transform:translateY(100%)}25%{transform:translateY(65%)}55%{transform:translateY(20%)}85%{transform:translateY(-5%)}100%{transform:translateY(-45%);opacity:0}}
-.d-burn-bed.wind{height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.03) 20%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.03) 80%,transparent 100%);filter:blur(1px);mix-blend-mode:screen;border-radius:14px}
+.d-burn-bed.wind{height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.03) 20%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.03) 80%,transparent 100%);filter:blur(1px);mix-blend-mode:screen;border-radius:10px}
 .d-write-wrap.burning .d-burn-bed.wind{animation:bedWind 1.8s cubic-bezier(.3,0,.4,1) forwards}
 @keyframes bedWind{0%{opacity:0;transform:translateX(-20%)}25%{opacity:1}100%{opacity:0;transform:translateX(30%)}}
 
@@ -500,71 +484,66 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-burn-particle.wind{width:var(--len);height:var(--size);border-radius:99px;background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);filter:blur(.3px);animation:particleWind var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0;transform-origin:center}
 @keyframes particleWind{0%{transform:translate(0,0) rotate(var(--rot)) scaleX(0);opacity:0}20%{opacity:1;transform:translate(calc(var(--tx)*.2), calc(var(--ty)*.2)) rotate(var(--rot)) scaleX(1)}100%{transform:translate(var(--tx), var(--ty)) rotate(var(--rot)) scaleX(1.4);opacity:0}}
 
-.d-write-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
-.d-burn-btn{flex:1 1 0;min-width:100px;padding:11px 16px;border-radius:12px;border:1px solid var(--d-border);background:rgba(255,255,255,.04);color:var(--d-text);font:inherit;font-size:13px;font-weight:650;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center;gap:6px}
-.d-burn-btn:hover:not(:disabled){background:rgba(255,154,118,.14);border-color:var(--d-accent);transform:translateY(-1px)}
+.d-write-actions{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.d-burn-btn{flex:1 1 0;min-width:100px;padding:10px 15px;border-radius:10px;border:1px solid var(--d-border);background:rgba(255,255,255,.03);color:var(--d-text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.d-burn-btn:hover:not(:disabled){background:rgba(255,154,118,.13);border-color:var(--d-accent)}
 .d-burn-btn:disabled{opacity:.35;cursor:not-allowed}
-.d-burn-btn.fire:hover:not(:disabled){box-shadow:0 8px 22px -12px #ff6a00}
-.d-burn-btn.water:hover:not(:disabled){box-shadow:0 8px 22px -12px #2b6cff}
-.d-burn-btn.wind:hover:not(:disabled){box-shadow:0 8px 22px -12px #ffffff}
-.d-write-hint{font-size:11px;color:var(--d-text-dim);opacity:.7;margin-top:10px;text-align:center;letter-spacing:.3px}
+.d-write-hint{font-size:10.5px;color:var(--d-text-dim);opacity:.7;margin-top:9px;text-align:center;letter-spacing:.3px}
 
-.d-audio-list{display:flex;flex-direction:column;gap:10px}
-.d-audio-row{display:grid;grid-template-columns:32px 1fr auto;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.18);transition:.18s}
-.d-audio-row.playing{background:rgba(255,154,118,.10);border:1px solid rgba(255,154,118,.22)}
-.d-audio-row:hover{background:rgba(255,154,118,.06)}
-.d-audio-icon{font-size:22px;text-align:center;line-height:1;filter:grayscale(.5);transition:.2s}
-.d-audio-row.playing .d-audio-icon{filter:none;transform:scale(1.05)}
+.d-audio-list{display:flex;flex-direction:column;gap:8px}
+.d-audio-row{display:grid;grid-template-columns:30px 1fr auto;gap:11px;align-items:center;padding:9px 11px;border-radius:10px;background:rgba(0,0,0,.16);transition:.15s}
+.d-audio-row.playing{background:rgba(255,154,118,.09);border:1px solid rgba(255,154,118,.2)}
+.d-audio-icon{font-size:20px;text-align:center;line-height:1;filter:grayscale(.5);transition:.18s}
+.d-audio-row.playing .d-audio-icon{filter:none}
 .d-audio-meta{display:flex;flex-direction:column;gap:4px;min-width:0}
-.d-audio-name{font-size:12.5px;font-weight:650;color:var(--d-text);letter-spacing:.2px}
+.d-audio-name{font-size:12px;font-weight:650;color:var(--d-text);letter-spacing:.2px}
 .d-audio-slider{-webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:99px;background:rgba(255,255,255,.1);outline:none;cursor:pointer}
-.d-audio-slider::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:99px;background:linear-gradient(135deg,var(--d-accent),var(--d-accent-2));cursor:pointer;border:2px solid rgba(255,255,255,.15);box-shadow:0 2px 8px -2px rgba(255,154,118,.6)}
-.d-audio-slider::-moz-range-thumb{width:12px;height:12px;border-radius:99px;border:2px solid rgba(255,255,255,.15);background:var(--d-accent);cursor:pointer}
-.d-audio-play{width:32px;height:32px;border-radius:99px;border:1px solid var(--d-border);background:rgba(255,255,255,.04);color:var(--d-text-dim);cursor:pointer;font-size:12px;display:grid;place-items:center;transition:.18s;line-height:1}
+.d-audio-slider::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:99px;background:var(--d-accent);cursor:pointer;border:2px solid rgba(255,255,255,.15)}
+.d-audio-play{width:30px;height:30px;border-radius:99px;border:1px solid var(--d-border);background:rgba(255,255,255,.03);color:var(--d-text-dim);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
 .d-audio-play:hover{background:rgba(255,154,118,.18);color:var(--d-accent)}
 .d-audio-row.playing .d-audio-play{background:rgba(255,154,118,.2);color:var(--d-accent);border-color:var(--d-accent)}
 
-.d-bubbles-wrap{position:relative;height:280px;border-radius:16px;background:radial-gradient(circle at 50% 100%, rgba(255,154,118,.08), transparent 60%),linear-gradient(180deg, rgba(20,10,20,.6), rgba(30,15,30,.4));border:1px solid var(--d-border);overflow:hidden;cursor:crosshair}
+.d-bubbles-wrap{position:relative;height:260px;border-radius:var(--r);background:linear-gradient(180deg, rgba(20,10,20,.6), rgba(30,15,30,.4));border:1px solid var(--d-border);overflow:hidden;cursor:crosshair}
 #bubblesCanvas{display:block;width:100%;height:100%}
-.d-bubbles-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10.5px;color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px}
+.d-bubbles-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px}
 
 @media(max-width:900px){
   .app{flex-direction:column}
   .sidebar{width:auto;flex:none;height:auto;position:sticky;top:0;z-index:50;flex-direction:row;align-items:center;gap:8px;overflow-x:auto;padding:10px 12px;border-right:none;border-bottom:1px solid var(--border)}
   .brand{padding:0 10px 0 0;flex:0 0 auto}
   .brand h1,.brand p{display:none}
-  .brand-icon{width:34px;height:34px;flex:0 0 34px;font-size:17px;border-radius:11px}
+  .brand-icon{width:32px;height:32px;flex:0 0 32px;font-size:16px;border-radius:9px}
   .nav{flex-direction:row;flex:none;gap:4px}
   .nav-text small{display:none}
-  .nav-item{padding:7px 11px;white-space:nowrap;border-radius:99px}
-  .nav-item.active{box-shadow:none}
+  .nav-item{padding:6px 10px;white-space:nowrap;border-radius:99px}
   .sidebar-foot{border-top:none;padding-top:0;flex:0 0 auto}
-  .sidebar-foot button{padding:7px 10px;white-space:nowrap}
-  .main{padding:16px 14px 60px}
-  .hero{padding:20px;border-radius:16px}
-  .hero h3{font-size:19px}
-  .ring-wrap,.ring{width:84px;height:84px;flex-basis:84px}
+  .sidebar-foot button{padding:6px 10px;white-space:nowrap}
+  .main{padding:14px 12px 60px}
+  .hero{padding:18px;border-radius:var(--r)}
+  .hero h3{font-size:18px}
+  .ring-wrap,.ring{width:78px;height:78px;flex-basis:78px}
   .week-strip{grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
-  .day-chip{padding:8px 3px;border-radius:10px}
+  .day-chip{padding:7px 2px;border-radius:8px}
   .day-chip .dd{font-size:13px}
   .day-chip .wd{font-size:9.5px}
   .sched-grid{grid-template-columns:1fr}
-  .topbar h2{font-size:18px}
+  .topbar h2{font-size:17px}
   .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
   .rcg-row .input{padding:5px 4px;font-size:11.5px}
 }
 @media(max-width:600px){
-  .detox-page{padding:18px 14px;border-radius:14px}
-  .detox-head h2{font-size:20px}
-  .d-card{padding:16px}
-  .d-quote-zh{font-size:15px}
+  .detox-page{padding:18px 14px;border-radius:10px}
+  .detox-head h2{font-size:19px}
+  .d-card{padding:15px}
+  .d-quote-zh{font-size:14.5px}
   .d-quote-en{font-size:12px}
   .d-bubbles-wrap{height:220px}
   .spotify-float{right:12px;bottom:12px}
-  .spotify-panel{width:calc(100vw - 24px);max-width:340px}
+  .spotify-panel{width:calc(100vw - 24px);max-width:330px}
 }
 </style>
 </head>
+
 <body>
 <div class="app">
   <aside class="sidebar">
@@ -590,7 +569,7 @@ details.acc summary:hover{background:var(--surface-2)}
       </div>
       <div class="topbar-right">
         <div class="today-chip" id="syncChip" title="雲端同步狀態 Cloud sync status" data-act="sync-chip" style="cursor:pointer">
-          <span class="dot" id="syncDot" style="background:var(--muted);box-shadow:none"></span>
+          <span class="dot" id="syncDot" style="background:var(--muted)"></span>
           <span id="syncText">本機 Local</span>
         </div>
         <div class="today-chip"><span class="dot"></span><span id="todayDate">—</span></div>
@@ -612,7 +591,7 @@ details.acc summary:hover{background:var(--surface-2)}
       <span>🎧 我的歌單</span>
       <button class="spotify-close" data-act="spotify-toggle" title="收起">✕</button>
     </div>
-    <iframe style="border-radius:12px" 
+    <iframe style="border-radius:10px" 
       src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
       width="100%" height="152" frameBorder="0" allowfullscreen="" 
       allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" 
@@ -688,7 +667,7 @@ const DEFAULT_FEEDBACK = [
   {id:'f07', name:'House Spirit Criterion D', subject:'Design', grade:'Grade 8', crit:'D', text:'- Di: Detailing further by including the exact test questions you asked your target audience.\n- Dii: Expand on your "Overall Success" to create a stronger bridge to your Diii improvement plan.'},
   {id:'f08', name:'LOTF Analytical Essay', subject:'English', grade:'Grade 8', crit:'A, B, D', text:'- Criterion A: Detailed analysis, particularly in paragraph 1. A more detailed annotation may have helped you.\n- Criterion B: Clear thesis statement and three topic sentences provide a strong foundation for your essay.\n- Criterion D: Communicate ideas clearly, errors don\'t cloud meaning.'},
   {id:'f09', name:'Poetry Analysis + Oral', subject:'English', grade:'Grade 8', crit:'A, D', text:'- A detailed presentation referring to specific lines and giving relevant examples.\n- Oral delivery would benefit from further practice.\n- Maintained an appropriate academic register.\n- Develop more varied sentence structures.'},
-  {id:'f10', name:'人文研習 Humanities Research', subject:'Humanities', grade:'Grade 8', crit:'B, C, D', text:'- Bi: 研究課題清晰且具焦點，合理解釋了選題原因與研究目的。\n- Bii: 使用了多種資料來源，但還可增加一手文獻資料。\n- Bi: 研究範圍涵蓋服飾、器具、墓葬及信仰等多個方面，內容豐富，但部分段落可進一步聚焦，避免範圍過廣。\n- Ci: 文章大致流暢，風格符合研習論文的要求。\n- Cii: 組織結構合理，段落分明，論述有條理，邏輯清晰。\n- Ciii: 參考資料按照哈佛註引格式列出，但部分引用可更明確標示直接摘錄與概括內容。\n- Di: 對研究課題進行了適當分析，能回答研究問題，並結合文物與歷史文獻進行論證。\n- Dii: 能總結和概括所搜集資料的信息，並對觀點作出有效論證。\n- Diii: 可進一步深化對資料的分析，尤其是對不同資料之間的關聯性及其局限性進行更細緻的探討。'},
+  {id:'f10', name:'人文研習 Humanities Research', subject:'Humanities', grade:'Grade 8', crit:'B, C, D', text:'- Bi: 研究課題清晰且具焦點，合理解釋了選題原因與研究目的。\n- Bii: 使用了多種資料來源，但還可增加一手文獻資料。\n- Ci: 文章大致流暢，風格符合研習論文的要求。\n- Cii: 組織結構合理，段落分明，論述有條理，邏輯清晰。\n- Ciii: 參考資料按照哈佛註引格式列出，但部分引用可更明確標示直接摘錄與概括內容。\n- Di: 對研究課題進行了適當分析，能回答研究問題，並結合文物與歷史文獻進行論證。\n- Dii: 能總結和概括所搜集資料的信息，並對觀點作出有效論證。\n- Diii: 可進一步深化對資料的分析，尤其是對不同資料之間的關聯性及其局限性進行更細緻的探討。'},
   {id:'f11', name:'Natural Disasters + Notebook Check', subject:'INS', grade:'Grade 8', crit:'A, C, D', text:'- Work on explanations\n- Follow the given structure\n- Elaborate more'},
   {id:'f12', name:'INS Research + OPVL + Evaluation', subject:'INS', grade:'Grade 8', crit:'B, C, D', text:'- Biii: Documentary fits social aspect more, you could "SEE" how people "LIVED" back then. Government statistics for economic changes.\n- Biii: Don\'t only focus on one topic within an SQ.\n- Diii: Very good. I feel your paragraph in limitation is better. You elaborated more on what the implications are of these limitations. Try and do that for values, too.'},
   {id:'f13', name:'Political Revolution Essay', subject:'INS', grade:'Grade 8', crit:'A, C, D', text:'- PEEEL Structure could be further refined\n- Some parts weren\'t explained/elaborated well\n- Too much info in some paragraphs — could be broken down into more paragraphs\n- Explain and elaborate on the implications'},
@@ -728,15 +707,11 @@ const DEFAULT_STATE = {
   editingFbId: null,
   fbAdding: false,
   updatedAt: 0,
-
-  /* 錯題本 */
   wrongBook: [],
   wbAdding: false,
   wbSubjectFilter: 'All',
   wbStatusFilter: 'All',
   wbExpandedId: null,
-
-  /* 考試詳情展開 */
   expandedAssessId: null,
   highlightFeedbackId: null,
 
@@ -809,7 +784,7 @@ function normalizeState(raw){
   if (!Array.isArray(merged.srp)) merged.srp = [];
   if (!Array.isArray(merged.assignments)) merged.assignments = [];
   if (!Array.isArray(merged.assessments)) merged.assessments = [];
-    if (!Array.isArray(merged.wrongBook)) merged.wrongBook = [];
+  if (!Array.isArray(merged.wrongBook)) merged.wrongBook = [];
   merged.wrongBook = merged.wrongBook.map(w => {
     if (!w || typeof w !== 'object') return null;
     if (!w.id) w.id = uid();
@@ -855,42 +830,42 @@ function srpDueOn(date){
 }
 function srpStatus(it){
   const ds = srpDates(it);
-  if (!ds.length) return {label:'📋 待安排 To schedule', tone:'muted'};
+  if (!ds.length) return {label:'📋 待安排', tone:'muted'};
   const done = it.done || [false,false,false,false];
   const t = todayISO();
-  if (done.every(Boolean)) return {label:'✅ 已完成所有複習 All revisions done', tone:'ok'};
+  if (done.every(Boolean)) return {label:'✅ 已完成', tone:'ok'};
   const iToday = ds.findIndex((d,i) => !done[i] && d === t);
-  if (iToday >= 0) return {label:`🔴 今日第 ${iToday+1} 次複習（第 ${REV_DAYNUM[iToday]} 天）`, tone:'urgent'};
+  if (iToday >= 0) return {label:`🔴 今日第 ${iToday+1} 次複習`, tone:'urgent'};
   const iOver = ds.findIndex((d,i) => !done[i] && d < t);
-  if (iOver >= 0) return {label:`⏰ 第 ${iOver+1} 次複習已逾期 Overdue`, tone:'danger'};
+  if (iOver >= 0) return {label:`⏰ 第 ${iOver+1} 次複習已逾期`, tone:'danger'};
   const iNext = ds.findIndex((d,i) => !done[i]);
-  return {label:`📅 等待第 ${iNext+1} 次複習（第 ${REV_DAYNUM[iNext]} 天）`, tone:'info'};
+  return {label:`📅 等待第 ${iNext+1} 次複習`, tone:'info'};
 }
 function assignStatus(a){
-  if (isFinished(a)) return {label:'✅ 已完成 Done', tone:'ok'};
-  if (!a.due) return {label:'📋 待安排 To schedule', tone:'muted'};
+  if (isFinished(a)) return {label:'✅ 已完成', tone:'ok'};
+  if (!a.due) return {label:'📋 待安排', tone:'muted'};
   const d = diffDays(todayISO(), a.due);
-  if (d < 0)  return {label:'⚠️ 逾期 Overdue', tone:'danger'};
-  if (d === 0) return {label:'⏰ 今天到期 Due today', tone:'urgent'};
-  if (d <= 3) return {label:'🔔 即將到期 Due soon', tone:'warn'};
-  return {label:'📋 進行中 In progress', tone:'info'};
+  if (d < 0)  return {label:'⚠️ 逾期', tone:'danger'};
+  if (d === 0) return {label:'⏰ 今天到期', tone:'urgent'};
+  if (d <= 3) return {label:'🔔 即將到期', tone:'warn'};
+  return {label:'📋 進行中', tone:'info'};
 }
 function assessStatus(a){
-  if (!a.due) return {label:'📋 日期待定 Date TBD', tone:'muted'};
+  if (!a.due) return {label:'📋 日期待定', tone:'muted'};
   const d = diffDays(todayISO(), a.due);
   const p = a.progress || 0;
-  if (d < 0) return {label:'⚠️ 已過期 Past due', tone:'danger'};
-  if (d <= 3 && p < 80) return {label:'⚠️ 剩餘 3 天內但準備未達 80%，請緊急加強！', tone:'danger'};
-  if (d <= 10 && p < 50) return {label:'🔔 剩餘 10 天，進度落後', tone:'warn'};
-  if (p >= 80) return {label:'✅ 準備充分 Well prepared', tone:'ok'};
-  if (p >= 50) return {label:'🔄 進行中 In progress', tone:'info'};
-  return {label:'📝 未開始 Not started', tone:'muted'};
+  if (d < 0) return {label:'⚠️ 已過期', tone:'danger'};
+  if (d <= 3 && p < 80) return {label:'⚠️ 剩 3 天內準備未達 80%', tone:'danger'};
+  if (d <= 10 && p < 50) return {label:'🔔 剩 10 天進度落後', tone:'warn'};
+  if (p >= 80) return {label:'✅ 準備充分', tone:'ok'};
+  if (p >= 50) return {label:'🔄 進行中', tone:'info'};
+  return {label:'📝 未開始', tone:'muted'};
 }
 function assessSuggest(a){
   if (!a.due) return '📌 先確認評估日期，再納入 SRP 規劃。';
   const d = diffDays(todayISO(), a.due);
   if (d < 0) return '⚠️ 已過期，請立即與老師確認補交安排。';
-  if (d <= 7) return `🔔 距離考試僅剩 ${d} 天，建議用考試倒數法密集複習！`;
+  if (d <= 7) return `🔔 距離考試僅剩 ${d} 天，建議密集複習！`;
   if (d <= 14) return '📌 考前兩週，可開始規劃此科知識點進入 SRP。';
   return '✅ 時間充裕，先建立知識點清單。';
 }
@@ -901,108 +876,56 @@ function weekStats(startISO){
   return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
 }
 
-/* =====================================================================
-   4a. 自動提醒收集
-   ===================================================================== */
+/* 自動提醒收集 */
 function collectReminders(){
   const t = todayISO();
   const reminders = [];
-
-  // 即將到來的考試（7 天內 + 準備 < 80%）
   state.assessments.forEach(a => {
     if (!a.due) return;
     const d = diffDays(t, a.due);
     if (d < 0 || d > 7) return;
     if ((a.progress || 0) >= 80) return;
-    const tone = d <= 3 ? 'danger' : 'warn';
     reminders.push({
-      tone,
+      tone: d <= 3 ? 'danger' : 'warn',
       icon: '📚',
       text: `${a.name} 剩 ${d} 天（準備 ${a.progress || 0}%）`,
       nav: 'assess'
     });
   });
-
-  // 作業到期 / 逾期
   state.assignments.forEach(a => {
     if (!a.due || isFinished(a)) return;
     const d = diffDays(t, a.due);
     if (d < 0){
-      reminders.push({
-        tone: 'danger',
-        icon: '⚠️',
-        text: `${a.name} 已逾期 ${-d} 天`,
-        nav: 'assign'
-      });
+      reminders.push({tone:'danger', icon:'⚠️', text:`${a.name} 已逾期 ${-d} 天`, nav:'assign'});
     } else if (d <= 3){
-      reminders.push({
-        tone: d === 0 ? 'urgent' : 'warn',
-        icon: '✍️',
-        text: `${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`,
-        nav: 'assign'
-      });
+      reminders.push({tone: d === 0 ? 'urgent' : 'warn', icon:'✍️', text:`${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`, nav:'assign'});
     }
   });
-
-  // SRP 逾期
   const lateSRP = state.srp.filter(it => {
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d, i) => !done[i] && d < t);
   });
-  if (lateSRP.length){
-    reminders.push({
-      tone: 'warn',
-      icon: '⏰',
-      text: `有 ${lateSRP.length} 個知識點複習逾期`,
-      nav: 'srp'
-    });
-  }
-
-  // 今日 SRP
+  if (lateSRP.length) reminders.push({tone:'warn', icon:'⏰', text:`有 ${lateSRP.length} 個知識點複習逾期`, nav:'srp'});
   const dueToday = srpDueOn(t).length;
-  if (dueToday){
-    reminders.push({
-      tone: 'info',
-      icon: '🔴',
-      text: `今天有 ${dueToday} 個複習任務待完成`,
-      nav: 'srp'
-    });
-  }
-
-  // 錯題本未掌握提醒
-  const oldWrong = (state.wrongBook || []).filter(w => {
-    if (w.mastered) return false;
-    const d = diffDays(w.date, t);
-    return d >= 7;
-  });
-  if (oldWrong.length){
-    reminders.push({
-      tone: 'warn',
-      icon: '📕',
-      text: `有 ${oldWrong.length} 筆錯題已超過一週未掌握`,
-      nav: 'wrongbook'
-    });
-  }
+  if (dueToday) reminders.push({tone:'info', icon:'🔴', text:`今天有 ${dueToday} 個複習任務待完成`, nav:'srp'});
+  const oldWrong = (state.wrongBook || []).filter(w => !w.mastered && diffDays(w.date, t) >= 7);
+  if (oldWrong.length) reminders.push({tone:'warn', icon:'📕', text:`有 ${oldWrong.length} 筆錯題已超過一週未掌握`, nav:'wrongbook'});
 
   const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
   reminders.sort((a, b) => order[a.tone] - order[b.tone]);
-
   return reminders.slice(0, 5);
 }
 
-/* =====================================================================
-   4b. 考試相關資料關聯
-   ===================================================================== */
+/* 考試相關資料關聯（只顯示有共同 Criterion 的反饋） */
 function getAssessRelated(subject, criteria){
   const parseCrit = (s) => new Set(
     String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean)
   );
   const targetCrit = parseCrit(criteria);
 
-  // 反饋：只顯示「同科目」且「至少一個共同 Criterion」的
   const feedbacks = state.feedback.filter(f => {
     if (f.subject !== subject) return false;
-    if (!targetCrit.size) return true;   // 若該考試沒填 criteria，就顯示該科全部
+    if (!targetCrit.size) return true;
     const fCrit = parseCrit(f.crit);
     for (const c of targetCrit) if (fCrit.has(c)) return true;
     return false;
@@ -1016,7 +939,7 @@ function getAssessRelated(subject, criteria){
 }
 
 /* =====================================================================
-   4c. REPORT CARD CALCULATION
+   4b. REPORT CARD CALCULATION
    ===================================================================== */
 const RC_SUBJECTS = [
   {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
@@ -1073,14 +996,14 @@ function rcStatsHTML(){
   const oa  = graded.length ? graded.reduce((a, b) => a + b, 0) / graded.length : null;
   const sumDisplay = Number.isInteger(sumAll) ? sumAll : sumAll.toFixed(1);
   return `
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📊</div>
-      <div><div class="stat-val">${graded.length}/9</div><div class="stat-lbl">已評科目 Subjects graded</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">🏆</div>
-      <div><div class="stat-val">${oa !== null ? oa.toFixed(2) : '—'}</div><div class="stat-lbl">Total OA（科目等級平均）</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">📐</div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📊</div>
+      <div><div class="stat-val">${graded.length}/9</div><div class="stat-lbl">已評科目</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">🏆</div>
+      <div><div class="stat-val">${oa !== null ? oa.toFixed(2) : '—'}</div><div class="stat-lbl">Total OA</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">📐</div>
       <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均分 (0–8)</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">Σ</div>
-      <div><div class="stat-val">${sumDisplay}</div><div class="stat-lbl">標準化總分（已填 ${cntAll} 項）</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">Σ</div>
+      <div><div class="stat-val">${sumDisplay}</div><div class="stat-lbl">標準化總分（${cntAll} 項）</div></div></div>
   `;
 }
 
@@ -1090,7 +1013,7 @@ function rcSummaryHTML(){
     const cells = [...Array(5)].map((_, i) => {
       if (i >= sd.def.crit.length) return `<td style="text-align:center" class="tiny muted">·</td>`;
       const v = sd.avgs[i];
-      return `<td style="text-align:center;font-weight:750;font-size:14px;font-variant-numeric:tabular-nums">${
+      return `<td style="text-align:center;font-weight:750;font-size:13.5px;font-variant-numeric:tabular-nums">${
         v === null ? '<span class="muted" style="font-weight:400">–</span>' : v
       }</td>`;
     }).join('');
@@ -1099,14 +1022,14 @@ function rcSummaryHTML(){
     return `<tr>
       <td><span style="display:flex;align-items:center;gap:8px">
         <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(sd.def.key)};flex:0 0 8px"></span>
-        <b style="font-size:13px">${sd.def.key}</b>
+        <b style="font-size:12.5px">${sd.def.key}</b>
       </span></td>
       ${cells}
-      <td style="text-align:center;font-weight:800;font-size:14px">${
+      <td style="text-align:center;font-weight:800;font-size:13.5px">${
         hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'
       }</td>
       <td style="text-align:center">
-        <span class="rc-grade ${gc}" style="display:inline-block;min-width:36px;padding:3px 0;font-size:14px">${
+        <span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${
           sd.grade ?? '—'
         }</span>
       </td>
@@ -1116,7 +1039,7 @@ function rcSummaryHTML(){
 
   return `<div class="scroll-x"><table class="tbl" style="min-width:600px">
     <thead><tr>
-      <th>科目 Subject</th>
+      <th>科目</th>
       <th style="text-align:center">A</th>
       <th style="text-align:center">B</th>
       <th style="text-align:center">C</th>
@@ -1163,7 +1086,6 @@ const Cloud = {
       if (raw){
         const parsed = JSON.parse(raw);
         Object.assign(this.cfg, parsed);
-        // 如果之前存的是舊版 120 秒，改成 60（僅升級一次）
         if (!parsed._v2){
           this.cfg.intervalSec = 60;
           this.cfg._v2 = true;
@@ -1209,7 +1131,7 @@ const Cloud = {
       if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
       return await r.json();
     }
-    throw new Error('未設定同步 Not configured');
+    throw new Error('未設定同步');
   },
 
   async push(data){
@@ -1250,7 +1172,7 @@ const Cloud = {
       if (!r.ok) throw new Error(`push HTTP ${r.status}`);
       return;
     }
-    throw new Error('未設定同步 Not configured');
+    throw new Error('未設定同步');
   },
 
   async sync(silent){
@@ -1273,6 +1195,7 @@ const Cloud = {
         state.wbAdding = false;
         state.wbExpandedId = null;
         state.expandedAssessId = null;
+        state.highlightFeedbackId = null;
         localStorage.setItem(LS_KEY, JSON.stringify(state));
         applyTheme();
         render();
@@ -1317,6 +1240,7 @@ const Cloud = {
       state = normalizeState(remote);
       state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
       state.wbAdding = false; state.wbExpandedId = null; state.expandedAssessId = null;
+      state.highlightFeedbackId = null;
       localStorage.setItem(LS_KEY, JSON.stringify(state));
       applyTheme(); render();
       this.lastSyncAt = Date.now();
@@ -1333,7 +1257,6 @@ const Cloud = {
     if (el) el.textContent = msg || s;
   },
 
-  /* 更新設置頁的「上次同步」時間（即使不重新渲染） */
   updateLastSyncUI(){
     const el = document.getElementById('lastSyncText');
     if (el){
@@ -1348,7 +1271,7 @@ const Cloud = {
     const text = document.getElementById('syncText');
     if (!dot || !text) return;
     if (!this.configured){
-      dot.style.background = 'var(--muted)'; dot.style.boxShadow = 'none';
+      dot.style.background = 'var(--muted)';
       text.textContent = '本機 Local';
       return;
     }
@@ -1360,7 +1283,6 @@ const Cloud = {
     };
     const [color, label] = map[this.status] || map.idle;
     dot.style.background = color;
-    dot.style.boxShadow = `0 0 0 3px color-mix(in srgb, ${color} 25%, transparent)`;
     text.textContent = label;
   },
 
@@ -1911,11 +1833,10 @@ const AUDIO_TRACKS = [
    ===================================================================== */
 const VIEWS = {};
 
-/* ---------- MASTER ---------- */
 VIEWS.master = function(){
   const t = todayISO();
   const hour = new Date().getHours();
-  const greet = hour < 12 ? '早安 Good morning' : hour < 18 ? '午安 Good afternoon' : '晚安 Good evening';
+  const greet = hour < 12 ? '早安' : hour < 18 ? '午安' : '晚安';
   const todayTasks = state.todos.filter(x => x.date === t);
   const doneToday  = todayTasks.filter(x => x.done).length;
   const revToday   = srpDueOn(t);
@@ -1938,8 +1859,8 @@ VIEWS.master = function(){
   const reminderBar = reminders.length ? `
     <div class="reminder-bar">
       <div class="reminder-head">
-        <span style="font-size:16px">🔔</span>
-        <b>智慧提醒 Smart Alerts</b>
+        <span style="font-size:15px">🔔</span>
+        <b>提醒 Smart Alerts</b>
         <span class="pill ${reminders.some(r => r.tone==='danger'||r.tone==='urgent') ? 'danger' : 'info'}" style="margin-left:auto">${reminders.length} 項</span>
       </div>
       <div class="reminder-list">
@@ -1956,9 +1877,9 @@ VIEWS.master = function(){
   <div class="hero">
     <div>
       <h3>${greet}，Nathan 👋</h3>
-      <p>${fmtLong(t)} · ${todayTasks.length ? `今日有 <b>${todayTasks.length}</b> 項待辦` : '今日暫無待辦'}${revToday.length ? `、<b>${revToday.length}</b> 個複習任務` : ''}。</p>
+      <p>${fmtLong(t)} · ${todayTasks.length ? `今日有 <b>${todayTasks.length}</b> 項待辦` : '今日暫無待辦'}${revToday.length ? `、<b>${revToday.length}</b> 個複習` : ''}。</p>
       <div class="hero-chips">
-        <span>✅ 今日完成 ${doneToday}/${todayTasks.length || 0}</span>
+        <span>✅ ${doneToday}/${todayTasks.length || 0}</span>
         <span>⏰ 複習 ${revToday.length} 項</span>
         <span>📚 考試 ${upcomingAssess.length} 場</span>
       </div>
@@ -1974,19 +1895,19 @@ VIEWS.master = function(){
   </div>`;
 
   const stats = `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📝</div>
-      <div><div class="stat-val">${doneToday}<span class="muted" style="font-size:15px">/${todayTasks.length}</span></div>
-      <div class="stat-lbl">今日待辦 To-Do</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">⏰</div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📝</div>
+      <div><div class="stat-val">${doneToday}<span class="muted" style="font-size:13px">/${todayTasks.length}</span></div>
+      <div class="stat-lbl">今日待辦</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">⏰</div>
       <div><div class="stat-val" style="color:${revToday.length ? 'var(--urgent)' : 'inherit'}">${revToday.length}</div>
-      <div class="stat-lbl">今日複習 Revisions</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">📚</div>
+      <div class="stat-lbl">今日複習</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">📚</div>
       <div><div class="stat-val">${upcomingAssess.length}</div>
-      <div class="stat-lbl">待考評估 Assessments</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">⚠️</div>
+      <div class="stat-lbl">待考評估</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">⚠️</div>
       <div><div class="stat-val" style="color:${revLate ? 'var(--warn)' : 'inherit'}">${revLate}</div>
-      <div class="stat-lbl">逾期複習 Overdue</div></div></div>
+      <div class="stat-lbl">逾期複習</div></div></div>
   </div>`;
 
   const revList = revToday.length
@@ -1996,11 +1917,11 @@ VIEWS.master = function(){
           <div class="item-main">
             <div class="item-title">${esc(item.concept)}</div>
             <div class="item-meta">${subjBadge(item.subject)}
-              <span>第 ${idx+1} 次複習 · 第 ${REV_DAYNUM[idx]} 天</span></div>
+              <span>第 ${idx+1} 次複習</span></div>
           </div>
           <span class="pill urgent">今日</span>
         </div>`).join('')}</div>`
-    : `<div class="empty"><b>📖 無複習任務</b>No revision task today — 好好休息或預習新內容！</div>`;
+    : `<div class="empty"><b>📖 無複習任務</b>好好休息或預習新內容</div>`;
 
   const todoList = todayTasks.length
     ? `<div class="list">${todayTasks.map(x => `
@@ -2008,14 +1929,14 @@ VIEWS.master = function(){
           <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
           <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
         </div>`).join('')}</div>`
-    : `<div class="empty"><b>✨ 今天沒有待辦</b>No tasks for today</div>`;
+    : `<div class="empty"><b>✨ 今天沒有待辦</b></div>`;
 
   const assessList = upcomingAssess.length
     ? `<div class="list">${upcomingAssess.slice(0,5).map(a => {
         const d = diffDays(t, a.due);
         const p = a.progress || 0;
         const cls = d <= 3 ? 'danger' : d <= 10 ? 'warn' : 'ok';
-        return `<div class="item" style="flex-direction:column;align-items:stretch;gap:8px">
+        return `<div class="item" style="flex-direction:column;align-items:stretch;gap:6px">
           <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
             <div class="item-main">
               <div class="item-title">${esc(a.name)}</div>
@@ -2023,8 +1944,8 @@ VIEWS.master = function(){
                 <span>${fmtMD(a.due)}</span>${a.criteria && a.criteria!=='—' ? `<span>Crit ${esc(a.criteria)}</span>` : ''}</div>
             </div>
             <div style="text-align:right;flex:0 0 auto">
-              <div style="font-size:20px;font-weight:800;line-height:1;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d}</div>
-              <div class="tiny muted" style="font-weight:700">天 LEFT</div>
+              <div style="font-size:18px;font-weight:800;line-height:1;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d}</div>
+              <div class="tiny muted" style="font-weight:700">天</div>
             </div>
           </div>
           <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
@@ -2049,9 +1970,9 @@ VIEWS.master = function(){
     : `<div class="empty"><b>✅ 沒有待辦作業</b></div>`;
 
   const weekBar = `
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px">
-      <span class="tiny muted" style="font-weight:700">本週完成度 Weekly completion</span>
-      <b style="font-size:14px">${ws.done}/${ws.total} · ${ws.pct}%</b>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span class="tiny muted" style="font-weight:700">本週完成度</span>
+      <b style="font-size:13px">${ws.done}/${ws.total} · ${ws.pct}%</b>
     </div>
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>`;
 
@@ -2091,7 +2012,6 @@ VIEWS.master = function(){
   </div>`;
 };
 
-/* ---------- TO-DO ---------- */
 VIEWS.todo = function(){
   const t = todayISO();
   const anchor = state.weekAnchor || t;
@@ -2128,19 +2048,19 @@ VIEWS.todo = function(){
   const pct = selTasks.length ? Math.round(doneCount/selTasks.length*100) : 0;
 
   return `
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
-      <div class="card-title">📅 一週待辦 1-Week To-Do List</div>
-      <div style="display:flex;gap:6px;align-items:center">
+      <div class="card-title">📅 一週待辦</div>
+      <div style="display:flex;gap:5px;align-items:center">
         <button class="icon-btn" data-act="week-shift" data-delta="-7">‹</button>
-        <button class="btn btn-sm" data-act="week-shift" data-delta="0">本週 This week</button>
+        <button class="btn btn-sm" data-act="week-shift" data-delta="0">本週</button>
         <button class="icon-btn" data-act="week-shift" data-delta="7">›</button>
       </div>
     </div>
     <div class="week-strip">${dayChips}</div>
-    <div style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <span class="tiny muted" style="font-weight:700">本週整體完成度</span>
-      <b style="font-size:13px">${ws.done}/${ws.total} · ${ws.pct}%</b>
+    <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+      <span class="tiny muted" style="font-weight:700">本週完成度</span>
+      <b style="font-size:12.5px">${ws.done}/${ws.total} · ${ws.pct}%</b>
     </div>
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>
   </div>
@@ -2148,19 +2068,18 @@ VIEWS.todo = function(){
   <div class="card">
     <div class="card-head">
       <div>
-        <div class="card-title">${fmtLong(sel)} ${sel===t?'<span class="pill info" style="margin-left:6px">今天 Today</span>':''}</div>
-        <div class="tiny muted" style="margin-top:3px">${selTasks.length} 項任務 · 完成 ${doneCount} 項 · ${pct}%</div>
+        <div class="card-title">${fmtLong(sel)} ${sel===t?'<span class="pill info" style="margin-left:6px">今天</span>':''}</div>
+        <div class="tiny muted" style="margin-top:3px">${selTasks.length} 項 · 完成 ${doneCount} 項 · ${pct}%</div>
       </div>
     </div>
     ${taskList}
-    <div class="form-row" style="margin-top:14px">
-      <input class="input" id="newTodoInput" placeholder="新增任務… Add a task…" style="flex:1 1 260px">
-      <button class="btn btn-primary" data-act="todo-add">＋ 新增 Add</button>
+    <div class="form-row" style="margin-top:12px">
+      <input class="input" id="newTodoInput" placeholder="新增任務…" style="flex:1 1 260px">
+      <button class="btn btn-primary" data-act="todo-add">＋ 新增</button>
     </div>
   </div>`;
 };
 
-/* ---------- SRP ---------- */
 VIEWS.srp = function(){
   const t = todayISO();
   const sorted = [...state.srp].sort((a, b) => {
@@ -2197,27 +2116,27 @@ VIEWS.srp = function(){
   const body = sorted.length
     ? `<div class="scroll-x"><table class="tbl">
         <thead><tr>
-          <th>科目 Subject</th><th>知識點 Concept</th><th>第 1 天 Day 1</th>
-          <th>複習節點</th><th>狀態 Status</th><th></th>
+          <th>科目</th><th>知識點</th><th>第 1 天</th>
+          <th>複習節點</th><th>狀態</th><th></th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table></div>`
-    : `<div class="empty"><b>尚無知識點</b>每學完一個新內容，就把它拆成小知識點加進來。</div>`;
+    : `<div class="empty"><b>尚無知識點</b>每學完新內容，就拆成小知識點加進來</div>`;
 
   const dueToday = srpDueOn(t);
   return `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🧠</div>
-      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">知識點 Concepts</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">🔴</div>
-      <div><div class="stat-val">${dueToday.length}</div><div class="stat-lbl">今日複習 Due today</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">⏰</div>
-      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'danger').length}</div><div class="stat-lbl">逾期 Overdue</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
-      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'ok').length}</div><div class="stat-lbl">已完成 Completed</div></div></div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">🧠</div>
+      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">知識點</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">🔴</div>
+      <div><div class="stat-val">${dueToday.length}</div><div class="stat-lbl">今日複習</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">⏰</div>
+      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'danger').length}</div><div class="stat-lbl">逾期</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
+      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'ok').length}</div><div class="stat-lbl">已完成</div></div></div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">➕ 新增知識點</div></div>
     <div class="form-row">
       <select class="input" id="srpSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
@@ -2230,7 +2149,6 @@ VIEWS.srp = function(){
   <div class="card">${body}</div>`;
 };
 
-/* ---------- ASSIGNMENTS ---------- */
 VIEWS.assign = function(){
   const t = todayISO();
   const sorted = [...state.assignments].sort((a, b) => (a.due || '9999').localeCompare(b.due || '9999'));
@@ -2258,26 +2176,26 @@ VIEWS.assign = function(){
 
   const body = sorted.length
     ? `<div class="scroll-x"><table class="tbl">
-        <thead><tr><th>名稱</th><th>科目</th><th>到期日</th><th>剩餘天數</th><th>所需時間</th><th>狀態</th><th></th></tr></thead>
+        <thead><tr><th>名稱</th><th>科目</th><th>到期日</th><th>剩餘</th><th>所需時間</th><th>狀態</th><th></th></tr></thead>
         <tbody>${rows}</tbody></table></div>`
-    : `<div class="empty"><b>尚無作業</b>在下方新增</div>`;
+    : `<div class="empty"><b>尚無作業</b></div>`;
 
   return `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📋</div>
-      <div><div class="stat-val">${sorted.length - finished}</div><div class="stat-lbl">進行中 In progress</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">🔔</div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📋</div>
+      <div><div class="stat-val">${sorted.length - finished}</div><div class="stat-lbl">進行中</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">🔔</div>
       <div><div class="stat-val">${soon}</div><div class="stat-lbl">3 天內到期</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(239,68,68,.15)">⚠️</div>
-      <div><div class="stat-val">${overdue}</div><div class="stat-lbl">逾期 Overdue</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
-      <div><div class="stat-val">${finished}</div><div class="stat-lbl">已完成 Completed</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(239,68,68,.13)">⚠️</div>
+      <div><div class="stat-val">${overdue}</div><div class="stat-lbl">逾期</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
+      <div><div class="stat-val">${finished}</div><div class="stat-lbl">已完成</div></div></div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">➕ 新增作業</div></div>
     <div class="form-row">
-      <input class="input" id="asName" placeholder="作業名稱 Name" style="flex:1 1 220px">
+      <input class="input" id="asName" placeholder="作業名稱" style="flex:1 1 220px">
       <select class="input" id="asSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
       <input class="input" type="date" id="asDue" style="flex:0 0 150px">
       <input class="input" id="asTime" placeholder="所需時間" style="flex:0 0 150px">
@@ -2288,7 +2206,6 @@ VIEWS.assign = function(){
   <div class="card">${body}</div>`;
 };
 
-/* ---------- ASSESSMENTS（含展開詳情） ---------- */
 VIEWS.assess = function(){
   const t = todayISO();
   const sorted = [...state.assessments].sort((a, b) => {
@@ -2313,12 +2230,12 @@ VIEWS.assess = function(){
       const hasWb = rel.wrongs.length > 0;
       const hasAs = rel.assignments.length > 0;
       relatedHTML = `
-        <div style="border-top:1px dashed var(--border);padding-top:14px;margin-top:6px;display:flex;flex-direction:column;gap:14px">
+        <div style="border-top:1px dashed var(--border);padding-top:12px;margin-top:6px;display:flex;flex-direction:column;gap:12px">
           ${hasFb ? `
             <div>
-              <div class="sec-title" style="margin-bottom:6px">💬 該科反饋 Feedback（同 Criterion）</div>
+              <div class="sec-title" style="margin-bottom:6px">💬 該科反饋（同 Criterion）</div>
               ${rel.feedbacks.map(f => `
-                <div class="item" data-act="jump-to-feedback" data-id="${f.id}" style="cursor:pointer;flex-direction:column;align-items:stretch;gap:5px;padding:9px 11px;background:var(--surface-2);border-radius:10px;margin-bottom:6px">
+                <div class="item" data-act="jump-to-feedback" data-id="${f.id}" style="cursor:pointer;flex-direction:column;align-items:stretch;gap:5px;padding:9px 11px;background:var(--surface-2);border-radius:9px;margin-bottom:5px">
                   <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
                     <span style="font-size:12.5px;font-weight:650">${esc(f.name)}</span>
                     ${f.crit && f.crit!=='—' ? `<span class="pill muted" style="font-size:10px">Crit ${esc(f.crit)}</span>` : ''}
@@ -2329,11 +2246,11 @@ VIEWS.assess = function(){
             </div>` : ''}
           ${hasWb ? `
             <div>
-              <div class="sec-title" style="margin-bottom:6px">📕 相關錯題 Mistake Book</div>
+              <div class="sec-title" style="margin-bottom:6px">📕 相關錯題</div>
               ${rel.wrongs.map(w => `
-                <div style="padding:8px 10px;border-radius:10px;background:var(--surface-2);margin-bottom:6px;${w.mastered ? 'opacity:.6' : ''}">
-                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
-                    ${w.mastered ? '<span class="pill ok" style="font-size:10px">✅ 已掌握</span>' : '<span class="pill warn" style="font-size:10px">未掌握</span>'}
+                <div style="padding:8px 10px;border-radius:9px;background:var(--surface-2);margin-bottom:5px;${w.mastered ? 'opacity:.6' : ''}">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap">
+                    ${w.mastered ? '<span class="pill ok" style="font-size:10px">已掌握</span>' : '<span class="pill warn" style="font-size:10px">未掌握</span>'}
                     ${w.topic ? `<span class="tiny muted" style="font-weight:650">${esc(w.topic)}</span>` : ''}
                     <span class="tiny muted" style="margin-left:auto">${fmtMD(w.date)}</span>
                   </div>
@@ -2343,9 +2260,9 @@ VIEWS.assess = function(){
             </div>` : ''}
           ${hasAs ? `
             <div>
-              <div class="sec-title" style="margin-bottom:6px">✍️ 該科待辦作業 Assignments</div>
+              <div class="sec-title" style="margin-bottom:6px">✍️ 該科待辦作業</div>
               ${rel.assignments.map(asg => `
-                <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;background:var(--surface-2);margin-bottom:4px;font-size:12.5px">
+                <div style="display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;background:var(--surface-2);margin-bottom:4px;font-size:12px">
                   <span>${esc(asg.name)}</span>
                   ${asg.due ? `<span class="tiny muted" style="margin-left:auto">${fmtMD(asg.due)}</span>` : ''}
                 </div>`).join('')}
@@ -2354,35 +2271,35 @@ VIEWS.assess = function(){
         </div>`;
     }
 
-    return `<div class="card" style="display:flex;flex-direction:column;gap:12px">
+    return `<div class="card" style="display:flex;flex-direction:column;gap:10px">
       <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
         <div style="min-width:0">
-          <div style="font-size:15px;font-weight:750;letter-spacing:-.2px">${esc(a.name)}</div>
-          <div class="item-meta" style="margin-top:6px">
+          <div style="font-size:14.5px;font-weight:750">${esc(a.name)}</div>
+          <div class="item-meta" style="margin-top:5px">
             ${subjBadge(a.subject)}
             ${a.criteria && a.criteria !== '—' ? `<span class="pill muted">Crit ${esc(a.criteria)}</span>` : ''}
             <span>${hasDue ? fmtMD(a.due) : (a.dueNote || 'TBD')}</span>
           </div>
         </div>
         <div style="text-align:right;flex:0 0 auto">
-          ${hasDue ? `<div style="font-size:26px;font-weight:850;line-height:1;letter-spacing:-1px;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d < 0 ? '—' : d}</div>
-            <div class="tiny muted" style="font-weight:750;letter-spacing:.5px">${d < 0 ? 'PAST' : 'DAYS LEFT'}</div>`
-          : `<div style="font-size:20px">📌</div><div class="tiny muted" style="font-weight:700">TBD</div>`}
+          ${hasDue ? `<div style="font-size:24px;font-weight:850;line-height:1;letter-spacing:-1px;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d < 0 ? '—' : d}</div>
+            <div class="tiny muted" style="font-weight:750;letter-spacing:.5px">${d < 0 ? 'PAST' : 'DAYS'}</div>`
+          : `<div style="font-size:18px">📌</div><div class="tiny muted" style="font-weight:700">TBD</div>`}
         </div>
       </div>
       <div>
-        <div style="display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;margin-bottom:6px">
-          <span class="muted">準備進度 Prepare progress</span><span>${p}%</span>
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:700;margin-bottom:5px">
+          <span class="muted">準備進度</span><span>${p}%</span>
         </div>
         <div class="bar"><div class="bar-fill ${cls}" style="width:${p}%"></div></div>
         <input type="range" min="0" max="100" step="5" value="${p}" data-act="assess-progress" data-id="${a.id}">
       </div>
-      <div class="tiny muted" style="line-height:1.6">${esc(assessSuggest(a))}</div>
+      <div class="tiny muted" style="line-height:1.55">${esc(assessSuggest(a))}</div>
       <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="pill ${st.tone}">${st.label}</span>
         <div style="display:flex;gap:6px">
           <button class="btn btn-sm" data-act="assess-toggle-detail" data-id="${a.id}">
-            ${isExpanded ? '▲ 收起相關資料' : '▼ 查看相關資料'}
+            ${isExpanded ? '▲ 收起' : '▼ 相關資料'}
           </button>
           <button class="icon-btn" data-act="assess-del" data-id="${a.id}">✕</button>
         </div>
@@ -2393,26 +2310,26 @@ VIEWS.assess = function(){
 
   const body = sorted.length
     ? `<div class="grid g-2">${cards}</div>`
-    : `<div class="card"><div class="empty"><b>尚無考試</b>新增一場考試，系統會自動倒數並給出複習建議。</div></div>`;
+    : `<div class="card"><div class="empty"><b>尚無考試</b></div></div>`;
 
   const urgent = sorted.filter(a => a.due && diffDays(t, a.due) >= 0 && diffDays(t, a.due) <= 7).length;
 
   return `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📚</div>
-      <div><div class="stat-val">${sorted.length}</div><div class="stat-lbl">總評估 Total</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">🔔</div>
-      <div><div class="stat-val">${urgent}</div><div class="stat-lbl">7 天內 Within 7 days</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
-      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) >= 80).length}</div><div class="stat-lbl">準備充分 ≥80%</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📝</div>
-      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) < 50).length}</div><div class="stat-lbl">進度落後 &lt;50%</div></div></div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📚</div>
+      <div><div class="stat-val">${sorted.length}</div><div class="stat-lbl">總評估</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">🔔</div>
+      <div><div class="stat-val">${urgent}</div><div class="stat-lbl">7 天內</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
+      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) >= 80).length}</div><div class="stat-lbl">準備充分</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">📝</div>
+      <div><div class="stat-val">${sorted.filter(a => (a.progress||0) < 50).length}</div><div class="stat-lbl">進度落後</div></div></div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">➕ 新增評估</div></div>
     <div class="form-row">
-      <input class="input" id="evName" placeholder="評估名稱 Name" style="flex:1 1 220px">
+      <input class="input" id="evName" placeholder="評估名稱" style="flex:1 1 220px">
       <select class="input" id="evSubj" style="flex:0 0 120px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
       <input class="input" id="evCrit" placeholder="評分準則 e.g. A, B, D" style="flex:0 0 160px">
       <input class="input" type="date" id="evDue" style="flex:0 0 150px">
@@ -2423,7 +2340,6 @@ VIEWS.assess = function(){
   ${body}`;
 };
 
-/* ---------- FEEDBACK ---------- */
 VIEWS.feedback = function(){
   const grades = ['All', ...new Set(state.feedback.map(f => f.grade || '未分類'))];
   const subs = ['All', ...new Set(state.feedback.map(f => f.subject))];
@@ -2448,12 +2364,12 @@ VIEWS.feedback = function(){
   ).join('');
 
   const newForm = isNew ? `
-    <div class="card" style="margin-bottom:14px;border-color:var(--primary)">
+    <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
       <div class="card-head"><div class="card-title">➕ 新增反饋</div></div>
       <div class="form-row">
         <input class="input" id="fbNewName" placeholder="考試名稱" style="flex:1 1 220px">
         <select class="input" id="fbNewSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-        <input class="input" id="fbNewGrade" placeholder="年級 e.g. Grade 9" style="flex:0 0 130px">
+        <input class="input" id="fbNewGrade" placeholder="年級" style="flex:0 0 130px">
         <input class="input" id="fbNewCrit" placeholder="評分準則" style="flex:0 0 200px">
       </div>
       <textarea class="input" id="fbNewText" placeholder="反饋內容（每行一項）" rows="5" style="margin-top:8px"></textarea>
@@ -2491,9 +2407,9 @@ VIEWS.feedback = function(){
     const txt = f.text && f.text.trim() && f.text.trim() !== 'N/A'
       ? `<ul class="fb-list">${f.text.split('\n').map(l => l.trim()).filter(Boolean)
           .map(l => `<li>${esc(l.replace(/^-\s*/, ''))}</li>`).join('')}</ul>`
-      : `<p class="muted tiny">N/A — 暫無反饋 No feedback recorded</p>`;
+      : `<p class="muted tiny">N/A — 暫無反饋</p>`;
     const isHl = state.highlightFeedbackId === f.id;
-    return `<details class="acc" data-fb-id="${f.id}" ${isHl ? 'open' : ''} style="${isHl ? 'border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 22%,transparent)' : ''}">
+    return `<details class="acc" data-fb-id="${f.id}" ${isHl ? 'open' : ''} style="${isHl ? 'border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 20%,transparent)' : ''}">
       <summary>
         ${subjBadge(f.subject)}
         <span>${esc(f.name)}</span>
@@ -2501,7 +2417,7 @@ VIEWS.feedback = function(){
       </summary>
       <div class="acc-body">
         ${txt}
-        <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end">
+        <div style="display:flex;gap:8px;margin-top:12px;justify-content:flex-end">
           <button class="btn btn-sm" data-act="fb-edit" data-id="${f.id}">✏️ 編輯</button>
           <button class="btn btn-sm btn-danger" data-act="fb-del" data-id="${f.id}">🗑 刪除</button>
         </div>
@@ -2511,9 +2427,9 @@ VIEWS.feedback = function(){
 
   const groupedHTML = groupNames.length
     ? groupNames.map(g => `
-      <div style="margin-bottom:20px">
-        <div class="sec-title" style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
-          <span style="font-size:14px">🎓 ${esc(g)}</span>
+      <div style="margin-bottom:18px">
+        <div class="sec-title" style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:13px">🎓 ${esc(g)}</span>
           <span class="tiny muted" style="font-weight:600">${grouped[g].length} 筆</span>
         </div>
         ${grouped[g].map(renderItem).join('')}
@@ -2521,7 +2437,7 @@ VIEWS.feedback = function(){
     : `<div class="empty"><b>沒有符合的反饋</b></div>`;
 
   return `
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">💬 考試反饋</div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -2529,12 +2445,12 @@ VIEWS.feedback = function(){
         <button class="btn btn-primary btn-sm" data-act="fb-add">＋ 新增反饋</button>
       </div>
     </div>
-    <div style="margin-bottom:10px">
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">年級 GRADE</div>
+    <div style="margin-bottom:9px">
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">年級</div>
       <div class="chip-row">${gradeChips}</div>
     </div>
     <div>
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目 SUBJECT</div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目</div>
       <div class="chip-row">${subjChips}</div>
     </div>
   </div>
@@ -2542,7 +2458,6 @@ VIEWS.feedback = function(){
   <div>${groupedHTML}</div>`;
 };
 
-/* ---------- 📕 錯題本 ---------- */
 VIEWS.wrongbook = function(){
   const t = todayISO();
   const all = state.wrongBook || [];
@@ -2571,7 +2486,7 @@ VIEWS.wrongbook = function(){
 
   const subjChips = subjects.map(s => {
     const n = s === 'All' ? total : all.filter(w => w.subject === s).length;
-    return `<button class="chip ${s===subjectFilter?'active':''}" data-act="wb-filter-subj" data-subj="${esc(s)}">${s === 'All' ? '全部科目' : esc(s)} <span style="opacity:.65">(${n})</span></button>`;
+    return `<button class="chip ${s===subjectFilter?'active':''}" data-act="wb-filter-subj" data-subj="${esc(s)}">${s === 'All' ? '全部' : esc(s)} <span style="opacity:.65">(${n})</span></button>`;
   }).join('');
 
   const statusChips = [
@@ -2581,18 +2496,17 @@ VIEWS.wrongbook = function(){
   ].map(s => `<button class="chip ${s.id===statusFilter?'active':''}" data-act="wb-filter-status" data-status="${s.id}">${s.label}</button>`).join('');
 
   const addForm = isAdding ? `
-    <div class="card" style="margin-bottom:14px;border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)">
+    <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
       <div class="card-head">
         <div class="card-title">➕ 新增錯題</div>
-        <span class="tiny muted">只儲存於你的帳號，不會上傳給任何人</span>
       </div>
       <div class="form-row">
         <select class="input" id="wbNewSubj" style="flex:0 0 140px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-        <input class="input" id="wbNewTopic" placeholder="題型 / 知識點 e.g. 指數律" style="flex:1 1 200px">
+        <input class="input" id="wbNewTopic" placeholder="題型 / 知識點" style="flex:1 1 200px">
         <input class="input" type="date" id="wbNewDate" value="${t}" style="flex:0 0 150px">
       </div>
-      <textarea class="input" id="wbNewQuestion" placeholder="題目描述（簡略即可，例如「化簡 (2³)² 誤寫成 2⁵」）" rows="2" style="margin-top:8px"></textarea>
-      <textarea class="input" id="wbNewReason" placeholder="❌ 錯誤原因（為什麼會錯？）" rows="2" style="margin-top:8px"></textarea>
+      <textarea class="input" id="wbNewQuestion" placeholder="題目描述（簡略即可）" rows="2" style="margin-top:8px"></textarea>
+      <textarea class="input" id="wbNewReason" placeholder="❌ 錯誤原因" rows="2" style="margin-top:8px"></textarea>
       <textarea class="input" id="wbNewCorrect" placeholder="✅ 正確解法 / 關鍵觀念" rows="2" style="margin-top:8px"></textarea>
       <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
         <button class="btn" data-act="wb-cancel">取消</button>
@@ -2607,7 +2521,7 @@ VIEWS.wrongbook = function(){
     <div class="wb-record ${w.mastered ? 'mastered' : ''}">
       <div style="display:flex;align-items:flex-start;gap:10px">
         <div style="flex:1;min-width:0">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
             ${subjBadge(w.subject)}
             ${w.topic ? `<span class="pill muted">${esc(w.topic)}</span>` : ''}
             <span class="tiny muted">${fmtMD(w.date)}${dSince !== null ? ` · ${dSince} 天前` : ''}</span>
@@ -2615,18 +2529,18 @@ VIEWS.wrongbook = function(){
           </div>
           <div class="wb-question">${esc(w.question || '（未填寫題目）')}</div>
         </div>
-                <div style="display:flex;gap:6px;flex:0 0 auto">
-          <button type="button" class="icon-btn" data-act="wb-toggle-master" data-id="${w.id}" title="${w.mastered ? '標記為未掌握' : '標記為已掌握'}" style="width:34px;height:34px;font-size:14px">
+        <div style="display:flex;gap:6px;flex:0 0 auto">
+          <button type="button" class="icon-btn" data-act="wb-toggle-master" data-id="${w.id}" title="${w.mastered ? '標記為未掌握' : '標記為已掌握'}" style="width:32px;height:32px;font-size:13px">
             ${w.mastered ? '↩️' : '✓'}
           </button>
-          <button type="button" class="icon-btn" data-act="wb-del" data-id="${w.id}" title="刪除" style="width:34px;height:34px;font-size:14px;color:var(--danger);border-color:color-mix(in srgb,var(--danger) 40%,var(--border));background:color-mix(in srgb,var(--danger) 8%,var(--surface-2))">
+          <button type="button" class="icon-btn" data-act="wb-del" data-id="${w.id}" title="刪除" style="width:32px;height:32px;font-size:13px;color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))">
             🗑
           </button>
         </div>
       </div>
 
-      <button class="btn btn-sm" data-act="wb-toggle-detail" data-id="${w.id}" style="margin-top:10px">
-        ${isExp ? '▲ 收起詳情' : '▼ 查看原因與解法'}
+      <button class="btn btn-sm" data-act="wb-toggle-detail" data-id="${w.id}" style="margin-top:9px">
+        ${isExp ? '▲ 收起' : '▼ 查看原因與解法'}
       </button>
 
       ${isExp ? `
@@ -2635,31 +2549,31 @@ VIEWS.wrongbook = function(){
           <div class="wb-row wb-correct"><b>✅ 正確解法：</b>${esc(w.correct || '（未填寫）')}</div>
         </div>` : ''}
     </div>`;
-  }).join('') : `<div class="empty"><b>${all.length === 0 ? '尚無錯題紀錄' : '沒有符合的紀錄'}</b>${all.length === 0 ? '點擊「＋ 新增錯題」開始記錄你的弱點，錯題會集中管理，方便複習。' : '試試其他篩選條件。'}</div>`;
+  }).join('') : `<div class="empty"><b>${all.length === 0 ? '尚無錯題紀錄' : '沒有符合的紀錄'}</b>${all.length === 0 ? '點擊「＋ 新增錯題」開始記錄你的弱點。' : '試試其他篩選條件。'}</div>`;
 
   return `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">📕</div>
-      <div><div class="stat-val">${total}</div><div class="stat-lbl">總錯題 Total</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📝</div>
-      <div><div class="stat-val" style="color:${unmastered ? 'var(--warn)' : 'inherit'}">${unmastered}</div><div class="stat-lbl">未掌握 Unmastered</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">✅</div>
-      <div><div class="stat-val">${mastered}</div><div class="stat-lbl">已掌握 Mastered</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.14)">⏳</div>
-      <div><div class="stat-val" style="color:${oldUnmastered ? 'var(--danger)' : 'inherit'}">${oldUnmastered}</div><div class="stat-lbl">超過 7 天未掌握</div></div></div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📕</div>
+      <div><div class="stat-val">${total}</div><div class="stat-lbl">總錯題</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">📝</div>
+      <div><div class="stat-val" style="color:${unmastered ? 'var(--warn)' : 'inherit'}">${unmastered}</div><div class="stat-lbl">未掌握</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
+      <div><div class="stat-val">${mastered}</div><div class="stat-lbl">已掌握</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">⏳</div>
+      <div><div class="stat-val" style="color:${oldUnmastered ? 'var(--danger)' : 'inherit'}">${oldUnmastered}</div><div class="stat-lbl">超過 7 天</div></div></div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
-      <div class="card-title">📕 錯題本 Mistake Book</div>
+      <div class="card-title">📕 錯題本</div>
       <button class="btn btn-primary btn-sm" data-act="wb-add-toggle">${isAdding ? '取消' : '＋ 新增錯題'}</button>
     </div>
-    <div style="margin-bottom:10px">
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目 SUBJECT</div>
+    <div style="margin-bottom:9px">
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目</div>
       <div class="chip-row">${subjChips}</div>
     </div>
     <div>
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">狀態 STATUS</div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">狀態</div>
       <div class="chip-row">${statusChips}</div>
     </div>
   </div>
@@ -2669,7 +2583,6 @@ VIEWS.wrongbook = function(){
   <div class="grid g-2">${recordsHTML}</div>`;
 };
 
-/* ---------- REPORT CARDS ---------- */
 VIEWS.report = function(){
   const grades = state.reportGrades || [];
   const gradeRows = grades.length ? grades.map(g => {
@@ -2710,9 +2623,9 @@ VIEWS.report = function(){
   const boundBlock = (title, arr) => `
     <div>
       <div class="sec-title">${title}</div>
-      ${arr.map(([min, g, lbl]) => `<div class="kv" style="padding:6px 0">
+      ${arr.map(([min, g, lbl]) => `<div class="kv" style="padding:5px 0">
         <span style="display:flex;align-items:center;gap:9px">
-          <b style="font-size:15px;color:var(--primary);min-width:14px">${g}</b>
+          <b style="font-size:14.5px;color:var(--primary);min-width:14px">${g}</b>
           <span class="tiny muted" style="font-weight:600">${lbl}</span>
         </span>
         <span class="tiny muted">≥ ${min} 分</span>
@@ -2720,14 +2633,14 @@ VIEWS.report = function(){
     </div>`;
 
   return `
-  <div class="grid g-4" id="rcStats" style="margin-bottom:16px">${rcStatsHTML()}</div>
+  <div class="grid g-4" id="rcStats" style="margin-bottom:14px">${rcStatsHTML()}</div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">📝 單次評估成績</div>
       <span class="tiny muted">一般科目 0–8 分 · Biotech 0–10 分</span>
     </div>
-    <div class="form-row" style="margin-bottom:14px">
+    <div class="form-row" style="margin-bottom:12px">
       <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
       <select class="input" id="rcgNewSubj" style="flex:0 0 150px">
         ${RC_SUBJECTS.map(s => `<option value="${s.key}">${s.key}</option>`).join('')}
@@ -2737,7 +2650,7 @@ VIEWS.report = function(){
     ${gradeTable}
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">💯 科目 Criterion 彙總</div>
       <span class="tiny muted">自動計算平均（向下取整）</span>
@@ -2754,7 +2667,6 @@ VIEWS.report = function(){
   </div>`;
 };
 
-/* ---------- SCHEDULE ---------- */
 VIEWS.schedule = function(){
   const d = state.schedDay || 1;
   const periods = (state.schedule[d] || ['','','','','']);
@@ -2795,14 +2707,14 @@ VIEWS.schedule = function(){
         if (edit){
           return `<td><input class="cell-input" data-act="sched-edit" data-day="${n}" data-period="${i}" value="${esc(cell)}" placeholder="—"></td>`;
         }
-        return `<td style="${n===d ? 'background:color-mix(in srgb,var(--primary) 8%,transparent)' : ''}">
-          <span style="font-size:12.5px;font-weight:600;color:${cell ? subjColor(nm) : 'var(--muted)'}">${esc(nm || '—')}</span>
+        return `<td style="${n===d ? 'background:color-mix(in srgb,var(--primary) 5%,transparent)' : ''}">
+          <span style="font-size:12px;font-weight:600;color:${cell ? subjColor(nm) : 'var(--muted)'}">${esc(nm || '—')}</span>
         </td>`;
       }).join('')}
     </tr>`).join('');
 
   return `
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">📅 我的課表</div>
       <div style="display:flex;gap:8px;align-items:center">
@@ -2815,7 +2727,7 @@ VIEWS.schedule = function(){
     <div class="day-tabs">${tabs}</div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">🕐 Day ${d} 課堂</div></div>
     <div class="sched-grid">${todayCards}</div>
   </div>
@@ -2824,14 +2736,13 @@ VIEWS.schedule = function(){
     <div class="card-head"><div class="card-title">🗓️ 全循環總表</div></div>
     <div class="scroll-x">
       <table class="tbl" style="min-width:900px">
-        <thead><tr><th>節次 Period</th>${[...Array(10).keys()].map(k => `<th style="text-align:center">D${k+1}</th>`).join('')}</tr></thead>
+        <thead><tr><th>節次</th>${[...Array(10).keys()].map(k => `<th style="text-align:center">D${k+1}</th>`).join('')}</tr></thead>
         <tbody>${tableRows}</tbody>
       </table>
     </div>
   </div>`;
 };
 
-/* ---------- DETOX ---------- */
 VIEWS.detox = function(){
   const volumes = state.detoxVolumes || {};
   if (detoxState.currentQuoteIdx === -1) detoxState.currentQuoteIdx = pickQuoteIdx();
@@ -2858,7 +2769,7 @@ VIEWS.detox = function(){
   <div class="detox-page">
     <div class="detox-head">
       <h2>🌿 解壓空間</h2>
-      <p>Detox Space · 這裡沒有任務、沒有進度、沒有評價</p>
+      <p>這裡沒有任務、沒有進度、沒有評價</p>
     </div>
     <div class="detox-grid">
       <div class="d-card" style="grid-column:1/-1">
@@ -2866,7 +2777,7 @@ VIEWS.detox = function(){
         <div class="d-quote" data-act="detox-quote" id="detoxQuote">
           <div class="d-quote-zh">${esc(q.zh)}</div>
           <div class="d-quote-en">${esc(q.en)}</div>
-          <div class="d-quote-hint">點一下換一句 Tap to change</div>
+          <div class="d-quote-hint">點一下換一句</div>
         </div>
       </div>
 
@@ -2901,7 +2812,6 @@ VIEWS.detox = function(){
   </div>`;
 };
 
-/* ---------- GUIDE ---------- */
 VIEWS.guide = function(){
   const sec = (title, sub, body, open = false) =>
     `<details class="acc" ${open ? 'open' : ''}>
@@ -2915,22 +2825,22 @@ VIEWS.guide = function(){
     </table></div>`;
 
   return `
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">🚀 操作指南</div>
-      <span class="tiny muted">Daily · Weekly · Per-subject playbook</span>
+      <span class="tiny muted">Daily · Weekly · Per-subject</span>
     </div>
     <p class="tiny muted" style="line-height:1.7">
-      核心只有一句話：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習。</b>
+      核心：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習。</b>
     </p>
   </div>
 
   ${sec('一、每日例行流程', '約 5–10 分鐘', tbl(
     ['時間點', '動作', '目的'],
     [
-      ['🌅 早晨', '打開「待辦事項」，看當天複習任務', '預先知道今天要複習什麼'],
-      ['🏫 課間', '對照「課表」與 SRP，有空檔優先完成複習', '把握黃金 24 小時'],
-      ['🌆 放學後', '① 檢查作業追蹤 ② 新內容到 SRP 新增 ③ 完成複習', '不累積、不遺漏'],
+      ['🌅 早晨', '打開待辦事項，看當天複習任務', '預先知道今天要複習什麼'],
+      ['🏫 課間', '對照課表與 SRP，有空檔優先複習', '把握黃金 24 小時'],
+      ['🌆 放學後', '① 檢查作業 ② 新內容到 SRP ③ 完成複習', '不累積、不遺漏'],
       ['🌙 睡前', '快速回顧今天學到的一個重點', '鞏固當天所學']
     ]), true)}
 
@@ -2939,7 +2849,7 @@ VIEWS.guide = function(){
     [
       ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期', '提前規劃下週'],
       ['2️⃣ 檢查作業與考試', '檢視下週所有到期項目', '避免臨時抱佛腳'],
-      ['3️⃣ 檢查錯題本', '把這週的錯題復習一次，已掌握的打勾', '強化弱點'],
+      ['3️⃣ 檢查錯題本', '把這週的錯題復習一次', '強化弱點'],
       ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標', '有方向地前進']
     ]))}
 
@@ -2964,7 +2874,7 @@ VIEWS.guide = function(){
   ${sec('五、錯題本使用心法', '每週 10 分鐘', tbl(
     ['時間點', '動作', '目的'],
     [
-      ['做完題當下', '把錯的題目記到「錯題本」，寫下原因', '趁記憶猶新'],
+      ['做完題當下', '把錯的題目記到錯題本，寫下原因', '趁記憶猶新'],
       ['隔 1–2 天', '看一遍原因，自己講一次正確解法', '加深印象'],
       ['超過 7 天未掌握', '系統會提醒你，優先處理', '避免弱點累積'],
       ['已掌握', '打勾，從此不再焦慮', '給自己成就感']
@@ -2972,7 +2882,6 @@ VIEWS.guide = function(){
   `;
 };
 
-/* ---------- SETTINGS ---------- */
 VIEWS.settings = function(){
   const subs = state.subjects || [];
   const chips = subs.map(s => `
@@ -3018,21 +2927,21 @@ VIEWS.settings = function(){
   })();
 
   const stat = `
-  <div class="grid g-4" style="margin-bottom:16px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.14)">🏷️</div>
-      <div><div class="stat-val">${subs.length}</div><div class="stat-lbl">科目 Subjects</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.14)">💬</div>
-      <div><div class="stat-val">${state.feedback.length}</div><div class="stat-lbl">反饋 Feedback</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.16)">📕</div>
-      <div><div class="stat-val">${(state.wrongBook||[]).length}</div><div class="stat-lbl">錯題 Mistakes</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.14)">🧠</div>
-      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">SRP 知識點</div></div></div>
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">🏷️</div>
+      <div><div class="stat-val">${subs.length}</div><div class="stat-lbl">科目</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">💬</div>
+      <div><div class="stat-val">${state.feedback.length}</div><div class="stat-lbl">反饋</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">📕</div>
+      <div><div class="stat-val">${(state.wrongBook||[]).length}</div><div class="stat-lbl">錯題</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">🧠</div>
+      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">SRP</div></div></div>
   </div>`;
 
   return `
   ${stat}
 
-  <div class="card" style="margin-bottom:14px;border-color:${Cloud.configured?'color-mix(in srgb,var(--ok) 35%,var(--border))':'var(--border)'}">
+  <div class="card" style="margin-bottom:12px;border-color:${Cloud.configured?'color-mix(in srgb,var(--ok) 30%,var(--border))':'var(--border)'}">
     <div class="card-head">
       <div class="card-title">☁️ 雲端同步</div>
       <span class="pill ${Cloud.configured ? (Cloud.status==='error'?'danger':'ok') : 'muted'}">${Cloud.configured ? '已啟用' : '未設定'}</span>
@@ -3057,34 +2966,32 @@ VIEWS.settings = function(){
       <button class="btn" data-act="cloud-pull-now">⬇️ 下載雲端</button>
     </div>
     <div class="kv" style="margin-top:12px">
-      <span>目前狀態 Status</span>
+      <span>目前狀態</span>
       <b id="cloudStatusText">${statusLabel}</b>
     </div>
     <div class="kv">
-      <span>上次同步 Last sync</span>
+      <span>上次同步</span>
       <b id="lastSyncText">${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
-    <div class="card-head">
-      <div class="card-title">🏷️ 科目管理</div>
-    </div>
-    <div class="chip-row" style="margin-bottom:14px">${chips || '<span class="tiny muted">尚無科目</span>'}</div>
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-head"><div class="card-title">🏷️ 科目管理</div></div>
+    <div class="chip-row" style="margin-bottom:12px">${chips || '<span class="tiny muted">尚無科目</span>'}</div>
     <div class="form-row">
       <input class="input" id="subjNewInput" placeholder="新增科目名稱" style="flex:1 1 260px">
       <button class="btn btn-primary" data-act="subj-add">＋ 新增科目</button>
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">📊 科目使用統計</div></div>
-    <div style="display:flex;flex-direction:column;gap:7px">
+    <div style="display:flex;flex-direction:column;gap:6px">
       ${subs.map(s => {
         const u = usage[s] || 0;
         return `<div class="kv">
           <span style="display:flex;align-items:center;gap:8px">
-            <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(s)}"></span>
+            <span style="width:7px;height:7px;border-radius:99px;background:${subjColor(s)}"></span>
             <b>${esc(s)}</b>
           </span>
           <span class="tiny muted">${u} 筆紀錄</span>
@@ -3093,18 +3000,18 @@ VIEWS.settings = function(){
     </div>
   </div>
 
-  <div class="card" style="margin-bottom:14px">
+  <div class="card" style="margin-bottom:12px">
     <div class="card-head"><div class="card-title">💾 資料管理</div></div>
     <div class="form-row">
-      <button class="btn" data-act="data-export">⬇️ 匯出 JSON Export</button>
-      <button class="btn" data-act="data-import">⬆️ 匯入 JSON Import</button>
-      <button class="btn btn-danger" data-act="data-reset">🗑 重設所有資料 Reset All</button>
+      <button class="btn" data-act="data-export">⬇️ 匯出 JSON</button>
+      <button class="btn" data-act="data-import">⬆️ 匯入 JSON</button>
+      <button class="btn btn-danger" data-act="data-reset">🗑 重設所有資料</button>
     </div>
   </div>
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>2.2（錯題本 + 考試關聯 + 提醒）</b></div>
+    <div class="kv"><span>版本 Version</span><b>2.3（簡潔 UI）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3188,7 +3095,6 @@ document.addEventListener('click', e => {
     case 'cloud-push-now': { Cloud.forcePush(); break; }
     case 'cloud-pull-now': { Cloud.forcePull(); break; }
 
-    /* ---- 錯題本 ---- */
     case 'wb-add-toggle': {
       state.wbAdding = !state.wbAdding;
       save(); render();
@@ -3221,7 +3127,7 @@ document.addEventListener('click', e => {
       toast('✅ 已新增錯題');
       break;
     }
-     case 'wb-del': {
+    case 'wb-del': {
       e.stopPropagation();
       const id = el.dataset.id;
       if (!id) break;
@@ -3258,7 +3164,6 @@ document.addEventListener('click', e => {
       break;
     }
 
-    /* ---- 考試詳情展開 ---- */
     case 'assess-toggle-detail': {
       const id = el.dataset.id;
       state.expandedAssessId = state.expandedAssessId === id ? null : id;
@@ -3266,8 +3171,8 @@ document.addEventListener('click', e => {
       break;
     }
 
-    /* ---- 跳到考試反饋頁面並高亮 ---- */
     case 'jump-to-feedback': {
+      e.stopPropagation();
       const id = el.dataset.id;
       state.view = 'feedback';
       state.highlightFeedbackId = id;
@@ -3285,7 +3190,6 @@ document.addEventListener('click', e => {
       break;
     }
 
-    /* ---- 其他（原有） ---- */
     case 'todo-toggle': {
       const it = state.todos.find(x => x.id === el.dataset.id);
       if (it){ it.done = !it.done; save(); render(); }
@@ -3551,6 +3455,7 @@ document.addEventListener('click', e => {
             state.wbAdding = false;
             state.wbExpandedId = null;
             state.expandedAssessId = null;
+            state.highlightFeedbackId = null;
             save(); applyTheme(); render();
             toast('✅ 已匯入');
           }catch(err){
@@ -3574,12 +3479,12 @@ document.addEventListener('click', e => {
       state.wbAdding = false;
       state.wbExpandedId = null;
       state.expandedAssessId = null;
+      state.highlightFeedbackId = null;
       save(); applyTheme(); render();
       toast('↺ 已重設');
       break;
     }
 
-    /* ---- detox ---- */
     case 'detox-quote': {
       const el2 = document.getElementById('detoxQuote');
       if (el2){
@@ -3856,7 +3761,6 @@ document.addEventListener('keydown', e => {
       btn && btn.click();
       return;
     }
-    // 錯題本用 textarea，所以用 Ctrl/Cmd+Enter 送出
     if (e.target.id === 'wbNewCorrect' && (e.ctrlKey || e.metaKey)){
       e.preventDefault();
       const btn = document.querySelector('[data-act="wb-save-new"]');
@@ -3911,6 +3815,7 @@ $('#resetBtn').addEventListener('click', () => {
   state.wbAdding = false;
   state.wbExpandedId = null;
   state.expandedAssessId = null;
+  state.highlightFeedbackId = null;
   save(); applyTheme(); render();
   toast('↺ 已重設');
 });
@@ -3993,6 +3898,7 @@ state.editingSchedule = false;
 state.wbAdding = false;
 state.wbExpandedId = null;
 state.expandedAssessId = null;
+state.highlightFeedbackId = null;
 applyTheme();
 render();
 pomoRender();
