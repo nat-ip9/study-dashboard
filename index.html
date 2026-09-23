@@ -58,11 +58,7 @@ body{
   overflow-y:auto;
 }
 .brand{display:flex;align-items:center;gap:10px;padding:4px 6px 16px}
-.brand-icon{
-  width:36px;height:36px;flex:0 0 36px;border-radius:11px;
-  display:grid;place-items:center;font-size:18px;
-  background:var(--primary);color:#fff;
-}
+.brand-icon{width:36px;height:36px;flex:0 0 36px;border-radius:11px;display:grid;place-items:center;font-size:18px;background:var(--primary);color:#fff}
 .brand h1{font-size:14px;font-weight:800;letter-spacing:.2px}
 .brand p{font-size:10.5px;color:var(--muted);font-weight:500;letter-spacing:.4px}
 .nav{display:flex;flex-direction:column;gap:2px;flex:1}
@@ -73,10 +69,7 @@ body{
   color:var(--muted);font:inherit;transition:.14s ease;width:100%;
 }
 .nav-item:hover{background:var(--surface-2);color:var(--text)}
-.nav-item.active{
-  background:var(--primary);
-  color:#fff;
-}
+.nav-item.active{background:var(--primary);color:#fff}
 .nav-icon{font-size:14px;line-height:1;width:18px;text-align:center}
 .nav-text{display:flex;flex-direction:column;line-height:1.2}
 .nav-text b{font-size:12.5px;font-weight:650}
@@ -94,29 +87,13 @@ body{
 .topbar h2{font-size:20px;font-weight:800;letter-spacing:-.3px}
 .topbar .sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:1.2px;text-transform:uppercase}
 .topbar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.today-chip{
-  display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;
-  background:var(--surface-2);border:1px solid transparent;
-  font-size:12px;font-weight:600;color:var(--muted);
-}
+.today-chip{display:flex;align-items:center;gap:7px;padding:6px 11px;border-radius:99px;background:var(--surface-2);border:1px solid transparent;font-size:12px;font-weight:600;color:var(--muted)}
 .today-chip .dot{width:6px;height:6px;border-radius:99px;background:var(--ok)}
-
-.pomo{
-  display:flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;border-radius:99px;
-  background:var(--surface-2);
-}
-.pomo-mode{
-  font-size:10px;font-weight:750;letter-spacing:.4px;color:var(--muted);
-  cursor:pointer;user-select:none;padding:3px 7px;border-radius:99px;background:var(--surface);
-  transition:.14s;
-}
+.pomo{display:flex;align-items:center;gap:6px;padding:5px 6px 5px 10px;border-radius:99px;background:var(--surface-2)}
+.pomo-mode{font-size:10px;font-weight:750;letter-spacing:.4px;color:var(--muted);cursor:pointer;user-select:none;padding:3px 7px;border-radius:99px;background:var(--surface);transition:.14s}
 .pomo-mode:hover{color:var(--text)}
 .pomo-time{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.4px;min-width:44px;text-align:center}
-.icon-btn{
-  width:26px;height:26px;border-radius:99px;border:1px solid var(--border);
-  background:var(--surface);color:var(--text);cursor:pointer;font-size:11px;
-  display:grid;place-items:center;transition:.14s;line-height:1;
-}
+.icon-btn{width:26px;height:26px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.14s;line-height:1}
 .icon-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 .pomo.running .pomo-time{color:var(--primary)}
 
@@ -126,28 +103,16 @@ body{
 .g-4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 .stack{display:flex;flex-direction:column;gap:12px}
 
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
-  padding:16px 18px;
-}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px}
 .card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
 .card-title{font-size:13.5px;font-weight:750;display:flex;align-items:center;gap:8px}
 .card-sub{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
 
-.hero{
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;
-  padding:22px 24px;border-radius:var(--r);margin-bottom:14px;
-  background:linear-gradient(120deg,var(--primary) 0%,var(--primary-2) 100%);
-  color:#fff;
-}
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;padding:22px 24px;border-radius:var(--r);margin-bottom:14px;background:linear-gradient(120deg,var(--primary) 0%,var(--primary-2) 100%);color:#fff}
 .hero h3{font-size:20px;font-weight:800;letter-spacing:-.3px;margin-bottom:4px}
 .hero p{font-size:12.5px;opacity:.9;font-weight:500;max-width:560px}
 .hero-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.hero-chips span{
-  font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:99px;
-  background:rgba(255,255,255,.16);
-}
+.hero-chips span{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:99px;background:rgba(255,255,255,.16)}
 .ring-wrap{position:relative;width:92px;height:92px;flex:0 0 92px}
 .ring{width:92px;height:92px;transform:rotate(-90deg)}
 .ring circle{fill:none;stroke-width:4.5;stroke-linecap:round}
@@ -157,16 +122,9 @@ body{
 .ring-label b{font-size:20px;font-weight:800;line-height:1}
 .ring-label small{font-size:9px;opacity:.85;letter-spacing:.8px;font-weight:650;display:block;margin-top:2px}
 
-.stat{
-  display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(--r);
-  background:var(--surface);border:1px solid var(--border);
-  transition:.15s;
-}
+.stat{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);transition:.15s}
 .stat:hover{border-color:color-mix(in srgb,var(--primary) 28%,var(--border))}
-.stat-icon{
-  width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:grid;place-items:center;
-  font-size:16px;background:var(--surface-2);
-}
+.stat-icon{width:34px;height:34px;flex:0 0 34px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:var(--surface-2)}
 .stat-val{font-size:19px;font-weight:800;line-height:1.05;letter-spacing:-.4px}
 .stat-lbl{font-size:10.5px;color:var(--muted);font-weight:600;letter-spacing:.2px}
 
@@ -190,29 +148,20 @@ body{
 .item-actions{display:flex;gap:5px;opacity:0;transition:.15s}
 .item:hover .item-actions{opacity:1}
 
-.cb{
-  width:19px;height:19px;flex:0 0 19px;border-radius:6px;border:2px solid var(--border);
-  background:var(--surface);cursor:pointer;display:grid;place-items:center;
-  transition:.14s;margin-top:1px;font-size:10px;color:transparent;line-height:1;
-}
+.cb{width:19px;height:19px;flex:0 0 19px;border-radius:6px;border:2px solid var(--border);background:var(--surface);cursor:pointer;display:grid;place-items:center;transition:.14s;margin-top:1px;font-size:10px;color:transparent;line-height:1}
 .cb:hover{border-color:var(--primary)}
 .cb.on{background:var(--primary);border-color:var(--primary);color:#fff}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.14s;white-space:nowrap}
 .btn:hover{background:var(--surface-2)}
 .btn-primary{background:var(--primary);color:#fff;border-color:transparent}
-.btn-primary:hover{background:color-mix(in srgb,var(--primary) 90%, black);transform:none;filter:none}
+.btn-primary:hover{background:color-mix(in srgb,var(--primary) 90%, black)}
 .btn-sm{padding:5px 10px;font-size:11.5px;border-radius:7px}
 .btn-ghost{background:transparent;border-color:transparent;color:var(--muted)}
-.btn-ghost:hover{background:var(--surface-2);color:var(--danger)}
 .btn-danger{color:var(--danger);border-color:color-mix(in srgb,var(--danger) 30%,var(--border))}
 .btn-danger:hover{background:rgba(239,68,68,.08);color:var(--danger)}
 
-.input{
-  background:var(--surface);border:1px solid var(--border);border-radius:9px;
-  padding:8px 11px;font:inherit;font-size:12.5px;color:var(--text);outline:none;
-  transition:.14s;min-width:0;width:100%;
-}
+.input{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 11px;font:inherit;font-size:12.5px;color:var(--text);outline:none;transition:.14s;min-width:0;width:100%}
 .input::placeholder{color:var(--muted);opacity:.7}
 .input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 14%,transparent)}
 select.input{cursor:pointer;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:30px}
@@ -269,7 +218,6 @@ table.tbl input.cell-input:focus{background:var(--surface);border-color:var(--pr
 .period .pn{font-size:9.5px;font-weight:750;color:var(--muted);letter-spacing:.7px;text-transform:uppercase;margin-bottom:3px}
 .period .pc{font-size:12px;font-weight:650;line-height:1.35}
 .period input{width:100%;border:1px solid var(--border);background:var(--surface);padding:6px 8px;border-radius:7px;font:inherit;font-size:12px;color:var(--text);outline:none;transition:.14s;margin-top:2px}
-.period input:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 14%,transparent)}
 .day-tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;flex-wrap:wrap}
 .day-tab{padding:6px 13px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:650;cursor:pointer;transition:.14s;color:var(--muted);white-space:nowrap}
 .day-tab:hover{color:var(--text);border-color:var(--primary)}
@@ -287,7 +235,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .fb-list{list-style:none;display:flex;flex-direction:column;gap:7px}
 .fb-list li{padding-left:14px;position:relative;color:var(--muted);line-height:1.65;font-size:12.5px;white-space:pre-wrap}
 .fb-list li::before{content:'';position:absolute;left:2px;top:8px;width:4px;height:4px;border-radius:99px;background:var(--primary)}
-.fb-list li strong{color:var(--text)}
 
 .chip-row{display:flex;gap:5px;flex-wrap:wrap}
 .chip{padding:4px 11px;border-radius:99px;border:1px solid var(--border);background:var(--surface);font-size:11.5px;font-weight:600;cursor:pointer;transition:.14s;color:var(--muted)}
@@ -295,10 +242,8 @@ details.acc summary:hover{background:var(--surface-2)}
 .chip.active{background:var(--primary);color:#fff;border-color:transparent}
 
 .subj-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 6px 12px;border-radius:99px;background:var(--surface-2);border:1px solid var(--border);font-size:12px;font-weight:650;transition:.14s}
-.subj-chip:hover{border-color:var(--primary)}
 .subj-chip .dot{width:7px;height:7px;border-radius:99px}
-.subj-chip button{width:18px;height:18px;border-radius:99px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;transition:.14s;line-height:1}
-.subj-chip button:hover{background:var(--surface-3);color:var(--text)}
+.subj-chip button{width:18px;height:18px;border-radius:99px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;line-height:1}
 
 .empty{padding:22px 16px;text-align:center;color:var(--muted);font-size:12px;border:1.5px dashed var(--border);border-radius:10px;line-height:1.7}
 .empty b{display:block;font-size:13px;color:var(--text);margin-bottom:3px}
@@ -322,52 +267,21 @@ details.acc summary:hover{background:var(--surface-2)}
 .rcg-num{text-align:center;font-variant-numeric:tabular-nums}
 .rcg-num:disabled{opacity:.25;cursor:not-allowed;background:var(--surface-2)}
 
-/* 錯題本 */
-.wb-record{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--r);
-  padding:14px 16px;
-  transition:.14s;
-  position:relative;
-}
-.wb-record:hover{
-  border-color:color-mix(in srgb,var(--primary) 30%,var(--border));
-}
+.wb-record{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:.14s;position:relative}
+.wb-record:hover{border-color:color-mix(in srgb,var(--primary) 30%,var(--border))}
 .wb-record.mastered{opacity:.62}
 .wb-record.mastered .wb-question{text-decoration:line-through}
-.wb-question{
-  font-size:13px;font-weight:650;line-height:1.45;
-  margin:6px 0 8px;word-break:break-word;
-}
-.wb-row{
-  font-size:12px;line-height:1.55;margin-top:6px;
-  color:var(--muted);white-space:pre-wrap;word-break:break-word;
-}
+.wb-question{font-size:13px;font-weight:650;line-height:1.45;margin:6px 0 8px;word-break:break-word}
+.wb-row{font-size:12px;line-height:1.55;margin-top:6px;color:var(--muted);white-space:pre-wrap;word-break:break-word}
 .wb-row b{color:var(--text);font-weight:700}
 .wb-wrong b{color:var(--danger)}
 .wb-correct b{color:var(--ok)}
 
-/* 提醒 */
-.reminder-bar{
-  border-radius:var(--r);
-  padding:12px 14px;
-  margin-bottom:14px;
-  background:var(--surface);
-  border:1px solid var(--border);
-}
-.reminder-head{
-  display:flex;align-items:center;gap:8px;margin-bottom:9px;
-}
+.reminder-bar{border-radius:var(--r);padding:12px 14px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border)}
+.reminder-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
 .reminder-head b{font-size:12.5px;font-weight:750}
 .reminder-list{display:flex;flex-direction:column;gap:3px}
-.reminder-item{
-  display:flex;align-items:center;gap:10px;
-  padding:7px 10px;border-radius:8px;
-  font-size:12px;line-height:1.4;
-  cursor:pointer;transition:.13s;
-  border:1px solid transparent;
-}
+.reminder-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.4;cursor:pointer;transition:.13s;border:1px solid transparent}
 .reminder-item:hover{background:var(--surface-2);border-color:var(--border)}
 .reminder-item .rm-icon{font-size:14px;flex:0 0 auto;line-height:1}
 .reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
@@ -378,56 +292,61 @@ details.acc summary:hover{background:var(--surface-2)}
 .reminder-item.tone-info{border-left:3px solid var(--info)}
 .reminder-item.tone-ok{border-left:3px solid var(--ok)}
 
+/* 統一收件匣 */
+.inbox-bar{border-radius:var(--r);padding:14px 16px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary)}
+.inbox-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.inbox-head b{font-size:13px;font-weight:750}
+.inbox-list{display:flex;flex-direction:column;gap:3px}
+.inbox-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;transition:.14s;border:1px solid transparent}
+.inbox-item:hover{background:var(--surface-2);border-color:var(--border)}
+.inbox-item .inbox-icon{font-size:14px;flex:0 0 20px;text-align:center;line-height:1}
+.inbox-item .inbox-main{flex:1;min-width:0}
+.inbox-item .inbox-title{font-size:12.5px;font-weight:600;line-height:1.4;word-break:break-word}
+.inbox-item .inbox-meta{font-size:10.5px;color:var(--muted);display:flex;gap:8px;margin-top:2px;flex-wrap:wrap}
+.inbox-item .inbox-src{opacity:.7;font-weight:600}
+.inbox-item .inbox-jump{border:1px solid var(--border);background:var(--surface-2);color:var(--muted);font:inherit;font-size:11px;font-weight:650;padding:4px 9px;border-radius:7px;cursor:pointer;transition:.14s;white-space:nowrap}
+.inbox-item .inbox-jump:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.inbox-item.tone-danger{border-left:3px solid var(--danger)}
+.inbox-item.tone-urgent{border-left:3px solid var(--urgent)}
+.inbox-item.tone-warn{border-left:3px solid var(--warn)}
+.inbox-item.tone-info{border-left:3px solid var(--info)}
+.inbox-item.tone-ok{border-left:3px solid var(--ok)}
+
+/* 快捷鍵面板 */
+.cmdk-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);display:none;align-items:flex-start;justify-content:center;padding-top:15vh}
+.cmdk-overlay.open{display:flex}
+.cmdk-panel{width:min(560px, 90vw);background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4);overflow:hidden}
+.cmdk-input-wrap{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border)}
+.cmdk-input{flex:1;border:none;background:transparent;font:inherit;font-size:14px;color:var(--text);outline:none}
+.cmdk-input::placeholder{color:var(--muted)}
+.cmdk-list{max-height:400px;overflow-y:auto;padding:6px}
+.cmdk-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:13px;transition:.1s}
+.cmdk-item:hover,.cmdk-item.active{background:var(--surface-2)}
+.cmdk-item .cmdk-icon{font-size:15px;width:20px;text-align:center;flex:0 0 20px}
+.cmdk-item .cmdk-label{flex:1;font-weight:600}
+.cmdk-item .cmdk-hint{font-size:11px;color:var(--muted);font-family:'SF Mono',Menlo,monospace}
+.cmdk-foot{padding:8px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);background:var(--surface-2)}
+
 /* Toast */
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:9px 16px;border-radius:99px;font-size:12.5px;font-weight:650;z-index:999;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* Spotify 浮動 */
-.spotify-float{
-  position:fixed;right:20px;bottom:20px;z-index:500;
-  display:flex;flex-direction:column;align-items:flex-end;gap:10px;
-  pointer-events:none;
-}
+/* Spotify */
+.spotify-float{position:fixed;right:20px;bottom:20px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
 .spotify-float > *{pointer-events:auto}
-.spotify-fab{
-  width:48px;height:48px;border-radius:99px;border:none;
-  background:#1db954;color:#fff;font-size:22px;
-  cursor:pointer;
-  transition:.2s;
-  display:grid;place-items:center;line-height:1;
-  box-shadow:0 6px 20px -6px rgba(29,185,84,.55);
-}
+.spotify-fab{width:48px;height:48px;border-radius:99px;border:none;background:#1db954;color:#fff;font-size:22px;cursor:pointer;transition:.2s;display:grid;place-items:center;line-height:1;box-shadow:0 6px 20px -6px rgba(29,185,84,.55)}
 .spotify-fab:hover{transform:scale(1.08)}
-.spotify-panel{
-  width:330px;background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r);padding:12px;
-  box-shadow:0 20px 50px -16px rgba(0,0,0,.5);
-  display:none;transform-origin:bottom right;
-}
+.spotify-panel{width:330px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;box-shadow:0 20px 50px -16px rgba(0,0,0,.5);display:none;transform-origin:bottom right}
 .spotify-float.open .spotify-panel{display:block;animation:spotifyIn .26s cubic-bezier(.34,1.4,.64,1)}
 .spotify-float.open .spotify-fab{display:none}
 @keyframes spotifyIn{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
 .spotify-panel-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:750;color:var(--text);margin-bottom:8px;letter-spacing:.3px}
 .spotify-panel-head span{display:flex;align-items:center;gap:6px}
-.spotify-close{width:22px;height:22px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;transition:.14s;line-height:1}
-.spotify-close:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
+.spotify-close{width:22px;height:22px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;line-height:1}
 .spotify-panel iframe{border-radius:10px;display:block;width:100%}
 
 /* Detox */
-.detox-page{
-  --d-surface:#1f1520;
-  --d-surface-2:#281a28;
-  --d-text:#f5e6e0;
-  --d-text-dim:#b8a0b0;
-  --d-accent:#ff9a76;
-  --d-accent-2:#ff7b8a;
-  --d-border:rgba(255,154,118,.13);
-  background:#180f18;
-  border-radius:var(--r);padding:26px 22px;margin:-4px;
-  color:var(--d-text);position:relative;overflow:hidden;
-  min-height:calc(100vh - 44px);
-}
-.detox-page > *{position:relative;z-index:1}
+.detox-page{--d-surface:#1f1520;--d-surface-2:#281a28;--d-text:#f5e6e0;--d-text-dim:#b8a0b0;--d-accent:#ff9a76;--d-border:rgba(255,154,118,.13);background:#180f18;border-radius:var(--r);padding:26px 22px;margin:-4px;color:var(--d-text);position:relative;overflow:hidden;min-height:calc(100vh - 44px)}
 .detox-head{margin-bottom:20px}
 .detox-head h2{font-size:22px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
 .detox-head p{font-size:12px;color:var(--d-text-dim);margin-top:4px;letter-spacing:.5px}
@@ -436,7 +355,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-card{background:var(--d-surface);border:1px solid var(--d-border);border-radius:var(--r);padding:20px;transition:.15s}
 .d-card:hover{border-color:rgba(255,154,118,.24)}
 .d-card-title{font-size:12.5px;font-weight:750;letter-spacing:.3px;color:var(--d-text);display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.d-card-title small{font-size:10px;color:var(--d-text-dim);font-weight:600;letter-spacing:1px;text-transform:uppercase}
 .d-quote{cursor:pointer;user-select:none;padding:24px 22px;text-align:center;border-radius:var(--r);background:var(--d-surface-2);border:1px solid rgba(255,154,118,.16);min-height:110px;display:flex;flex-direction:column;justify-content:center;gap:9px;transition:.2s}
 .d-quote:hover{border-color:rgba(255,154,118,.3)}
 .d-quote-zh{font-size:16px;font-weight:600;line-height:1.5;color:var(--d-text)}
@@ -444,19 +362,17 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-quote-hint{font-size:10px;color:var(--d-text-dim);opacity:.65;letter-spacing:1px;margin-top:6px}
 .d-quote.fade{animation:quoteFade .5s ease}
 @keyframes quoteFade{0%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:translateY(0)}}
-
 .d-write-wrap{position:relative}
 .d-write-area{width:100%;min-height:110px;background:rgba(0,0,0,.22);border:1px solid var(--d-border);border-radius:10px;padding:13px 15px;color:var(--d-text);font:inherit;font-size:13.5px;line-height:1.6;resize:vertical;outline:none;transition:.15s;position:relative;display:block}
 .d-write-area::placeholder{color:var(--d-text-dim);opacity:.55}
 .d-write-area:focus{border-color:var(--d-accent);box-shadow:0 0 0 3px rgba(255,154,118,.13)}
 .d-write-wrap.burning .d-write-area{pointer-events:none}
-
 .d-burn-bed{position:absolute;left:0;right:0;bottom:0;height:40%;border-radius:0 0 10px 10px;opacity:0;pointer-events:none;background:radial-gradient(ellipse at 50% 100%, #fff3c4 0%, #ffcc33 15%, #ff6600 40%, #b30000 65%, transparent 90%);filter:blur(4px);mix-blend-mode:screen}
 .d-write-wrap.burning .d-burn-bed.fire{animation:bedFire 2s cubic-bezier(.4,0,.3,1) forwards}
 @keyframes bedFire{0%{opacity:0;transform:scaleY(.2)}15%{opacity:1;transform:scaleY(.6)}60%{opacity:1;transform:scaleY(1.1)}100%{opacity:0;transform:scaleY(1.4)}}
-.d-burn-bed.water{height:100%;background:linear-gradient(180deg,transparent 0%,rgba(0,150,255,.15) 30%,rgba(0,100,200,.5) 55%,rgba(0,50,120,.85) 80%,#002a5c 100%);filter:blur(0);mix-blend-mode:normal;border-radius:10px;opacity:1;overflow:hidden}
-.d-burn-bed.water::before{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:radial-gradient(ellipse at 30% 20%, rgba(180,240,255,.4) 0%, transparent 30%),radial-gradient(ellipse at 70% 60%, rgba(150,220,255,.3) 0%, transparent 25%),radial-gradient(ellipse at 50% 80%, rgba(200,250,255,.35) 0%, transparent 35%);animation:waterGlow 3s ease-in-out infinite alternate}
-.d-burn-bed.water::after{content:'';position:absolute;left:0;right:0;top:0;height:100%;background:repeating-linear-gradient(180deg,transparent 0px, transparent 8px,rgba(180,240,255,.2) 8px, rgba(180,240,255,.2) 9px);animation:waterRipple 2s ease-in-out infinite;mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%);-webkit-mask-image:linear-gradient(180deg, transparent 0%, transparent 15%, #000 50%, #000 100%)}
+.d-burn-bed.water{height:100%;background:linear-gradient(180deg,transparent 0%,rgba(0,150,255,.15) 30%,rgba(0,100,200,.5) 55%,rgba(0,50,120,.85) 80%,#002a5c 100%);border-radius:10px;opacity:1;overflow:hidden}
+.d-burn-bed.water::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%, rgba(180,240,255,.4) 0%, transparent 30%),radial-gradient(ellipse at 70% 60%, rgba(150,220,255,.3) 0%, transparent 25%);animation:waterGlow 3s ease-in-out infinite alternate}
+.d-burn-bed.water::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0, transparent 8px,rgba(180,240,255,.2) 8px, rgba(180,240,255,.2) 9px);animation:waterRipple 2s ease-in-out infinite}
 @keyframes waterGlow{0%{opacity:.6;transform:scale(1)}100%{opacity:1;transform:scale(1.05)}}
 @keyframes waterRipple{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-2px) scaleY(1.02)}}
 .d-write-wrap.burning .d-burn-bed.water{animation:bedWater 2.2s cubic-bezier(.4,0,.3,1) forwards}
@@ -464,32 +380,22 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-burn-bed.wind{height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.03) 20%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.03) 80%,transparent 100%);filter:blur(1px);mix-blend-mode:screen;border-radius:10px}
 .d-write-wrap.burning .d-burn-bed.wind{animation:bedWind 1.8s cubic-bezier(.3,0,.4,1) forwards}
 @keyframes bedWind{0%{opacity:0;transform:translateX(-20%)}25%{opacity:1}100%{opacity:0;transform:translateX(30%)}}
-
 .d-write-wrap.burning .d-write-area{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%;animation:textBurnMask 1.8s cubic-bezier(.4,0,.3,1) forwards}
-@keyframes textBurnMask{
-  0%{-webkit-mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);mask-image:linear-gradient(to top, transparent 0%, black 0%, black 100%);opacity:1;filter:brightness(1)}
-  20%{-webkit-mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);filter:brightness(1.4) blur(0.3px)}
-  50%{-webkit-mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);filter:brightness(1.7) blur(0.6px)}
-  80%{-webkit-mask-image:linear-gradient(to top, transparent 80%, black 95%);mask-image:linear-gradient(to top, transparent 80%, black 95%);filter:brightness(2) blur(1px)}
-  100%{-webkit-mask-image:linear-gradient(to top, transparent 100%, black 100%);mask-image:linear-gradient(to top, transparent 100%, black 100%);filter:brightness(2.5) blur(2px);opacity:0}
-}
-
+@keyframes textBurnMask{0%{-webkit-mask-image:linear-gradient(to top, transparent 0, black 0, black 100%);mask-image:linear-gradient(to top, transparent 0, black 0, black 100%);opacity:1;filter:brightness(1)}20%{-webkit-mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);mask-image:linear-gradient(to top, transparent 15%, black 25%, black 100%);filter:brightness(1.4) blur(0.3px)}50%{-webkit-mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);mask-image:linear-gradient(to top, transparent 45%, black 60%, black 100%);filter:brightness(1.7) blur(0.6px)}80%{-webkit-mask-image:linear-gradient(to top, transparent 80%, black 95%);mask-image:linear-gradient(to top, transparent 80%, black 95%);filter:brightness(2) blur(1px)}100%{-webkit-mask-image:linear-gradient(to top, transparent 100%, black 100%);mask-image:linear-gradient(to top, transparent 100%, black 100%);filter:brightness(2.5) blur(2px);opacity:0}}
 .d-burn-particle{position:absolute;pointer-events:none;will-change:transform,opacity}
-.d-burn-particle.fire{width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle, #ffffff 0%, #fff3c4 25%, #ffb84d 50%, #ff6600 75%, transparent 100%);box-shadow:0 0 6px rgba(255,200,80,.9), 0 0 12px rgba(255,120,0,.6);animation:particleFire var(--dur) cubic-bezier(.4,.1,.5,1) forwards;animation-delay:var(--delay);opacity:0}
+.d-burn-particle.fire{width:var(--size);height:var(--size);border-radius:50%;background:radial-gradient(circle, #fff 0%, #fff3c4 25%, #ffb84d 50%, #ff6600 75%, transparent 100%);box-shadow:0 0 6px rgba(255,200,80,.9), 0 0 12px rgba(255,120,0,.6);animation:particleFire var(--dur) cubic-bezier(.4,.1,.5,1) forwards;animation-delay:var(--delay);opacity:0}
 @keyframes particleFire{0%{transform:translate(0,0) scale(.3);opacity:0}8%{opacity:1}30%{transform:translate(calc(var(--tx)*.3), calc(var(--ty)*.3)) scale(1.1)}70%{opacity:.9;transform:translate(calc(var(--tx)*.8), calc(var(--ty)*.8)) scale(.7)}100%{transform:translate(var(--tx), var(--ty)) scale(.1);opacity:0}}
 .d-burn-particle.ash{width:calc(var(--size)*.6);height:calc(var(--size)*.6);border-radius:40%;background:radial-gradient(circle, #d0c8c0 0%, #8a7f78 50%, #3a332e 100%);animation:particleAsh var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0}
 @keyframes particleAsh{0%{transform:translate(0,0) scale(.8) rotate(0);opacity:0}15%{opacity:.85}60%{opacity:.7}100%{transform:translate(var(--tx), var(--ty)) scale(.3) rotate(540deg);opacity:0}}
-.d-burn-particle.water{width:var(--size);height:calc(var(--size)*1.6);border-radius:50%;background:radial-gradient(circle at 30% 20%, #ffffff 0%, #b8e8ff 30%, #55aaff 70%, rgba(85,170,255,0) 100%);box-shadow:0 0 6px rgba(120,200,255,.7);animation:particleWater var(--dur) cubic-bezier(.5,0,.8,.5) forwards;animation-delay:var(--delay);opacity:0}
+.d-burn-particle.water{width:var(--size);height:calc(var(--size)*1.6);border-radius:50%;background:radial-gradient(circle at 30% 20%, #fff 0%, #b8e8ff 30%, #55aaff 70%, rgba(85,170,255,0) 100%);box-shadow:0 0 6px rgba(120,200,255,.7);animation:particleWater var(--dur) cubic-bezier(.5,0,.8,.5) forwards;animation-delay:var(--delay);opacity:0}
 @keyframes particleWater{0%{transform:translate(0,0) scale(.5);opacity:0}10%{opacity:.95}100%{transform:translate(var(--tx), var(--ty)) scale(1.3);opacity:0}}
 .d-burn-particle.wind{width:var(--len);height:var(--size);border-radius:99px;background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);filter:blur(.3px);animation:particleWind var(--dur) ease-out forwards;animation-delay:var(--delay);opacity:0;transform-origin:center}
 @keyframes particleWind{0%{transform:translate(0,0) rotate(var(--rot)) scaleX(0);opacity:0}20%{opacity:1;transform:translate(calc(var(--tx)*.2), calc(var(--ty)*.2)) rotate(var(--rot)) scaleX(1)}100%{transform:translate(var(--tx), var(--ty)) rotate(var(--rot)) scaleX(1.4);opacity:0}}
-
 .d-write-actions{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
 .d-burn-btn{flex:1 1 0;min-width:100px;padding:10px 15px;border-radius:10px;border:1px solid var(--d-border);background:rgba(255,255,255,.03);color:var(--d-text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:6px}
 .d-burn-btn:hover:not(:disabled){background:rgba(255,154,118,.13);border-color:var(--d-accent)}
 .d-burn-btn:disabled{opacity:.35;cursor:not-allowed}
 .d-write-hint{font-size:10.5px;color:var(--d-text-dim);opacity:.7;margin-top:9px;text-align:center;letter-spacing:.3px}
-
 .d-audio-list{display:flex;flex-direction:column;gap:8px}
 .d-audio-row{display:grid;grid-template-columns:30px 1fr auto;gap:11px;align-items:center;padding:9px 11px;border-radius:10px;background:rgba(0,0,0,.16);transition:.15s}
 .d-audio-row.playing{background:rgba(255,154,118,.09);border:1px solid rgba(255,154,118,.2)}
@@ -502,7 +408,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .d-audio-play{width:30px;height:30px;border-radius:99px;border:1px solid var(--d-border);background:rgba(255,255,255,.03);color:var(--d-text-dim);cursor:pointer;font-size:11px;display:grid;place-items:center;transition:.15s;line-height:1}
 .d-audio-play:hover{background:rgba(255,154,118,.18);color:var(--d-accent)}
 .d-audio-row.playing .d-audio-play{background:rgba(255,154,118,.2);color:var(--d-accent);border-color:var(--d-accent)}
-
 .d-bubbles-wrap{position:relative;height:260px;border-radius:var(--r);background:linear-gradient(180deg, rgba(20,10,20,.6), rgba(30,15,30,.4));border:1px solid var(--d-border);overflow:hidden;cursor:crosshair}
 #bubblesCanvas{display:block;width:100%;height:100%}
 .d-bubbles-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px}
@@ -535,15 +440,12 @@ details.acc summary:hover{background:var(--surface-2)}
   .detox-page{padding:18px 14px;border-radius:10px}
   .detox-head h2{font-size:19px}
   .d-card{padding:15px}
-  .d-quote-zh{font-size:14.5px}
-  .d-quote-en{font-size:12px}
   .d-bubbles-wrap{height:220px}
   .spotify-float{right:12px;bottom:12px}
   .spotify-panel{width:calc(100vw - 24px);max-width:330px}
 }
 </style>
 </head>
-
 <body>
 <div class="app">
   <aside class="sidebar">
@@ -556,8 +458,8 @@ details.acc summary:hover{background:var(--surface-2)}
     </div>
     <nav class="nav" id="nav"></nav>
     <div class="sidebar-foot">
-      <button id="themeBtn" title="切換主題 Toggle theme">🌙 深色</button>
-      <button id="resetBtn" title="重設為預設資料 Reset data">↺ 重設</button>
+      <button id="themeBtn" title="切換主題">🌙 深色</button>
+      <button id="resetBtn" title="重設為預設資料">↺ 重設</button>
     </div>
   </aside>
 
@@ -568,16 +470,19 @@ details.acc summary:hover{background:var(--surface-2)}
         <div class="sub" id="viewSub">Master Dashboard</div>
       </div>
       <div class="topbar-right">
-        <div class="today-chip" id="syncChip" title="雲端同步狀態 Cloud sync status" data-act="sync-chip" style="cursor:pointer">
+        <div class="today-chip" id="syncChip" title="雲端同步狀態" data-act="sync-chip" style="cursor:pointer">
           <span class="dot" id="syncDot" style="background:var(--muted)"></span>
           <span id="syncText">本機 Local</span>
         </div>
+        <div class="today-chip" title="按 Ctrl+K 開啟指令面板" style="cursor:pointer" data-act="open-cmdk">
+          <span>⌘</span><span>Ctrl+K</span>
+        </div>
         <div class="today-chip"><span class="dot"></span><span id="todayDate">—</span></div>
         <div class="pomo" id="pomo">
-          <span class="pomo-mode" id="pomoMode" title="點擊切換模式 Click to switch">專注 FOCUS</span>
+          <span class="pomo-mode" id="pomoMode" title="點擊切換模式">專注 FOCUS</span>
           <span class="pomo-time" id="pomoTime">25:00</span>
-          <button class="icon-btn" id="pomoToggle" title="開始/暫停 Start/Pause">▶</button>
-          <button class="icon-btn" id="pomoReset" title="重設 Reset">↺</button>
+          <button class="icon-btn" id="pomoToggle" title="開始/暫停">▶</button>
+          <button class="icon-btn" id="pomoReset" title="重設">↺</button>
         </div>
       </div>
     </header>
@@ -591,14 +496,20 @@ details.acc summary:hover{background:var(--surface-2)}
       <span>🎧 我的歌單</span>
       <button class="spotify-close" data-act="spotify-toggle" title="收起">✕</button>
     </div>
-    <iframe style="border-radius:10px" 
-      src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" 
-      width="100%" height="152" frameBorder="0" allowfullscreen="" 
-      allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" 
-      loading="lazy">
-    </iframe>
+    <iframe style="border-radius:10px" src="https://open.spotify.com/embed/playlist/0vvXsWCC9xrXsKd4FyS8kM?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
   </div>
   <button class="spotify-fab" data-act="spotify-toggle" title="開啟播放器">🎧</button>
+</div>
+
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-panel" onclick="event.stopPropagation()">
+    <div class="cmdk-input-wrap">
+      <span style="font-size:16px;color:var(--muted)">⌘</span>
+      <input type="text" class="cmdk-input" id="cmdkInput" placeholder="輸入指令…（試試：todo、theme、sync）" autocomplete="off">
+    </div>
+    <div class="cmdk-list" id="cmdkList"></div>
+    <div class="cmdk-foot">↑↓ 選擇 · Enter 執行 · Esc 關閉 · Ctrl+K 開啟</div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -696,32 +607,19 @@ const DEFAULT_SCHEDULE = {
 };
 
 const DEFAULT_STATE = {
-  theme: 'light',
-  view: 'master',
-  weekAnchor: '2026-09-20',
-  selDate: '2026-09-20',
-  schedDay: 1,
-  fbFilter: 'All',
-  fbGradeFilter: 'All',
-  editingSchedule: false,
-  editingFbId: null,
-  fbAdding: false,
-  updatedAt: 0,
-  wrongBook: [],
-  wbAdding: false,
-  wbSubjectFilter: 'All',
-  wbStatusFilter: 'All',
-  wbExpandedId: null,
-  expandedAssessId: null,
-  highlightFeedbackId: null,
-
-  subjects: [...DEFAULT_SUBJECTS],
-  feedback: structuredClone(DEFAULT_FEEDBACK),
-  schedule: structuredClone(DEFAULT_SCHEDULE),
-  reportGrades: [],
-  detoxVolumes: { rain:0, waves:0, fire:0, coffee:0, forest:0, chime:0 },
-
-  todos: [
+  theme:'light', view:'master',
+  weekAnchor:'2026-09-20', selDate:'2026-09-20', schedDay:1,
+  fbFilter:'All', fbGradeFilter:'All',
+  editingSchedule:false, editingFbId:null, fbAdding:false,
+  updatedAt:0,
+  wrongBook:[], wbAdding:false, wbSubjectFilter:'All', wbStatusFilter:'All', wbExpandedId:null,
+  expandedAssessId:null, highlightFeedbackId:null,
+  subjects:[...DEFAULT_SUBJECTS],
+  feedback:structuredClone(DEFAULT_FEEDBACK),
+  schedule:structuredClone(DEFAULT_SCHEDULE),
+  reportGrades:[],
+  detoxVolumes:{ rain:0, waves:0, fire:0, coffee:0, forest:0, chime:0 },
+  todos:[
     {id:'t01', date:'2026-09-14', text:'中文複習 Chinese Revision', done:true},
     {id:'t02', date:'2026-09-14', text:'人文複習 Humanities Revision', done:false},
     {id:'t03', date:'2026-09-15', text:'中文複習 Chinese Revision', done:true},
@@ -739,8 +637,7 @@ const DEFAULT_STATE = {
     {id:'t15', date:'2026-09-20', text:'Madrid Derby @22:15', done:false},
     {id:'t16', date:'2026-09-20', text:'人文個人創作口述 Humanities Oral', done:false}
   ],
-
-  srp: [
+  srp:[
     {id:'s1', subject:'Sciences', concept:'化學評量 B — 變數控制 Variables & CVs', start:'2026-09-19', done:[false,false,false,false]},
     {id:'s2', subject:'English',  concept:'PEEL 段落結構 PEEL Paragraph Structure', start:'2026-09-18', done:[true,false,false,false]},
     {id:'s3', subject:'INS',      concept:'OPVL 資料評估 OPVL Source Evaluation', start:'2026-09-16', done:[true,true,false,false]},
@@ -748,16 +645,14 @@ const DEFAULT_STATE = {
     {id:'s5', subject:'Math',     concept:'指數定律 Laws of Indices', start:'2026-09-20', done:[false,false,false,false]},
     {id:'s6', subject:'Humanities', concept:'劇本結構三幕劇 Three-Act Structure', start:'2026-09-14', done:[true,true,true,true]}
   ],
-
-  assignments: [
+  assignments:[
     {id:'a1', name:'Science Crit B Revision Notes', subject:'Sciences', status:'進行中 In Progress', due:'2026-09-21', time:'45 min', remarks:'Focus on variables + method'},
     {id:'a2', name:'English PEEL Practice Resource', subject:'English', status:'進行中 In Progress', due:'2026-09-22', time:'60 min', remarks:'Analytical assessment prep'},
     {id:'a3', name:'INS Research Prep', subject:'INS', status:'進行中 In Progress', due:'2026-09-24', time:'90 min', remarks:'Add primary sources'},
     {id:'a4', name:'人文個人創作口述 Humanities Oral', subject:'Humanities', status:'未開始 Not Started', due:'2026-09-28', time:'2 hr', remarks:'Script + rehearsal'},
     {id:'a5', name:'Math Indices Practice Set', subject:'Math', status:'未開始 Not Started', due:'2026-10-05', time:'40 min', remarks:'Exercise 7B'}
   ],
-
-  assessments: [
+  assessments:[
     {id:'e1', name:'Chemistry Crit B', subject:'Sciences', criteria:'B', due:'2026-09-21', dueNote:'', progress:50, remarks:''},
     {id:'e2', name:'English Analytical Assessment', subject:'English', criteria:'A, B, D', due:'2026-09-22', dueNote:'', progress:20, remarks:''},
     {id:'e3', name:'人文劇本評估 Drama Script', subject:'Humanities', criteria:'A, C, D', due:'2026-09-28', dueNote:'', progress:60, remarks:''},
@@ -876,6 +771,148 @@ function weekStats(startISO){
   return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
 }
 
+/* =====================================================================
+   4a. 統一收件匣
+   ===================================================================== */
+function collectInbox(){
+  const t = todayISO();
+  const items = [];
+
+  state.todos.filter(x => x.date === t && !x.done).forEach(x => {
+    items.push({
+      id: 'todo-' + x.id, type: 'todo', sourceId: x.id,
+      icon: '📝', text: x.text,
+      source: 'todo', sourceLabel: '待辦事項',
+      tone: 'info', canCheck: true,
+      onCheck: () => { const it = state.todos.find(y => y.id === x.id); if (it) it.done = true; }
+    });
+  });
+
+  srpDueOn(t).forEach(({item, idx}) => {
+    items.push({
+      id: 'srp-' + item.id + '-' + idx, type: 'srp', sourceId: item.id, idx,
+      icon: '⏰', text: item.concept, sub: `第 ${idx+1} 次複習`,
+      source: 'srp', sourceLabel: '間隔複習',
+      tone: 'urgent', canCheck: true,
+      onCheck: () => {
+        const it = state.srp.find(y => y.id === item.id);
+        if (!it) return;
+        if (!it.done) it.done = [false,false,false,false];
+        it.done[idx] = true;
+      }
+    });
+  });
+
+  state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
+    const d = diffDays(t, a.due);
+    if (d < 0){
+      items.push({
+        id: 'assign-' + a.id, type: 'assign', sourceId: a.id,
+        icon: '⚠️', text: a.name, sub: `逾期 ${-d} 天`,
+        source: 'assign', sourceLabel: '作業追蹤',
+        tone: 'danger', canCheck: false
+      });
+    } else if (d <= 3){
+      items.push({
+        id: 'assign-' + a.id, type: 'assign', sourceId: a.id,
+        icon: '✍️', text: a.name, sub: d === 0 ? '今天到期' : `剩 ${d} 天`,
+        source: 'assign', sourceLabel: '作業追蹤',
+        tone: d === 0 ? 'urgent' : 'warn', canCheck: false
+      });
+    }
+  });
+
+  state.assessments.forEach(a => {
+    if (!a.due) return;
+    const d = diffDays(t, a.due);
+    if (d < 0 || d > 7) return;
+    if ((a.progress || 0) >= 80) return;
+    items.push({
+      id: 'assess-' + a.id, type: 'assess', sourceId: a.id,
+      icon: '📚', text: a.name, sub: `剩 ${d} 天 · 準備 ${a.progress || 0}%`,
+      source: 'assess', sourceLabel: '考試計劃',
+      tone: d <= 3 ? 'danger' : 'warn', canCheck: false
+    });
+  });
+
+    const lateSRPItems = state.srp.filter(it => {
+    const ds = srpDates(it), done = it.done || [];
+    return ds.some((d, i) => !done[i] && d < t);
+  });
+  if (lateSRPItems.length){
+    items.push({
+      id: 'srp-late-batch', type: 'srp',
+      icon: '⏰', text: `有 ${lateSRPItems.length} 個知識點複習逾期`,
+      sub: '趁空檔補上，間隔複習最忌斷線',
+      source: 'srp', sourceLabel: '間隔複習',
+      tone: 'warn', canCheck: false
+    });
+  }
+
+  const oldWrongs = (state.wrongBook || []).filter(w => !w.mastered && diffDays(w.date, t) >= 7);
+  if (oldWrongs.length){
+    items.push({
+      id: 'wrong-batch', type: 'wrongbook',
+      icon: '📕', text: `有 ${oldWrongs.length} 筆錯題超過 7 天未掌握`,
+      sub: '建議今天花 10 分鐘復習',
+      source: 'wrongbook', sourceLabel: '錯題本',
+      tone: 'warn', canCheck: false
+    });
+  }
+
+  /* 智慧建議 */
+  state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
+    const d = diffDays(t, a.due);
+    if (d <= -3 && d > -30){
+      items.push({
+        id: 'smart-assign-late-' + a.id, type: 'smart',
+        icon: '💡', text: `[建議] 補交「${a.name}」`,
+        sub: `已逾期 ${-d} 天`,
+        source: 'assign', sourceLabel: '作業追蹤',
+        tone: 'danger', canCheck: false
+      });
+    }
+  });
+  state.assessments.forEach(a => {
+    if (!a.due) return;
+    const d = diffDays(t, a.due);
+    if (d === 7){
+      items.push({
+        id: 'smart-assess-7d-' + a.id, type: 'smart',
+        icon: '💡', text: `[建議] 開始密集複習「${a.name}」`,
+        sub: '距離考試剩 7 天',
+        source: 'assess', sourceLabel: '考試計劃',
+        tone: 'warn', canCheck: false
+      });
+    }
+    if (d === 1){
+      items.push({
+        id: 'smart-assess-1d-' + a.id, type: 'smart',
+        icon: '💡', text: `[建議] 「${a.name}」最後檢查`,
+        sub: '明天考試',
+        source: 'assess', sourceLabel: '考試計劃',
+        tone: 'urgent', canCheck: false
+      });
+    }
+  });
+  state.srp.filter(it => {
+    const ds = srpDates(it), done = it.done || [];
+    return ds.some((d, i) => !done[i] && diffDays(d, t) >= 7);
+  }).forEach(it => {
+    items.push({
+      id: 'smart-srp-' + it.id, type: 'smart',
+      icon: '💡', text: `[建議] 補複習「${it.concept}」`,
+      sub: '已逾期超過 7 天',
+      source: 'srp', sourceLabel: '間隔複習',
+      tone: 'warn', canCheck: false
+    });
+  });
+
+  const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
+  items.sort((a, b) => order[a.tone] - order[b.tone]);
+  return items;
+}
+
 /* 自動提醒收集 */
 function collectReminders(){
   const t = todayISO();
@@ -885,21 +922,13 @@ function collectReminders(){
     const d = diffDays(t, a.due);
     if (d < 0 || d > 7) return;
     if ((a.progress || 0) >= 80) return;
-    reminders.push({
-      tone: d <= 3 ? 'danger' : 'warn',
-      icon: '📚',
-      text: `${a.name} 剩 ${d} 天（準備 ${a.progress || 0}%）`,
-      nav: 'assess'
-    });
+    reminders.push({tone: d <= 3 ? 'danger' : 'warn', icon:'📚', text:`${a.name} 剩 ${d} 天（準備 ${a.progress || 0}%）`, nav:'assess'});
   });
   state.assignments.forEach(a => {
     if (!a.due || isFinished(a)) return;
     const d = diffDays(t, a.due);
-    if (d < 0){
-      reminders.push({tone:'danger', icon:'⚠️', text:`${a.name} 已逾期 ${-d} 天`, nav:'assign'});
-    } else if (d <= 3){
-      reminders.push({tone: d === 0 ? 'urgent' : 'warn', icon:'✍️', text:`${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`, nav:'assign'});
-    }
+    if (d < 0) reminders.push({tone:'danger', icon:'⚠️', text:`${a.name} 已逾期 ${-d} 天`, nav:'assign'});
+    else if (d <= 3) reminders.push({tone: d === 0 ? 'urgent' : 'warn', icon:'✍️', text:`${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`, nav:'assign'});
   });
   const lateSRP = state.srp.filter(it => {
     const ds = srpDates(it), done = it.done || [];
@@ -908,19 +937,15 @@ function collectReminders(){
   if (lateSRP.length) reminders.push({tone:'warn', icon:'⏰', text:`有 ${lateSRP.length} 個知識點複習逾期`, nav:'srp'});
   const dueToday = srpDueOn(t).length;
   if (dueToday) reminders.push({tone:'info', icon:'🔴', text:`今天有 ${dueToday} 個複習任務待完成`, nav:'srp'});
-  const oldWrong = (state.wrongBook || []).filter(w => !w.mastered && diffDays(w.date, t) >= 7);
-  if (oldWrong.length) reminders.push({tone:'warn', icon:'📕', text:`有 ${oldWrong.length} 筆錯題已超過一週未掌握`, nav:'wrongbook'});
 
   const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
   reminders.sort((a, b) => order[a.tone] - order[b.tone]);
-  return reminders.slice(0, 5);
+  return reminders.slice(0, 3);
 }
 
-/* 考試相關資料關聯（只顯示有共同 Criterion 的反饋） */
+/* 考試相關資料關聯 */
 function getAssessRelated(subject, criteria){
-  const parseCrit = (s) => new Set(
-    String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean)
-  );
+  const parseCrit = (s) => new Set(String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean));
   const targetCrit = parseCrit(criteria);
 
   const feedbacks = state.feedback.filter(f => {
@@ -939,7 +964,7 @@ function getAssessRelated(subject, criteria){
 }
 
 /* =====================================================================
-   4b. REPORT CARD CALCULATION
+   4b. REPORT CARD
    ===================================================================== */
 const RC_SUBJECTS = [
   {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
@@ -963,10 +988,8 @@ function rcCalc(){
   return RC_SUBJECTS.map(def => {
     const recs = grades.filter(r => r.subject === def.key);
     const avgs = def.crit.map((_, i) => {
-      const vals = recs
-        .map(r => (r.scores || [])[i])
-        .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v))
-        .map(Number);
+      const vals = recs.map(r => (r.scores || [])[i])
+        .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
       if (!vals.length) return null;
       return Math.floor(vals.reduce((a, b) => a + b, 0) / vals.length);
     });
@@ -985,10 +1008,7 @@ function rcStatsHTML(){
   subjData.forEach(sd => {
     const isBiotech = sd.def.key === 'Biotech';
     sd.avgs.forEach(v => {
-      if (v !== null){
-        sumAll += isBiotech ? v * 0.8 : v;
-        cntAll++;
-      }
+      if (v !== null){ sumAll += isBiotech ? v * 0.8 : v; cntAll++; }
     });
     if (sd.grade !== null) graded.push(sd.grade);
   });
@@ -1001,9 +1021,9 @@ function rcStatsHTML(){
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">🏆</div>
       <div><div class="stat-val">${oa !== null ? oa.toFixed(2) : '—'}</div><div class="stat-lbl">Total OA</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">📐</div>
-      <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均分 (0–8)</div></div></div>
+      <div><div class="stat-val">${avg !== null ? avg.toFixed(2) : '—'}</div><div class="stat-lbl">標準平均 (0–8)</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">Σ</div>
-      <div><div class="stat-val">${sumDisplay}</div><div class="stat-lbl">標準化總分（${cntAll} 項）</div></div></div>
+      <div><div class="stat-val">${sumDisplay}</div><div class="stat-lbl">標準化總分（${cntAll}）</div></div></div>
   `;
 }
 
@@ -1020,35 +1040,20 @@ function rcSummaryHTML(){
     const gc = sd.grade === null ? '' : sd.grade >= 6 ? 'hi' : sd.grade >= 4 ? 'mid' : 'lo';
     const hasAny = sd.filledCount > 0;
     return `<tr>
-      <td><span style="display:flex;align-items:center;gap:8px">
+      <td><span data-act="jump-to-feedback-subj" data-subj="${esc(sd.def.key)}" style="display:flex;align-items:center;gap:8px;cursor:pointer" title="點擊查看該科反饋">
         <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(sd.def.key)};flex:0 0 8px"></span>
         <b style="font-size:12.5px">${sd.def.key}</b>
+        <span class="tiny muted" style="font-weight:600;opacity:.6">💬</span>
       </span></td>
       ${cells}
-      <td style="text-align:center;font-weight:800;font-size:13.5px">${
-        hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'
-      }</td>
-      <td style="text-align:center">
-        <span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${
-          sd.grade ?? '—'
-        }</span>
-      </td>
+      <td style="text-align:center;font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</td>
+      <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${sd.grade ?? '—'}</span></td>
       <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
     </tr>`;
   }).join('');
 
   return `<div class="scroll-x"><table class="tbl" style="min-width:600px">
-    <thead><tr>
-      <th>科目</th>
-      <th style="text-align:center">A</th>
-      <th style="text-align:center">B</th>
-      <th style="text-align:center">C</th>
-      <th style="text-align:center">D</th>
-      <th style="text-align:center">E</th>
-      <th style="text-align:center">總分</th>
-      <th style="text-align:center">等級</th>
-      <th style="text-align:right">紀錄</th>
-    </tr></thead>
+    <thead><tr><th>科目</th><th style="text-align:center">A</th><th style="text-align:center">B</th><th style="text-align:center">C</th><th style="text-align:center">D</th><th style="text-align:center">E</th><th style="text-align:center">總分</th><th style="text-align:center">等級</th><th style="text-align:right">紀錄</th></tr></thead>
     <tbody>${rows}</tbody>
   </table></div>`;
 }
@@ -1067,18 +1072,12 @@ const CLOUD_CFG_KEY = 'nathan-cloud-cfg-v1';
 
 const Cloud = {
   cfg: {
-    provider: 'supabase',
-    auto: true,
-    intervalSec: 60,
+    provider: 'supabase', auto: true, intervalSec: 60,
     supabase: { url: '', anonKey: '', roomId: '' },
     jsonbin:  { masterKey: '', binId: '' },
     custom:   { url: '', token: '' }
   },
-  timer: null,
-  busy: false,
-  lastSyncAt: 0,
-  status: 'idle',
-  message: '',
+  timer: null, busy: false, lastSyncAt: 0, status: 'idle', message: '',
 
   load(){
     try{
@@ -1086,17 +1085,11 @@ const Cloud = {
       if (raw){
         const parsed = JSON.parse(raw);
         Object.assign(this.cfg, parsed);
-        if (!parsed._v2){
-          this.cfg.intervalSec = 60;
-          this.cfg._v2 = true;
-          this.persist();
-        }
+        if (!parsed._v2){ this.cfg.intervalSec = 60; this.cfg._v2 = true; this.persist(); }
       }
     }catch(e){}
   },
-  persist(){
-    try{ localStorage.setItem(CLOUD_CFG_KEY, JSON.stringify(this.cfg)); }catch(e){}
-  },
+  persist(){ try{ localStorage.setItem(CLOUD_CFG_KEY, JSON.stringify(this.cfg)); }catch(e){} },
   get configured(){
     const c = this.cfg;
     if (c.provider === 'supabase') return !!(c.supabase.url && c.supabase.anonKey && c.supabase.roomId);
@@ -1109,25 +1102,20 @@ const Cloud = {
     const c = this.cfg;
     if (c.provider === 'supabase'){
       const base = c.supabase.url.replace(/\/+$/,'');
-      const r = await fetch(
-        `${base}/rest/v1/study_state?room=eq.${encodeURIComponent(c.supabase.roomId)}&select=data`,
-        { headers: { apikey: c.supabase.anonKey, Authorization: `Bearer ${c.supabase.anonKey}` } }
-      );
+      const r = await fetch(`${base}/rest/v1/study_state?room=eq.${encodeURIComponent(c.supabase.roomId)}&select=data`,
+        { headers: { apikey: c.supabase.anonKey, Authorization: `Bearer ${c.supabase.anonKey}` } });
       if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
       const rows = await r.json();
       return rows[0] ? rows[0].data : null;
     }
     if (c.provider === 'jsonbin'){
-      const r = await fetch(`https://api.jsonbin.io/v3/b/${c.jsonbin.binId}/latest`, {
-        headers: { 'X-Master-Key': c.jsonbin.masterKey, 'X-Bin-Meta': 'false' }
-      });
+      const r = await fetch(`https://api.jsonbin.io/v3/b/${c.jsonbin.binId}/latest`,
+        { headers: { 'X-Master-Key': c.jsonbin.masterKey, 'X-Bin-Meta': 'false' } });
       if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
       return await r.json();
     }
     if (c.provider === 'custom'){
-      const r = await fetch(c.custom.url, {
-        headers: c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {}
-      });
+      const r = await fetch(c.custom.url, { headers: c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {} });
       if (!r.ok) throw new Error(`pull HTTP ${r.status}`);
       return await r.json();
     }
@@ -1141,10 +1129,8 @@ const Cloud = {
       const r = await fetch(`${base}/rest/v1/study_state`, {
         method: 'POST',
         headers: {
-          apikey: c.supabase.anonKey,
-          Authorization: `Bearer ${c.supabase.anonKey}`,
-          'Content-Type': 'application/json',
-          Prefer: 'resolution=merge-duplicates,return=minimal'
+          apikey: c.supabase.anonKey, Authorization: `Bearer ${c.supabase.anonKey}`,
+          'Content-Type': 'application/json', Prefer: 'resolution=merge-duplicates,return=minimal'
         },
         body: JSON.stringify([{ room: c.supabase.roomId, data, updated_at: new Date().toISOString() }])
       });
@@ -1163,10 +1149,7 @@ const Cloud = {
     if (c.provider === 'custom'){
       const r = await fetch(c.custom.url, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {})
-        },
+        headers: { 'Content-Type': 'application/json', ...(c.custom.token ? { Authorization: `Bearer ${c.custom.token}` } : {}) },
         body: JSON.stringify(data)
       });
       if (!r.ok) throw new Error(`push HTTP ${r.status}`);
@@ -1177,45 +1160,29 @@ const Cloud = {
 
   async sync(silent){
     if (!this.configured || this.busy) return;
-    this.busy = true;
-    this.setStatus('syncing', '同步中…');
+    this.busy = true; this.setStatus('syncing', '同步中…');
     try{
       const remote = await this.pull();
       const localTs  = state.updatedAt || 0;
       const remoteTs = (remote && remote.updatedAt) || 0;
-
-      if (!remote){
-        await this.push(state);
-        this.setStatus('ok', '已上傳雲端');
-      } else if (remoteTs > localTs){
+      if (!remote){ await this.push(state); this.setStatus('ok', '已上傳雲端'); }
+      else if (remoteTs > localTs){
         state = normalizeState(remote);
-        state.editingFbId = null;
-        state.fbAdding = false;
-        state.editingSchedule = false;
-        state.wbAdding = false;
-        state.wbExpandedId = null;
-        state.expandedAssessId = null;
-        state.highlightFeedbackId = null;
+        state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+        state.wbAdding = false; state.wbExpandedId = null;
+        state.expandedAssessId = null; state.highlightFeedbackId = null;
         localStorage.setItem(LS_KEY, JSON.stringify(state));
-        applyTheme();
-        render();
+        applyTheme(); render();
         this.setStatus('ok', '已下載雲端更新');
         if (!silent) toast('⬇️ 已同步雲端最新資料');
-      } else if (localTs > remoteTs){
-        await this.push(state);
-        this.setStatus('ok', '已上傳本地');
-      } else {
-        this.setStatus('ok', '已是最新');
-      }
+      } else if (localTs > remoteTs){ await this.push(state); this.setStatus('ok', '已上傳本地'); }
+      else { this.setStatus('ok', '已是最新'); }
       this.lastSyncAt = Date.now();
       this.updateLastSyncUI();
     }catch(err){
       console.warn('sync error', err);
       this.setStatus('error', err.message || '同步失敗');
-    }finally{
-      this.busy = false;
-      this.renderChip();
-    }
+    }finally{ this.busy = false; this.renderChip(); }
   },
 
   async forcePush(){
@@ -1239,8 +1206,8 @@ const Cloud = {
       if (!remote){ this.setStatus('ok', '雲端無資料'); toast('雲端尚無資料'); return; }
       state = normalizeState(remote);
       state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-      state.wbAdding = false; state.wbExpandedId = null; state.expandedAssessId = null;
-      state.highlightFeedbackId = null;
+      state.wbAdding = false; state.wbExpandedId = null;
+      state.expandedAssessId = null; state.highlightFeedbackId = null;
       localStorage.setItem(LS_KEY, JSON.stringify(state));
       applyTheme(); render();
       this.lastSyncAt = Date.now();
@@ -1259,28 +1226,15 @@ const Cloud = {
 
   updateLastSyncUI(){
     const el = document.getElementById('lastSyncText');
-    if (el){
-      el.textContent = this.lastSyncAt
-        ? new Date(this.lastSyncAt).toLocaleTimeString()
-        : '—';
-    }
+    if (el) el.textContent = this.lastSyncAt ? new Date(this.lastSyncAt).toLocaleTimeString() : '—';
   },
 
   renderChip(){
     const dot  = document.getElementById('syncDot');
     const text = document.getElementById('syncText');
     if (!dot || !text) return;
-    if (!this.configured){
-      dot.style.background = 'var(--muted)';
-      text.textContent = '本機 Local';
-      return;
-    }
-    const map = {
-      idle:    ['var(--info)',   '待同步'],
-      syncing: ['var(--warn)',   '同步中…'],
-      ok:      ['var(--ok)',     '已同步'],
-      error:   ['var(--danger)', '同步失敗']
-    };
+    if (!this.configured){ dot.style.background = 'var(--muted)'; text.textContent = '本機 Local'; return; }
+    const map = { idle:['var(--info)','待同步'], syncing:['var(--warn)','同步中…'], ok:['var(--ok)','已同步'], error:['var(--danger)','同步失敗'] };
     const [color, label] = map[this.status] || map.idle;
     dot.style.background = color;
     text.textContent = label;
@@ -1312,9 +1266,7 @@ const Cloud = {
       this.persist();
       toast('✅ 已建立 Bin：' + id);
       render();
-    }catch(e){
-      toast('⚠️ 建立失敗：' + e.message);
-    }
+    }catch(e){ toast('⚠️ 建立失敗：' + e.message); }
   }
 };
 
@@ -1339,7 +1291,7 @@ const NAV = [
 ];
 
 /* =====================================================================
-   🌿 DETOX — 資料與工具
+   🌿 DETOX
    ===================================================================== */
 const DETOX_QUOTES = [
   {zh:'你已經很努力了。', en:"You've already done enough."},
@@ -1407,8 +1359,7 @@ const DETOX_QUOTES = [
 ];
 
 const Ambience = {
-  ctx: null, master: null, tracks: {}, timers: {},
-
+  ctx: null, master: null, tracks: {},
   init(){
     if (this.ctx) return true;
     try{
@@ -1421,7 +1372,6 @@ const Ambience = {
       return true;
     }catch(e){ return false; }
   },
-
   makeNoise(type){
     const sr = this.ctx.sampleRate, len = sr * 4;
     const buf = this.ctx.createBuffer(1, len, sr);
@@ -1431,26 +1381,17 @@ const Ambience = {
       let b0=0,b1=0,b2=0,b3=0,b4=0,b5=0,b6=0;
       for (let i=0;i<len;i++){
         const w = Math.random()*2-1;
-        b0 = 0.99886*b0 + w*0.0555179;
-        b1 = 0.99332*b1 + w*0.0750759;
-        b2 = 0.96900*b2 + w*0.1538520;
-        b3 = 0.86650*b3 + w*0.3104856;
-        b4 = 0.55000*b4 + w*0.5329522;
-        b5 = -0.7616*b5 - w*0.0168980;
-        d[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11;
-        b6 = w*0.115926;
+        b0 = 0.99886*b0 + w*0.0555179; b1 = 0.99332*b1 + w*0.0750759;
+        b2 = 0.96900*b2 + w*0.1538520; b3 = 0.86650*b3 + w*0.3104856;
+        b4 = 0.55000*b4 + w*0.5329522; b5 = -0.7616*b5 - w*0.0168980;
+        d[i] = (b0+b1+b2+b3+b4+b5+b6+w*0.5362)*0.11; b6 = w*0.115926;
       }
     } else {
       let last = 0;
-      for (let i=0;i<len;i++){
-        const w = Math.random()*2-1;
-        last = (last + 0.02*w) / 1.02;
-        d[i] = last * 3.5;
-      }
+      for (let i=0;i<len;i++){ const w = Math.random()*2-1; last = (last + 0.02*w) / 1.02; d[i] = last * 3.5; }
     }
     return buf;
   },
-
   buildRain(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const src = c.createBufferSource(); src.buffer = this.makeNoise('pink'); src.loop = true;
@@ -1476,7 +1417,6 @@ const Ambience = {
     }, 60);
     return {out, timers:[dropTimer]};
   },
-
   buildWaves(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const src = c.createBufferSource(); src.buffer = this.makeNoise('brown'); src.loop = true;
@@ -1496,7 +1436,6 @@ const Ambience = {
     src.start(); lfo.start(); foam.start(); lfo2.start();
     return {out, nodes:[src, lfo, foam, lfo2]};
   },
-
   buildFire(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const src = c.createBufferSource(); src.buffer = this.makeNoise('brown'); src.loop = true;
@@ -1530,7 +1469,6 @@ const Ambience = {
     }, 50);
     return {out, timers:[crackleTimer]};
   },
-
   buildCoffee(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const voice = c.createBufferSource(); voice.buffer = this.makeNoise('pink'); voice.loop = true;
@@ -1562,7 +1500,6 @@ const Ambience = {
     }, 3000);
     return {out, timers:[clinkTimer], nodes:[voice, rumble, voiceLFO]};
   },
-
   buildForest(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const leaves = c.createBufferSource(); leaves.buffer = this.makeNoise('pink'); leaves.loop = true;
@@ -1596,7 +1533,6 @@ const Ambience = {
     }, 2500);
     return {out, timers:[birdTimer], nodes:[leaves, leafLFO]};
   },
-
   buildChime(){
     const c = this.ctx, out = c.createGain(); out.gain.value = 0;
     const wind = c.createBufferSource(); wind.buffer = this.makeNoise('pink'); wind.loop = true;
@@ -1621,22 +1557,13 @@ const Ambience = {
     }, 3500 + Math.random()*3000);
     return {out, timers:[chimeTimer], nodes:[wind]};
   },
-
   buildTrack(id){
-    const builders = {
-      rain: () => this.buildRain(),
-      waves: () => this.buildWaves(),
-      fire: () => this.buildFire(),
-      coffee: () => this.buildCoffee(),
-      forest: () => this.buildForest(),
-      chime: () => this.buildChime()
-    };
+    const builders = { rain: () => this.buildRain(), waves: () => this.buildWaves(), fire: () => this.buildFire(), coffee: () => this.buildCoffee(), forest: () => this.buildForest(), chime: () => this.buildChime() };
     const built = builders[id] ? builders[id]() : null;
     if (!built) return null;
     built.out.connect(this.master);
     return built;
   },
-
   start(id){
     if (!this.init()) return;
     if (this.ctx.state === 'suspended') this.ctx.resume();
@@ -1647,7 +1574,6 @@ const Ambience = {
     t.out.gain.cancelScheduledValues(this.ctx.currentTime);
     t.out.gain.setTargetAtTime(target * 0.8, this.ctx.currentTime, 0.15);
   },
-
   setVolume(id, v){
     if (!state.detoxVolumes) state.detoxVolumes = {};
     state.detoxVolumes[id] = v;
@@ -1661,7 +1587,6 @@ const Ambience = {
       g.setTargetAtTime(v * 0.8, this.ctx.currentTime, 0.1);
     }
   },
-
   stopAll(){
     Object.keys(this.tracks).forEach(id=>{
       try{
@@ -1703,48 +1628,33 @@ function popSound(){
 
 const Bubbles = {
   canvas: null, ctx: null, raf: null, list: [], spawnTimer: null, running: false, W: 0, H: 0,
-
   init(canvasEl){
     if (this.running) return;
-    this.canvas = canvasEl;
-    this.ctx = canvasEl.getContext('2d');
-    this.resize();
-    this.list = [];
-    this.running = true;
-    this.loop();
+    this.canvas = canvasEl; this.ctx = canvasEl.getContext('2d');
+    this.resize(); this.list = []; this.running = true; this.loop();
     this.spawnTimer = setInterval(()=>this.spawn(), 550);
     for (let i=0;i<6;i++) setTimeout(()=>this.spawn(), i*180);
     this._resizeHandler = () => this.resize();
     window.addEventListener('resize', this._resizeHandler);
   },
-
   resize(){
     if (!this.canvas) return;
     const r = this.canvas.getBoundingClientRect();
     if (r.width === 0) return;
     const dpr = window.devicePixelRatio || 1;
-    this.canvas.width = r.width * dpr;
-    this.canvas.height = r.height * dpr;
+    this.canvas.width = r.width * dpr; this.canvas.height = r.height * dpr;
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     this.W = r.width; this.H = r.height;
   },
-
   spawn(){
     if (!this.running || !this.W) return;
     if (this.list.length > 14) return;
     const r = 18 + Math.random()*26;
-    this.list.push({
-      x: r + Math.random()*(this.W - r*2),
-      y: this.H + r, r,
-      vy: -(0.35 + Math.random()*0.5),
-      vx: (Math.random()-0.5) * 0.3,
-      wobble: Math.random()*Math.PI*2,
-      wobbleAmp: 0.4 + Math.random()*0.6,
-      hue: 20 + Math.random()*40,
-      popped: 0
-    });
+    this.list.push({ x: r + Math.random()*(this.W - r*2), y: this.H + r, r,
+      vy: -(0.35 + Math.random()*0.5), vx: (Math.random()-0.5) * 0.3,
+      wobble: Math.random()*Math.PI*2, wobbleAmp: 0.4 + Math.random()*0.6,
+      hue: 20 + Math.random()*40, popped: 0 });
   },
-
   loop(){
     if (!this.running) return;
     this.raf = requestAnimationFrame(()=>this.loop());
@@ -1765,42 +1675,27 @@ const Bubbles = {
         this.ctx.globalAlpha = 1;
         continue;
       }
-      b.y += b.vy;
-      b.wobble += 0.02;
+      b.y += b.vy; b.wobble += 0.02;
       b.x += b.vx + Math.sin(b.wobble) * b.wobbleAmp * 0.15;
       if (b.y + b.r < -20){ this.list.splice(i, 1); continue; }
       const grad = this.ctx.createRadialGradient(b.x - b.r*0.3, b.y - b.r*0.3, b.r*0.1, b.x, b.y, b.r);
       grad.addColorStop(0, `hsla(${b.hue},90%,85%,0.55)`);
       grad.addColorStop(0.7, `hsla(${b.hue},80%,65%,0.18)`);
       grad.addColorStop(1, `hsla(${b.hue},80%,55%,0.05)`);
-      this.ctx.beginPath();
-      this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-      this.ctx.fillStyle = grad; this.ctx.fill();
-      this.ctx.beginPath();
-      this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
-      this.ctx.strokeStyle = `hsla(${b.hue},85%,75%,0.5)`;
-      this.ctx.lineWidth = 1.2; this.ctx.stroke();
-      this.ctx.beginPath();
-      this.ctx.arc(b.x - b.r*0.35, b.y - b.r*0.4, b.r*0.2, 0, Math.PI*2);
-      this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      this.ctx.fill();
+      this.ctx.beginPath(); this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); this.ctx.fillStyle = grad; this.ctx.fill();
+      this.ctx.beginPath(); this.ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); this.ctx.strokeStyle = `hsla(${b.hue},85%,75%,0.5)`; this.ctx.lineWidth = 1.2; this.ctx.stroke();
+      this.ctx.beginPath(); this.ctx.arc(b.x - b.r*0.35, b.y - b.r*0.4, b.r*0.2, 0, Math.PI*2); this.ctx.fillStyle = 'rgba(255,255,255,0.5)'; this.ctx.fill();
     }
   },
-
   pop(x, y){
     for (let i=this.list.length-1;i>=0;i--){
       const b = this.list[i];
       if (b.popped > 0) continue;
       const dx = x - b.x, dy = y - b.y;
-      if (dx*dx + dy*dy <= b.r*b.r){
-        b.popped = 0.01;
-        popSound();
-        return true;
-      }
+      if (dx*dx + dy*dy <= b.r*b.r){ b.popped = 0.01; popSound(); return true; }
     }
     return false;
   },
-
   destroy(){
     this.running = false;
     if (this.raf) cancelAnimationFrame(this.raf);
@@ -1844,32 +1739,35 @@ VIEWS.master = function(){
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d,i) => !done[i] && d < t);
   }).length;
-  const upcomingAssess = state.assessments
-    .filter(a => a.due && diffDays(t, a.due) >= 0)
-    .sort((a,b) => a.due.localeCompare(b.due));
-  const nearAssign = state.assignments
-    .filter(a => a.due && !isFinished(a))
-    .sort((a,b) => a.due.localeCompare(b.due));
+  const upcomingAssess = state.assessments.filter(a => a.due && diffDays(t, a.due) >= 0).sort((a,b) => a.due.localeCompare(b.due));
+  const nearAssign = state.assignments.filter(a => a.due && !isFinished(a)).sort((a,b) => a.due.localeCompare(b.due));
   const ws = weekStats(weekStart(t));
   const totalToday = todayTasks.length + revToday.length;
   const pct = totalToday ? Math.round(doneToday / totalToday * 100) : (todayTasks.length === 0 && revToday.length === 0 ? 100 : 0);
   const circ = 2 * Math.PI * 16;
 
-  const reminders = collectReminders();
-  const reminderBar = reminders.length ? `
-    <div class="reminder-bar">
-      <div class="reminder-head">
-        <span style="font-size:15px">🔔</span>
-        <b>提醒 Smart Alerts</b>
-        <span class="pill ${reminders.some(r => r.tone==='danger'||r.tone==='urgent') ? 'danger' : 'info'}" style="margin-left:auto">${reminders.length} 項</span>
+  const inboxItems = collectInbox();
+  const inboxBar = inboxItems.length ? `
+    <div class="inbox-bar">
+      <div class="inbox-head">
+                <span style="font-size:15px">📥</span>
+        <b>今日要做 Today's Inbox</b>
+        <span class="tiny muted" style="font-weight:600;opacity:.7">含提醒 Alerts</span>
+        <span class="pill ${inboxItems.some(r => r.tone==='danger'||r.tone==='urgent') ? 'danger' : 'info'}" style="margin-left:auto">${inboxItems.length} 項</span>
       </div>
-      <div class="reminder-list">
-        ${reminders.map(r => `
-          <div class="reminder-item tone-${r.tone}" data-nav="${r.nav}">
-            <span class="rm-icon">${r.icon}</span>
-            <span class="rm-text">${esc(r.text)}</span>
-            <span class="rm-arrow">查看 →</span>
-          </div>`).join('')}
+      <div class="inbox-list">
+        ${inboxItems.map((it, i) => `
+          <div class="inbox-item tone-${it.tone}">
+            ${it.canCheck
+              ? `<button class="cb" data-act="inbox-check" data-inbox-idx="${i}">✓</button>`
+              : `<span class="inbox-icon">${it.icon}</span>`}
+            <div class="inbox-main">
+              <div class="inbox-title">${esc(it.text)}</div>
+              <div class="inbox-meta">${it.sub ? `<span>${esc(it.sub)}</span>` : ''}<span class="inbox-src">${it.sourceLabel}</span></div>
+            </div>
+            ${it.canCheck ? '' : `<button class="inbox-jump" data-act="inbox-jump" data-source="${it.source}">前往 →</button>`}
+          </div>
+        `).join('')}
       </div>
     </div>` : '';
 
@@ -1887,8 +1785,7 @@ VIEWS.master = function(){
     <div class="ring-wrap">
       <svg class="ring" viewBox="0 0 42 42">
         <circle class="bg" cx="21" cy="21" r="16"></circle>
-        <circle class="fg" cx="21" cy="21" r="16"
-          stroke-dasharray="${(pct/100*circ).toFixed(1)} ${circ.toFixed(1)}"></circle>
+        <circle class="fg" cx="21" cy="21" r="16" stroke-dasharray="${(pct/100*circ).toFixed(1)} ${circ.toFixed(1)}"></circle>
       </svg>
       <div class="ring-label"><b>${pct}%</b><small>TODAY</small></div>
     </div>
@@ -1903,8 +1800,7 @@ VIEWS.master = function(){
       <div><div class="stat-val" style="color:${revToday.length ? 'var(--urgent)' : 'inherit'}">${revToday.length}</div>
       <div class="stat-lbl">今日複習</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">📚</div>
-      <div><div class="stat-val">${upcomingAssess.length}</div>
-      <div class="stat-lbl">待考評估</div></div></div>
+      <div><div class="stat-val">${upcomingAssess.length}</div><div class="stat-lbl">待考評估</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">⚠️</div>
       <div><div class="stat-val" style="color:${revLate ? 'var(--warn)' : 'inherit'}">${revLate}</div>
       <div class="stat-lbl">逾期複習</div></div></div>
@@ -1914,11 +1810,8 @@ VIEWS.master = function(){
     ? `<div class="list">${revToday.map(({item, idx}) => `
         <div class="item">
           <button class="cb" data-act="srp-toggle" data-id="${item.id}" data-idx="${idx}">✓</button>
-          <div class="item-main">
-            <div class="item-title">${esc(item.concept)}</div>
-            <div class="item-meta">${subjBadge(item.subject)}
-              <span>第 ${idx+1} 次複習</span></div>
-          </div>
+          <div class="item-main"><div class="item-title">${esc(item.concept)}</div>
+            <div class="item-meta">${subjBadge(item.subject)}<span>第 ${idx+1} 次複習</span></div></div>
           <span class="pill urgent">今日</span>
         </div>`).join('')}</div>`
     : `<div class="empty"><b>📖 無複習任務</b>好好休息或預習新內容</div>`;
@@ -1940,8 +1833,7 @@ VIEWS.master = function(){
           <div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">
             <div class="item-main">
               <div class="item-title">${esc(a.name)}</div>
-              <div class="item-meta">${subjBadge(a.subject)}
-                <span>${fmtMD(a.due)}</span>${a.criteria && a.criteria!=='—' ? `<span>Crit ${esc(a.criteria)}</span>` : ''}</div>
+              <div class="item-meta">${subjBadge(a.subject)}<span>${fmtMD(a.due)}</span>${a.criteria && a.criteria!=='—' ? `<span>Crit ${esc(a.criteria)}</span>` : ''}</div>
             </div>
             <div style="text-align:right;flex:0 0 auto">
               <div style="font-size:18px;font-weight:800;line-height:1;color:${d<=3?'var(--danger)':d<=10?'var(--warn)':'var(--ok)'}">${d}</div>
@@ -1958,12 +1850,8 @@ VIEWS.master = function(){
         const st = assignStatus(a);
         const d = a.due ? diffDays(t, a.due) : null;
         return `<div class="item">
-          <div class="item-main">
-            <div class="item-title">${esc(a.name)}</div>
-            <div class="item-meta">${subjBadge(a.subject)}
-              <span>${a.due ? fmtMD(a.due) : '—'}</span>
-              ${d !== null ? `<span>${d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天' : `剩 ${d} 天`}</span>` : ''}</div>
-          </div>
+          <div class="item-main"><div class="item-title">${esc(a.name)}</div>
+            <div class="item-meta">${subjBadge(a.subject)}<span>${a.due ? fmtMD(a.due) : '—'}</span>${d !== null ? `<span>${d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天' : `剩 ${d} 天`}</span>` : ''}</div></div>
           <span class="pill ${st.tone}">${st.label}</span>
         </div>`;
       }).join('')}</div>`
@@ -1976,8 +1864,8 @@ VIEWS.master = function(){
     </div>
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>`;
 
-  return `
-  ${reminderBar}
+    return `
+  ${inboxBar}
   ${hero}
   ${stats}
   <div class="grid g-2">
@@ -2038,9 +1926,7 @@ VIEWS.todo = function(){
         <div class="item">
           <button class="cb ${x.done?'on':''}" data-act="todo-toggle" data-id="${x.id}">✓</button>
           <div class="item-main"><div class="item-title ${x.done?'done':''}">${esc(x.text)}</div></div>
-          <div class="item-actions">
-            <button class="icon-btn" data-act="todo-del" data-id="${x.id}">✕</button>
-          </div>
+          <div class="item-actions"><button class="icon-btn" data-act="todo-del" data-id="${x.id}">✕</button></div>
         </div>`).join('')}</div>`
     : `<div class="empty"><b>尚無待辦</b>在下方輸入框新增</div>`;
 
@@ -2098,9 +1984,7 @@ VIEWS.srp = function(){
       const isLate = !isDone && d < t;
       const cls = isDone ? 'on' : isDue ? 'due' : isLate ? 'late' : '';
       return `<div class="rev-chip ${cls}" data-act="srp-toggle" data-id="${it.id}" data-idx="${i}">
-        <span class="rl">D${REV_DAYNUM[i]}</span>
-        <span class="rd">${fmtMD(d)}</span>
-      </div>`;
+        <span class="rl">D${REV_DAYNUM[i]}</span><span class="rd">${fmtMD(d)}</span></div>`;
     }).join('') : '<span class="muted tiny">—</span>';
 
     return `<tr>
@@ -2115,10 +1999,7 @@ VIEWS.srp = function(){
 
   const body = sorted.length
     ? `<div class="scroll-x"><table class="tbl">
-        <thead><tr>
-          <th>科目</th><th>知識點</th><th>第 1 天</th>
-          <th>複習節點</th><th>狀態</th><th></th>
-        </tr></thead>
+        <thead><tr><th>科目</th><th>知識點</th><th>第 1 天</th><th>複習節點</th><th>狀態</th><th></th></tr></thead>
         <tbody>${rows}</tbody>
       </table></div>`
     : `<div class="empty"><b>尚無知識點</b>每學完新內容，就拆成小知識點加進來</div>`;
@@ -2348,8 +2229,7 @@ VIEWS.feedback = function(){
 
   const list = state.feedback.filter(f => {
     const g = f.grade || '未分類';
-    return (gradeFilter === 'All' || g === gradeFilter) &&
-           (filter === 'All' || f.subject === filter);
+    return (gradeFilter === 'All' || g === gradeFilter) && (filter === 'All' || f.subject === filter);
   });
 
   const editingId = state.editingFbId;
@@ -2362,6 +2242,25 @@ VIEWS.feedback = function(){
   const subjChips = subs.map(s =>
     `<button class="chip ${s===filter?'active':''}" data-act="fb-filter" data-subj="${esc(s)}">${s === 'All' ? '全部科目' : esc(s)}</button>`
   ).join('');
+
+  const filterStat = (() => {
+    if (filter === 'All') return '';
+    const subjData = rcCalc().find(sd => sd.def.key === filter);
+    if (!subjData) return '';
+    const grade = subjData.grade;
+    const cls = grade === null ? '' : grade >= 6 ? 'hi' : grade >= 4 ? 'mid' : 'lo';
+    return `
+      <div style="margin-top:10px;padding:10px 12px;background:var(--surface-2);border-radius:9px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div class="tiny muted" style="font-weight:700">${esc(filter)} 目前等級</div>
+          <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
+            <span class="rc-grade ${cls}" style="display:inline-block;min-width:34px;padding:3px 0;font-size:14px">${grade ?? '—'}</span>
+            <span class="tiny muted">總分 ${subjData.total} · ${subjData.count} 筆評估</span>
+          </div>
+        </div>
+        <button class="btn btn-sm" data-act="jump-to-report" style="margin-left:auto">前往成績單 →</button>
+      </div>`;
+  })();
 
   const newForm = isNew ? `
     <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
@@ -2405,8 +2304,7 @@ VIEWS.feedback = function(){
         </div>`;
     }
     const txt = f.text && f.text.trim() && f.text.trim() !== 'N/A'
-      ? `<ul class="fb-list">${f.text.split('\n').map(l => l.trim()).filter(Boolean)
-          .map(l => `<li>${esc(l.replace(/^-\s*/, ''))}</li>`).join('')}</ul>`
+      ? `<ul class="fb-list">${f.text.split('\n').map(l => l.trim()).filter(Boolean).map(l => `<li>${esc(l.replace(/^-\s*/, ''))}</li>`).join('')}</ul>`
       : `<p class="muted tiny">N/A — 暫無反饋</p>`;
     const isHl = state.highlightFeedbackId === f.id;
     return `<details class="acc" data-fb-id="${f.id}" ${isHl ? 'open' : ''} style="${isHl ? 'border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 20%,transparent)' : ''}">
@@ -2453,6 +2351,7 @@ VIEWS.feedback = function(){
       <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目</div>
       <div class="chip-row">${subjChips}</div>
     </div>
+    ${filterStat}
   </div>
   ${newForm}
   <div>${groupedHTML}</div>`;
@@ -2467,7 +2366,6 @@ VIEWS.wrongbook = function(){
   const expandedId = state.wbExpandedId;
 
   const subjects = ['All', ...new Set(all.map(w => w.subject))];
-
   const filtered = all.filter(w => {
     if (subjectFilter !== 'All' && w.subject !== subjectFilter) return false;
     if (statusFilter === 'mastered' && !w.mastered) return false;
@@ -2478,11 +2376,7 @@ VIEWS.wrongbook = function(){
   const total = all.length;
   const mastered = all.filter(w => w.mastered).length;
   const unmastered = total - mastered;
-  const oldUnmastered = all.filter(w => {
-    if (w.mastered) return false;
-    const d = diffDays(w.date, t);
-    return d >= 7;
-  }).length;
+  const oldUnmastered = all.filter(w => !w.mastered && diffDays(w.date, t) >= 7).length;
 
   const subjChips = subjects.map(s => {
     const n = s === 'All' ? total : all.filter(w => w.subject === s).length;
@@ -2490,16 +2384,14 @@ VIEWS.wrongbook = function(){
   }).join('');
 
   const statusChips = [
-    {id:'All',        label:`全部 (${total})`},
+    {id:'All', label:`全部 (${total})`},
     {id:'unmastered', label:`未掌握 (${unmastered})`},
-    {id:'mastered',   label:`已掌握 (${mastered})`}
+    {id:'mastered', label:`已掌握 (${mastered})`}
   ].map(s => `<button class="chip ${s.id===statusFilter?'active':''}" data-act="wb-filter-status" data-status="${s.id}">${s.label}</button>`).join('');
 
   const addForm = isAdding ? `
     <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
-      <div class="card-head">
-        <div class="card-title">➕ 新增錯題</div>
-      </div>
+      <div class="card-head"><div class="card-title">➕ 新增錯題</div></div>
       <div class="form-row">
         <select class="input" id="wbNewSubj" style="flex:0 0 140px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
         <input class="input" id="wbNewTopic" placeholder="題型 / 知識點" style="flex:1 1 200px">
@@ -2538,11 +2430,9 @@ VIEWS.wrongbook = function(){
           </button>
         </div>
       </div>
-
       <button class="btn btn-sm" data-act="wb-toggle-detail" data-id="${w.id}" style="margin-top:9px">
         ${isExp ? '▲ 收起' : '▼ 查看原因與解法'}
       </button>
-
       ${isExp ? `
         <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)">
           <div class="wb-row wb-wrong"><b>❌ 錯誤原因：</b>${esc(w.reason || '（未填寫）')}</div>
@@ -2592,15 +2482,11 @@ VIEWS.report = function(){
       const active = i < def.crit.length;
       const raw = (g.scores || [])[i];
       const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
-      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1"
-        value="${v}" ${active ? '' : 'disabled'}
-        data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
+      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1" value="${v}" ${active ? '' : 'disabled'} data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
     }).join('');
     return `<div class="rcg-row">
       <input class="input" value="${esc(g.name)}" placeholder="評估名稱" data-act="rcg-name" data-id="${g.id}">
-      <select class="input" data-act="rcg-subject" data-id="${g.id}">
-        ${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}
-      </select>
+      <select class="input" data-act="rcg-subject" data-id="${g.id}">${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}</select>
       ${cells}
       <button class="icon-btn" data-act="rcg-del" data-id="${g.id}">✕</button>
     </div>`;
@@ -2638,13 +2524,11 @@ VIEWS.report = function(){
   <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">📝 單次評估成績</div>
-      <span class="tiny muted">一般科目 0–8 分 · Biotech 0–10 分</span>
+      <span class="tiny muted">一般科目 0–8 · Biotech 0–10</span>
     </div>
     <div class="form-row" style="margin-bottom:12px">
       <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
-      <select class="input" id="rcgNewSubj" style="flex:0 0 150px">
-        ${RC_SUBJECTS.map(s => `<option value="${s.key}">${s.key}</option>`).join('')}
-      </select>
+      <select class="input" id="rcgNewSubj" style="flex:0 0 150px">${RC_SUBJECTS.map(s => `<option value="${s.key}">${s.key}</option>`).join('')}</select>
       <button class="btn btn-primary" data-act="rcg-add">＋ 新增評估</button>
     </div>
     ${gradeTable}
@@ -2653,7 +2537,7 @@ VIEWS.report = function(){
   <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">💯 科目 Criterion 彙總</div>
-      <span class="tiny muted">自動計算平均（向下取整）</span>
+      <span class="tiny muted">點科目名可跳至該科反饋</span>
     </div>
     <div id="rcSummary">${rcSummaryHTML()}</div>
   </div>
@@ -2756,12 +2640,9 @@ VIEWS.detox = function(){
         <div class="d-audio-icon">${t.icon}</div>
         <div class="d-audio-meta">
           <div class="d-audio-name">${t.name}</div>
-          <input type="range" class="d-audio-slider" min="0" max="100" value="${Math.round(v*100)}"
-            data-act="detox-volume" data-track="${t.id}">
+          <input type="range" class="d-audio-slider" min="0" max="100" value="${Math.round(v*100)}" data-act="detox-volume" data-track="${t.id}">
         </div>
-        <button class="d-audio-play" data-act="detox-toggle" data-track="${t.id}">
-          ${playing ? '❚❚' : '▶'}
-        </button>
+        <button class="d-audio-play" data-act="detox-toggle" data-track="${t.id}">${playing ? '❚❚' : '▶'}</button>
       </div>`;
   }).join('');
 
@@ -2780,12 +2661,10 @@ VIEWS.detox = function(){
           <div class="d-quote-hint">點一下換一句</div>
         </div>
       </div>
-
       <div class="d-card">
         <div class="d-card-title">📝 寫下來，然後燒掉</div>
         <div class="d-write-wrap" id="dWriteWrap">
-          <textarea class="d-write-area" id="dWriteArea"
-            placeholder="今天有什麼壓在心上嗎？寫下來，然後讓它離開⋯"></textarea>
+          <textarea class="d-write-area" id="dWriteArea" placeholder="今天有什麼壓在心上嗎？寫下來，然後讓它離開⋯"></textarea>
           <div class="d-burn-bed" id="dBurnBed"></div>
         </div>
         <div class="d-write-actions">
@@ -2795,12 +2674,10 @@ VIEWS.detox = function(){
         </div>
         <div class="d-write-hint">不會被儲存、不會被上傳、不會被記錄</div>
       </div>
-
       <div class="d-card">
         <div class="d-card-title">🎵 環境音</div>
         <div class="d-audio-list">${audioRows}</div>
       </div>
-
       <div class="d-card" style="grid-column:1/-1">
         <div class="d-card-title">🫧 戳泡泡</div>
         <div class="d-bubbles-wrap" id="dBubblesWrap">
@@ -2835,14 +2712,24 @@ VIEWS.guide = function(){
     </p>
   </div>
 
+  ${sec('快捷鍵', 'Ctrl+K', tbl(
+    ['功能', '操作'],
+    [
+      ['開啟指令面板', '<b>Ctrl + K</b>（Mac 用 ⌘ + K）'],
+      ['快速新增待辦', '輸入 <code>todo 買牛奶</code> 後 Enter'],
+      ['切換頁面', '輸入頁面名（如 <code>srp</code>、<code>assess</code>）'],
+      ['切換主題', '輸入 <code>theme</code>'],
+      ['立即同步', '輸入 <code>sync</code>']
+    ]), true)}
+
   ${sec('一、每日例行流程', '約 5–10 分鐘', tbl(
     ['時間點', '動作', '目的'],
     [
-      ['🌅 早晨', '打開待辦事項，看當天複習任務', '預先知道今天要複習什麼'],
-      ['🏫 課間', '對照課表與 SRP，有空檔優先複習', '把握黃金 24 小時'],
+      ['🌅 早晨', '打開主控台看「今日要做」', '一頁看完今天所有事'],
+      ['🏫 課間', '對照課表與 SRP 完成複習', '把握黃金 24 小時'],
       ['🌆 放學後', '① 檢查作業 ② 新內容到 SRP ③ 完成複習', '不累積、不遺漏'],
       ['🌙 睡前', '快速回顧今天學到的一個重點', '鞏固當天所學']
-    ]), true)}
+    ]))}
 
   ${sec('二、每週例行流程', '約 15–20 分鐘', tbl(
     ['步驟', '動作', '目的'],
@@ -2878,6 +2765,18 @@ VIEWS.guide = function(){
       ['隔 1–2 天', '看一遍原因，自己講一次正確解法', '加深印象'],
       ['超過 7 天未掌握', '系統會提醒你，優先處理', '避免弱點累積'],
       ['已掌握', '打勾，從此不再焦慮', '給自己成就感']
+    ]))}
+
+  ${sec('六、自動化與連動', '系統自動幫你', tbl(
+    ['觸發條件', '系統反應'],
+    [
+      ['打開主控台', '自動收集今日待辦、複習、到期作業、7 天內考試、未掌握錯題'],
+      ['作業逾期 3 天以上', '收件匣顯示「[建議] 補交 XX」'],
+      ['考試剩 7 天', '收件匣顯示「[建議] 開始密集複習」'],
+      ['考試剩 1 天', '收件匣顯示「[建議] 最後檢查」'],
+      ['SRP 逾期 7 天', '收件匣顯示「[建議] 補複習」'],
+      ['成績單點科目名', '跳到該科反饋並自動篩選'],
+      ['反饋頁選科目', '顯示該科目前等級 + 前往成績單按鈕']
     ]))}
   `;
 };
@@ -2965,14 +2864,8 @@ VIEWS.settings = function(){
       <button class="btn" data-act="cloud-push-now">⬆️ 上傳本地</button>
       <button class="btn" data-act="cloud-pull-now">⬇️ 下載雲端</button>
     </div>
-    <div class="kv" style="margin-top:12px">
-      <span>目前狀態</span>
-      <b id="cloudStatusText">${statusLabel}</b>
-    </div>
-    <div class="kv">
-      <span>上次同步</span>
-      <b id="lastSyncText">${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b>
-    </div>
+    <div class="kv" style="margin-top:12px"><span>目前狀態</span><b id="cloudStatusText">${statusLabel}</b></div>
+    <div class="kv"><span>上次同步</span><b id="lastSyncText">${Cloud.lastSyncAt ? new Date(Cloud.lastSyncAt).toLocaleTimeString() : '—'}</b></div>
   </div>
 
   <div class="card" style="margin-bottom:12px">
@@ -3011,7 +2904,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>2.3（簡潔 UI）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.0（連動與自動化）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3040,11 +2933,8 @@ function render(){
   if (state.view === 'detox'){
     requestAnimationFrame(()=>{
       const canvas = document.getElementById('bubblesCanvas');
-      if (canvas && !Bubbles.running){
-        Bubbles.init(canvas);
-      } else if (canvas && Bubbles.running){
-        Bubbles.resize();
-      }
+      if (canvas && !Bubbles.running) Bubbles.init(canvas);
+      else if (canvas && Bubbles.running) Bubbles.resize();
     });
   } else {
     if (Bubbles.running) Bubbles.destroy();
@@ -3075,40 +2965,60 @@ document.addEventListener('click', e => {
   const act = el.dataset.act;
 
   switch(act){
-    case 'sync-chip': {
-      state.view = 'settings';
-      save(); render();
-      window.scrollTo({top:0, behavior:'smooth'});
-      Cloud.sync();
-      break;
-    }
+    case 'open-cmdk': { CmdK.open(); break; }
+    case 'sync-chip': { state.view = 'settings'; save(); render(); window.scrollTo({top:0, behavior:'smooth'}); Cloud.sync(); break; }
     case 'cloud-create-bin': { Cloud.createJsonBin(); break; }
-    case 'cloud-save': {
-      Cloud.persist();
-      Cloud.restartTimer();
-      render();
-      toast('💾 已儲存同步設定');
-      Cloud.sync();
-      break;
-    }
+    case 'cloud-save': { Cloud.persist(); Cloud.restartTimer(); render(); toast('💾 已儲存同步設定'); Cloud.sync(); break; }
     case 'cloud-sync-now':  { Cloud.sync(); break; }
     case 'cloud-push-now': { Cloud.forcePush(); break; }
     case 'cloud-pull-now': { Cloud.forcePull(); break; }
 
-    case 'wb-add-toggle': {
-      state.wbAdding = !state.wbAdding;
+    case 'jump-to-feedback-subj': {
+      state.view = 'feedback';
+      state.fbFilter = el.dataset.subj;
+      state.highlightFeedbackId = null;
+      save(); render();
+      window.scrollTo({top:0, behavior:'smooth'});
+      break;
+    }
+    case 'jump-to-report': {
+      state.view = 'report';
+      save(); render();
+      window.scrollTo({top:0, behavior:'smooth'});
+      break;
+    }
+    case 'jump-to-feedback': {
+      e.stopPropagation();
+      const id = el.dataset.id;
+      state.view = 'feedback';
+      state.highlightFeedbackId = id;
+      state.editingFbId = null;
+      state.fbAdding = false;
       save(); render();
       setTimeout(() => {
-        const el2 = document.getElementById('wbNewTopic');
-        el2 && el2.focus();
-      }, 0);
+        const target = document.querySelector(`[data-fb-id="${id}"]`);
+        if (target) target.scrollIntoView({behavior:'smooth', block:'center'});
+      }, 120);
+      setTimeout(() => { state.highlightFeedbackId = null; save(false); }, 4500);
       break;
     }
-    case 'wb-cancel': {
-      state.wbAdding = false;
+
+    case 'inbox-check': {
+      const idx = parseInt(el.dataset.inboxIdx, 10);
+      const items = collectInbox();
+      const it = items[idx];
+      if (it && it.canCheck && it.onCheck){ it.onCheck(); save(); render(); toast('✅ 完成'); }
+      break;
+    }
+    case 'inbox-jump': {
+      state.view = el.dataset.source;
       save(); render();
+      window.scrollTo({top:0, behavior:'smooth'});
       break;
     }
+
+    case 'wb-add-toggle': { state.wbAdding = !state.wbAdding; save(); render(); setTimeout(() => { const el2 = document.getElementById('wbNewTopic'); el2 && el2.focus(); }, 0); break; }
+    case 'wb-cancel': { state.wbAdding = false; save(); render(); break; }
     case 'wb-save-new': {
       const subject = $('#wbNewSubj').value;
       const topic = $('#wbNewTopic').value.trim();
@@ -3118,10 +3028,7 @@ document.addEventListener('click', e => {
       const correct = $('#wbNewCorrect').value.trim();
       if (!question && !topic){ toast('⚠️ 請至少填寫題型或題目'); return; }
       state.wrongBook = state.wrongBook || [];
-      state.wrongBook.unshift({
-        id: uid(), subject, topic, question, reason, correct,
-        date, mastered: false
-      });
+      state.wrongBook.unshift({ id: uid(), subject, topic, question, reason, correct, date, mastered: false });
       state.wbAdding = false;
       save(); render();
       toast('✅ 已新增錯題');
@@ -3147,73 +3054,23 @@ document.addEventListener('click', e => {
       toast(w.mastered ? '✅ 已標記為掌握' : '📝 已標記為未掌握');
       break;
     }
-    case 'wb-toggle-detail': {
-      const id = el.dataset.id;
-      state.wbExpandedId = state.wbExpandedId === id ? null : id;
-      save(); render();
-      break;
-    }
-    case 'wb-filter-subj': {
-      state.wbSubjectFilter = el.dataset.subj;
-      save(); render();
-      break;
-    }
-    case 'wb-filter-status': {
-      state.wbStatusFilter = el.dataset.status;
-      save(); render();
-      break;
-    }
+    case 'wb-toggle-detail': { const id = el.dataset.id; state.wbExpandedId = state.wbExpandedId === id ? null : id; save(); render(); break; }
+    case 'wb-filter-subj': { state.wbSubjectFilter = el.dataset.subj; save(); render(); break; }
+    case 'wb-filter-status': { state.wbStatusFilter = el.dataset.status; save(); render(); break; }
 
-    case 'assess-toggle-detail': {
-      const id = el.dataset.id;
-      state.expandedAssessId = state.expandedAssessId === id ? null : id;
-      save(); render();
-      break;
-    }
+    case 'assess-toggle-detail': { const id = el.dataset.id; state.expandedAssessId = state.expandedAssessId === id ? null : id; save(); render(); break; }
 
-    case 'jump-to-feedback': {
-      e.stopPropagation();
-      const id = el.dataset.id;
-      state.view = 'feedback';
-      state.highlightFeedbackId = id;
-      state.editingFbId = null;
-      state.fbAdding = false;
-      save(); render();
-      setTimeout(() => {
-        const target = document.querySelector(`[data-fb-id="${id}"]`);
-        if (target) target.scrollIntoView({behavior:'smooth', block:'center'});
-      }, 120);
-      setTimeout(() => {
-        state.highlightFeedbackId = null;
-        save(false);
-      }, 4500);
-      break;
-    }
-
-    case 'todo-toggle': {
-      const it = state.todos.find(x => x.id === el.dataset.id);
-      if (it){ it.done = !it.done; save(); render(); }
-      break;
-    }
-    case 'todo-del': {
-      state.todos = state.todos.filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
+    case 'todo-toggle': { const it = state.todos.find(x => x.id === el.dataset.id); if (it){ it.done = !it.done; save(); render(); } break; }
+    case 'todo-del': { state.todos = state.todos.filter(x => x.id !== el.dataset.id); save(); render(); break; }
     case 'todo-add': {
-      const inp = $('#newTodoInput');
-      const txt = inp ? inp.value.trim() : '';
-      if (!txt) { inp && inp.focus(); return; }
+      const inp = $('#newTodoInput'); const txt = inp ? inp.value.trim() : '';
+      if (!txt){ inp && inp.focus(); return; }
       state.todos.push({id: uid(), date: state.selDate || todayISO(), text: txt, done: false});
       save(); render();
       setTimeout(() => { const i = $('#newTodoInput'); i && i.focus(); }, 0);
       break;
     }
-    case 'pick-day': {
-      state.selDate = el.dataset.date;
-      save(); render();
-      break;
-    }
+    case 'pick-day': { state.selDate = el.dataset.date; save(); render(); break; }
     case 'week-shift': {
       const delta = parseInt(el.dataset.delta, 10);
       state.weekAnchor = delta === 0 ? todayISO() : addDays(state.weekAnchor || todayISO(), delta);
@@ -3230,11 +3087,7 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-    case 'srp-del': {
-      state.srp = state.srp.filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
+    case 'srp-del': { state.srp = state.srp.filter(x => x.id !== el.dataset.id); save(); render(); break; }
     case 'srp-add': {
       const subj = $('#srpSubj').value;
       const concept = $('#srpConcept').value.trim();
@@ -3249,23 +3102,12 @@ document.addEventListener('click', e => {
     case 'assign-add': {
       const name = $('#asName').value.trim();
       if (!name){ $('#asName').focus(); return; }
-      state.assignments.push({
-        id: uid(), name,
-        subject: $('#asSubj').value,
-        status: '未開始 Not Started',
-        due: $('#asDue').value || null,
-        time: $('#asTime').value.trim(),
-        remarks: ''
-      });
+      state.assignments.push({ id: uid(), name, subject: $('#asSubj').value, status: '未開始 Not Started', due: $('#asDue').value || null, time: $('#asTime').value.trim(), remarks: '' });
       save(); render();
       toast('✅ 已新增作業');
       break;
     }
-    case 'assign-del': {
-      state.assignments = state.assignments.filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
+    case 'assign-del': { state.assignments = state.assignments.filter(x => x.id !== el.dataset.id); save(); render(); break; }
     case 'assign-cycle': {
       const a = state.assignments.find(x => x.id === el.dataset.id);
       if (!a) break;
@@ -3278,46 +3120,16 @@ document.addEventListener('click', e => {
     case 'assess-add': {
       const name = $('#evName').value.trim();
       if (!name){ $('#evName').focus(); return; }
-      state.assessments.push({
-        id: uid(), name,
-        subject: $('#evSubj').value,
-        criteria: $('#evCrit').value.trim() || '—',
-        due: $('#evDue').value || null,
-        dueNote: '',
-        progress: 0, remarks: ''
-      });
+      state.assessments.push({ id: uid(), name, subject: $('#evSubj').value, criteria: $('#evCrit').value.trim() || '—', due: $('#evDue').value || null, dueNote: '', progress: 0, remarks: '' });
       save(); render();
       toast('✅ 已新增評估');
       break;
     }
-    case 'assess-del': {
-      state.assessments = state.assessments.filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
-    case 'fb-filter': {
-      state.fbFilter = el.dataset.subj;
-      save(); render();
-      break;
-    }
-    case 'fb-grade-filter': {
-      state.fbGradeFilter = el.dataset.grade;
-      save(); render();
-      break;
-    }
-    case 'fb-add': {
-      state.fbAdding = true;
-      state.editingFbId = null;
-      save(); render();
-      setTimeout(() => { const i = $('#fbNewName'); i && i.focus(); }, 0);
-      break;
-    }
-    case 'fb-cancel': {
-      state.fbAdding = false;
-      state.editingFbId = null;
-      save(); render();
-      break;
-    }
+    case 'assess-del': { state.assessments = state.assessments.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+    case 'fb-filter': { state.fbFilter = el.dataset.subj; save(); render(); break; }
+    case 'fb-grade-filter': { state.fbGradeFilter = el.dataset.grade; save(); render(); break; }
+    case 'fb-add': { state.fbAdding = true; state.editingFbId = null; save(); render(); setTimeout(() => { const i = $('#fbNewName'); i && i.focus(); }, 0); break; }
+    case 'fb-cancel': { state.fbAdding = false; state.editingFbId = null; save(); render(); break; }
     case 'fb-save-new': {
       const name = $('#fbNewName').value.trim();
       const subj = $('#fbNewSubj').value;
@@ -3331,12 +3143,7 @@ document.addEventListener('click', e => {
       toast('✅ 已新增反饋');
       break;
     }
-    case 'fb-edit': {
-      state.editingFbId = el.dataset.id;
-      state.fbAdding = false;
-      save(); render();
-      break;
-    }
+    case 'fb-edit': { state.editingFbId = el.dataset.id; state.fbAdding = false; save(); render(); break; }
     case 'fb-save': {
       const id = el.dataset.id;
       const f = state.feedback.find(x => x.id === id);
@@ -3351,49 +3158,22 @@ document.addEventListener('click', e => {
       toast('✅ 已更新反饋');
       break;
     }
-    case 'fb-del': {
-      if (!confirm('刪除此反饋？')) break;
-      state.feedback = state.feedback.filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
+    case 'fb-del': { if (!confirm('刪除此反饋？')) break; state.feedback = state.feedback.filter(x => x.id !== el.dataset.id); save(); render(); break; }
     case 'rcg-add': {
       const name = $('#rcgNewName').value.trim();
       if (!name){ $('#rcgNewName').focus(); return; }
       if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
-      state.reportGrades.push({
-        id: uid(), name,
-        subject: $('#rcgNewSubj').value,
-        scores: [null, null, null, null, null]
-      });
+      state.reportGrades.push({ id: uid(), name, subject: $('#rcgNewSubj').value, scores: [null, null, null, null, null] });
       save(); render();
       toast('✅ 已新增評估');
       break;
     }
-    case 'rcg-del': {
-      state.reportGrades = (state.reportGrades || []).filter(x => x.id !== el.dataset.id);
-      save(); render();
-      break;
-    }
-    case 'sched-day': {
-      state.schedDay = parseInt(el.dataset.day, 10);
-      save(); render();
-      break;
-    }
-    case 'sched-edit-toggle': {
-      state.editingSchedule = true;
-      save(); render();
-      break;
-    }
-    case 'sched-done': {
-      state.editingSchedule = false;
-      save(); render();
-      toast('✅ 課表已儲存');
-      break;
-    }
+    case 'rcg-del': { state.reportGrades = (state.reportGrades || []).filter(x => x.id !== el.dataset.id); save(); render(); break; }
+    case 'sched-day': { state.schedDay = parseInt(el.dataset.day, 10); save(); render(); break; }
+    case 'sched-edit-toggle': { state.editingSchedule = true; save(); render(); break; }
+    case 'sched-done': { state.editingSchedule = false; save(); render(); toast('✅ 課表已儲存'); break; }
     case 'subj-add': {
-      const inp = $('#subjNewInput');
-      const name = inp ? inp.value.trim() : '';
+      const inp = $('#subjNewInput'); const name = inp ? inp.value.trim() : '';
       if (!name){ inp && inp.focus(); return; }
       if (state.subjects.includes(name)){ toast('⚠️ 此科目已存在'); return; }
       state.subjects.push(name);
@@ -3401,21 +3181,13 @@ document.addEventListener('click', e => {
       toast('✅ 已新增科目');
       break;
     }
-    case 'subj-del': {
-      const name = el.dataset.name;
-      if (!confirm(`刪除科目「${name}」？`)) break;
-      state.subjects = state.subjects.filter(s => s !== name);
-      save(); render();
-      break;
-    }
+    case 'subj-del': { const name = el.dataset.name; if (!confirm(`刪除科目「${name}」？`)) break; state.subjects = state.subjects.filter(s => s !== name); save(); render(); break; }
     case 'subj-rename': {
       const oldName = el.dataset.name;
       const newName = prompt(`重新命名科目：`, oldName);
       if (!newName || !newName.trim() || newName === oldName) return;
       const trimmed = newName.trim();
-      if (state.subjects.includes(trimmed) && trimmed !== oldName){
-        toast('⚠️ 名稱重複'); return;
-      }
+      if (state.subjects.includes(trimmed) && trimmed !== oldName){ toast('⚠️ 名稱重複'); return; }
       state.subjects = state.subjects.map(s => s === oldName ? trimmed : s);
       state.srp.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.assignments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
@@ -3429,17 +3201,14 @@ document.addEventListener('click', e => {
       const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = `study-dashboard-${todayISO()}.json`;
-      a.click();
+      a.href = url; a.download = `study-dashboard-${todayISO()}.json`; a.click();
       URL.revokeObjectURL(url);
       toast('⬇️ 已匯出');
       break;
     }
     case 'data-import': {
       const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = '.json,application/json';
+      input.type = 'file'; input.accept = '.json,application/json';
       input.onchange = (ev) => {
         const file = ev.target.files[0];
         if (!file) return;
@@ -3449,18 +3218,12 @@ document.addEventListener('click', e => {
             const data = JSON.parse(re.target.result);
             if (!data || typeof data !== 'object') throw new Error('invalid');
             state = normalizeState(data);
-            state.editingFbId = null;
-            state.fbAdding = false;
-            state.editingSchedule = false;
-            state.wbAdding = false;
-            state.wbExpandedId = null;
-            state.expandedAssessId = null;
-            state.highlightFeedbackId = null;
+            state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+            state.wbAdding = false; state.wbExpandedId = null;
+            state.expandedAssessId = null; state.highlightFeedbackId = null;
             save(); applyTheme(); render();
             toast('✅ 已匯入');
-          }catch(err){
-            toast('⚠️ 匯入失敗');
-          }
+          }catch(err){ toast('⚠️ 匯入失敗'); }
         };
         reader.readAsText(file);
       };
@@ -3469,17 +3232,12 @@ document.addEventListener('click', e => {
     }
     case 'data-reset': {
       if (!confirm('⚠️ 這會清除所有資料。確定要重設嗎？')) return;
-      Ambience.stopAll();
-      Bubbles.destroy();
+      Ambience.stopAll(); Bubbles.destroy();
       localStorage.removeItem(LS_KEY);
       state = structuredClone(DEFAULT_STATE);
-      state.editingFbId = null;
-      state.fbAdding = false;
-      state.editingSchedule = false;
-      state.wbAdding = false;
-      state.wbExpandedId = null;
-      state.expandedAssessId = null;
-      state.highlightFeedbackId = null;
+      state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+      state.wbAdding = false; state.wbExpandedId = null;
+      state.expandedAssessId = null; state.highlightFeedbackId = null;
       save(); applyTheme(); render();
       toast('↺ 已重設');
       break;
@@ -3487,11 +3245,7 @@ document.addEventListener('click', e => {
 
     case 'detox-quote': {
       const el2 = document.getElementById('detoxQuote');
-      if (el2){
-        el2.classList.remove('fade');
-        void el2.offsetWidth;
-        el2.classList.add('fade');
-      }
+      if (el2){ el2.classList.remove('fade'); void el2.offsetWidth; el2.classList.add('fade'); }
       detoxState.currentQuoteIdx = pickQuoteIdx();
       const q = DETOX_QUOTES[detoxState.currentQuoteIdx];
       setTimeout(()=>{
@@ -3502,7 +3256,6 @@ document.addEventListener('click', e => {
       }, 120);
       break;
     }
-
     case 'detox-burn': {
       const wrap = document.getElementById('dWriteWrap');
       const area = document.getElementById('dWriteArea');
@@ -3510,17 +3263,12 @@ document.addEventListener('click', e => {
       if (!wrap || !area || !bed) break;
       const text = area.value.trim();
       if (!text) break;
-
       const kind = el.dataset.kind;
       wrap.classList.add('burning');
       bed.className = 'd-burn-bed ' + kind;
       wrap.querySelectorAll('.d-burn-particle').forEach(p => p.remove());
-
-      const isFire  = kind === 'fire';
-      const isWater = kind === 'water';
-      const isWind  = kind === 'wind';
-      const count   = isFire ? 55 : isWater ? 45 : 40;
-
+      const isFire = kind === 'fire', isWater = kind === 'water', isWind = kind === 'wind';
+      const count = isFire ? 55 : isWater ? 45 : 40;
       for (let i = 0; i < count; i++){
         const p = document.createElement('span');
         let type;
@@ -3528,14 +3276,12 @@ document.addEventListener('click', e => {
         else if (isWater) type = 'water';
         else type = 'wind';
         p.className = 'd-burn-particle ' + type;
-
         const startX = 5 + Math.random() * 90;
         const tx = (Math.random() - 0.5) * (isWind ? 320 : 180);
         let ty;
         if (isFire) ty = -(180 + Math.random() * 260);
         else if (isWater) ty = (60 + Math.random() * 180);
         else ty = -(30 + Math.random() * 140) * (Math.random() - 0.2);
-
         p.style.left = startX + '%';
         p.style.top = isWater ? '-10%' : '100%';
         p.style.setProperty('--tx', tx + 'px');
@@ -3545,30 +3291,22 @@ document.addEventListener('click', e => {
         p.style.setProperty('--size', (2 + Math.random() * 4) + 'px');
         p.style.setProperty('--rot', (Math.random() * 30 - 15) + 'deg');
         p.style.setProperty('--len', (20 + Math.random() * 60) + 'px');
-
         wrap.appendChild(p);
         setTimeout(() => p.remove(), 2800);
       }
-
       const parentCard = wrap.closest('.d-card');
-      if (parentCard){
-        parentCard.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
-      }
-
+      if (parentCard) parentCard.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
       setTimeout(()=>{
         area.value = '';
         wrap.classList.remove('burning');
         bed.className = 'd-burn-bed';
         wrap.querySelectorAll('.d-burn-particle').forEach(p => p.remove());
         const pc = wrap.closest('.d-card');
-        if (pc){
-          pc.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
-        }
+        if (pc) pc.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = true);
         area.focus();
       }, 2200);
       break;
     }
-
     case 'detox-toggle': {
       const track = el.dataset.track;
       if (!state.detoxVolumes) state.detoxVolumes = {};
@@ -3595,7 +3333,6 @@ document.addEventListener('click', e => {
       save();
       break;
     }
-
     case 'spotify-toggle': {
       const box = document.getElementById('spotifyFloat');
       if (box) box.classList.toggle('open');
@@ -3618,7 +3355,6 @@ document.addEventListener('input', e => {
     save(false);
     return;
   }
-
   if (e.target.id === 'dWriteArea'){
     const card = e.target.closest('.d-card');
     if (!card) return;
@@ -3626,7 +3362,6 @@ document.addEventListener('input', e => {
     card.querySelectorAll('.d-burn-btn').forEach(b => b.disabled = !has);
     return;
   }
-
   const cloudPath = e.target.dataset && e.target.dataset.cloud;
   if (cloudPath){
     const [grp, key] = cloudPath.split('.');
@@ -3642,7 +3377,6 @@ document.addEventListener('input', e => {
   const el = e.target.closest('[data-act]');
   if (!el) return;
   const act = el.dataset.act;
-
   if (act === 'sched-edit'){
     const day = parseInt(el.dataset.day, 10);
     const period = parseInt(el.dataset.period, 10);
@@ -3680,11 +3414,7 @@ document.addEventListener('input', e => {
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     const raw = el.value.trim();
     if (raw === '') g.scores[idx] = null;
-    else {
-      let n = parseInt(raw, 10);
-      if (isNaN(n)) g.scores[idx] = null;
-      else g.scores[idx] = Math.max(0, Math.min(maxScore, n));
-    }
+    else { let n = parseInt(raw, 10); if (isNaN(n)) g.scores[idx] = null; else g.scores[idx] = Math.max(0, Math.min(maxScore, n)); }
     save();
     refreshReportSummary();
     return;
@@ -3692,27 +3422,12 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('change', e => {
-  if (e.target.id === 'cloudProvider'){
-    Cloud.cfg.provider = e.target.value;
-    Cloud.persist();
-    render();
-    return;
-  }
-  if (e.target.id === 'cloudAuto'){
-    Cloud.cfg.auto = e.target.checked;
-    Cloud.persist();
-    Cloud.restartTimer();
-    return;
-  }
-  if (e.target.id === 'cloudInterval'){
-    Cloud.restartTimer();
-    return;
-  }
-
+  if (e.target.id === 'cloudProvider'){ Cloud.cfg.provider = e.target.value; Cloud.persist(); render(); return; }
+  if (e.target.id === 'cloudAuto'){ Cloud.cfg.auto = e.target.checked; Cloud.persist(); Cloud.restartTimer(); return; }
+  if (e.target.id === 'cloudInterval'){ Cloud.restartTimer(); return; }
   const el = e.target.closest('[data-act]');
   if (!el) return;
   const act = el.dataset.act;
-
   if (act === 'assess-progress'){ render(); return; }
   if (act === 'rcg-subject'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
@@ -3746,26 +3461,9 @@ document.addEventListener('change', e => {
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey){
-    const map = {
-      newTodoInput: 'todo-add',
-      subjNewInput: 'subj-add',
-      rcgNewName: 'rcg-add',
-      srpConcept: 'srp-add',
-      asName: 'assign-add',
-      evName: 'assess-add',
-      fbNewName: 'fb-save-new'
-    };
-    if (map[e.target.id]){
-      e.preventDefault();
-      const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`);
-      btn && btn.click();
-      return;
-    }
-    if (e.target.id === 'wbNewCorrect' && (e.ctrlKey || e.metaKey)){
-      e.preventDefault();
-      const btn = document.querySelector('[data-act="wb-save-new"]');
-      btn && btn.click();
-    }
+    const map = { newTodoInput:'todo-add', subjNewInput:'subj-add', rcgNewName:'rcg-add', srpConcept:'srp-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new' };
+    if (map[e.target.id]){ e.preventDefault(); const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`); btn && btn.click(); return; }
+    if (e.target.id === 'wbNewCorrect' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); const btn = document.querySelector('[data-act="wb-save-new"]'); btn && btn.click(); }
   }
 });
 
@@ -3773,8 +3471,7 @@ document.addEventListener('click', e => {
   const canvas = e.target.closest('#bubblesCanvas');
   if (!canvas) return;
   const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  const x = e.clientX - rect.left, y = e.clientY - rect.top;
   Bubbles.pop(x, y);
 });
 
@@ -3783,10 +3480,140 @@ document.addEventListener('touchstart', e => {
   if (!canvas) return;
   const touch = e.touches[0];
   const rect = canvas.getBoundingClientRect();
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
+  const x = touch.clientX - rect.left, y = touch.clientY - rect.top;
   Bubbles.pop(x, y);
 }, {passive:true});
+
+/* =====================================================================
+   8b. 快捷鍵系統 Ctrl+K
+   ===================================================================== */
+const CmdK = {
+  overlay: null, input: null, list: null, filtered: [], activeIdx: 0,
+
+  commands: [
+    {id:'nav-master',    icon:'🏠', label:'主控台 Dashboard',      hint:'', run: () => state.view = 'master'},
+    {id:'nav-todo',      icon:'📝', label:'待辦事項 To-Do',        hint:'', run: () => state.view = 'todo'},
+    {id:'nav-srp',       icon:'⏰', label:'間隔複習 SRP',           hint:'', run: () => state.view = 'srp'},
+    {id:'nav-assign',    icon:'✍️', label:'作業追蹤 Assignments',  hint:'', run: () => state.view = 'assign'},
+    {id:'nav-assess',    icon:'📚', label:'考試計劃 Assessments',  hint:'', run: () => state.view = 'assess'},
+    {id:'nav-feedback',  icon:'💬', label:'考試反饋 Feedback',     hint:'', run: () => state.view = 'feedback'},
+    {id:'nav-wrongbook', icon:'📕', label:'錯題本 Mistake Book',   hint:'', run: () => state.view = 'wrongbook'},
+    {id:'nav-report',    icon:'💯', label:'成績單 Report Cards',   hint:'', run: () => state.view = 'report'},
+    {id:'nav-detox',     icon:'🌿', label:'解壓空間 Detox',        hint:'', run: () => state.view = 'detox'},
+    {id:'nav-schedule',  icon:'📅', label:'課表 Schedule',         hint:'', run: () => state.view = 'schedule'},
+    {id:'nav-guide',     icon:'📋', label:'操作指南 Guide',         hint:'', run: () => state.view = 'guide'},
+    {id:'nav-settings',  icon:'⚙️', label:'設定 Settings',         hint:'', run: () => state.view = 'settings'},
+    {id:'act-theme',     icon:'🌓', label:'切換深色/淺色主題 Toggle theme', hint:'theme', run: () => { state.theme = state.theme === 'dark' ? 'light' : 'dark'; applyTheme(); }},
+    {id:'act-sync',      icon:'🔄', label:'立即同步 Sync now',      hint:'sync',  run: () => Cloud.sync()},
+    {id:'act-push',      icon:'⬆️', label:'上傳本地 Push',          hint:'',      run: () => Cloud.forcePush()},
+    {id:'act-pull',      icon:'⬇️', label:'下載雲端 Pull',          hint:'',      run: () => Cloud.forcePull()},
+    {id:'act-export',    icon:'💾', label:'匯出 JSON Export',       hint:'',      run: () => { const b = document.querySelector('[data-act="data-export"]'); b && b.click(); }},
+    {id:'act-reset',     icon:'🗑', label:'重設所有資料 Reset',      hint:'',      run: () => { const b = document.getElementById('resetBtn'); b && b.click(); }}
+  ],
+
+  init(){
+    this.overlay = document.getElementById('cmdkOverlay');
+    this.input = document.getElementById('cmdkInput');
+    this.list = document.getElementById('cmdkList');
+    if (!this.overlay) return;
+    this.overlay.addEventListener('click', () => this.close());
+    this.input.addEventListener('input', () => this.render());
+    this.input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape'){ this.close(); e.preventDefault(); }
+      else if (e.key === 'ArrowDown'){ e.preventDefault(); this.move(1); }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); this.move(-1); }
+      else if (e.key === 'Enter'){ e.preventDefault(); this.exec(); }
+    });
+  },
+
+  open(){
+    if (!this.overlay) return;
+    this.overlay.classList.add('open');
+    this.input.value = '';
+    this.activeIdx = 0;
+    this.render();
+    setTimeout(() => this.input.focus(), 20);
+  },
+
+  close(){
+    if (!this.overlay) return;
+    this.overlay.classList.remove('open');
+  },
+
+  getFiltered(){
+    const q = (this.input.value || '').trim().toLowerCase();
+    let items = [...this.commands];
+    if (q.startsWith('todo ') || q.startsWith('add ')){
+      const text = q.replace(/^(todo|add)\s+/i, '').trim();
+      if (text){
+        items.unshift({
+          id:'add-todo', icon:'➕',
+          label:`新增待辦：「${text}」`,
+          hint:'Enter',
+          run: () => {
+            state.todos.push({id: uid(), date: state.selDate || todayISO(), text, done: false});
+            state.view = 'todo';
+            toast('✅ 已新增待辦');
+          }
+        });
+      }
+    }
+    if (!q) return items;
+    return items.filter(it => it.label.toLowerCase().includes(q) || (it.hint || '').toLowerCase().includes(q));
+  },
+
+  render(){
+    this.filtered = this.getFiltered();
+    if (this.activeIdx >= this.filtered.length) this.activeIdx = 0;
+    if (this.activeIdx < 0) this.activeIdx = this.filtered.length - 1;
+    if (!this.filtered.length){
+      this.list.innerHTML = `<div style="padding:20px;text-align:center;color:var(--muted);font-size:12.5px">沒有符合的指令</div>`;
+      return;
+    }
+    this.list.innerHTML = this.filtered.map((it, i) =>
+      `<div class="cmdk-item ${i===this.activeIdx?'active':''}" data-idx="${i}">
+        <span class="cmdk-icon">${it.icon}</span>
+        <span class="cmdk-label">${esc(it.label)}</span>
+        ${it.hint ? `<span class="cmdk-hint">${esc(it.hint)}</span>` : ''}
+      </div>`
+    ).join('');
+    this.list.querySelectorAll('.cmdk-item').forEach(el => {
+      el.addEventListener('click', () => { this.activeIdx = parseInt(el.dataset.idx, 10); this.exec(); });
+      el.addEventListener('mouseenter', () => {
+        this.activeIdx = parseInt(el.dataset.idx, 10);
+        this.list.querySelectorAll('.cmdk-item').forEach(x => x.classList.remove('active'));
+        el.classList.add('active');
+      });
+    });
+  },
+
+  move(d){
+    this.activeIdx += d;
+    this.render();
+    const active = this.list.querySelector('.cmdk-item.active');
+    if (active) active.scrollIntoView({block:'nearest'});
+  },
+
+  exec(){
+    const it = this.filtered[this.activeIdx];
+    if (!it) return;
+    this.close();
+    setTimeout(() => { it.run(); save(); render(); }, 60);
+  }
+};
+
+CmdK.init();
+
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+    e.preventDefault();
+    CmdK.open();
+    return;
+  }
+  if (e.key === 'Escape' && CmdK.overlay && CmdK.overlay.classList.contains('open')){
+    CmdK.close();
+  }
+});
 
 /* =====================================================================
    9. THEME
@@ -3805,17 +3632,12 @@ $('#themeBtn').addEventListener('click', () => {
    ===================================================================== */
 $('#resetBtn').addEventListener('click', () => {
   if (!confirm('確定要重設所有資料嗎？')) return;
-  Ambience.stopAll();
-  Bubbles.destroy();
+  Ambience.stopAll(); Bubbles.destroy();
   localStorage.removeItem(LS_KEY);
   state = structuredClone(DEFAULT_STATE);
-  state.editingFbId = null;
-  state.fbAdding = false;
-  state.editingSchedule = false;
-  state.wbAdding = false;
-  state.wbExpandedId = null;
-  state.expandedAssessId = null;
-  state.highlightFeedbackId = null;
+  state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+  state.wbAdding = false; state.wbExpandedId = null;
+  state.expandedAssessId = null; state.highlightFeedbackId = null;
   save(); applyTheme(); render();
   toast('↺ 已重設');
 });
@@ -3861,9 +3683,7 @@ $('#pomoToggle').addEventListener('click', () => {
       }
       pomoRender();
     }, 1000);
-  } else {
-    clearInterval(POMO.tick);
-  }
+  } else { clearInterval(POMO.tick); }
   pomoRender();
 });
 $('#pomoReset').addEventListener('click', () => {
@@ -3892,13 +3712,9 @@ loadState();
     Cloud.persist();
   }
 })();
-state.editingFbId = null;
-state.fbAdding = false;
-state.editingSchedule = false;
-state.wbAdding = false;
-state.wbExpandedId = null;
-state.expandedAssessId = null;
-state.highlightFeedbackId = null;
+state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
+state.wbAdding = false; state.wbExpandedId = null;
+state.expandedAssessId = null; state.highlightFeedbackId = null;
 applyTheme();
 render();
 pomoRender();
