@@ -277,22 +277,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .wb-wrong b{color:var(--danger)}
 .wb-correct b{color:var(--ok)}
 
-.reminder-bar{border-radius:var(--r);padding:12px 14px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border)}
-.reminder-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.reminder-head b{font-size:12.5px;font-weight:750}
-.reminder-list{display:flex;flex-direction:column;gap:3px}
-.reminder-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.4;cursor:pointer;transition:.13s;border:1px solid transparent}
-.reminder-item:hover{background:var(--surface-2);border-color:var(--border)}
-.reminder-item .rm-icon{font-size:14px;flex:0 0 auto;line-height:1}
-.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
-.reminder-item .rm-arrow{color:var(--muted);font-size:10.5px;font-weight:700;opacity:.7}
-.reminder-item.tone-danger{border-left:3px solid var(--danger)}
-.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
-.reminder-item.tone-warn{border-left:3px solid var(--warn)}
-.reminder-item.tone-info{border-left:3px solid var(--info)}
-.reminder-item.tone-ok{border-left:3px solid var(--ok)}
-
-/* 統一收件匣 */
 .inbox-bar{border-radius:var(--r);padding:14px 16px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary)}
 .inbox-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .inbox-head b{font-size:13px;font-weight:750}
@@ -311,8 +295,24 @@ details.acc summary:hover{background:var(--surface-2)}
 .inbox-item.tone-warn{border-left:3px solid var(--warn)}
 .inbox-item.tone-info{border-left:3px solid var(--info)}
 .inbox-item.tone-ok{border-left:3px solid var(--ok)}
+.inbox-suggestions{margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);display:flex;flex-direction:column;gap:3px}
+.inbox-suggestion{font-size:11px;color:var(--warn);line-height:1.45;font-weight:600}
 
-/* 快捷鍵面板 */
+.reminder-bar{border-radius:var(--r);padding:12px 14px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border)}
+.reminder-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.reminder-head b{font-size:12.5px;font-weight:750}
+.reminder-list{display:flex;flex-direction:column;gap:3px}
+.reminder-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.4;cursor:pointer;transition:.13s;border:1px solid transparent}
+.reminder-item:hover{background:var(--surface-2);border-color:var(--border)}
+.reminder-item .rm-icon{font-size:14px;flex:0 0 auto;line-height:1}
+.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
+.reminder-item .rm-arrow{color:var(--muted);font-size:10.5px;font-weight:700;opacity:.7}
+.reminder-item.tone-danger{border-left:3px solid var(--danger)}
+.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
+.reminder-item.tone-warn{border-left:3px solid var(--warn)}
+.reminder-item.tone-info{border-left:3px solid var(--info)}
+.reminder-item.tone-ok{border-left:3px solid var(--ok)}
+
 .cmdk-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);display:none;align-items:flex-start;justify-content:center;padding-top:15vh}
 .cmdk-overlay.open{display:flex}
 .cmdk-panel{width:min(560px, 90vw);background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4);overflow:hidden}
@@ -327,11 +327,9 @@ details.acc summary:hover{background:var(--surface-2)}
 .cmdk-item .cmdk-hint{font-size:11px;color:var(--muted);font-family:'SF Mono',Menlo,monospace}
 .cmdk-foot{padding:8px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);background:var(--surface-2)}
 
-/* Toast */
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--surface);padding:9px 16px;border-radius:99px;font-size:12.5px;font-weight:650;z-index:999;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);opacity:0;transition:.3s cubic-bezier(.4,0,.2,1);pointer-events:none;max-width:90vw}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 
-/* Spotify */
 .spotify-float{position:fixed;right:20px;bottom:20px;z-index:500;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
 .spotify-float > *{pointer-events:auto}
 .spotify-fab{width:48px;height:48px;border-radius:99px;border:none;background:#1db954;color:#fff;font-size:22px;cursor:pointer;transition:.2s;display:grid;place-items:center;line-height:1;box-shadow:0 6px 20px -6px rgba(29,185,84,.55)}
@@ -345,7 +343,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .spotify-close{width:22px;height:22px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;font-size:10px;display:grid;place-items:center;line-height:1}
 .spotify-panel iframe{border-radius:10px;display:block;width:100%}
 
-/* Detox */
 .detox-page{--d-surface:#1f1520;--d-surface-2:#281a28;--d-text:#f5e6e0;--d-text-dim:#b8a0b0;--d-accent:#ff9a76;--d-border:rgba(255,154,118,.13);background:#180f18;border-radius:var(--r);padding:26px 22px;margin:-4px;color:var(--d-text);position:relative;overflow:hidden;min-height:calc(100vh - 44px)}
 .detox-head{margin-bottom:20px}
 .detox-head h2{font-size:22px;font-weight:800;letter-spacing:-.3px;color:var(--d-text)}
@@ -513,6 +510,8 @@ details.acc summary:hover{background:var(--surface-2)}
 </div>
 
 <div class="toast" id="toast"></div>
+</body>
+</html>
 
 <script>
 /* =====================================================================
@@ -771,15 +770,14 @@ function weekStats(startISO){
   return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
 }
 
-/* =====================================================================
-   4a. 統一收件匣
-   ===================================================================== */
+/* 統一收件匣（含合併邏輯） */
 function collectInbox(){
   const t = todayISO();
-  const items = [];
+  const raw = [];
 
   state.todos.filter(x => x.date === t && !x.done).forEach(x => {
-    items.push({
+    raw.push({
+      entityKey: 'todo:' + x.id, isSuggestion: false,
       id: 'todo-' + x.id, type: 'todo', sourceId: x.id,
       icon: '📝', text: x.text,
       source: 'todo', sourceLabel: '待辦事項',
@@ -789,7 +787,8 @@ function collectInbox(){
   });
 
   srpDueOn(t).forEach(({item, idx}) => {
-    items.push({
+    raw.push({
+      entityKey: 'srp:' + item.id, isSuggestion: false,
       id: 'srp-' + item.id + '-' + idx, type: 'srp', sourceId: item.id, idx,
       icon: '⏰', text: item.concept, sub: `第 ${idx+1} 次複習`,
       source: 'srp', sourceLabel: '間隔複習',
@@ -806,14 +805,16 @@ function collectInbox(){
   state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
     const d = diffDays(t, a.due);
     if (d < 0){
-      items.push({
+      raw.push({
+        entityKey: 'assign:' + a.id, isSuggestion: false,
         id: 'assign-' + a.id, type: 'assign', sourceId: a.id,
         icon: '⚠️', text: a.name, sub: `逾期 ${-d} 天`,
         source: 'assign', sourceLabel: '作業追蹤',
         tone: 'danger', canCheck: false
       });
     } else if (d <= 3){
-      items.push({
+      raw.push({
+        entityKey: 'assign:' + a.id, isSuggestion: false,
         id: 'assign-' + a.id, type: 'assign', sourceId: a.id,
         icon: '✍️', text: a.name, sub: d === 0 ? '今天到期' : `剩 ${d} 天`,
         source: 'assign', sourceLabel: '作業追蹤',
@@ -827,7 +828,8 @@ function collectInbox(){
     const d = diffDays(t, a.due);
     if (d < 0 || d > 7) return;
     if ((a.progress || 0) >= 80) return;
-    items.push({
+    raw.push({
+      entityKey: 'assess:' + a.id, isSuggestion: false,
       id: 'assess-' + a.id, type: 'assess', sourceId: a.id,
       icon: '📚', text: a.name, sub: `剩 ${d} 天 · 準備 ${a.progress || 0}%`,
       source: 'assess', sourceLabel: '考試計劃',
@@ -835,12 +837,13 @@ function collectInbox(){
     });
   });
 
-    const lateSRPItems = state.srp.filter(it => {
+  const lateSRPItems = state.srp.filter(it => {
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d, i) => !done[i] && d < t);
   });
   if (lateSRPItems.length){
-    items.push({
+    raw.push({
+      entityKey: 'srp-batch', isSuggestion: false,
       id: 'srp-late-batch', type: 'srp',
       icon: '⏰', text: `有 ${lateSRPItems.length} 個知識點複習逾期`,
       sub: '趁空檔補上，間隔複習最忌斷線',
@@ -851,7 +854,8 @@ function collectInbox(){
 
   const oldWrongs = (state.wrongBook || []).filter(w => !w.mastered && diffDays(w.date, t) >= 7);
   if (oldWrongs.length){
-    items.push({
+    raw.push({
+      entityKey: 'wrong-batch', isSuggestion: false,
       id: 'wrong-batch', type: 'wrongbook',
       icon: '📕', text: `有 ${oldWrongs.length} 筆錯題超過 7 天未掌握`,
       sub: '建議今天花 10 分鐘復習',
@@ -860,16 +864,15 @@ function collectInbox(){
     });
   }
 
-  /* 智慧建議 */
+  /* 智慧建議（會與原始項合併） */
   state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
     const d = diffDays(t, a.due);
     if (d <= -3 && d > -30){
-      items.push({
-        id: 'smart-assign-late-' + a.id, type: 'smart',
-        icon: '💡', text: `[建議] 補交「${a.name}」`,
-        sub: `已逾期 ${-d} 天`,
-        source: 'assign', sourceLabel: '作業追蹤',
-        tone: 'danger', canCheck: false
+      raw.push({
+        entityKey: 'assign:' + a.id, isSuggestion: true,
+        id: 'smart-assign-late-' + a.id,
+        text: `補交（已逾期 ${-d} 天）`,
+        tone: 'danger'
       });
     }
   });
@@ -877,21 +880,19 @@ function collectInbox(){
     if (!a.due) return;
     const d = diffDays(t, a.due);
     if (d === 7){
-      items.push({
-        id: 'smart-assess-7d-' + a.id, type: 'smart',
-        icon: '💡', text: `[建議] 開始密集複習「${a.name}」`,
-        sub: '距離考試剩 7 天',
-        source: 'assess', sourceLabel: '考試計劃',
-        tone: 'warn', canCheck: false
+      raw.push({
+        entityKey: 'assess:' + a.id, isSuggestion: true,
+        id: 'smart-assess-7d-' + a.id,
+        text: `開始密集複習（距考試 7 天）`,
+        tone: 'warn'
       });
     }
     if (d === 1){
-      items.push({
-        id: 'smart-assess-1d-' + a.id, type: 'smart',
-        icon: '💡', text: `[建議] 「${a.name}」最後檢查`,
-        sub: '明天考試',
-        source: 'assess', sourceLabel: '考試計劃',
-        tone: 'urgent', canCheck: false
+      raw.push({
+        entityKey: 'assess:' + a.id, isSuggestion: true,
+        id: 'smart-assess-1d-' + a.id,
+        text: `最後檢查（明天考試）`,
+        tone: 'urgent'
       });
     }
   });
@@ -899,48 +900,46 @@ function collectInbox(){
     const ds = srpDates(it), done = it.done || [];
     return ds.some((d, i) => !done[i] && diffDays(d, t) >= 7);
   }).forEach(it => {
-    items.push({
-      id: 'smart-srp-' + it.id, type: 'smart',
-      icon: '💡', text: `[建議] 補複習「${it.concept}」`,
-      sub: '已逾期超過 7 天',
-      source: 'srp', sourceLabel: '間隔複習',
-      tone: 'warn', canCheck: false
+    raw.push({
+      entityKey: 'srp:' + it.id, isSuggestion: true,
+      id: 'smart-srp-' + it.id,
+      text: `補複習（已逾期 7 天以上）`,
+      tone: 'warn'
     });
   });
+
+  /* 合併：相同 entityKey 的合併為一條 */
+  const groups = new Map();
+  for (const item of raw){
+    const key = item.entityKey;
+    if (!groups.has(key)) groups.set(key, { main: null, suggestions: [] });
+    const g = groups.get(key);
+    if (item.isSuggestion){
+      g.suggestions.push(item.text);
+    } else if (!g.main){
+      g.main = item;
+    }
+  }
+
+  const items = [];
+  for (const [key, g] of groups){
+    if (g.main){
+      g.main.suggestions = g.suggestions;
+      items.push(g.main);
+    } else {
+      const first = raw.find(i => i.entityKey === key && i.isSuggestion);
+      if (first) items.push({
+        id: first.id, type: 'smart', icon: '💡',
+        text: `[建議] ${first.text}`,
+        source: 'master', sourceLabel: '建議',
+        tone: first.tone, canCheck: false, suggestions: []
+      });
+    }
+  }
 
   const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
   items.sort((a, b) => order[a.tone] - order[b.tone]);
   return items;
-}
-
-/* 自動提醒收集 */
-function collectReminders(){
-  const t = todayISO();
-  const reminders = [];
-  state.assessments.forEach(a => {
-    if (!a.due) return;
-    const d = diffDays(t, a.due);
-    if (d < 0 || d > 7) return;
-    if ((a.progress || 0) >= 80) return;
-    reminders.push({tone: d <= 3 ? 'danger' : 'warn', icon:'📚', text:`${a.name} 剩 ${d} 天（準備 ${a.progress || 0}%）`, nav:'assess'});
-  });
-  state.assignments.forEach(a => {
-    if (!a.due || isFinished(a)) return;
-    const d = diffDays(t, a.due);
-    if (d < 0) reminders.push({tone:'danger', icon:'⚠️', text:`${a.name} 已逾期 ${-d} 天`, nav:'assign'});
-    else if (d <= 3) reminders.push({tone: d === 0 ? 'urgent' : 'warn', icon:'✍️', text:`${a.name} ${d === 0 ? '今天到期' : `剩 ${d} 天`}`, nav:'assign'});
-  });
-  const lateSRP = state.srp.filter(it => {
-    const ds = srpDates(it), done = it.done || [];
-    return ds.some((d, i) => !done[i] && d < t);
-  });
-  if (lateSRP.length) reminders.push({tone:'warn', icon:'⏰', text:`有 ${lateSRP.length} 個知識點複習逾期`, nav:'srp'});
-  const dueToday = srpDueOn(t).length;
-  if (dueToday) reminders.push({tone:'info', icon:'🔴', text:`今天有 ${dueToday} 個複習任務待完成`, nav:'srp'});
-
-  const order = { danger: 0, urgent: 1, warn: 2, info: 3, ok: 4 };
-  reminders.sort((a, b) => order[a.tone] - order[b.tone]);
-  return reminders.slice(0, 3);
 }
 
 /* 考試相關資料關聯 */
@@ -1750,22 +1749,28 @@ VIEWS.master = function(){
   const inboxBar = inboxItems.length ? `
     <div class="inbox-bar">
       <div class="inbox-head">
-                <span style="font-size:15px">📥</span>
+        <span style="font-size:15px">📥</span>
         <b>今日要做 Today's Inbox</b>
         <span class="tiny muted" style="font-weight:600;opacity:.7">含提醒 Alerts</span>
         <span class="pill ${inboxItems.some(r => r.tone==='danger'||r.tone==='urgent') ? 'danger' : 'info'}" style="margin-left:auto">${inboxItems.length} 項</span>
       </div>
       <div class="inbox-list">
         ${inboxItems.map((it, i) => `
-          <div class="inbox-item tone-${it.tone}">
-            ${it.canCheck
-              ? `<button class="cb" data-act="inbox-check" data-inbox-idx="${i}">✓</button>`
-              : `<span class="inbox-icon">${it.icon}</span>`}
-            <div class="inbox-main">
-              <div class="inbox-title">${esc(it.text)}</div>
-              <div class="inbox-meta">${it.sub ? `<span>${esc(it.sub)}</span>` : ''}<span class="inbox-src">${it.sourceLabel}</span></div>
+          <div class="inbox-item tone-${it.tone}" style="flex-direction:column;align-items:stretch">
+            <div style="display:flex;align-items:center;gap:10px">
+              ${it.canCheck
+                ? `<button class="cb" data-act="inbox-check" data-inbox-idx="${i}">✓</button>`
+                : `<span class="inbox-icon">${it.icon}</span>`}
+              <div class="inbox-main">
+                <div class="inbox-title">${esc(it.text)}</div>
+                <div class="inbox-meta">${it.sub ? `<span>${esc(it.sub)}</span>` : ''}<span class="inbox-src">${it.sourceLabel}</span></div>
+              </div>
+              ${it.canCheck ? '' : `<button class="inbox-jump" data-act="inbox-jump" data-source="${it.source}">前往 →</button>`}
             </div>
-            ${it.canCheck ? '' : `<button class="inbox-jump" data-act="inbox-jump" data-source="${it.source}">前往 →</button>`}
+            ${it.suggestions && it.suggestions.length ? `
+              <div class="inbox-suggestions">
+                ${it.suggestions.map(s => `<div class="inbox-suggestion">💡 ${esc(s)}</div>`).join('')}
+              </div>` : ''}
           </div>
         `).join('')}
       </div>
@@ -1864,7 +1869,7 @@ VIEWS.master = function(){
     </div>
     <div class="bar"><div class="bar-fill ${ws.pct>=80?'ok':ws.pct>=50?'':'warn'}" style="width:${ws.pct}%"></div></div>`;
 
-    return `
+  return `
   ${inboxBar}
   ${hero}
   ${stats}
@@ -2771,10 +2776,11 @@ VIEWS.guide = function(){
     ['觸發條件', '系統反應'],
     [
       ['打開主控台', '自動收集今日待辦、複習、到期作業、7 天內考試、未掌握錯題'],
-      ['作業逾期 3 天以上', '收件匣顯示「[建議] 補交 XX」'],
-      ['考試剩 7 天', '收件匣顯示「[建議] 開始密集複習」'],
-      ['考試剩 1 天', '收件匣顯示「[建議] 最後檢查」'],
-      ['SRP 逾期 7 天', '收件匣顯示「[建議] 補複習」'],
+      ['同一實體的重複項', '自動合併為一行，建議以小字顯示在下方'],
+      ['作業逾期 3 天以上', '收件匣顯示「補交」建議'],
+      ['考試剩 7 天', '收件匣顯示「開始密集複習」建議'],
+      ['考試剩 1 天', '收件匣顯示「最後檢查」建議'],
+      ['SRP 逾期 7 天', '收件匣顯示「補複習」建議'],
       ['成績單點科目名', '跳到該科反饋並自動篩選'],
       ['反饋頁選科目', '顯示該科目前等級 + 前往成績單按鈕']
     ]))}
@@ -2904,7 +2910,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.0（連動與自動化）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.1（合併收件匣）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
