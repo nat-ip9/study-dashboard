@@ -298,21 +298,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .inbox-suggestions{margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);display:flex;flex-direction:column;gap:3px}
 .inbox-suggestion{font-size:11px;color:var(--warn);line-height:1.45;font-weight:600}
 
-.reminder-bar{border-radius:var(--r);padding:12px 14px;margin-bottom:12px;background:var(--surface);border:1px solid var(--border)}
-.reminder-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
-.reminder-head b{font-size:12.5px;font-weight:750}
-.reminder-list{display:flex;flex-direction:column;gap:3px}
-.reminder-item{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:8px;font-size:12px;line-height:1.4;cursor:pointer;transition:.13s;border:1px solid transparent}
-.reminder-item:hover{background:var(--surface-2);border-color:var(--border)}
-.reminder-item .rm-icon{font-size:14px;flex:0 0 auto;line-height:1}
-.reminder-item .rm-text{flex:1;min-width:0;font-weight:600}
-.reminder-item .rm-arrow{color:var(--muted);font-size:10.5px;font-weight:700;opacity:.7}
-.reminder-item.tone-danger{border-left:3px solid var(--danger)}
-.reminder-item.tone-urgent{border-left:3px solid var(--urgent)}
-.reminder-item.tone-warn{border-left:3px solid var(--warn)}
-.reminder-item.tone-info{border-left:3px solid var(--info)}
-.reminder-item.tone-ok{border-left:3px solid var(--ok)}
-
 .cmdk-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.4);display:none;align-items:flex-start;justify-content:center;padding-top:15vh}
 .cmdk-overlay.open{display:flex}
 .cmdk-panel{width:min(560px, 90vw);background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4);overflow:hidden}
@@ -996,7 +981,8 @@ function rcCalc(){
     const total = filled.reduce((a, b) => a + b, 0);
     const complete = filled.length === def.crit.length;
     const grade = complete ? ibGradeFromTotal(total, def.cuts) : null;
-    return { def, avgs, total, complete, grade, count: recs.length, filledCount: filled.length };
+    const avgScore = filled.length ? total / filled.length : null;
+    return { def, avgs, total, complete, grade, count: recs.length, filledCount: filled.length, avgScore };
   });
 }
 
@@ -1045,14 +1031,17 @@ function rcSummaryHTML(){
         <span class="tiny muted" style="font-weight:600;opacity:.6">💬</span>
       </span></td>
       ${cells}
-      <td style="text-align:center;font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</td>
+      <td style="text-align:center">
+        <div style="font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</div>
+        ${hasAny ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${sd.avgScore.toFixed(2)}</div>` : ''}
+      </td>
       <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${sd.grade ?? '—'}</span></td>
       <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
     </tr>`;
   }).join('');
 
   return `<div class="scroll-x"><table class="tbl" style="min-width:600px">
-    <thead><tr><th>科目</th><th style="text-align:center">A</th><th style="text-align:center">B</th><th style="text-align:center">C</th><th style="text-align:center">D</th><th style="text-align:center">E</th><th style="text-align:center">總分</th><th style="text-align:center">等級</th><th style="text-align:right">紀錄</th></tr></thead>
+    <thead><tr><th>科目</th><th style="text-align:center">A</th><th style="text-align:center">B</th><th style="text-align:center">C</th><th style="text-align:center">D</th><th style="text-align:center">E</th><th style="text-align:center">總分 / 平均</th><th style="text-align:center">等級</th><th style="text-align:right">紀錄</th></tr></thead>
     <tbody>${rows}</tbody>
   </table></div>`;
 }
@@ -2910,7 +2899,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.1（合併收件匣）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.2（顯示平均分）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
