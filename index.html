@@ -1081,7 +1081,6 @@ function rcStatsHTML(){
   `;
 }
 
-/* 一般科目列 */
 function rcStandardRow(sd){
   const cells = [...Array(5)].map((_, i) => {
     if (i >= sd.def.crit.length) return `<td style="text-align:center" class="tiny muted">·</td>`;
@@ -1108,13 +1107,11 @@ function rcStandardRow(sd){
   </tr>`;
 }
 
-/* Biotech 單列（合併 Main + Lab） */
 function rcBiotechRow(sd){
   const { main, lab, combined } = sd;
   const hasMain = main.filledCount > 0;
   const hasLab  = lab.filledCount > 0;
 
-  /* Criterion 格：優先顯示 Main 的 I–V；否則顯示 Lab 的 4 個 8 分制值（第 5 格 ·） */
   let cells;
   if (hasMain){
     cells = [...Array(5)].map((_, i) => {
@@ -1135,17 +1132,23 @@ function rcBiotechRow(sd){
     cells = [...Array(5)].map(() => `<td style="text-align:center" class="muted">–</td>`).join('');
   }
 
-  /* 總分 / 換算 */
+  /* 平均分：如果都有则取合并总分/5；若只有一边则取单边平均 */
+  let avgScore = null;
+  if (hasMain && hasLab) {
+    avgScore = combined.total / 5;
+  } else if (hasMain) {
+    avgScore = main.total / main.filledCount;
+  } else if (hasLab) {
+    avgScore = lab.total50 / lab.filledCount;
+  }
+
   let totalDisplay;
   if (combined.total === null){
     totalDisplay = '<span class="muted" style="font-weight:400">–</span>';
   } else {
-    const parts = [];
-    if (hasMain) parts.push(`Main ${main.total}/50`);
-    if (hasLab)  parts.push(`Lab ${lab.total8}/32→${lab.total50}/50`);
     totalDisplay = `
-      <div style="font-weight:800;font-size:13.5px">${combined.total}<span class="tiny muted" style="font-weight:600">/50</span></div>
-      <div class="tiny muted" style="font-weight:600;margin-top:2px;font-size:9.5px;line-height:1.4">${parts.join(' · ')}</div>
+      <div style="font-weight:800;font-size:13.5px">${combined.total}</div>
+      ${avgScore !== null ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${avgScore.toFixed(2)}</div>` : ''}
     `;
   }
 
@@ -3067,7 +3070,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.4（Biotech 合併單列）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.5（Biotech 平均顯示）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
