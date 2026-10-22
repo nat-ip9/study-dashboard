@@ -259,7 +259,8 @@ details.acc summary:hover{background:var(--surface-2)}
 .rc-grade.mid{background:rgba(245,158,11,.14);color:#c47a06}
 .rc-grade.lo{background:rgba(239,68,68,.13);color:#dc2626}
 
-.rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:9px;transition:.13s}
+/* 成績單單次評估表格：新增「類型」欄（Biotech Main/Lab） */
+.rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px 80px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:9px;transition:.13s}
 .rcg-row:hover{background:var(--surface-2)}
 .rcg-row.rcg-head{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;padding-bottom:2px}
 .rcg-row.rcg-head:hover{background:transparent}
@@ -415,7 +416,7 @@ details.acc summary:hover{background:var(--surface-2)}
   .day-chip .wd{font-size:9.5px}
   .sched-grid{grid-template-columns:1fr}
   .topbar h2{font-size:17px}
-  .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
+  .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px 70px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
   .rcg-row .input{padding:5px 4px;font-size:11.5px}
 }
 @media(max-width:600px){
@@ -659,6 +660,13 @@ function normalizeState(raw){
   if (!Array.isArray(merged.feedback)) merged.feedback = structuredClone(DEFAULT_FEEDBACK);
   if (!merged.schedule || typeof merged.schedule !== 'object') merged.schedule = structuredClone(DEFAULT_SCHEDULE);
   if (!Array.isArray(merged.reportGrades)) merged.reportGrades = [];
+  merged.reportGrades = merged.reportGrades.map(g => {
+    if (!g || typeof g !== 'object') return null;
+    if (!g.id) g.id = uid();
+    if (g.subject === 'Biotech' && !g.variant) g.variant = 'main';
+    if (!Array.isArray(g.scores)) g.scores = [null,null,null,null,null];
+    return g;
+  }).filter(Boolean);
   if (!Array.isArray(merged.todos)) merged.todos = [];
   if (!Array.isArray(merged.srp)) merged.srp = [];
   if (!Array.isArray(merged.assignments)) merged.assignments = [];
@@ -755,7 +763,6 @@ function weekStats(startISO){
   return {total: list.length, done, pct: list.length ? Math.round(done/list.length*100) : 0, days};
 }
 
-/* 統一收件匣（含合併邏輯） */
 function collectInbox(){
   const t = todayISO();
   const raw = [];
@@ -849,7 +856,6 @@ function collectInbox(){
     });
   }
 
-  /* 智慧建議（會與原始項合併） */
   state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
     const d = diffDays(t, a.due);
     if (d <= -3 && d > -30){
@@ -893,7 +899,6 @@ function collectInbox(){
     });
   });
 
-  /* 合併：相同 entityKey 的合併為一條 */
   const groups = new Map();
   for (const item of raw){
     const key = item.entityKey;
@@ -927,7 +932,6 @@ function collectInbox(){
   return items;
 }
 
-/* 考試相關資料關聯 */
 function getAssessRelated(subject, criteria){
   const parseCrit = (s) => new Set(String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean));
   const targetCrit = parseCrit(criteria);
@@ -951,15 +955,20 @@ function getAssessRelated(subject, criteria){
    4b. REPORT CARD
    ===================================================================== */
 const RC_SUBJECTS = [
-  {key:'Chinese',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'MfE',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'English',    crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'Math',       crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'INS',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'Sciences',   crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'PHE',        crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'Humanities', crit:['A','B','C','D'],         cuts:[28,24,19,15,10,6]},
-  {key:'Biotech',    crit:['I','II','III','IV','V'], cuts:[44,38,30,24,16,10]}
+  {key:'Chinese',    crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'MfE',        crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'English',    crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'Math',       crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'INS',        crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'Sciences',   crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'PHE',        crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'Humanities', crit:['A','B','C','D'],         maxPer:8,  cuts:[28,24,19,15,10,6]},
+  {key:'Biotech',    crit:['I','II','III','IV','V'], maxPer:10, cuts:[44,38,30,24,16,10],
+    variants: {
+      main: { crit:['I','II','III','IV','V'],  maxPer:10 },
+      lab:  { crit:['SM','Coll','TM','LS'],    maxPer:5  }
+    }
+  }
 ];
 
 function ibGradeFromTotal(total, cuts){
@@ -967,16 +976,70 @@ function ibGradeFromTotal(total, cuts){
   return 1;
 }
 
+function avgPerCriterion(recs, count){
+  return [...Array(count)].map((_, i) => {
+    const vals = recs.map(r => (r.scores || [])[i])
+      .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
+    if (!vals.length) return null;
+    return Math.floor(vals.reduce((a, b) => a + b, 0) / vals.length);
+  });
+}
+
+function calcBiotech(def, recs){
+  const mainRecs = recs.filter(r => (r.variant || 'main') === 'main');
+  const labRecs  = recs.filter(r => r.variant === 'lab');
+
+  const mainAvgs = avgPerCriterion(mainRecs, 5);
+  const mainFilled = mainAvgs.filter(v => v !== null);
+  const mainTotal = mainFilled.reduce((a, b) => a + b, 0);
+  const mainComplete = mainFilled.length === 5;
+  const mainGrade = mainComplete ? ibGradeFromTotal(mainTotal, [44,38,30,24,16,10]) : null;
+
+  const labRaw = [...Array(4)].map((_, i) => {
+    const vals = labRecs.map(r => (r.scores || [])[i])
+      .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
+    if (!vals.length) return null;
+    return vals.reduce((a, b) => a + b, 0) / vals.length;
+  });
+  const lab8Avgs = labRaw.map(v => v === null ? null : Math.round(v * 1.6));
+  const lab8Filled = lab8Avgs.filter(v => v !== null);
+  const lab8Total = lab8Filled.reduce((a, b) => a + b, 0);
+  const labComplete = lab8Filled.length === 4;
+  const lab50Total = labComplete ? Math.round((lab8Total * 50 / 32) * 10) / 10 : null;
+  const labGrade = labComplete ? ibGradeFromTotal(lab50Total, [44,38,30,24,16,10]) : null;
+
+  let combinedTotal = null, combinedGrade = null, combinedSource = null;
+  if (mainComplete && labComplete) {
+    combinedTotal = Math.round(((mainTotal + lab50Total) / 2) * 10) / 10;
+    combinedGrade = ibGradeFromTotal(combinedTotal, [44,38,30,24,16,10]);
+    combinedSource = 'both';
+  } else if (mainComplete) {
+    combinedTotal = mainTotal;
+    combinedGrade = mainGrade;
+    combinedSource = 'main';
+  } else if (labComplete) {
+    combinedTotal = lab50Total;
+    combinedGrade = labGrade;
+    combinedSource = 'lab';
+  }
+
+  return {
+    def, isBiotech: true,
+    main: { avgs: mainAvgs, total: mainTotal, complete: mainComplete, grade: mainGrade, count: mainRecs.length, filledCount: mainFilled.length },
+    lab: { avgs8: lab8Avgs, total8: lab8Total, total50: lab50Total, complete: labComplete, grade: labGrade, count: labRecs.length, filledCount: lab8Filled.length },
+    combined: { total: combinedTotal, grade: combinedGrade, source: combinedSource },
+    count: recs.length,
+    filledCount: mainFilled.length + lab8Filled.length
+  };
+}
+
 function rcCalc(){
   const grades = state.reportGrades || [];
   return RC_SUBJECTS.map(def => {
     const recs = grades.filter(r => r.subject === def.key);
-    const avgs = def.crit.map((_, i) => {
-      const vals = recs.map(r => (r.scores || [])[i])
-        .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
-      if (!vals.length) return null;
-      return Math.floor(vals.reduce((a, b) => a + b, 0) / vals.length);
-    });
+    if (def.key === 'Biotech') return calcBiotech(def, recs);
+
+    const avgs = avgPerCriterion(recs, def.crit.length);
     const filled = avgs.filter(v => v !== null);
     const total = filled.reduce((a, b) => a + b, 0);
     const complete = filled.length === def.crit.length;
@@ -991,11 +1054,17 @@ function rcStatsHTML(){
   let sumAll = 0, cntAll = 0;
   const graded = [];
   subjData.forEach(sd => {
-    const isBiotech = sd.def.key === 'Biotech';
-    sd.avgs.forEach(v => {
-      if (v !== null){ sumAll += isBiotech ? v * 0.8 : v; cntAll++; }
-    });
-    if (sd.grade !== null) graded.push(sd.grade);
+    if (sd.isBiotech) {
+      if (sd.main && sd.main.filledCount > 0) {
+        sd.main.avgs.forEach(v => { if (v !== null){ sumAll += v * 0.8; cntAll++; } });
+      } else if (sd.lab && sd.lab.filledCount > 0) {
+        sd.lab.avgs8.forEach(v => { if (v !== null){ sumAll += v; cntAll++; } });
+      }
+      if (sd.combined.grade !== null) graded.push(sd.combined.grade);
+    } else {
+      sd.avgs.forEach(v => { if (v !== null){ sumAll += v; cntAll++; } });
+      if (sd.grade !== null) graded.push(sd.grade);
+    }
   });
   const avg = cntAll ? sumAll / cntAll : null;
   const oa  = graded.length ? graded.reduce((a, b) => a + b, 0) / graded.length : null;
@@ -1012,36 +1081,105 @@ function rcStatsHTML(){
   `;
 }
 
-function rcSummaryHTML(){
-  const subjData = rcCalc();
-  const rows = subjData.map(sd => {
-    const cells = [...Array(5)].map((_, i) => {
-      if (i >= sd.def.crit.length) return `<td style="text-align:center" class="tiny muted">·</td>`;
-      const v = sd.avgs[i];
+/* 一般科目列 */
+function rcStandardRow(sd){
+  const cells = [...Array(5)].map((_, i) => {
+    if (i >= sd.def.crit.length) return `<td style="text-align:center" class="tiny muted">·</td>`;
+    const v = sd.avgs[i];
+    return `<td style="text-align:center;font-weight:750;font-size:13.5px;font-variant-numeric:tabular-nums">${
+      v === null ? '<span class="muted" style="font-weight:400">–</span>' : v
+    }</td>`;
+  }).join('');
+  const gc = sd.grade === null ? '' : sd.grade >= 6 ? 'hi' : sd.grade >= 4 ? 'mid' : 'lo';
+  const hasAny = sd.filledCount > 0;
+  return `<tr>
+    <td><span data-act="jump-to-feedback-subj" data-subj="${esc(sd.def.key)}" style="display:flex;align-items:center;gap:8px;cursor:pointer" title="點擊查看該科反饋">
+      <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(sd.def.key)};flex:0 0 8px"></span>
+      <b style="font-size:12.5px">${sd.def.key}</b>
+      <span class="tiny muted" style="font-weight:600;opacity:.6">💬</span>
+    </span></td>
+    ${cells}
+    <td style="text-align:center">
+      <div style="font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</div>
+      ${hasAny ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${sd.avgScore.toFixed(2)}</div>` : ''}
+    </td>
+    <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${sd.grade ?? '—'}</span></td>
+    <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
+  </tr>`;
+}
+
+/* Biotech 單列（合併 Main + Lab） */
+function rcBiotechRow(sd){
+  const { main, lab, combined } = sd;
+  const hasMain = main.filledCount > 0;
+  const hasLab  = lab.filledCount > 0;
+
+  /* Criterion 格：優先顯示 Main 的 I–V；否則顯示 Lab 的 4 個 8 分制值（第 5 格 ·） */
+  let cells;
+  if (hasMain){
+    cells = [...Array(5)].map((_, i) => {
+      const v = main.avgs[i];
       return `<td style="text-align:center;font-weight:750;font-size:13.5px;font-variant-numeric:tabular-nums">${
         v === null ? '<span class="muted" style="font-weight:400">–</span>' : v
       }</td>`;
     }).join('');
-    const gc = sd.grade === null ? '' : sd.grade >= 6 ? 'hi' : sd.grade >= 4 ? 'mid' : 'lo';
-    const hasAny = sd.filledCount > 0;
-    return `<tr>
-      <td><span data-act="jump-to-feedback-subj" data-subj="${esc(sd.def.key)}" style="display:flex;align-items:center;gap:8px;cursor:pointer" title="點擊查看該科反饋">
-        <span style="width:8px;height:8px;border-radius:99px;background:${subjColor(sd.def.key)};flex:0 0 8px"></span>
-        <b style="font-size:12.5px">${sd.def.key}</b>
-        <span class="tiny muted" style="font-weight:600;opacity:.6">💬</span>
-      </span></td>
-      ${cells}
-      <td style="text-align:center">
-        <div style="font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</div>
-        ${hasAny ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${sd.avgScore.toFixed(2)}</div>` : ''}
-      </td>
-      <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${sd.grade ?? '—'}</span></td>
-      <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
-    </tr>`;
-  }).join('');
+  } else if (hasLab){
+    cells = [...Array(5)].map((_, i) => {
+      if (i >= 4) return `<td style="text-align:center" class="tiny muted">·</td>`;
+      const v = lab.avgs8[i];
+      return `<td style="text-align:center;font-weight:750;font-size:13.5px;font-variant-numeric:tabular-nums">${
+        v === null || v === undefined ? '<span class="muted" style="font-weight:400">–</span>' : v
+      }</td>`;
+    }).join('');
+  } else {
+    cells = [...Array(5)].map(() => `<td style="text-align:center" class="muted">–</td>`).join('');
+  }
 
-  return `<div class="scroll-x"><table class="tbl" style="min-width:600px">
-    <thead><tr><th>科目</th><th style="text-align:center">A</th><th style="text-align:center">B</th><th style="text-align:center">C</th><th style="text-align:center">D</th><th style="text-align:center">E</th><th style="text-align:center">總分 / 平均</th><th style="text-align:center">等級</th><th style="text-align:right">紀錄</th></tr></thead>
+  /* 總分 / 換算 */
+  let totalDisplay;
+  if (combined.total === null){
+    totalDisplay = '<span class="muted" style="font-weight:400">–</span>';
+  } else {
+    const parts = [];
+    if (hasMain) parts.push(`Main ${main.total}/50`);
+    if (hasLab)  parts.push(`Lab ${lab.total8}/32→${lab.total50}/50`);
+    totalDisplay = `
+      <div style="font-weight:800;font-size:13.5px">${combined.total}<span class="tiny muted" style="font-weight:600">/50</span></div>
+      <div class="tiny muted" style="font-weight:600;margin-top:2px;font-size:9.5px;line-height:1.4">${parts.join(' · ')}</div>
+    `;
+  }
+
+  const gc = combined.grade === null ? '' : combined.grade >= 6 ? 'hi' : combined.grade >= 4 ? 'mid' : 'lo';
+
+  return `<tr>
+    <td><span data-act="jump-to-feedback-subj" data-subj="Biotech" style="display:flex;align-items:center;gap:8px;cursor:pointer" title="點擊查看該科反饋">
+      <span style="width:8px;height:8px;border-radius:99px;background:${subjColor('Biotech')};flex:0 0 8px"></span>
+      <b style="font-size:12.5px">Biotech</b>
+      <span class="tiny muted" style="font-weight:600;opacity:.6">💬</span>
+    </span></td>
+    ${cells}
+    <td style="text-align:center">${totalDisplay}</td>
+    <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${combined.grade ?? '—'}</span></td>
+    <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
+  </tr>`;
+}
+
+function rcSummaryHTML(){
+  const subjData = rcCalc();
+  const rows = subjData.map(sd => sd.isBiotech ? rcBiotechRow(sd) : rcStandardRow(sd)).join('');
+
+  return `<div class="scroll-x"><table class="tbl" style="min-width:680px">
+    <thead><tr>
+      <th>科目</th>
+      <th style="text-align:center">A/I</th>
+      <th style="text-align:center">B/II</th>
+      <th style="text-align:center">C/III</th>
+      <th style="text-align:center">D/IV</th>
+      <th style="text-align:center">E/V</th>
+      <th style="text-align:center">總分 / 換算</th>
+      <th style="text-align:center">等級</th>
+      <th style="text-align:right">紀錄</th>
+    </tr></thead>
     <tbody>${rows}</tbody>
   </table></div>`;
 }
@@ -2241,15 +2379,22 @@ VIEWS.feedback = function(){
     if (filter === 'All') return '';
     const subjData = rcCalc().find(sd => sd.def.key === filter);
     if (!subjData) return '';
-    const grade = subjData.grade;
+    const grade = subjData.isBiotech ? subjData.combined.grade : subjData.grade;
     const cls = grade === null ? '' : grade >= 6 ? 'hi' : grade >= 4 ? 'mid' : 'lo';
+    let extra = '';
+    if (subjData.isBiotech){
+      const m = subjData.main, l = subjData.lab;
+      extra = `<span class="tiny muted">Main ${m.total}/50 · Lab 8分制 ${l.total8}/32 · 合併 ${subjData.combined.total ?? '—'}/50</span>`;
+    } else {
+      extra = `<span class="tiny muted">總分 ${subjData.total} · ${subjData.count} 筆評估</span>`;
+    }
     return `
       <div style="margin-top:10px;padding:10px 12px;background:var(--surface-2);border-radius:9px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <div>
           <div class="tiny muted" style="font-weight:700">${esc(filter)} 目前等級</div>
           <div style="display:flex;align-items:baseline;gap:8px;margin-top:3px">
             <span class="rc-grade ${cls}" style="display:inline-block;min-width:34px;padding:3px 0;font-size:14px">${grade ?? '—'}</span>
-            <span class="tiny muted">總分 ${subjData.total} · ${subjData.count} 筆評估</span>
+            ${extra}
           </div>
         </div>
         <button class="btn btn-sm" data-act="jump-to-report" style="margin-left:auto">前往成績單 →</button>
@@ -2467,31 +2612,50 @@ VIEWS.wrongbook = function(){
   <div class="grid g-2">${recordsHTML}</div>`;
 };
 
+function rcgRowHTML(g){
+  const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
+  const variant = g.variant || (def.variants ? 'main' : null);
+  let crit = def.crit;
+  let maxScore = def.maxPer || 8;
+  if (def.variants && variant){
+    const v = def.variants[variant];
+    crit = v.crit;
+    maxScore = v.maxPer;
+  }
+
+  const cells = [...Array(5)].map((_, i) => {
+    const active = i < crit.length;
+    const raw = (g.scores || [])[i];
+    const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
+    return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1" value="${v}" ${active ? '' : 'disabled'} data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
+  }).join('');
+
+  const variantSelect = def.variants
+    ? `<select class="input" data-act="rcg-variant" data-id="${g.id}">
+        <option value="main" ${variant === 'main' ? 'selected' : ''}>Main</option>
+        <option value="lab" ${variant === 'lab' ? 'selected' : ''}>Lab</option>
+      </select>`
+    : `<div class="tiny muted" style="text-align:center;padding:8px 0">—</div>`;
+
+  return `<div class="rcg-row">
+    <input class="input" value="${esc(g.name)}" placeholder="評估名稱" data-act="rcg-name" data-id="${g.id}">
+    <select class="input" data-act="rcg-subject" data-id="${g.id}">${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}</select>
+    ${variantSelect}
+    ${cells}
+    <button class="icon-btn" data-act="rcg-del" data-id="${g.id}">✕</button>
+  </div>`;
+}
+
 VIEWS.report = function(){
   const grades = state.reportGrades || [];
-  const gradeRows = grades.length ? grades.map(g => {
-    const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
-    const maxScore = (def.key === 'Biotech') ? 10 : 8;
-    const cells = [...Array(5)].map((_, i) => {
-      const active = i < def.crit.length;
-      const raw = (g.scores || [])[i];
-      const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
-      return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1" value="${v}" ${active ? '' : 'disabled'} data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
-    }).join('');
-    return `<div class="rcg-row">
-      <input class="input" value="${esc(g.name)}" placeholder="評估名稱" data-act="rcg-name" data-id="${g.id}">
-      <select class="input" data-act="rcg-subject" data-id="${g.id}">${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}</select>
-      ${cells}
-      <button class="icon-btn" data-act="rcg-del" data-id="${g.id}">✕</button>
-    </div>`;
-  }).join('') : '';
+  const gradeRows = grades.length ? grades.map(rcgRowHTML).join('') : '';
 
   const gradeTable = grades.length ? `
-    <div class="scroll-x"><div style="min-width:640px">
+    <div class="scroll-x"><div style="min-width:700px">
       <div class="rcg-row rcg-head">
-        <div>評估名稱</div><div>科目</div>
-        <div style="text-align:center">A/I</div><div style="text-align:center">B/II</div>
-        <div style="text-align:center">C/III</div><div style="text-align:center">D/IV</div>
+        <div>評估名稱</div><div>科目</div><div>類型</div>
+        <div style="text-align:center">A/I/SM</div><div style="text-align:center">B/II/Coll</div>
+        <div style="text-align:center">C/III/TM</div><div style="text-align:center">D/IV/LS</div>
         <div style="text-align:center">E/V</div><div></div>
       </div>
       ${gradeRows}
@@ -2518,7 +2682,7 @@ VIEWS.report = function(){
   <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">📝 單次評估成績</div>
-      <span class="tiny muted">一般科目 0–8 · Biotech 0–10</span>
+      <span class="tiny muted">一般科目 0–8 · Biotech Main 0–10 · Biotech Lab 0–5</span>
     </div>
     <div class="form-row" style="margin-bottom:12px">
       <input class="input" id="rcgNewName" placeholder="評估名稱 e.g. Statistics" style="flex:1 1 240px">
@@ -2531,7 +2695,7 @@ VIEWS.report = function(){
   <div class="card" style="margin-bottom:12px">
     <div class="card-head">
       <div class="card-title">💯 科目 Criterion 彙總</div>
-      <span class="tiny muted">點科目名可跳至該科反饋</span>
+      <span class="tiny muted">Biotech 已合併 Main + Lab 為單一成績</span>
     </div>
     <div id="rcSummary">${rcSummaryHTML()}</div>
   </div>
@@ -2540,7 +2704,13 @@ VIEWS.report = function(){
     <div class="card-head"><div class="card-title">📏 MYP 等級換算表</div></div>
     <div class="grid g-2" style="gap:18px">
       ${boundBlock('4 Criterion（滿分 32）', bounds4)}
-      ${boundBlock('5 Criterion（Biotech · 滿分 50）', bounds5)}
+      ${boundBlock('5 Criterion（Biotech Main / Lab 換算 50 分制）', bounds5)}
+    </div>
+    <div class="tiny muted" style="margin-top:10px;line-height:1.65">
+      <b style="color:var(--text)">Biotech 換算方式：</b>
+      Main 5 個 Criterion（I–V）每項 0–10，總分 50；
+      Lab 4 個 Criterion（Self Management / Collaboration / Time Management / Lab Safety）每項原始 0–5，總分 20，將每項乘以 1.6 換成 IB MYP 8 分制（每項 0–8，總分 32），再依 50/32 比例換成 50 分制。
+      兩者皆有數據時取平均作為 Biotech 最終成績；只有一邊有數據時直接用該邊。
     </div>
   </div>`;
 };
@@ -2761,17 +2931,15 @@ VIEWS.guide = function(){
       ['已掌握', '打勾，從此不再焦慮', '給自己成就感']
     ]))}
 
-  ${sec('六、自動化與連動', '系統自動幫你', tbl(
-    ['觸發條件', '系統反應'],
+  ${sec('六、成績單與 Biotech Lab', 'MYP 換算', tbl(
+    ['項目', '說明'],
     [
-      ['打開主控台', '自動收集今日待辦、複習、到期作業、7 天內考試、未掌握錯題'],
-      ['同一實體的重複項', '自動合併為一行，建議以小字顯示在下方'],
-      ['作業逾期 3 天以上', '收件匣顯示「補交」建議'],
-      ['考試剩 7 天', '收件匣顯示「開始密集複習」建議'],
-      ['考試剩 1 天', '收件匣顯示「最後檢查」建議'],
-      ['SRP 逾期 7 天', '收件匣顯示「補複習」建議'],
-      ['成績單點科目名', '跳到該科反饋並自動篩選'],
-      ['反饋頁選科目', '顯示該科目前等級 + 前往成績單按鈕']
+      ['一般科目', '4 個 Criterion，每項 0–8，總分 32'],
+      ['Biotech Main', '5 個 Criterion（I–V），每項 0–10，總分 50'],
+      ['Biotech Lab', '4 個 Criterion（Self Management／Collaboration／Time Management／Lab Safety），每項 0–5，總分 20'],
+      ['Lab → 8 分制', '每項 × 1.6，變成每項 0–8，總分 32（IB MYP 8 分制）'],
+      ['Lab → 50 分制', '32 分制 → 依 50/32 換算為 50 分制'],
+      ['Biotech 合併', '(Main 50分制 + Lab 50分制) / 2 → 對應 1–7 等級；彙總表只顯示一行']
     ]))}
   `;
 };
@@ -2899,7 +3067,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.2（顯示平均分）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.4（Biotech 合併單列）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3154,16 +3322,24 @@ document.addEventListener('click', e => {
       break;
     }
     case 'fb-del': { if (!confirm('刪除此反饋？')) break; state.feedback = state.feedback.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
     case 'rcg-add': {
       const name = $('#rcgNewName').value.trim();
       if (!name){ $('#rcgNewName').focus(); return; }
+      const subj = $('#rcgNewSubj').value;
+      const def = RC_SUBJECTS.find(s => s.key === subj);
       if (!Array.isArray(state.reportGrades)) state.reportGrades = [];
-      state.reportGrades.push({ id: uid(), name, subject: $('#rcgNewSubj').value, scores: [null, null, null, null, null] });
+      state.reportGrades.push({
+        id: uid(), name, subject: subj,
+        variant: def && def.variants ? 'main' : null,
+        scores: [null, null, null, null, null]
+      });
       save(); render();
       toast('✅ 已新增評估');
       break;
     }
     case 'rcg-del': { state.reportGrades = (state.reportGrades || []).filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
     case 'sched-day': { state.schedDay = parseInt(el.dataset.day, 10); save(); render(); break; }
     case 'sched-edit-toggle': { state.editingSchedule = true; save(); render(); break; }
     case 'sched-done': { state.editingSchedule = false; save(); render(); toast('✅ 課表已儲存'); break; }
@@ -3404,12 +3580,19 @@ document.addEventListener('input', e => {
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
     const def = RC_SUBJECTS.find(s => s.key === g.subject);
-    const maxScore = (def && def.key === 'Biotech') ? 10 : 8;
+    let maxScore = (def && def.maxPer) || 8;
+    if (def && def.variants && g.variant){
+      maxScore = def.variants[g.variant].maxPer;
+    }
     const idx = parseInt(el.dataset.idx, 10);
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     const raw = el.value.trim();
     if (raw === '') g.scores[idx] = null;
-    else { let n = parseInt(raw, 10); if (isNaN(n)) g.scores[idx] = null; else g.scores[idx] = Math.max(0, Math.min(maxScore, n)); }
+    else {
+      let n = parseInt(raw, 10);
+      if (isNaN(n)) g.scores[idx] = null;
+      else g.scores[idx] = Math.max(0, Math.min(maxScore, n));
+    }
     save();
     refreshReportSummary();
     return;
@@ -3424,16 +3607,35 @@ document.addEventListener('change', e => {
   if (!el) return;
   const act = el.dataset.act;
   if (act === 'assess-progress'){ render(); return; }
+
   if (act === 'rcg-subject'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
-    if (g){ g.subject = el.value; save(); render(); }
+    if (g){
+      g.subject = el.value;
+      const newDef = RC_SUBJECTS.find(s => s.key === el.value);
+      g.variant = newDef && newDef.variants ? 'main' : null;
+      g.scores = [null, null, null, null, null];
+      save(); render();
+    }
+    return;
+  }
+  if (act === 'rcg-variant'){
+    const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
+    if (g){
+      g.variant = el.value;
+      g.scores = [null, null, null, null, null];
+      save(); render();
+    }
     return;
   }
   if (act === 'rcg-score'){
     const g = (state.reportGrades || []).find(x => x.id === el.dataset.id);
     if (!g) return;
     const def = RC_SUBJECTS.find(s => s.key === g.subject);
-    const maxScore = (def && def.key === 'Biotech') ? 10 : 8;
+    let maxScore = (def && def.maxPer) || 8;
+    if (def && def.variants && g.variant){
+      maxScore = def.variants[g.variant].maxPer;
+    }
     const idx = parseInt(el.dataset.idx, 10);
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     let v = parseInt(el.value, 10);
