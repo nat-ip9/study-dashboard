@@ -1099,8 +1099,7 @@ function rcStandardRow(sd){
     </span></td>
     ${cells}
     <td style="text-align:center">
-      <div style="font-weight:800;font-size:13.5px">${hasAny ? sd.total : '<span class="muted" style="font-weight:400">–</span>'}</div>
-      ${hasAny ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${sd.avgScore.toFixed(2)}</div>` : ''}
+      ${hasAny ? `<div style="font-weight:800;font-size:13.5px">${sd.avgScore.toFixed(2)}</div>` : '<span class="muted" style="font-weight:400">–</span>'}
     </td>
     <td style="text-align:center"><span class="rc-grade ${gc}" style="display:inline-block;min-width:34px;padding:3px 0">${sd.grade ?? '—'}</span></td>
     <td style="text-align:right" class="tiny muted">${sd.count ? sd.count + ' 筆' : '—'}</td>
@@ -1143,13 +1142,10 @@ function rcBiotechRow(sd){
   }
 
   let totalDisplay;
-  if (combined.total === null){
+  if (avgScore === null){
     totalDisplay = '<span class="muted" style="font-weight:400">–</span>';
   } else {
-    totalDisplay = `
-      <div style="font-weight:800;font-size:13.5px">${combined.total}</div>
-      ${avgScore !== null ? `<div class="tiny muted" style="font-weight:600;margin-top:2px">平均 ${avgScore.toFixed(2)}</div>` : ''}
-    `;
+    totalDisplay = `<div style="font-weight:800;font-size:13.5px">${avgScore.toFixed(2)}</div>`;
   }
 
   const gc = combined.grade === null ? '' : combined.grade >= 6 ? 'hi' : combined.grade >= 4 ? 'mid' : 'lo';
@@ -1179,7 +1175,7 @@ function rcSummaryHTML(){
       <th style="text-align:center">C/III</th>
       <th style="text-align:center">D/IV</th>
       <th style="text-align:center">E/V</th>
-      <th style="text-align:center">總分 / 換算</th>
+      <th style="text-align:center">平均</th>
       <th style="text-align:center">等級</th>
       <th style="text-align:right">紀錄</th>
     </tr></thead>
@@ -2657,8 +2653,8 @@ VIEWS.report = function(){
     <div class="scroll-x"><div style="min-width:700px">
       <div class="rcg-row rcg-head">
         <div>評估名稱</div><div>科目</div><div>類型</div>
-        <div style="text-align:center">A/I/SM</div><div style="text-align:center">B/II/Coll</div>
-        <div style="text-align:center">C/III/TM</div><div style="text-align:center">D/IV/LS</div>
+        <div style="text-align:center">A/I</div><div style="text-align:center">B/II</div>
+        <div style="text-align:center">C/III</div><div style="text-align:center">D/IV</div>
         <div style="text-align:center">E/V</div><div></div>
       </div>
       ${gradeRows}
@@ -2942,7 +2938,7 @@ VIEWS.guide = function(){
       ['Biotech Lab', '4 個 Criterion（Self Management／Collaboration／Time Management／Lab Safety），每項 0–5，總分 20'],
       ['Lab → 8 分制', '每項 × 1.6，變成每項 0–8，總分 32（IB MYP 8 分制）'],
       ['Lab → 50 分制', '32 分制 → 依 50/32 換算為 50 分制'],
-      ['Biotech 合併', '(Main 50分制 + Lab 50分制) / 2 → 對應 1–7 等級；彙總表只顯示一行']
+      ['Biotech 合併', '(Main 50分制 + Lab 50分制) / 2 → 對應 1–7 等級；彙總表只顯示平均分']
     ]))}
   `;
 };
@@ -3070,7 +3066,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.5（Biotech 平均顯示）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.6（顯示平均分）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
