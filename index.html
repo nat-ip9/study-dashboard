@@ -152,7 +152,7 @@ body{
 .cb:hover{border-color:var(--primary)}
 .cb.on{background:var(--primary);border-color:var(--primary);color:#fff}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.14s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--text);font:inherit;font-size:12.5px;font-weight:650;cursor:pointer;transition:.14s;white-space:nowrap;text-decoration:none}
 .btn:hover{background:var(--surface-2)}
 .btn-primary{background:var(--primary);color:#fff;border-color:transparent}
 .btn-primary:hover{background:color-mix(in srgb,var(--primary) 90%, black)}
@@ -259,7 +259,6 @@ details.acc summary:hover{background:var(--surface-2)}
 .rc-grade.mid{background:rgba(245,158,11,.14);color:#c47a06}
 .rc-grade.lo{background:rgba(239,68,68,.13);color:#dc2626}
 
-/* 成績單單次評估表格：新增「類型」欄（Biotech Main/Lab） */
 .rcg-row{display:grid;grid-template-columns:minmax(110px,1.3fr) 108px 80px repeat(5,54px) 34px;gap:6px;align-items:center;padding:5px 6px;border-radius:9px;transition:.13s}
 .rcg-row:hover{background:var(--surface-2)}
 .rcg-row.rcg-head{font-size:10px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;padding-bottom:2px}
@@ -395,6 +394,56 @@ details.acc summary:hover{background:var(--surface-2)}
 #bubblesCanvas{display:block;width:100%;height:100%}
 .d-bubbles-hint{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-size:10px;color:var(--d-text-dim);opacity:.55;pointer-events:none;letter-spacing:.5px}
 
+/* Planning - Opportunities */
+.opp-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;transition:.14s}
+.opp-card:hover{border-color:color-mix(in srgb,var(--primary) 30%,var(--border))}
+.opp-head{display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.opp-cat{font-size:20px;line-height:1;flex:0 0 26px;text-align:center;margin-top:2px}
+.opp-name{font-size:14px;font-weight:750;line-height:1.35;word-break:break-word}
+.opp-org{font-size:11.5px;color:var(--muted);font-weight:600;margin-top:2px}
+.opp-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:11.5px;color:var(--muted)}
+.opp-countdown-wrap{display:flex;align-items:baseline;gap:8px;margin-top:10px}
+.opp-countdown{font-size:24px;font-weight:850;line-height:1;letter-spacing:-.6px}
+.opp-status-pills{display:flex;gap:4px;flex-wrap:wrap;margin-top:10px}
+.opp-status-pill{padding:3px 9px;border-radius:99px;font-size:10.5px;font-weight:700;background:var(--surface-2);color:var(--muted);cursor:pointer;border:1px solid transparent;transition:.14s;white-space:nowrap;font:inherit;font-size:10.5px}
+.opp-status-pill:hover{border-color:var(--primary);color:var(--text)}
+.opp-status-pill.on{background:color-mix(in srgb,var(--primary) 15%,transparent);color:var(--primary);border-color:var(--primary)}
+.opp-body{border-top:1px dashed var(--border);margin-top:12px;padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.opp-check-row{display:flex;align-items:center;gap:8px;font-size:12px;padding:4px 0;cursor:pointer}
+.opp-check-row input{accent-color:var(--primary)}
+.opp-check-row span.lbl{font-weight:600}
+.opp-check-row span.on{color:var(--primary)}
+.opp-brag{background:var(--surface-2);border-radius:9px;padding:11px 12px}
+.opp-brag-title{font-size:11px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:8px}
+
+/* Planning - Roadmap */
+.rm-section + .rm-section{margin-top:14px}
+.ib-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.ib-cell{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:11px 12px;transition:.14s}
+.ib-cell:hover{border-color:color-mix(in srgb,var(--primary) 30%,var(--border))}
+.ib-group{font-size:10.5px;font-weight:750;color:var(--muted);letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px}
+.ib-level{display:flex;gap:4px;margin-bottom:8px}
+.ib-level button{padding:2px 9px;border-radius:99px;font-size:10.5px;font-weight:750;background:var(--surface);border:1px solid var(--border);cursor:pointer;color:var(--muted);transition:.13s;font:inherit;font-size:10.5px}
+.ib-level button.on{background:var(--primary);color:#fff;border-color:transparent}
+.ib-summary{display:flex;gap:14px;font-size:11.5px;font-weight:700;margin-top:10px;padding:8px 12px;background:var(--surface-2);border-radius:8px;flex-wrap:wrap;align-items:center}
+.ib-summary b{color:var(--primary)}
+.rm-list{display:flex;flex-direction:column;gap:6px}
+.rm-item{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:9px;background:var(--surface-2);font-size:12.5px;transition:.14s}
+.rm-item:hover{background:var(--surface-3)}
+.rm-item-main{flex:1;min-width:0}
+.rm-item-title{font-weight:650;line-height:1.4;word-break:break-word}
+.rm-item-meta{font-size:11px;color:var(--muted);margin-top:4px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.timeline-rm{position:relative;padding-left:24px}
+.timeline-rm::before{content:'';position:absolute;left:8px;top:10px;bottom:10px;width:2px;background:var(--border)}
+.tl-item{position:relative;padding:9px 12px;margin-bottom:8px;background:var(--surface-2);border-radius:9px;transition:.14s}
+.tl-item:hover{background:var(--surface-3)}
+.tl-item::before{content:'';position:absolute;left:-22px;top:15px;width:10px;height:10px;border-radius:99px;background:var(--primary);border:2px solid var(--surface)}
+.tl-grade{font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.4px}
+.tl-label{font-size:12.5px;font-weight:650;margin-top:2px}
+.tl-note{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5}
+.tl-item .tl-del{position:absolute;top:8px;right:8px;opacity:0;transition:.14s}
+.tl-item:hover .tl-del{opacity:1}
+
 @media(max-width:900px){
   .app{flex-direction:column}
   .sidebar{width:auto;flex:none;height:auto;position:sticky;top:0;z-index:50;flex-direction:row;align-items:center;gap:8px;overflow-x:auto;padding:10px 12px;border-right:none;border-bottom:1px solid var(--border)}
@@ -418,6 +467,7 @@ details.acc summary:hover{background:var(--surface-2)}
   .topbar h2{font-size:17px}
   .rcg-row{grid-template-columns:minmax(80px,1.1fr) 88px 70px repeat(5,44px) 28px;gap:4px;padding:4px 3px}
   .rcg-row .input{padding:5px 4px;font-size:11.5px}
+  .todo-layout{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .detox-page{padding:18px 14px;border-radius:10px}
@@ -488,7 +538,7 @@ details.acc summary:hover{background:var(--surface-2)}
   <div class="cmdk-panel" onclick="event.stopPropagation()">
     <div class="cmdk-input-wrap">
       <span style="font-size:16px;color:var(--muted)">⌘</span>
-      <input type="text" class="cmdk-input" id="cmdkInput" placeholder="輸入指令…（試試：todo、theme、sync）" autocomplete="off">
+      <input type="text" class="cmdk-input" id="cmdkInput" placeholder="輸入指令…（試試：todo、opp、idea、theme、sync）" autocomplete="off">
     </div>
     <div class="cmdk-list" id="cmdkList"></div>
     <div class="cmdk-foot">↑↓ 選擇 · Enter 執行 · Esc 關閉 · Ctrl+K 開啟</div>
@@ -496,8 +546,6 @@ details.acc summary:hover{background:var(--surface-2)}
 </div>
 
 <div class="toast" id="toast"></div>
-</body>
-</html>
 
 <script>
 /* =====================================================================
@@ -544,7 +592,6 @@ const subjBadge = s => s
   ? `<span class="badge" style="color:${subjColor(s)};background:${subjColor(s)}1f">${esc(s)}</span>`
   : '';
 
-/* 時間輔助函式 */
 const timeToMins = t => { if(!t) return 0; const [h,m] = t.split(':').map(Number); return h*60+m; };
 const minsToTime = m => { const h = Math.floor(m/60), min = m%60; return `${pad(h)}:${pad(min)}`; };
 
@@ -595,20 +642,48 @@ const DEFAULT_SCHEDULE = {
   10:['English (B308)','MfE (B506)','Biotech (A101)','PHE (/)','Math (A504)']
 };
 
+const OPP_CATEGORIES = [
+  {id:'summer',      icon:'☀️', label:'Summer Program'},
+  {id:'service',     icon:'🤝', label:'Service 義工'},
+  {id:'competition', icon:'🏆', label:'競賽'},
+  {id:'research',    icon:'🔬', label:'科研 / 實習'},
+  {id:'club',        icon:'🎯', label:'社團 / 領導力'}
+];
+const OPP_STATUSES = [
+  {id:'watch',     icon:'👀', label:'觀望研究'},
+  {id:'prep',      icon:'✍️', label:'準備材料'},
+  {id:'submitted', icon:'📨', label:'已遞交'},
+  {id:'accepted',  icon:'🎉', label:'已錄取/進行中'},
+  {id:'done',      icon:'✅', label:'已完成'}
+];
+const OPP_CHECKLIST = [
+  {id:'essay',       label:'Essay / 自述'},
+  {id:'rec',         label:'推薦信'},
+  {id:'transcript',  label:'成績單'},
+  {id:'fee',         label:'報名費'},
+  {id:'scholarship', label:'獎學金資訊'}
+];
+const IBDP_GROUPS = [
+  {id:'g1', name:'Group 1 · 語言與文學'},
+  {id:'g2', name:'Group 2 · 語言習得'},
+  {id:'g3', name:'Group 3 · 個體與社會'},
+  {id:'g4', name:'Group 4 · 科學'},
+  {id:'g5', name:'Group 5 · 數學'},
+  {id:'g6', name:'Group 6 · 藝術 / 選修'}
+];
+
 const DEFAULT_STATE = {
   theme:'light', view:'master',
   weekAnchor:'2026-09-20', selDate:'2026-09-20', schedDay:1,
   fbFilter:'All', fbGradeFilter:'All',
   editingSchedule:false, editingFbId:null, fbAdding:false,
   updatedAt:0,
-  wrongBook:[], wbAdding:false, wbSubjectFilter:'All', wbStatusFilter:'All', wbExpandedId:null,
-  expandedAssessId:null, highlightFeedbackId:null,
   subjects:[...DEFAULT_SUBJECTS],
   feedback:structuredClone(DEFAULT_FEEDBACK),
   schedule:structuredClone(DEFAULT_SCHEDULE),
   reportGrades:[],
   detoxVolumes:{ rain:0, waves:0, fire:0, coffee:0, forest:0, chime:0 },
-  editingTodoId: null, // 用於追蹤正在排程的 todo
+  editingTodoId: null,
   todos:[
     {id:'t01', date:'2026-09-14', text:'中文複習 Chinese Revision', done:true, startTime:null, endTime:null},
     {id:'t02', date:'2026-09-14', text:'人文複習 Humanities Revision', done:false, startTime:null, endTime:null},
@@ -627,14 +702,8 @@ const DEFAULT_STATE = {
     {id:'t15', date:'2026-09-20', text:'Madrid Derby @22:15', done:false, startTime:null, endTime:null},
     {id:'t16', date:'2026-09-20', text:'人文個人創作口述 Humanities Oral', done:false, startTime:null, endTime:null}
   ],
-  srp:[
-    {id:'s1', subject:'Sciences', concept:'化學評量 B — 變數控制 Variables & CVs', start:'2026-09-19', done:[false,false,false,false]},
-    {id:'s2', subject:'English',  concept:'PEEL 段落結構 PEEL Paragraph Structure', start:'2026-09-18', done:[true,false,false,false]},
-    {id:'s3', subject:'INS',      concept:'OPVL 資料評估 OPVL Source Evaluation', start:'2026-09-16', done:[true,true,false,false]},
-    {id:'s4', subject:'Chinese',  concept:'修辭手法 Rhetorical Devices', start:'2026-09-17', done:[true,true,false,false]},
-    {id:'s5', subject:'Math',     concept:'指數定律 Laws of Indices', start:'2026-09-20', done:[false,false,false,false]},
-    {id:'s6', subject:'Humanities', concept:'劇本結構三幕劇 Three-Act Structure', start:'2026-09-14', done:[true,true,true,true]}
-  ],
+  srp:[],
+  wrongBook:[],
   assignments:[
     {id:'a1', name:'Science Crit B Revision Notes', subject:'Sciences', status:'進行中 In Progress', due:'2026-09-21', time:'45 min', remarks:'Focus on variables + method'},
     {id:'a2', name:'English PEEL Practice Resource', subject:'English', status:'進行中 In Progress', due:'2026-09-22', time:'60 min', remarks:'Analytical assessment prep'},
@@ -650,6 +719,32 @@ const DEFAULT_STATE = {
     {id:'e5', name:'Lab Assessment', subject:'Biotech', criteria:'—', due:null, dueNote:'Late 7B – Early 8A', progress:0, remarks:'Date TBC'},
     {id:'e6', name:'Indices', subject:'Math', criteria:'A', due:'2026-10-22', dueNote:'', progress:0, remarks:''},
     {id:'e7', name:'English Creative Writing', subject:'English', criteria:'—', due:null, dueNote:'November', progress:0, remarks:''}
+  ],
+  planningTab:'opps',
+  oppFilterCat:'All',
+  oppFilterStatus:'All',
+  oppAdding:false,
+  oppExpandedId:null,
+  opportunities:[
+    {id:'o1', name:'HKU Summer Institute 2027', org:'The University of Hong Kong', grade:'G10 暑假', category:'summer', status:'watch', deadline:'2026-03-31', notes:'需個人陳述 + 推薦信 + 成績單', checklist:{essay:false, rec:false, transcript:false, fee:false, scholarship:false}, link:'', hours:'', reflection:''},
+    {id:'o2', name:'社區義工服務', org:'鄰近社區中心', grade:'G9', category:'service', status:'prep', deadline:'2026-12-15', notes:'每週六上午固定服務', checklist:{essay:false, rec:false, transcript:false, fee:false, scholarship:false}, link:'', hours:'', reflection:''}
+  ],
+  ibSubjects:{
+    g1:{subject:'', level:'HL', notes:'', related:''},
+    g2:{subject:'', level:'HL', notes:'', related:''},
+    g3:{subject:'', level:'HL', notes:'', related:''},
+    g4:{subject:'', level:'HL', notes:'', related:''},
+    g5:{subject:'', level:'HL', notes:'', related:''},
+    g6:{subject:'', level:'SL', notes:'', related:''}
+  },
+  ideas:[],
+  unis:[],
+  tests:[],
+  milestones:[
+    {id:'m1', grade:'G9',  label:'探索興趣與夏令營', note:'廣泛嘗試、累積經歷'},
+    {id:'m2', grade:'G10', label:'Personal Project 與 IB 選課定案', note:'PP 開題、六科組合確定'},
+    {id:'m3', grade:'G11', label:'CAS 啟動與 EE 開題', note:'CAS 三大類、EE 題目定稿'},
+    {id:'m4', grade:'G12', label:'早申與正式遞交', note:'早申 / 主輪、面試'}
   ]
 };
 
@@ -665,7 +760,6 @@ function normalizeState(raw){
   if (!Array.isArray(merged.feedback)) merged.feedback = structuredClone(DEFAULT_FEEDBACK);
   if (!merged.schedule || typeof merged.schedule !== 'object') merged.schedule = structuredClone(DEFAULT_SCHEDULE);
   if (!Array.isArray(merged.reportGrades)) merged.reportGrades = [];
-  
   merged.reportGrades = merged.reportGrades.map(g => {
     if (!g || typeof g !== 'object') return null;
     if (!g.id) g.id = uid();
@@ -673,7 +767,6 @@ function normalizeState(raw){
     if (!Array.isArray(g.scores)) g.scores = [null,null,null,null,null];
     return g;
   }).filter(Boolean);
-
   if (!Array.isArray(merged.todos)) merged.todos = [];
   merged.todos = merged.todos.map(t => {
     if (!t || typeof t !== 'object') return null;
@@ -682,7 +775,6 @@ function normalizeState(raw){
     if (!t.hasOwnProperty('endTime')) t.endTime = null;
     return t;
   }).filter(Boolean);
-
   if (!Array.isArray(merged.srp)) merged.srp = [];
   if (!Array.isArray(merged.assignments)) merged.assignments = [];
   if (!Array.isArray(merged.assessments)) merged.assessments = [];
@@ -697,6 +789,56 @@ function normalizeState(raw){
   if (!merged.detoxVolumes || typeof merged.detoxVolumes !== 'object'){
     merged.detoxVolumes = { rain:0, waves:0, fire:0, coffee:0, forest:0, chime:0 };
   }
+
+  if (!Array.isArray(merged.opportunities)) merged.opportunities = [];
+  merged.opportunities = merged.opportunities.map(o => {
+    if (!o || typeof o !== 'object') return null;
+    if (!o.id) o.id = uid();
+    if (!o.checklist || typeof o.checklist !== 'object') o.checklist = {};
+    OPP_CHECKLIST.forEach(c => { if (typeof o.checklist[c.id] !== 'boolean') o.checklist[c.id] = false; });
+    if (!OPP_CATEGORIES.find(c => c.id === o.category)) o.category = 'summer';
+    if (!OPP_STATUSES.find(s => s.id === o.status)) o.status = 'watch';
+    if (!o.deadline) o.deadline = null;
+    return o;
+  }).filter(Boolean);
+
+  if (!merged.ibSubjects || typeof merged.ibSubjects !== 'object') merged.ibSubjects = {};
+  IBDP_GROUPS.forEach(g => {
+    if (!merged.ibSubjects[g.id] || typeof merged.ibSubjects[g.id] !== 'object'){
+      merged.ibSubjects[g.id] = { subject:'', level: g.id === 'g6' ? 'SL' : 'HL', notes:'', related:'' };
+    }
+    if (!['HL','SL'].includes(merged.ibSubjects[g.id].level)) merged.ibSubjects[g.id].level = 'HL';
+  });
+
+  if (!Array.isArray(merged.ideas)) merged.ideas = [];
+  merged.ideas = merged.ideas.map(x => {
+    if (!x || typeof x !== 'object') return null;
+    if (!x.id) x.id = uid();
+    return x;
+  }).filter(Boolean);
+  if (!Array.isArray(merged.unis)) merged.unis = [];
+  merged.unis = merged.unis.map(x => {
+    if (!x || typeof x !== 'object') return null;
+    if (!x.id) x.id = uid();
+    return x;
+  }).filter(Boolean);
+  if (!Array.isArray(merged.tests)) merged.tests = [];
+  merged.tests = merged.tests.map(x => {
+    if (!x || typeof x !== 'object') return null;
+    if (!x.id) x.id = uid();
+    return x;
+  }).filter(Boolean);
+  if (!Array.isArray(merged.milestones)) merged.milestones = [];
+  merged.milestones = merged.milestones.map(x => {
+    if (!x || typeof x !== 'object') return null;
+    if (!x.id) x.id = uid();
+    return x;
+  }).filter(Boolean);
+
+  if (typeof merged.planningTab !== 'string') merged.planningTab = 'opps';
+  if (!merged.oppFilterCat) merged.oppFilterCat = 'All';
+  if (!merged.oppFilterStatus) merged.oppFilterStatus = 'All';
+
   return merged;
 }
 
@@ -730,19 +872,7 @@ function srpDueOn(date){
   });
   return out;
 }
-function srpStatus(it){
-  const ds = srpDates(it);
-  if (!ds.length) return {label:'📋 待安排', tone:'muted'};
-  const done = it.done || [false,false,false,false];
-  const t = todayISO();
-  if (done.every(Boolean)) return {label:'✅ 已完成', tone:'ok'};
-  const iToday = ds.findIndex((d,i) => !done[i] && d === t);
-  if (iToday >= 0) return {label:`🔴 今日第 ${iToday+1} 次複習`, tone:'urgent'};
-  const iOver = ds.findIndex((d,i) => !done[i] && d < t);
-  if (iOver >= 0) return {label:`⏰ 第 ${iOver+1} 次複習已逾期`, tone:'danger'};
-  const iNext = ds.findIndex((d,i) => !done[i]);
-  return {label:`📅 等待第 ${iNext+1} 次複習`, tone:'info'};
-}
+
 function assignStatus(a){
   if (isFinished(a)) return {label:'✅ 已完成', tone:'ok'};
   if (!a.due) return {label:'📋 待安排', tone:'muted'};
@@ -764,11 +894,11 @@ function assessStatus(a){
   return {label:'📝 未開始', tone:'muted'};
 }
 function assessSuggest(a){
-  if (!a.due) return '📌 先確認評估日期，再納入 SRP 規劃。';
+  if (!a.due) return '📌 先確認評估日期，再納入規劃。';
   const d = diffDays(todayISO(), a.due);
   if (d < 0) return '⚠️ 已過期，請立即與老師確認補交安排。';
   if (d <= 7) return `🔔 距離考試僅剩 ${d} 天，建議密集複習！`;
-  if (d <= 14) return '📌 考前兩週，可開始規劃此科知識點進入 SRP。';
+  if (d <= 14) return '📌 考前兩週，可開始規劃此科知識點。';
   return '✅ 時間充裕，先建立知識點清單。';
 }
 function weekStats(startISO){
@@ -790,22 +920,6 @@ function collectInbox(){
       source: 'todo', sourceLabel: '待辦事項',
       tone: 'info', canCheck: true,
       onCheck: () => { const it = state.todos.find(y => y.id === x.id); if (it) it.done = true; }
-    });
-  });
-
-  srpDueOn(t).forEach(({item, idx}) => {
-    raw.push({
-      entityKey: 'srp:' + item.id, isSuggestion: false,
-      id: 'srp-' + item.id + '-' + idx, type: 'srp', sourceId: item.id, idx,
-      icon: '⏰', text: item.concept, sub: `第 ${idx+1} 次複習`,
-      source: 'srp', sourceLabel: '間隔複習',
-      tone: 'urgent', canCheck: true,
-      onCheck: () => {
-        const it = state.srp.find(y => y.id === item.id);
-        if (!it) return;
-        if (!it.done) it.done = [false,false,false,false];
-        it.done[idx] = true;
-      }
     });
   });
 
@@ -844,32 +958,28 @@ function collectInbox(){
     });
   });
 
-  const lateSRPItems = state.srp.filter(it => {
-    const ds = srpDates(it), done = it.done || [];
-    return ds.some((d, i) => !done[i] && d < t);
+  (state.opportunities || []).forEach(o => {
+    if (!o.deadline) return;
+    if (['submitted','accepted','done'].includes(o.status)) return;
+    const d = diffDays(t, o.deadline);
+    if (d < 0){
+      raw.push({
+        entityKey: 'opp:' + o.id, isSuggestion: false,
+        id: 'opp-' + o.id, type: 'opp', sourceId: o.id,
+        icon: '⚠️', text: o.name, sub: `申請已逾期 ${-d} 天`,
+        source: 'planning', sourceLabel: '課外機會',
+        tone: 'danger', canCheck: false
+      });
+    } else if (d <= 14){
+      raw.push({
+        entityKey: 'opp:' + o.id, isSuggestion: false,
+        id: 'opp-' + o.id, type: 'opp', sourceId: o.id,
+        icon: '🧭', text: o.name, sub: d === 0 ? '今天截止' : `剩 ${d} 天準備材料`,
+        source: 'planning', sourceLabel: '課外機會',
+        tone: d <= 7 ? 'urgent' : 'warn', canCheck: false
+      });
+    }
   });
-  if (lateSRPItems.length){
-    raw.push({
-      entityKey: 'srp-batch', isSuggestion: false,
-      id: 'srp-late-batch', type: 'srp',
-      icon: '⏰', text: `有 ${lateSRPItems.length} 個知識點複習逾期`,
-      sub: '趁空檔補上，間隔複習最忌斷線',
-      source: 'srp', sourceLabel: '間隔複習',
-      tone: 'warn', canCheck: false
-    });
-  }
-
-  const oldWrongs = (state.wrongBook || []).filter(w => !w.mastered && diffDays(w.date, t) >= 7);
-  if (oldWrongs.length){
-    raw.push({
-      entityKey: 'wrong-batch', isSuggestion: false,
-      id: 'wrong-batch', type: 'wrongbook',
-      icon: '📕', text: `有 ${oldWrongs.length} 筆錯題超過 7 天未掌握`,
-      sub: '建議今天花 10 分鐘復習',
-      source: 'wrongbook', sourceLabel: '錯題本',
-      tone: 'warn', canCheck: false
-    });
-  }
 
   state.assignments.filter(a => a.due && !isFinished(a)).forEach(a => {
     const d = diffDays(t, a.due);
@@ -902,16 +1012,18 @@ function collectInbox(){
       });
     }
   });
-  state.srp.filter(it => {
-    const ds = srpDates(it), done = it.done || [];
-    return ds.some((d, i) => !done[i] && diffDays(d, t) >= 7);
-  }).forEach(it => {
-    raw.push({
-      entityKey: 'srp:' + it.id, isSuggestion: true,
-      id: 'smart-srp-' + it.id,
-      text: `補複習（已逾期 7 天以上）`,
-      tone: 'warn'
-    });
+  (state.opportunities || []).forEach(o => {
+    if (!o.deadline) return;
+    if (['submitted','accepted','done'].includes(o.status)) return;
+    const d = diffDays(t, o.deadline);
+    if (d === 7){
+      raw.push({
+        entityKey: 'opp:' + o.id, isSuggestion: true,
+        id: 'smart-opp-7d-' + o.id,
+        text: `申請截止倒數 7 天，趕快準備材料`,
+        tone: 'warn'
+      });
+    }
   });
 
   const groups = new Map();
@@ -950,7 +1062,6 @@ function collectInbox(){
 function getAssessRelated(subject, criteria){
   const parseCrit = (s) => new Set(String(s || '').split(/[,\s]+/).map(x => x.trim().toUpperCase()).filter(Boolean));
   const targetCrit = parseCrit(criteria);
-
   const feedbacks = state.feedback.filter(f => {
     if (f.subject !== subject) return false;
     if (!targetCrit.size) return true;
@@ -958,10 +1069,8 @@ function getAssessRelated(subject, criteria){
     for (const c of targetCrit) if (fCrit.has(c)) return true;
     return false;
   }).slice(0, 3);
-
   return {
     feedbacks,
-    wrongs: (state.wrongBook || []).filter(w => w.subject === subject).slice(0, 5),
     assignments: state.assignments.filter(a => a.subject === subject && !isFinished(a))
   };
 }
@@ -1003,13 +1112,11 @@ function avgPerCriterion(recs, count){
 function calcBiotech(def, recs){
   const mainRecs = recs.filter(r => (r.variant || 'main') === 'main');
   const labRecs  = recs.filter(r => r.variant === 'lab');
-
   const mainAvgs = avgPerCriterion(mainRecs, 5);
   const mainFilled = mainAvgs.filter(v => v !== null);
   const mainTotal = mainFilled.reduce((a, b) => a + b, 0);
   const mainComplete = mainFilled.length === 5;
   const mainGrade = mainComplete ? ibGradeFromTotal(mainTotal, [44,38,30,24,16,10]) : null;
-
   const labRaw = [...Array(4)].map((_, i) => {
     const vals = labRecs.map(r => (r.scores || [])[i])
       .filter(v => v !== null && v !== undefined && v !== '' && !isNaN(v)).map(Number);
@@ -1022,22 +1129,16 @@ function calcBiotech(def, recs){
   const labComplete = lab8Filled.length === 4;
   const lab50Total = labComplete ? Math.round((lab8Total * 50 / 32) * 10) / 10 : null;
   const labGrade = labComplete ? ibGradeFromTotal(lab50Total, [44,38,30,24,16,10]) : null;
-
   let combinedTotal = null, combinedGrade = null, combinedSource = null;
   if (mainComplete && labComplete) {
     combinedTotal = Math.round(((mainTotal + lab50Total) / 2) * 10) / 10;
     combinedGrade = ibGradeFromTotal(combinedTotal, [44,38,30,24,16,10]);
     combinedSource = 'both';
   } else if (mainComplete) {
-    combinedTotal = mainTotal;
-    combinedGrade = mainGrade;
-    combinedSource = 'main';
+    combinedTotal = mainTotal; combinedGrade = mainGrade; combinedSource = 'main';
   } else if (labComplete) {
-    combinedTotal = lab50Total;
-    combinedGrade = labGrade;
-    combinedSource = 'lab';
+    combinedTotal = lab50Total; combinedGrade = labGrade; combinedSource = 'lab';
   }
-
   return {
     def, isBiotech: true,
     main: { avgs: mainAvgs, total: mainTotal, complete: mainComplete, grade: mainGrade, count: mainRecs.length, filledCount: mainFilled.length },
@@ -1053,7 +1154,6 @@ function rcCalc(){
   return RC_SUBJECTS.map(def => {
     const recs = grades.filter(r => r.subject === def.key);
     if (def.key === 'Biotech') return calcBiotech(def, recs);
-
     const avgs = avgPerCriterion(recs, def.crit.length);
     const filled = avgs.filter(v => v !== null);
     const total = filled.reduce((a, b) => a + b, 0);
@@ -1125,7 +1225,6 @@ function rcBiotechRow(sd){
   const { main, lab, combined } = sd;
   const hasMain = main.filledCount > 0;
   const hasLab  = lab.filledCount > 0;
-
   let cells;
   if (hasMain){
     cells = [...Array(5)].map((_, i) => {
@@ -1145,25 +1244,14 @@ function rcBiotechRow(sd){
   } else {
     cells = [...Array(5)].map(() => `<td style="text-align:center" class="muted">–</td>`).join('');
   }
-
   let avgScore = null;
-  if (hasMain && hasLab) {
-    avgScore = combined.total / 5;
-  } else if (hasMain) {
-    avgScore = main.total / main.filledCount;
-  } else if (hasLab) {
-    avgScore = lab.total50 / lab.filledCount;
-  }
-
-  let totalDisplay;
-  if (avgScore === null){
-    totalDisplay = '<span class="muted" style="font-weight:400">–</span>';
-  } else {
-    totalDisplay = `<div style="font-weight:800;font-size:13.5px">${avgScore.toFixed(2)}</div>`;
-  }
-
+  if (hasMain && hasLab) avgScore = combined.total / 5;
+  else if (hasMain) avgScore = main.total / main.filledCount;
+  else if (hasLab) avgScore = lab.total50 / lab.filledCount;
+  const totalDisplay = avgScore === null
+    ? '<span class="muted" style="font-weight:400">–</span>'
+    : `<div style="font-weight:800;font-size:13.5px">${avgScore.toFixed(2)}</div>`;
   const gc = combined.grade === null ? '' : combined.grade >= 6 ? 'hi' : combined.grade >= 4 ? 'mid' : 'lo';
-
   return `<tr>
     <td><span data-act="jump-to-feedback-subj" data-subj="Biotech" style="display:flex;align-items:center;gap:8px;cursor:pointer" title="點擊查看該科反饋">
       <span style="width:8px;height:8px;border-radius:99px;background:${subjColor('Biotech')};flex:0 0 8px"></span>
@@ -1180,7 +1268,6 @@ function rcBiotechRow(sd){
 function rcSummaryHTML(){
   const subjData = rcCalc();
   const rows = subjData.map(sd => sd.isBiotech ? rcBiotechRow(sd) : rcStandardRow(sd)).join('');
-
   return `<div class="scroll-x"><table class="tbl" style="min-width:680px">
     <thead><tr>
       <th>科目</th>
@@ -1205,7 +1292,7 @@ function refreshReportSummary(){
 }
 
 /* =====================================================================
-   ☁️ CLOUD SYNC
+   CLOUD SYNC
    ===================================================================== */
 const CLOUD_CFG_KEY = 'nathan-cloud-cfg-v1';
 
@@ -1308,9 +1395,8 @@ const Cloud = {
       else if (remoteTs > localTs){
         state = normalizeState(remote);
         state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-        state.wbAdding = false; state.wbExpandedId = null;
         state.expandedAssessId = null; state.highlightFeedbackId = null;
-        state.editingTodoId = null;
+        state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
         localStorage.setItem(LS_KEY, JSON.stringify(state));
         applyTheme(); render();
         this.setStatus('ok', '已下載雲端更新');
@@ -1346,9 +1432,8 @@ const Cloud = {
       if (!remote){ this.setStatus('ok', '雲端無資料'); toast('雲端尚無資料'); return; }
       state = normalizeState(remote);
       state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-      state.wbAdding = false; state.wbExpandedId = null;
       state.expandedAssessId = null; state.highlightFeedbackId = null;
-      state.editingTodoId = null;
+      state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
       localStorage.setItem(LS_KEY, JSON.stringify(state));
       applyTheme(); render();
       this.lastSyncAt = Date.now();
@@ -1364,12 +1449,10 @@ const Cloud = {
     const el = document.getElementById('cloudStatusText');
     if (el) el.textContent = msg || s;
   },
-
   updateLastSyncUI(){
     const el = document.getElementById('lastSyncText');
     if (el) el.textContent = this.lastSyncAt ? new Date(this.lastSyncAt).toLocaleTimeString() : '—';
   },
-
   renderChip(){
     const dot  = document.getElementById('syncDot');
     const text = document.getElementById('syncText');
@@ -1380,7 +1463,6 @@ const Cloud = {
     dot.style.background = color;
     text.textContent = label;
   },
-
   restartTimer(){
     clearInterval(this.timer);
     if (!this.cfg.auto || !this.configured) return;
@@ -1389,7 +1471,6 @@ const Cloud = {
       if (document.visibilityState === 'visible') this.sync(true);
     }, sec * 1000);
   },
-
   async createJsonBin(){
     const key = this.cfg.jsonbin.masterKey;
     if (!key){ toast('⚠️ 請先填入 X-Master-Key'); return; }
@@ -1419,12 +1500,11 @@ Cloud.load();
 const NAV = [
   {id:'master',   icon:'🏠', zh:'主控台',   en:'Dashboard'},
   {id:'todo',     icon:'📝', zh:'待辦事項', en:'To-Do List'},
-  {id:'srp',      icon:'⏰', zh:'間隔複習', en:'Spaced Revision'},
   {id:'assign',   icon:'✍️', zh:'作業追蹤', en:'Assignments'},
   {id:'assess',   icon:'📚', zh:'考試計劃', en:'Assessments'},
   {id:'feedback', icon:'💬', zh:'考試反饋', en:'Feedback'},
-  {id:'wrongbook',icon:'📕', zh:'錯題本',   en:'Mistake Book'},
   {id:'report',   icon:'💯', zh:'成績單',   en:'Report Cards'},
+  {id:'planning', icon:'🧭', zh:'未來規劃', en:'Planning'},
   {id:'detox',    icon:'🌿', zh:'解壓空間', en:'Detox Space'},
   {id:'schedule', icon:'📅', zh:'課表',     en:'Schedule'},
   {id:'guide',    icon:'📋', zh:'操作指南', en:'Guide'},
@@ -1432,7 +1512,7 @@ const NAV = [
 ];
 
 /* =====================================================================
-   🌿 DETOX
+   DETOX
    ===================================================================== */
 const DETOX_QUOTES = [
   {zh:'你已經很努力了。', en:"You've already done enough."},
@@ -1875,16 +1955,16 @@ VIEWS.master = function(){
   const greet = hour < 12 ? '早安' : hour < 18 ? '午安' : '晚安';
   const todayTasks = state.todos.filter(x => x.date === t);
   const doneToday  = todayTasks.filter(x => x.done).length;
-  const revToday   = srpDueOn(t);
-  const revLate    = state.srp.filter(it => {
-    const ds = srpDates(it), done = it.done || [];
-    return ds.some((d,i) => !done[i] && d < t);
-  }).length;
   const upcomingAssess = state.assessments.filter(a => a.due && diffDays(t, a.due) >= 0).sort((a,b) => a.due.localeCompare(b.due));
   const nearAssign = state.assignments.filter(a => a.due && !isFinished(a)).sort((a,b) => a.due.localeCompare(b.due));
+  const nearOpps = (state.opportunities || []).filter(o => {
+    if (!o.deadline) return false;
+    if (['submitted','accepted','done'].includes(o.status)) return false;
+    const d = diffDays(t, o.deadline);
+    return d >= 0 && d <= 30;
+  }).sort((a,b) => a.deadline.localeCompare(b.deadline));
   const ws = weekStats(weekStart(t));
-  const totalToday = todayTasks.length + revToday.length;
-  const pct = totalToday ? Math.round(doneToday / totalToday * 100) : (todayTasks.length === 0 && revToday.length === 0 ? 100 : 0);
+  const pct = todayTasks.length ? Math.round(doneToday / todayTasks.length * 100) : 100;
   const circ = 2 * Math.PI * 16;
 
   const inboxItems = collectInbox();
@@ -1922,11 +2002,11 @@ VIEWS.master = function(){
   <div class="hero">
     <div>
       <h3>${greet}，Nathan 👋</h3>
-      <p>${fmtLong(t)} · ${todayTasks.length ? `今日有 <b>${todayTasks.length}</b> 項待辦` : '今日暫無待辦'}${revToday.length ? `、<b>${revToday.length}</b> 個複習` : ''}。</p>
+      <p>${fmtLong(t)} · ${todayTasks.length ? `今日有 <b>${todayTasks.length}</b> 項待辦` : '今日暫無待辦'}。</p>
       <div class="hero-chips">
         <span>✅ ${doneToday}/${todayTasks.length || 0}</span>
-        <span>⏰ 複習 ${revToday.length} 項</span>
         <span>📚 考試 ${upcomingAssess.length} 場</span>
+        <span>🧭 機會 ${nearOpps.length} 個</span>
       </div>
     </div>
     <div class="ring-wrap">
@@ -1943,25 +2023,13 @@ VIEWS.master = function(){
     <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📝</div>
       <div><div class="stat-val">${doneToday}<span class="muted" style="font-size:13px">/${todayTasks.length}</span></div>
       <div class="stat-lbl">今日待辦</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">⏰</div>
-      <div><div class="stat-val" style="color:${revToday.length ? 'var(--urgent)' : 'inherit'}">${revToday.length}</div>
-      <div class="stat-lbl">今日複習</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">📚</div>
       <div><div class="stat-val">${upcomingAssess.length}</div><div class="stat-lbl">待考評估</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">⚠️</div>
-      <div><div class="stat-val" style="color:${revLate ? 'var(--warn)' : 'inherit'}">${revLate}</div>
-      <div class="stat-lbl">逾期複習</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">✍️</div>
+      <div><div class="stat-val">${nearAssign.length}</div><div class="stat-lbl">待辦作業</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">🧭</div>
+      <div><div class="stat-val">${nearOpps.length}</div><div class="stat-lbl">近期機會</div></div></div>
   </div>`;
-
-  const revList = revToday.length
-    ? `<div class="list">${revToday.map(({item, idx}) => `
-        <div class="item">
-          <button class="cb" data-act="srp-toggle" data-id="${item.id}" data-idx="${idx}">✓</button>
-          <div class="item-main"><div class="item-title">${esc(item.concept)}</div>
-            <div class="item-meta">${subjBadge(item.subject)}<span>第 ${idx+1} 次複習</span></div></div>
-          <span class="pill urgent">今日</span>
-        </div>`).join('')}</div>`
-    : `<div class="empty"><b>📖 無複習任務</b>好好休息或預習新內容</div>`;
 
   const todoList = todayTasks.length
     ? `<div class="list">${todayTasks.map(x => `
@@ -2004,6 +2072,19 @@ VIEWS.master = function(){
       }).join('')}</div>`
     : `<div class="empty"><b>✅ 沒有待辦作業</b></div>`;
 
+  const oppList = nearOpps.length
+    ? `<div class="list">${nearOpps.slice(0,5).map(o => {
+        const cat = OPP_CATEGORIES.find(c => c.id === o.category);
+        const d = diffDays(t, o.deadline);
+        return `<div class="item">
+          <span style="font-size:16px;flex:0 0 20px;text-align:center;line-height:1.4">${cat ? cat.icon : '🧭'}</span>
+          <div class="item-main"><div class="item-title">${esc(o.name)}</div>
+            <div class="item-meta">${cat ? cat.label : ''}<span>${fmtMD(o.deadline)}</span></div></div>
+          <span class="pill ${d<=7?'urgent':'warn'}">${d} 天</span>
+        </div>`;
+      }).join('')}</div>`
+    : `<div class="empty"><b>暫無近期截止機會</b></div>`;
+
   const weekBar = `
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <span class="tiny muted" style="font-weight:700">本週完成度</span>
@@ -2017,11 +2098,6 @@ VIEWS.master = function(){
   ${stats}
   <div class="grid g-2">
     <div class="stack">
-      <div class="card">
-        <div class="card-head"><div class="card-title">⏰ 今日複習任務</div>
-          <button class="btn btn-sm" data-nav="srp">全部 →</button></div>
-        ${revList}
-      </div>
       <div class="card">
         <div class="card-head"><div class="card-title">📝 今日待辦</div>
           <button class="btn btn-sm" data-nav="todo">全部 →</button></div>
@@ -2042,6 +2118,11 @@ VIEWS.master = function(){
         <div class="card-head"><div class="card-title">✍️ 作業追蹤</div>
           <button class="btn btn-sm" data-nav="assign">全部 →</button></div>
         ${assignList}
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-title">🧭 近期機會</div>
+          <button class="btn btn-sm" data-nav="planning">全部 →</button></div>
+        ${oppList}
       </div>
     </div>
   </div>`;
@@ -2069,7 +2150,6 @@ VIEWS.todo = function(){
 
   const ws = weekStats(start);
 
-  // 處理左側待辦清單與時間編輯
   const taskList = selTasks.length
     ? `<div class="list">${selTasks.map(x => {
         const isEditing = state.editingTodoId === x.id;
@@ -2103,11 +2183,10 @@ VIEWS.todo = function(){
   const doneCount = selTasks.filter(x => x.done).length;
   const pct = selTasks.length ? Math.round(doneCount/selTasks.length*100) : 0;
 
-  // 處理右側時間表
   const scheduledTasks = selTasks.filter(x => x.startTime && x.endTime).sort((a, b) => timeToMins(a.startTime) - timeToMins(b.startTime));
   const START_HOUR = 6;
   const END_HOUR = 24;
-  const HOUR_HEIGHT = 60; // 每小時 60px
+  const HOUR_HEIGHT = 60;
 
   const hoursHTML = [...Array(END_HOUR - START_HOUR)].map((_, i) => {
     const h = START_HOUR + i;
@@ -2120,9 +2199,8 @@ VIEWS.todo = function(){
     const startM = timeToMins(x.startTime);
     const endM = timeToMins(x.endTime);
     const top = (startM - START_HOUR * 60);
-    const height = Math.max(30, endM - startM); // 最小高度 30px
+    const height = Math.max(30, endM - startM);
     const isDone = x.done;
-    
     return `
       <div class="timeline-event ${isDone ? 'done' : ''}" 
            style="top:${top}px; height:${height}px;" 
@@ -2185,86 +2263,18 @@ VIEWS.todo = function(){
   <style>
     .todo-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
     @media (max-width: 900px) { .todo-layout { grid-template-columns: 1fr; } }
-    
     .timeline-container { padding: 0; overflow: hidden; display: flex; flex-direction: column; height: 70vh; }
     .timeline-grid { position: relative; overflow-y: auto; flex: 1; }
-    
     .timeline-hour { height: 60px; border-bottom: 1px dashed var(--border); position: relative; }
     .timeline-hour:last-child { border-bottom: none; }
     .timeline-hour-label { position: absolute; top: -8px; left: 8px; font-size: 10px; color: var(--muted); background: var(--surface); padding: 0 4px; font-weight: 600; z-index: 1; }
-    
     .timeline-event { position: absolute; left: 50px; right: 10px; border-radius: 6px; padding: 4px 8px; font-size: 11.5px; background: color-mix(in srgb, var(--primary) 15%, transparent); border-left: 3px solid var(--primary); cursor: pointer; overflow: hidden; transition: .2s; z-index: 2; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
     .timeline-event:hover { background: color-mix(in srgb, var(--primary) 25%, transparent); }
     .timeline-event.done { background: var(--surface-3); border-left-color: var(--muted); opacity: .6; }
     .timeline-event.done div { text-decoration: line-through; color: var(--muted); }
-    
     .timeline-now { position: absolute; left: 0; right: 0; height: 2px; background: var(--danger); z-index: 3; pointer-events: none; }
     .timeline-now::before { content: ''; position: absolute; left: 40px; top: -4px; width: 10px; height: 10px; border-radius: 99px; background: var(--danger); }
   </style>`;
-};
-
-VIEWS.srp = function(){
-  const t = todayISO();
-  const sorted = [...state.srp].sort((a, b) => {
-    const da = srpDates(a)[0] || '9999';
-    const db = srpDates(b)[0] || '9999';
-    return da.localeCompare(db);
-  });
-
-  const rows = sorted.length ? sorted.map(it => {
-    const ds = srpDates(it);
-    const done = it.done || [false,false,false,false];
-    const st = srpStatus(it);
-    const chips = ds.length ? ds.map((d, i) => {
-      const isDone = done[i];
-      const isDue  = !isDone && d === t;
-      const isLate = !isDone && d < t;
-      const cls = isDone ? 'on' : isDue ? 'due' : isLate ? 'late' : '';
-      return `<div class="rev-chip ${cls}" data-act="srp-toggle" data-id="${it.id}" data-idx="${i}">
-        <span class="rl">D${REV_DAYNUM[i]}</span><span class="rd">${fmtMD(d)}</span></div>`;
-    }).join('') : '<span class="muted tiny">—</span>';
-
-    return `<tr>
-      <td>${subjBadge(it.subject)}</td>
-      <td><div style="font-weight:600;max-width:280px">${esc(it.concept)}</div></td>
-      <td><span class="tiny" style="font-weight:700">${it.start ? fmtMD(it.start) : '—'}</span></td>
-      <td><div class="rev-row">${chips}</div></td>
-      <td><span class="pill ${st.tone}">${st.label}</span></td>
-      <td style="text-align:right"><button class="icon-btn" data-act="srp-del" data-id="${it.id}">✕</button></td>
-    </tr>`;
-  }).join('') : '';
-
-  const body = sorted.length
-    ? `<div class="scroll-x"><table class="tbl">
-        <thead><tr><th>科目</th><th>知識點</th><th>第 1 天</th><th>複習節點</th><th>狀態</th><th></th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>`
-    : `<div class="empty"><b>尚無知識點</b>每學完新內容，就拆成小知識點加進來</div>`;
-
-  const dueToday = srpDueOn(t);
-  return `
-  <div class="grid g-4" style="margin-bottom:14px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">🧠</div>
-      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">知識點</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">🔴</div>
-      <div><div class="stat-val">${dueToday.length}</div><div class="stat-lbl">今日複習</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">⏰</div>
-      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'danger').length}</div><div class="stat-lbl">逾期</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
-      <div><div class="stat-val">${state.srp.filter(x => srpStatus(x).tone === 'ok').length}</div><div class="stat-lbl">已完成</div></div></div>
-  </div>
-
-  <div class="card" style="margin-bottom:12px">
-    <div class="card-head"><div class="card-title">➕ 新增知識點</div></div>
-    <div class="form-row">
-      <select class="input" id="srpSubj" style="flex:0 0 130px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-      <input class="input" id="srpConcept" placeholder="知識點 Concept" style="flex:1 1 300px">
-      <input class="input" type="date" id="srpStart" value="${t}" style="flex:0 0 160px">
-      <button class="btn btn-primary" data-act="srp-add">＋ 新增</button>
-    </div>
-  </div>
-
-  <div class="card">${body}</div>`;
 };
 
 VIEWS.assign = function(){
@@ -2345,7 +2355,6 @@ VIEWS.assess = function(){
     if (isExpanded){
       const rel = getAssessRelated(a.subject, a.criteria);
       const hasFb = rel.feedbacks.length > 0;
-      const hasWb = rel.wrongs.length > 0;
       const hasAs = rel.assignments.length > 0;
       relatedHTML = `
         <div style="border-top:1px dashed var(--border);padding-top:12px;margin-top:6px;display:flex;flex-direction:column;gap:12px">
@@ -2362,20 +2371,6 @@ VIEWS.assess = function(){
                   <div class="tiny muted" style="line-height:1.55;white-space:pre-wrap">${esc((f.text || '').split('\n').slice(0,3).join('\n') || 'N/A')}</div>
                 </div>`).join('')}
             </div>` : ''}
-          ${hasWb ? `
-            <div>
-              <div class="sec-title" style="margin-bottom:6px">📕 相關錯題</div>
-              ${rel.wrongs.map(w => `
-                <div style="padding:8px 10px;border-radius:9px;background:var(--surface-2);margin-bottom:5px;${w.mastered ? 'opacity:.6' : ''}">
-                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap">
-                    ${w.mastered ? '<span class="pill ok" style="font-size:10px">已掌握</span>' : '<span class="pill warn" style="font-size:10px">未掌握</span>'}
-                    ${w.topic ? `<span class="tiny muted" style="font-weight:650">${esc(w.topic)}</span>` : ''}
-                    <span class="tiny muted" style="margin-left:auto">${fmtMD(w.date)}</span>
-                  </div>
-                  <div style="font-size:12.5px;font-weight:600;margin-bottom:3px">${esc(w.question || '')}</div>
-                  ${w.reason ? `<div class="tiny muted">❌ ${esc(w.reason)}</div>` : ''}
-                </div>`).join('')}
-            </div>` : ''}
           ${hasAs ? `
             <div>
               <div class="sec-title" style="margin-bottom:6px">✍️ 該科待辦作業</div>
@@ -2385,7 +2380,7 @@ VIEWS.assess = function(){
                   ${asg.due ? `<span class="tiny muted" style="margin-left:auto">${fmtMD(asg.due)}</span>` : ''}
                 </div>`).join('')}
             </div>` : ''}
-          ${(!hasFb && !hasWb && !hasAs) ? '<div class="tiny muted" style="text-align:center;padding:8px">該科暫無相關紀錄</div>' : ''}
+          ${(!hasFb && !hasAs) ? '<div class="tiny muted" style="text-align:center;padding:8px">該科暫無相關紀錄</div>' : ''}
         </div>`;
     }
 
@@ -2601,122 +2596,6 @@ VIEWS.feedback = function(){
   <div>${groupedHTML}</div>`;
 };
 
-VIEWS.wrongbook = function(){
-  const t = todayISO();
-  const all = state.wrongBook || [];
-  const subjectFilter = state.wbSubjectFilter || 'All';
-  const statusFilter = state.wbStatusFilter || 'All';
-  const isAdding = state.wbAdding;
-  const expandedId = state.wbExpandedId;
-
-  const subjects = ['All', ...new Set(all.map(w => w.subject))];
-  const filtered = all.filter(w => {
-    if (subjectFilter !== 'All' && w.subject !== subjectFilter) return false;
-    if (statusFilter === 'mastered' && !w.mastered) return false;
-    if (statusFilter === 'unmastered' && w.mastered) return false;
-    return true;
-  }).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-
-  const total = all.length;
-  const mastered = all.filter(w => w.mastered).length;
-  const unmastered = total - mastered;
-  const oldUnmastered = all.filter(w => !w.mastered && diffDays(w.date, t) >= 7).length;
-
-  const subjChips = subjects.map(s => {
-    const n = s === 'All' ? total : all.filter(w => w.subject === s).length;
-    return `<button class="chip ${s===subjectFilter?'active':''}" data-act="wb-filter-subj" data-subj="${esc(s)}">${s === 'All' ? '全部' : esc(s)} <span style="opacity:.65">(${n})</span></button>`;
-  }).join('');
-
-  const statusChips = [
-    {id:'All', label:`全部 (${total})`},
-    {id:'unmastered', label:`未掌握 (${unmastered})`},
-    {id:'mastered', label:`已掌握 (${mastered})`}
-  ].map(s => `<button class="chip ${s.id===statusFilter?'active':''}" data-act="wb-filter-status" data-status="${s.id}">${s.label}</button>`).join('');
-
-  const addForm = isAdding ? `
-    <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
-      <div class="card-head"><div class="card-title">➕ 新增錯題</div></div>
-      <div class="form-row">
-        <select class="input" id="wbNewSubj" style="flex:0 0 140px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
-        <input class="input" id="wbNewTopic" placeholder="題型 / 知識點" style="flex:1 1 200px">
-        <input class="input" type="date" id="wbNewDate" value="${t}" style="flex:0 0 150px">
-      </div>
-      <textarea class="input" id="wbNewQuestion" placeholder="題目描述（簡略即可）" rows="2" style="margin-top:8px"></textarea>
-      <textarea class="input" id="wbNewReason" placeholder="❌ 錯誤原因" rows="2" style="margin-top:8px"></textarea>
-      <textarea class="input" id="wbNewCorrect" placeholder="✅ 正確解法 / 關鍵觀念" rows="2" style="margin-top:8px"></textarea>
-      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
-        <button class="btn" data-act="wb-cancel">取消</button>
-        <button class="btn btn-primary" data-act="wb-save-new">💾 新增</button>
-      </div>
-    </div>` : '';
-
-  const recordsHTML = filtered.length ? filtered.map(w => {
-    const isExp = expandedId === w.id;
-    const dSince = w.date ? diffDays(w.date, t) : null;
-    return `
-    <div class="wb-record ${w.mastered ? 'mastered' : ''}">
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <div style="flex:1;min-width:0">
-          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
-            ${subjBadge(w.subject)}
-            ${w.topic ? `<span class="pill muted">${esc(w.topic)}</span>` : ''}
-            <span class="tiny muted">${fmtMD(w.date)}${dSince !== null ? ` · ${dSince} 天前` : ''}</span>
-            ${w.mastered ? '<span class="pill ok">✅ 已掌握</span>' : '<span class="pill warn">📝 未掌握</span>'}
-          </div>
-          <div class="wb-question">${esc(w.question || '（未填寫題目）')}</div>
-        </div>
-        <div style="display:flex;gap:6px;flex:0 0 auto">
-          <button type="button" class="icon-btn" data-act="wb-toggle-master" data-id="${w.id}" title="${w.mastered ? '標記為未掌握' : '標記為已掌握'}" style="width:32px;height:32px;font-size:13px">
-            ${w.mastered ? '↩️' : '✓'}
-          </button>
-          <button type="button" class="icon-btn" data-act="wb-del" data-id="${w.id}" title="刪除" style="width:32px;height:32px;font-size:13px;color:var(--danger);border-color:color-mix(in srgb,var(--danger) 35%,var(--border))">
-            🗑
-          </button>
-        </div>
-      </div>
-      <button class="btn btn-sm" data-act="wb-toggle-detail" data-id="${w.id}" style="margin-top:9px">
-        ${isExp ? '▲ 收起' : '▼ 查看原因與解法'}
-      </button>
-      ${isExp ? `
-        <div style="margin-top:10px;padding-top:10px;border-top:1px dashed var(--border)">
-          <div class="wb-row wb-wrong"><b>❌ 錯誤原因：</b>${esc(w.reason || '（未填寫）')}</div>
-          <div class="wb-row wb-correct"><b>✅ 正確解法：</b>${esc(w.correct || '（未填寫）')}</div>
-        </div>` : ''}
-    </div>`;
-  }).join('') : `<div class="empty"><b>${all.length === 0 ? '尚無錯題紀錄' : '沒有符合的紀錄'}</b>${all.length === 0 ? '點擊「＋ 新增錯題」開始記錄你的弱點。' : '試試其他篩選條件。'}</div>`;
-
-  return `
-  <div class="grid g-4" style="margin-bottom:14px">
-    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">📕</div>
-      <div><div class="stat-val">${total}</div><div class="stat-lbl">總錯題</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">📝</div>
-      <div><div class="stat-val" style="color:${unmastered ? 'var(--warn)' : 'inherit'}">${unmastered}</div><div class="stat-lbl">未掌握</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">✅</div>
-      <div><div class="stat-val">${mastered}</div><div class="stat-lbl">已掌握</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">⏳</div>
-      <div><div class="stat-val" style="color:${oldUnmastered ? 'var(--danger)' : 'inherit'}">${oldUnmastered}</div><div class="stat-lbl">超過 7 天</div></div></div>
-  </div>
-
-  <div class="card" style="margin-bottom:12px">
-    <div class="card-head">
-      <div class="card-title">📕 錯題本</div>
-      <button class="btn btn-primary btn-sm" data-act="wb-add-toggle">${isAdding ? '取消' : '＋ 新增錯題'}</button>
-    </div>
-    <div style="margin-bottom:9px">
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">科目</div>
-      <div class="chip-row">${subjChips}</div>
-    </div>
-    <div>
-      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">狀態</div>
-      <div class="chip-row">${statusChips}</div>
-    </div>
-  </div>
-
-  ${addForm}
-
-  <div class="grid g-2">${recordsHTML}</div>`;
-};
-
 function rcgRowHTML(g){
   const def = RC_SUBJECTS.find(s => s.key === g.subject) || RC_SUBJECTS[0];
   const variant = g.variant || (def.variants ? 'main' : null);
@@ -2727,21 +2606,18 @@ function rcgRowHTML(g){
     crit = v.crit;
     maxScore = v.maxPer;
   }
-
   const cells = [...Array(5)].map((_, i) => {
     const active = i < crit.length;
     const raw = (g.scores || [])[i];
     const v = (raw === null || raw === undefined || raw === '') ? '' : raw;
     return `<input class="input rcg-num" type="number" inputmode="numeric" min="0" max="${maxScore}" step="1" value="${v}" ${active ? '' : 'disabled'} data-act="rcg-score" data-id="${g.id}" data-idx="${i}" placeholder="–">`;
   }).join('');
-
   const variantSelect = def.variants
     ? `<select class="input" data-act="rcg-variant" data-id="${g.id}">
         <option value="main" ${variant === 'main' ? 'selected' : ''}>Main</option>
         <option value="lab" ${variant === 'lab' ? 'selected' : ''}>Lab</option>
       </select>`
     : `<div class="tiny muted" style="text-align:center;padding:8px 0">—</div>`;
-
   return `<div class="rcg-row">
     <input class="input" value="${esc(g.name)}" placeholder="評估名稱" data-act="rcg-name" data-id="${g.id}">
     <select class="input" data-act="rcg-subject" data-id="${g.id}">${RC_SUBJECTS.map(s => `<option value="${s.key}" ${s.key === g.subject ? 'selected' : ''}>${s.key}</option>`).join('')}</select>
@@ -2818,6 +2694,368 @@ VIEWS.report = function(){
       兩者皆有數據時取平均作為 Biotech 最終成績；只有一邊有數據時直接用該邊。
     </div>
   </div>`;
+};
+
+/* =====================================================================
+   PLANNING — 課外機會 & IBDP 藍圖
+   ===================================================================== */
+function renderOppCard(o, t){
+  const cat = OPP_CATEGORIES.find(c => c.id === o.category) || OPP_CATEGORIES[0];
+  const st = OPP_STATUSES.find(s => s.id === o.status) || OPP_STATUSES[0];
+  const d = o.deadline ? diffDays(t, o.deadline) : null;
+  const isExp = state.oppExpandedId === o.id;
+  const isDone = o.status === 'done';
+  const isFinished = ['submitted','accepted','done'].includes(o.status);
+  const dLabel = d === null ? '無截止日' : d < 0 ? `逾期 ${-d} 天` : d === 0 ? '今天截止' : `剩 ${d} 天`;
+  const dColor = d === null ? 'var(--muted)' : d < 0 ? 'var(--danger)' : d <= 7 ? 'var(--urgent)' : d <= 14 ? 'var(--warn)' : 'var(--primary)';
+
+  const checklistHTML = OPP_CHECKLIST.map(c => `
+    <label class="opp-check-row">
+      <input type="checkbox" data-act="opp-check" data-id="${o.id}" data-item="${c.id}" ${o.checklist && o.checklist[c.id] ? 'checked' : ''}>
+      <span class="lbl ${o.checklist && o.checklist[c.id] ? 'on' : ''}">${c.label}</span>
+    </label>
+  `).join('');
+
+  const bragHTML = isDone ? `
+    <div class="opp-brag">
+      <div class="opp-brag-title">🎖️ Brag Sheet 紀錄</div>
+      <div class="form-row" style="margin-bottom:8px">
+        <input class="input" data-act="opp-field" data-id="${o.id}" data-field="hours" value="${esc(o.hours || '')}" placeholder="參與時數 e.g. 40 小時" style="flex:0 0 200px">
+      </div>
+      <textarea class="input" data-act="opp-field" data-id="${o.id}" data-field="reflection" placeholder="核心收穫 / 反思（未來大學申請可用）" rows="3">${esc(o.reflection || '')}</textarea>
+    </div>
+  ` : '';
+
+  return `
+    <div class="opp-card">
+      <div class="opp-head">
+        <div class="opp-cat">${cat.icon}</div>
+        <div style="flex:1;min-width:0">
+          <div class="opp-name">${esc(o.name)}</div>
+          ${o.org ? `<div class="opp-org">${esc(o.org)}</div>` : ''}
+        </div>
+        <span class="pill ${isFinished ? 'ok' : 'info'}">${st.icon} ${st.label}</span>
+      </div>
+      <div class="opp-meta">
+        <span class="pill muted">${cat.label}</span>
+        ${o.grade ? `<span class="pill muted">${esc(o.grade)}</span>` : ''}
+        ${o.deadline ? `<span class="pill ${d<0?'danger':d<=7?'urgent':d<=14?'warn':'info'}">📅 ${fmtMD(o.deadline)} · ${dLabel}</span>` : '<span class="pill muted">📅 無截止日</span>'}
+      </div>
+      ${o.deadline && !isFinished ? `
+        <div class="opp-countdown-wrap">
+          <div class="opp-countdown" style="color:${dColor}">${d !== null && d >= 0 ? d : '—'}</div>
+          <div class="tiny muted" style="font-weight:700">${d !== null && d >= 0 ? 'DAYS LEFT' : 'PAST'}</div>
+          <span class="tiny muted" style="margin-left:auto">${dLabel}</span>
+        </div>
+      ` : ''}
+      <div class="opp-status-pills">
+        ${OPP_STATUSES.map(s => `
+          <button class="opp-status-pill ${o.status===s.id?'on':''}" data-act="opp-status" data-id="${o.id}" data-status="${s.id}">${s.icon} ${s.label}</button>
+        `).join('')}
+      </div>
+      <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-sm" data-act="opp-toggle-detail" data-id="${o.id}">${isExp ? '▲ 收起' : '▼ 詳細資料'}</button>
+        ${o.link ? `<a class="btn btn-sm" href="${esc(o.link)}" target="_blank" rel="noopener">🔗 官網</a>` : ''}
+        <button class="btn btn-sm btn-danger" data-act="opp-del" data-id="${o.id}" style="margin-left:auto">🗑 刪除</button>
+      </div>
+      ${isExp ? `
+        <div class="opp-body">
+          <div>
+            <div class="tiny muted" style="font-weight:750;letter-spacing:.6px;margin-bottom:6px">📋 申請清單</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2px 14px">
+              ${checklistHTML}
+            </div>
+          </div>
+          <div class="form-row">
+            <input class="input" data-act="opp-field" data-id="${o.id}" data-field="deadline" type="date" value="${o.deadline || ''}" style="flex:0 0 170px">
+            <input class="input" data-act="opp-field" data-id="${o.id}" data-field="link" value="${esc(o.link || '')}" placeholder="官網連結 https://..." style="flex:1 1 240px">
+          </div>
+          <textarea class="input" data-act="opp-field" data-id="${o.id}" data-field="notes" placeholder="備註：Essay、推薦信、費用、獎學金資訊…" rows="2">${esc(o.notes || '')}</textarea>
+          ${bragHTML}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function renderOpportunities(){
+  const t = todayISO();
+  const all = state.opportunities || [];
+  const catFilter = state.oppFilterCat || 'All';
+  const statusFilter = state.oppFilterStatus || 'All';
+
+  const filtered = all.filter(o => {
+    if (catFilter !== 'All' && o.category !== catFilter) return false;
+    if (statusFilter !== 'All' && o.status !== statusFilter) return false;
+    return true;
+  }).sort((a, b) => {
+    if (!a.deadline && !b.deadline) return 0;
+    if (!a.deadline) return 1;
+    if (!b.deadline) return -1;
+    return a.deadline.localeCompare(b.deadline);
+  });
+
+  const total = all.length;
+  const activeCount = all.filter(o => !['submitted','accepted','done'].includes(o.status)).length;
+  const soonCount = all.filter(o => {
+    if (!o.deadline) return false;
+    if (['submitted','accepted','done'].includes(o.status)) return false;
+    const d = diffDays(t, o.deadline);
+    return d >= 0 && d <= 14;
+  }).length;
+  const doneCount = all.filter(o => o.status === 'done').length;
+
+  const catChips = ['All', ...OPP_CATEGORIES.map(c => c.id)].map(c => {
+    if (c === 'All') return `<button class="chip ${catFilter==='All'?'active':''}" data-act="opp-filter-cat" data-cat="All">全部</button>`;
+    const cat = OPP_CATEGORIES.find(x => x.id === c);
+    const n = all.filter(o => o.category === c).length;
+    return `<button class="chip ${catFilter===c?'active':''}" data-act="opp-filter-cat" data-cat="${c}">${cat.icon} ${cat.label} <span style="opacity:.65">(${n})</span></button>`;
+  }).join('');
+
+  const statusChips = ['All', ...OPP_STATUSES.map(s => s.id)].map(s => {
+    if (s === 'All') return `<button class="chip ${statusFilter==='All'?'active':''}" data-act="opp-filter-status" data-status="All">全部</button>`;
+    const st = OPP_STATUSES.find(x => x.id === s);
+    const n = all.filter(o => o.status === s).length;
+    return `<button class="chip ${statusFilter===s?'active':''}" data-act="opp-filter-status" data-status="${s}">${st.icon} ${st.label} <span style="opacity:.65">(${n})</span></button>`;
+  }).join('');
+
+  const addForm = state.oppAdding ? `
+    <div class="card" style="margin-bottom:12px;border-color:var(--primary)">
+      <div class="card-head"><div class="card-title">➕ 新增機會 / 活動</div></div>
+      <div class="form-row">
+        <input class="input" id="oppNewName" placeholder="項目名稱" style="flex:1 1 240px">
+        <input class="input" id="oppNewOrg" placeholder="主辦單位" style="flex:1 1 180px">
+        <input class="input" id="oppNewGrade" placeholder="適用年級 e.g. G10 暑假" style="flex:0 0 160px">
+      </div>
+      <div class="form-row" style="margin-top:8px">
+        <select class="input" id="oppNewCat" style="flex:0 0 190px">
+          ${OPP_CATEGORIES.map(c => `<option value="${c.id}">${c.icon} ${c.label}</option>`).join('')}
+        </select>
+        <input class="input" type="date" id="oppNewDeadline" style="flex:0 0 170px">
+        <input class="input" id="oppNewLink" placeholder="官網連結（選填）" style="flex:1 1 240px">
+      </div>
+      <textarea class="input" id="oppNewNotes" placeholder="備註（Essay、推薦信、費用、獎學金…）" rows="2" style="margin-top:8px"></textarea>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button class="btn" data-act="opp-cancel">取消</button>
+        <button class="btn btn-primary" data-act="opp-save-new">💾 新增</button>
+      </div>
+    </div>
+  ` : '';
+
+  const cardsHTML = filtered.length
+    ? `<div class="grid g-2">${filtered.map(o => renderOppCard(o, t)).join('')}</div>`
+    : `<div class="empty"><b>${all.length === 0 ? '尚無機會紀錄' : '沒有符合篩選條件的機會'}</b>${all.length === 0 ? '點擊「＋ 新增機會」開始累積你的經歷庫。' : '試試其他篩選條件。'}</div>`;
+
+  return `
+  <div class="grid g-4" style="margin-bottom:14px">
+    <div class="stat"><div class="stat-icon" style="background:rgba(91,94,240,.13)">🧭</div>
+      <div><div class="stat-val">${total}</div><div class="stat-lbl">總機會</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(59,130,246,.13)">🔄</div>
+      <div><div class="stat-val">${activeCount}</div><div class="stat-lbl">進行中</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(225,29,72,.13)">⏰</div>
+      <div><div class="stat-val" style="color:${soonCount?'var(--urgent)':'inherit'}">${soonCount}</div><div class="stat-lbl">14 天內截止</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">🎖️</div>
+      <div><div class="stat-val">${doneCount}</div><div class="stat-lbl">已完成</div></div></div>
+  </div>
+
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-head">
+      <div class="card-title">🧭 課外機會 & CAS</div>
+      <button class="btn btn-primary btn-sm" data-act="opp-add-toggle">${state.oppAdding ? '取消' : '＋ 新增機會'}</button>
+    </div>
+    <div style="margin-bottom:9px">
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">類別</div>
+      <div class="chip-row">${catChips}</div>
+    </div>
+    <div>
+      <div class="tiny muted" style="font-weight:700;margin-bottom:6px">狀態漏斗</div>
+      <div class="chip-row">${statusChips}</div>
+    </div>
+  </div>
+
+  ${addForm}
+  ${cardsHTML}`;
+}
+
+function renderRoadmap(){
+  const ib = state.ibSubjects || {};
+  const ibHTML = IBDP_GROUPS.map(g => {
+    const cell = ib[g.id] || {subject:'', level:'HL', notes:'', related:''};
+    return `
+      <div class="ib-cell">
+        <div class="ib-group">${g.name}</div>
+        <div class="ib-level">
+          <button class="${cell.level==='HL'?'on':''}" data-act="ib-level" data-group="${g.id}" data-level="HL">HL</button>
+          <button class="${cell.level==='SL'?'on':''}" data-act="ib-level" data-group="${g.id}" data-level="SL">SL</button>
+        </div>
+        <input class="input" data-act="ib-field" data-group="${g.id}" data-field="subject" value="${esc(cell.subject || '')}" placeholder="科目名稱" style="margin-bottom:6px">
+        <input class="input" data-act="ib-field" data-group="${g.id}" data-field="related" value="${esc(cell.related || '')}" placeholder="對應感興趣科系" style="margin-bottom:6px">
+        <textarea class="input" data-act="ib-field" data-group="${g.id}" data-field="notes" placeholder="選課考量" rows="2" style="font-size:11.5px;resize:vertical">${esc(cell.notes || '')}</textarea>
+      </div>
+    `;
+  }).join('');
+
+  let hl = 0, sl = 0;
+  Object.values(ib).forEach(v => { if (v.subject) { if (v.level==='HL') hl++; else sl++; } });
+  const chosen = hl + sl;
+  const summaryHint = (hl === 3 && sl === 3)
+    ? '✅ 符合 3 HL + 3 SL'
+    : (chosen === 6 ? '⚠️ 需 3 HL + 3 SL' : `尚需選擇 ${6 - chosen} 科`);
+
+  const ideaItems = (state.ideas || []).length ? state.ideas.map(i => `
+    <div class="rm-item">
+      <span style="font-size:16px;line-height:1.4">💡</span>
+      <div class="rm-item-main">
+        <div class="rm-item-title">${esc(i.title)}</div>
+        <div class="rm-item-meta">
+          ${i.subject ? `<span class="pill muted">${esc(i.subject)}</span>` : ''}
+          ${i.type ? `<span class="pill info">${esc(i.type)}</span>` : ''}
+          ${i.date ? `<span>${fmtMD(i.date)}</span>` : ''}
+        </div>
+        ${i.note ? `<div class="tiny muted" style="margin-top:4px;line-height:1.5">${esc(i.note)}</div>` : ''}
+      </div>
+      <button class="icon-btn" data-act="idea-del" data-id="${i.id}">✕</button>
+    </div>
+  `).join('') : '<div class="empty" style="padding:14px"><b>尚無靈感</b>上課、閱讀時想到什麼就丟進來</div>';
+
+  const uniItems = (state.unis || []).length ? state.unis.map(u => `
+    <div class="rm-item">
+      <span style="font-size:16px;line-height:1.4">🎓</span>
+      <div class="rm-item-main">
+        <div class="rm-item-title">${esc(u.name)}${u.major ? ' · ' + esc(u.major) : ''}</div>
+        <div class="rm-item-meta">
+          ${u.region ? `<span class="pill muted">${esc(u.region)}</span>` : ''}
+          ${u.ibReq ? `<span class="pill info">IB ${esc(u.ibReq)}</span>` : ''}
+          ${u.hlReq ? `<span class="pill warn">HL ${esc(u.hlReq)}</span>` : ''}
+        </div>
+        ${u.note ? `<div class="tiny muted" style="margin-top:4px;line-height:1.5">${esc(u.note)}</div>` : ''}
+      </div>
+      <button class="icon-btn" data-act="uni-del" data-id="${u.id}">✕</button>
+    </div>
+  `).join('') : '<div class="empty" style="padding:14px"><b>尚無大學目標</b>加入夢校與門檻</div>';
+
+  const tIso = todayISO();
+  const testItems = (state.tests || []).length ? state.tests.slice().sort((a,b) => (a.date||'9999').localeCompare(b.date||'9999')).map(t => {
+    const d = t.date ? diffDays(tIso, t.date) : null;
+    const dLabel = d === null ? '' : d < 0 ? `已過 ${-d} 天` : d === 0 ? '今天' : `剩 ${d} 天`;
+    return `
+    <div class="rm-item">
+      <span style="font-size:16px;line-height:1.4">📝</span>
+      <div class="rm-item-main">
+        <div class="rm-item-title">${esc(t.name)}${t.target ? ' · 目標 ' + esc(t.target) : ''}</div>
+        <div class="rm-item-meta">
+          ${t.date ? `<span class="pill ${d!==null && d<0 ? 'muted' : d!==null && d<=30 ? 'warn' : 'info'}">📅 ${fmtMD(t.date)} ${dLabel}</span>` : ''}
+          ${t.note ? `<span>${esc(t.note)}</span>` : ''}
+        </div>
+      </div>
+      <button class="icon-btn" data-act="test-del" data-id="${t.id}">✕</button>
+    </div>`;
+  }).join('') : '<div class="empty" style="padding:14px"><b>尚無標化考試</b>SAT / IELTS / TOEFL…</div>';
+
+  const msSorted = (state.milestones || []).slice().sort((a,b) => a.grade.localeCompare(b.grade));
+  const msItems = msSorted.length ? msSorted.map(m => `
+    <div class="tl-item">
+      <div class="tl-grade">${esc(m.grade)}</div>
+      <div class="tl-label">${esc(m.label)}</div>
+      ${m.note ? `<div class="tl-note">${esc(m.note)}</div>` : ''}
+      <button class="icon-btn tl-del" data-act="milestone-del" data-id="${m.id}">✕</button>
+    </div>
+  `).join('') : '<div class="empty" style="padding:14px"><b>尚無里程碑</b></div>';
+
+  return `
+  <div class="rm-section">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-title">🎓 IBDP 選課沙盤</div>
+        <span class="tiny muted">3 HL + 3 SL</span>
+      </div>
+      <div class="ib-grid">${ibHTML}</div>
+      <div class="ib-summary">
+        <span>已選：<b>${chosen}</b> / 6</span>
+        <span>HL: <b>${hl}</b></span>
+        <span>SL: <b>${sl}</b></span>
+        <span class="tiny muted" style="margin-left:auto;font-weight:600">${summaryHint}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rm-section">
+    <div class="card">
+      <div class="card-head"><div class="card-title">💡 探究靈感池</div>
+        <span class="tiny muted">PP · EE · IA</span>
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="input" id="ideaNewTitle" placeholder="靈感標題 / 研究問題" style="flex:1 1 260px">
+        <select class="input" id="ideaNewSubj" style="flex:0 0 140px">${state.subjects.map(s => `<option>${esc(s)}</option>`).join('')}</select>
+        <select class="input" id="ideaNewType" style="flex:0 0 110px">
+          <option value="PP">PP</option>
+          <option value="EE" selected>EE</option>
+          <option value="IA">IA</option>
+        </select>
+        <button class="btn btn-primary" data-act="idea-add">＋ 加入</button>
+      </div>
+      <div class="rm-list">${ideaItems}</div>
+    </div>
+  </div>
+
+  <div class="rm-section">
+    <div class="card">
+      <div class="card-head"><div class="card-title">🏛️ 目標大學 Wishlist</div>
+        <span class="tiny muted">英國 / 美國 / 香港 / 新加坡…</span>
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="input" id="uniNewName" placeholder="大學名稱" style="flex:1 1 200px">
+        <input class="input" id="uniNewMajor" placeholder="科系" style="flex:1 1 160px">
+        <input class="input" id="uniNewRegion" placeholder="地區 e.g. UK" style="flex:0 0 140px">
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="input" id="uniNewIbReq" placeholder="IB 門檻 e.g. 40+" style="flex:1 1 160px">
+        <input class="input" id="uniNewHlReq" placeholder="HL 要求 e.g. HL Math 6" style="flex:1 1 200px">
+        <button class="btn btn-primary" data-act="uni-add" style="align-self:stretch">＋ 加入</button>
+      </div>
+      <div class="rm-list">${uniItems}</div>
+    </div>
+  </div>
+
+  <div class="rm-section">
+    <div class="card">
+      <div class="card-head"><div class="card-title">🧪 標化考試規劃</div>
+        <span class="tiny muted">SAT / IELTS / TOEFL…</span>
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="input" id="testNewName" placeholder="考試名稱" style="flex:1 1 180px">
+        <input class="input" id="testNewTarget" placeholder="目標分數" style="flex:0 0 150px">
+        <input class="input" type="date" id="testNewDate" style="flex:0 0 170px">
+        <button class="btn btn-primary" data-act="test-add">＋ 加入</button>
+      </div>
+      <div class="rm-list">${testItems}</div>
+    </div>
+  </div>
+
+  <div class="rm-section">
+    <div class="card">
+      <div class="card-head"><div class="card-title">🗺️ 年級長期時間軸</div>
+        <span class="tiny muted">G9 → G12</span>
+      </div>
+      <div class="form-row" style="margin-bottom:10px">
+        <input class="input" id="msNewGrade" placeholder="年級 e.g. G10" style="flex:0 0 120px">
+        <input class="input" id="msNewLabel" placeholder="里程碑內容" style="flex:1 1 260px">
+        <input class="input" id="msNewNote" placeholder="備註（選填）" style="flex:1 1 200px">
+        <button class="btn btn-primary" data-act="milestone-add">＋ 新增</button>
+      </div>
+      <div class="timeline-rm">${msItems}</div>
+    </div>
+  </div>`;
+}
+
+VIEWS.planning = function(){
+  const tab = state.planningTab || 'opps';
+  const tabsHTML = `
+    <div class="day-tabs" style="margin-bottom:14px">
+      <button class="day-tab ${tab==='opps'?'active':''}" data-act="planning-tab" data-tab="opps">🧭 課外機會 & CAS</button>
+      <button class="day-tab ${tab==='roadmap'?'active':''}" data-act="planning-tab" data-tab="roadmap">🗺️ IBDP & 大學藍圖</button>
+    </div>`;
+  return tabsHTML + (tab === 'roadmap' ? renderRoadmap() : renderOpportunities());
 };
 
 VIEWS.schedule = function(){
@@ -2977,7 +3215,7 @@ VIEWS.guide = function(){
       <span class="tiny muted">Daily · Weekly · Per-subject</span>
     </div>
     <p class="tiny muted" style="line-height:1.7">
-      核心：<b style="color:var(--text)">把大內容拆成小知識點，用 2-3-5-7 天間隔複習。</b>
+      核心：<b style="color:var(--text)">把大內容拆成小知識點、每天推進一點，並用未來的機會與里程碑校準方向。</b>
     </p>
   </div>
 
@@ -2986,7 +3224,9 @@ VIEWS.guide = function(){
     [
       ['開啟指令面板', '<b>Ctrl + K</b>（Mac 用 ⌘ + K）'],
       ['快速新增待辦', '輸入 <code>todo 買牛奶</code> 後 Enter'],
-      ['切換頁面', '輸入頁面名（如 <code>srp</code>、<code>assess</code>）'],
+      ['快速新增機會', '輸入 <code>opp HKU Summer</code> 後 Enter'],
+      ['快速新增靈感', '輸入 <code>idea 細胞自噬研究</code> 後 Enter'],
+      ['切換頁面', '輸入頁面名（如 <code>planning</code>、<code>assess</code>）'],
       ['切換主題', '輸入 <code>theme</code>'],
       ['立即同步', '輸入 <code>sync</code>']
     ]), true)}
@@ -2995,48 +3235,40 @@ VIEWS.guide = function(){
     ['時間點', '動作', '目的'],
     [
       ['🌅 早晨', '打開主控台看「今日要做」', '一頁看完今天所有事'],
-      ['🏫 課間', '對照課表與 SRP 完成複習', '把握黃金 24 小時'],
-      ['🌆 放學後', '① 檢查作業 ② 新內容到 SRP ③ 完成複習', '不累積、不遺漏'],
+      ['🏫 課間', '對照課表與作業進度', '把握零碎時間'],
+      ['🌆 放學後', '① 檢查作業 ② 新增今日完成事項 ③ 更新考試進度', '不累積、不遺漏'],
       ['🌙 睡前', '快速回顧今天學到的一個重點', '鞏固當天所學']
     ]))}
 
   ${sec('二、每週例行流程', '約 15–20 分鐘', tbl(
     ['步驟', '動作', '目的'],
     [
-      ['1️⃣ 檢查 SRP', '確認哪些知識點即將到期', '提前規劃下週'],
-      ['2️⃣ 檢查作業與考試', '檢視下週所有到期項目', '避免臨時抱佛腳'],
-      ['3️⃣ 檢查錯題本', '把這週的錯題復習一次', '強化弱點'],
+      ['1️⃣ 檢查作業與考試', '檢視下週所有到期項目', '避免臨時抱佛腳'],
+      ['2️⃣ 更新機會追蹤', '看「未來規劃」中有無截止日逼近的項目', '提前準備材料'],
+      ['3️⃣ 探索藍圖', '每週一次看 IB 選課沙盤與靈感池', '把想法結構化'],
       ['4️⃣ 設定下週目標', '寫下 2–3 個具體目標', '有方向地前進']
     ]))}
 
-  ${sec('三、學了新內容時', '拆解知識點', tbl(
-    ['科目類型', '拆解範例', 'SRP 輸入方式'],
+  ${sec('三、課外機會怎麼用', 'Brag Sheet 養成', tbl(
+    ['時機', '動作', '目的'],
     [
-      ['🔢 數學', '「二次函數」→「頂點式配方」「最大最小值」', '每個小概念獨立一列'],
-      ['📖 語文', '「詩歌單元」→「修辭手法」「作者背景」', '每個技巧獨立一列'],
-      ['🔬 科學', '「細胞單元」→「細胞結構」「細胞分裂」', '每個概念獨立一列'],
-      ['🌏 人文', '「工業革命」→「起因」「影響」「人物」', '每個面向獨立一列']
+      ['發現新機會', '加入「課外機會」、填截止日', '系統自動倒數提醒'],
+      ['準備階段', '勾選申請清單：Essay、推薦信、成績單…', '不漏任何材料'],
+      ['完成之後', '填寫參與時數 + 核心收穫反思', 'G11/G12 申請時直接調用'],
+      ['14 天內截止', '主控台會自動提醒', '不再錯過 deadline']
     ]))}
 
-  ${sec('四、複習日到來時', '每次 5–15 分鐘', tbl(
-    ['次數', '時間點', '心法', '動作'],
+  ${sec('四、IBDP 與大學藍圖', '長期方向', tbl(
+    ['區塊', '用途'],
     [
-      ['第 1 次', '第 2 天', '重做經典', '不看解答重做例題'],
-      ['第 2 次', '第 3 天', '閉卷輸出', '默寫公式／流程'],
-      ['第 3 次', '第 5 天', '限時實戰', '計時做新題目'],
-      ['第 4 次', '第 7 天', '化身老師', '講解給空氣聽']
+      ['IBDP 選課沙盤', '模擬六大學科組 3 HL + 3 SL，並記錄對應科系'],
+      ['探究靈感池', '隨手記下 PP / EE / IA 的研究題目，避免開題空白'],
+      ['目標大學 Wishlist', '記錄夢校、地區、IB 門檻、HL 要求'],
+      ['標化考試規劃', 'SAT / IELTS / TOEFL 的目標分數與日期'],
+      ['年級時間軸', 'G9 探索 → G10 PP & 選課 → G11 CAS & EE → G12 早申']
     ]))}
 
-  ${sec('五、錯題本使用心法', '每週 10 分鐘', tbl(
-    ['時間點', '動作', '目的'],
-    [
-      ['做完題當下', '把錯的題目記到錯題本，寫下原因', '趁記憶猶新'],
-      ['隔 1–2 天', '看一遍原因，自己講一次正確解法', '加深印象'],
-      ['超過 7 天未掌握', '系統會提醒你，優先處理', '避免弱點累積'],
-      ['已掌握', '打勾，從此不再焦慮', '給自己成就感']
-    ]))}
-
-  ${sec('六、成績單與 Biotech Lab', 'MYP 換算', tbl(
+  ${sec('五、成績單與 Biotech Lab', 'MYP 換算', tbl(
     ['項目', '說明'],
     [
       ['一般科目', '4 個 Criterion，每項 0–8，總分 32'],
@@ -3061,11 +3293,10 @@ VIEWS.settings = function(){
 
   const usage = {};
   subs.forEach(s => usage[s] = 0);
-  state.srp.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.assignments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.assessments.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
   state.feedback.forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
-  (state.wrongBook || []).forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
+  (state.opportunities || []).forEach(x => { if (usage[x.subject] !== undefined) usage[x.subject]++; });
 
   const cf = Cloud.cfg;
   const provider = cf.provider;
@@ -3099,10 +3330,10 @@ VIEWS.settings = function(){
       <div><div class="stat-val">${subs.length}</div><div class="stat-lbl">科目</div></div></div>
     <div class="stat"><div class="stat-icon" style="background:rgba(16,185,129,.13)">💬</div>
       <div><div class="stat-val">${state.feedback.length}</div><div class="stat-lbl">反饋</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">📕</div>
-      <div><div class="stat-val">${(state.wrongBook||[]).length}</div><div class="stat-lbl">錯題</div></div></div>
-    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">🧠</div>
-      <div><div class="stat-val">${state.srp.length}</div><div class="stat-lbl">SRP</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(139,92,246,.13)">🧭</div>
+      <div><div class="stat-val">${(state.opportunities||[]).length}</div><div class="stat-lbl">機會</div></div></div>
+    <div class="stat"><div class="stat-icon" style="background:rgba(245,158,11,.14)">💡</div>
+      <div><div class="stat-val">${(state.ideas||[]).length}</div><div class="stat-lbl">靈感</div></div></div>
   </div>`;
 
   return `
@@ -3172,7 +3403,7 @@ VIEWS.settings = function(){
 
   <div class="card">
     <div class="card-head"><div class="card-title">ℹ️ 關於</div></div>
-    <div class="kv"><span>版本 Version</span><b>3.7（時間表整合）</b></div>
+    <div class="kv"><span>版本 Version</span><b>3.8（未來規劃）</b></div>
     <div class="kv"><span>適用 For</span><b>IB MYP Grade 9</b></div>
     <div class="kv"><span>儲存 Storage</span><b>Local + Cloud</b></div>
   </div>`;
@@ -3208,7 +3439,6 @@ function render(){
     if (Bubbles.running) Bubbles.destroy();
   }
 
-  // 處理時間表的「現在時間」紅線
   if (state.view === 'todo') {
     requestAnimationFrame(() => {
       const nowEl = document.getElementById('timelineNow');
@@ -3228,14 +3458,12 @@ function render(){
       } else {
         nowEl.style.display = 'none';
       }
-      
-      // 自動滾動到目前時間前後
       if (isToday) {
         const container = nowEl.closest('.timeline-grid');
         if (container) {
           const h = now.getHours();
           if (h >= 6 && h < 24) {
-            const scrollTarget = (h - 6) * 60 - 100; // 留一點上方空間
+            const scrollTarget = (h - 6) * 60 - 100;
             container.scrollTop = Math.max(0, scrollTarget);
           }
         }
@@ -3258,7 +3486,7 @@ document.addEventListener('click', e => {
     }
     state.view = newView;
     state.expandedAssessId = null;
-    state.editingTodoId = null; // 切換頁面時清除編輯狀態
+    state.editingTodoId = null;
     save(); render();
     window.scrollTo({top:0, behavior:'smooth'});
     return;
@@ -3316,51 +3544,11 @@ document.addEventListener('click', e => {
     }
     case 'inbox-jump': {
       state.view = el.dataset.source;
+      if (el.dataset.source === 'planning') state.planningTab = 'opps';
       save(); render();
       window.scrollTo({top:0, behavior:'smooth'});
       break;
     }
-
-    case 'wb-add-toggle': { state.wbAdding = !state.wbAdding; save(); render(); setTimeout(() => { const el2 = document.getElementById('wbNewTopic'); el2 && el2.focus(); }, 0); break; }
-    case 'wb-cancel': { state.wbAdding = false; save(); render(); break; }
-    case 'wb-save-new': {
-      const subject = $('#wbNewSubj').value;
-      const topic = $('#wbNewTopic').value.trim();
-      const date = $('#wbNewDate').value || todayISO();
-      const question = $('#wbNewQuestion').value.trim();
-      const reason = $('#wbNewReason').value.trim();
-      const correct = $('#wbNewCorrect').value.trim();
-      if (!question && !topic){ toast('⚠️ 請至少填寫題型或題目'); return; }
-      state.wrongBook = state.wrongBook || [];
-      state.wrongBook.unshift({ id: uid(), subject, topic, question, reason, correct, date, mastered: false });
-      state.wbAdding = false;
-      save(); render();
-      toast('✅ 已新增錯題');
-      break;
-    }
-    case 'wb-del': {
-      e.stopPropagation();
-      const id = el.dataset.id;
-      if (!id) break;
-      const target = (state.wrongBook || []).find(x => x.id === id);
-      if (!target) break;
-      if (!confirm('刪除此錯題紀錄？\nDelete this mistake?')) break;
-      state.wrongBook = state.wrongBook.filter(x => x.id !== id);
-      save(); render();
-      toast('🗑 已刪除 Deleted');
-      break;
-    }
-    case 'wb-toggle-master': {
-      const w = (state.wrongBook || []).find(x => x.id === el.dataset.id);
-      if (!w) break;
-      w.mastered = !w.mastered;
-      save(); render();
-      toast(w.mastered ? '✅ 已標記為掌握' : '📝 已標記為未掌握');
-      break;
-    }
-    case 'wb-toggle-detail': { const id = el.dataset.id; state.wbExpandedId = state.wbExpandedId === id ? null : id; save(); render(); break; }
-    case 'wb-filter-subj': { state.wbSubjectFilter = el.dataset.subj; save(); render(); break; }
-    case 'wb-filter-status': { state.wbStatusFilter = el.dataset.status; save(); render(); break; }
 
     case 'assess-toggle-detail': { const id = el.dataset.id; state.expandedAssessId = state.expandedAssessId === id ? null : id; save(); render(); break; }
 
@@ -3374,20 +3562,13 @@ document.addEventListener('click', e => {
       setTimeout(() => { const i = $('#newTodoInput'); i && i.focus(); }, 0);
       break;
     }
-    
-    // --- 時間表相關事件 ---
     case 'todo-edit-time': {
       state.editingTodoId = el.dataset.id;
       save(); render();
-      // 自動聚焦到第一個輸入框
       setTimeout(() => { const i = $(`#time-start-${el.dataset.id}`); i && i.focus(); }, 50);
       break;
     }
-    case 'todo-cancel-time': {
-      state.editingTodoId = null;
-      save(); render();
-      break;
-    }
+    case 'todo-cancel-time': { state.editingTodoId = null; save(); render(); break; }
     case 'todo-save-time': {
       const id = el.dataset.id;
       const t = state.todos.find(x => x.id === id);
@@ -3396,7 +3577,6 @@ document.addEventListener('click', e => {
       const e = $(`#time-end-${id}`).value;
       if (!s || !e) { toast('⚠️ 請完整填寫時間'); return; }
       if (timeToMins(s) >= timeToMins(e)) { toast('⚠️ 結束時間必須大於開始時間'); return; }
-      
       t.startTime = s;
       t.endTime = e;
       state.editingTodoId = null;
@@ -3409,19 +3589,13 @@ document.addEventListener('click', e => {
       if (!confirm('取消此項任務的排程？')) break;
       const t = state.todos.find(x => x.id === id);
       if (t) {
-        t.startTime = null;
-        t.endTime = null;
+        t.startTime = null; t.endTime = null;
         save(); render();
         toast('🗑 已取消排程');
       }
       break;
     }
-    
-    case 'pick-day': { 
-      state.selDate = el.dataset.date; 
-      state.editingTodoId = null;
-      save(); render(); break; 
-    }
+    case 'pick-day': { state.selDate = el.dataset.date; state.editingTodoId = null; save(); render(); break; }
     case 'week-shift': {
       const delta = parseInt(el.dataset.delta, 10);
       state.weekAnchor = delta === 0 ? todayISO() : addDays(state.weekAnchor || todayISO(), delta);
@@ -3430,27 +3604,7 @@ document.addEventListener('click', e => {
       save(); render();
       break;
     }
-    case 'srp-toggle': {
-      const it = state.srp.find(x => x.id === el.dataset.id);
-      if (!it) break;
-      const idx = parseInt(el.dataset.idx, 10);
-      if (!it.done) it.done = [false,false,false,false];
-      it.done[idx] = !it.done[idx];
-      save(); render();
-      break;
-    }
-    case 'srp-del': { state.srp = state.srp.filter(x => x.id !== el.dataset.id); save(); render(); break; }
-    case 'srp-add': {
-      const subj = $('#srpSubj').value;
-      const concept = $('#srpConcept').value.trim();
-      const start = $('#srpStart').value;
-      if (!concept){ $('#srpConcept').focus(); return; }
-      if (!start) return;
-      state.srp.push({id: uid(), subject: subj, concept, start, done:[false,false,false,false]});
-      save(); render();
-      toast('✅ 已新增知識點');
-      break;
-    }
+
     case 'assign-add': {
       const name = $('#asName').value.trim();
       if (!name){ $('#asName').focus(); return; }
@@ -3478,6 +3632,7 @@ document.addEventListener('click', e => {
       break;
     }
     case 'assess-del': { state.assessments = state.assessments.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
     case 'fb-filter': { state.fbFilter = el.dataset.subj; save(); render(); break; }
     case 'fb-grade-filter': { state.fbGradeFilter = el.dataset.grade; save(); render(); break; }
     case 'fb-add': { state.fbAdding = true; state.editingFbId = null; save(); render(); setTimeout(() => { const i = $('#fbNewName'); i && i.focus(); }, 0); break; }
@@ -3529,6 +3684,126 @@ document.addEventListener('click', e => {
     }
     case 'rcg-del': { state.reportGrades = (state.reportGrades || []).filter(x => x.id !== el.dataset.id); save(); render(); break; }
 
+    case 'planning-tab': {
+      state.planningTab = el.dataset.tab;
+      save(); render();
+      window.scrollTo({top:0, behavior:'smooth'});
+      break;
+    }
+    case 'opp-add-toggle': {
+      state.oppAdding = !state.oppAdding;
+      save(); render();
+      setTimeout(() => { const i = $('#oppNewName'); i && i.focus(); }, 0);
+      break;
+    }
+    case 'opp-cancel': { state.oppAdding = false; save(); render(); break; }
+    case 'opp-save-new': {
+      const name = $('#oppNewName').value.trim();
+      if (!name){ $('#oppNewName').focus(); return; }
+      state.opportunities.unshift({
+        id: uid(), name,
+        org: $('#oppNewOrg').value.trim(),
+        grade: $('#oppNewGrade').value.trim(),
+        category: $('#oppNewCat').value,
+        status: 'watch',
+        deadline: $('#oppNewDeadline').value || null,
+        notes: $('#oppNewNotes').value.trim(),
+        checklist: {essay:false, rec:false, transcript:false, fee:false, scholarship:false},
+        link: $('#oppNewLink').value.trim(),
+        hours:'', reflection:''
+      });
+      state.oppAdding = false;
+      save(); render();
+      toast('✅ 已新增機會');
+      break;
+    }
+    case 'opp-status': {
+      const o = state.opportunities.find(x => x.id === el.dataset.id);
+      if (!o) break;
+      o.status = el.dataset.status;
+      save(); render();
+      break;
+    }
+    case 'opp-del': {
+      if (!confirm('刪除此機會？')) break;
+      state.opportunities = state.opportunities.filter(x => x.id !== el.dataset.id);
+      save(); render();
+      toast('🗑 已刪除');
+      break;
+    }
+    case 'opp-toggle-detail': {
+      const id = el.dataset.id;
+      state.oppExpandedId = state.oppExpandedId === id ? null : id;
+      save(); render();
+      break;
+    }
+    case 'opp-filter-cat': { state.oppFilterCat = el.dataset.cat; save(); render(); break; }
+    case 'opp-filter-status': { state.oppFilterStatus = el.dataset.status; save(); render(); break; }
+
+    case 'ib-level': {
+      const g = state.ibSubjects[el.dataset.group];
+      if (!g) break;
+      g.level = el.dataset.level;
+      save(); render();
+      break;
+    }
+
+    case 'idea-add': {
+      const title = $('#ideaNewTitle').value.trim();
+      if (!title){ $('#ideaNewTitle').focus(); return; }
+      state.ideas.unshift({ id: uid(), title, subject: $('#ideaNewSubj').value, type: $('#ideaNewType').value, note: '', date: todayISO() });
+      save(); render();
+      toast('✅ 已加入靈感池');
+      break;
+    }
+    case 'idea-del': { state.ideas = state.ideas.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
+    case 'uni-add': {
+      const name = $('#uniNewName').value.trim();
+      if (!name){ $('#uniNewName').focus(); return; }
+      state.unis.push({
+        id: uid(), name,
+        major: $('#uniNewMajor').value.trim(),
+        region: $('#uniNewRegion').value.trim(),
+        ibReq: $('#uniNewIbReq').value.trim(),
+        hlReq: $('#uniNewHlReq').value.trim(),
+        note: ''
+      });
+      save(); render();
+      toast('✅ 已加入大學清單');
+      break;
+    }
+    case 'uni-del': { state.unis = state.unis.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
+    case 'test-add': {
+      const name = $('#testNewName').value.trim();
+      if (!name){ $('#testNewName').focus(); return; }
+      state.tests.push({
+        id: uid(), name,
+        target: $('#testNewTarget').value.trim(),
+        date: $('#testNewDate').value || null,
+        note: ''
+      });
+      save(); render();
+      toast('✅ 已加入考試規劃');
+      break;
+    }
+    case 'test-del': { state.tests = state.tests.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
+    case 'milestone-add': {
+      const grade = $('#msNewGrade').value.trim();
+      const label = $('#msNewLabel').value.trim();
+      if (!grade || !label){ toast('⚠️ 請填寫年級與里程碑'); return; }
+      state.milestones.push({
+        id: uid(), grade, label,
+        note: $('#msNewNote').value.trim()
+      });
+      save(); render();
+      toast('✅ 已新增里程碑');
+      break;
+    }
+    case 'milestone-del': { state.milestones = state.milestones.filter(x => x.id !== el.dataset.id); save(); render(); break; }
+
     case 'sched-day': { state.schedDay = parseInt(el.dataset.day, 10); save(); render(); break; }
     case 'sched-edit-toggle': { state.editingSchedule = true; save(); render(); break; }
     case 'sched-done': { state.editingSchedule = false; save(); render(); toast('✅ 課表已儲存'); break; }
@@ -3549,11 +3824,10 @@ document.addEventListener('click', e => {
       const trimmed = newName.trim();
       if (state.subjects.includes(trimmed) && trimmed !== oldName){ toast('⚠️ 名稱重複'); return; }
       state.subjects = state.subjects.map(s => s === oldName ? trimmed : s);
-      state.srp.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.assignments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.assessments.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       state.feedback.forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
-      (state.wrongBook || []).forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
+      (state.opportunities || []).forEach(x => { if (x.subject === oldName) x.subject = trimmed; });
       save(); render();
       break;
     }
@@ -3579,9 +3853,8 @@ document.addEventListener('click', e => {
             if (!data || typeof data !== 'object') throw new Error('invalid');
             state = normalizeState(data);
             state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-            state.wbAdding = false; state.wbExpandedId = null;
             state.expandedAssessId = null; state.highlightFeedbackId = null;
-            state.editingTodoId = null;
+            state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
             save(); applyTheme(); render();
             toast('✅ 已匯入');
           }catch(err){ toast('⚠️ 匯入失敗'); }
@@ -3597,9 +3870,8 @@ document.addEventListener('click', e => {
       localStorage.removeItem(LS_KEY);
       state = structuredClone(DEFAULT_STATE);
       state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-      state.wbAdding = false; state.wbExpandedId = null;
       state.expandedAssessId = null; state.highlightFeedbackId = null;
-      state.editingTodoId = null;
+      state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
       save(); applyTheme(); render();
       toast('↺ 已重設');
       break;
@@ -3772,9 +4044,7 @@ document.addEventListener('input', e => {
     if (!g) return;
     const def = RC_SUBJECTS.find(s => s.key === g.subject);
     let maxScore = (def && def.maxPer) || 8;
-    if (def && def.variants && g.variant){
-      maxScore = def.variants[g.variant].maxPer;
-    }
+    if (def && def.variants && g.variant) maxScore = def.variants[g.variant].maxPer;
     const idx = parseInt(el.dataset.idx, 10);
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     const raw = el.value.trim();
@@ -3824,9 +4094,7 @@ document.addEventListener('change', e => {
     if (!g) return;
     const def = RC_SUBJECTS.find(s => s.key === g.subject);
     let maxScore = (def && def.maxPer) || 8;
-    if (def && def.variants && g.variant){
-      maxScore = def.variants[g.variant].maxPer;
-    }
+    if (def && def.variants && g.variant) maxScore = def.variants[g.variant].maxPer;
     const idx = parseInt(el.dataset.idx, 10);
     if (!Array.isArray(g.scores)) g.scores = [null, null, null, null, null];
     let v = parseInt(el.value, 10);
@@ -3844,16 +4112,40 @@ document.addEventListener('change', e => {
     if (!state.schedule[day]) state.schedule[day] = ['','','','',''];
     state.schedule[day][period] = el.value;
     save();
+    return;
+  }
+  if (act === 'opp-field'){
+    const o = state.opportunities.find(x => x.id === el.dataset.id);
+    if (!o) return;
+    const field = el.dataset.field;
+    const v = el.value;
+    if (field === 'deadline'){ o.deadline = v || null; save(); render(); return; }
+    o[field] = v;
+    save();
+    if (field === 'name' || field === 'org') render();
+    return;
+  }
+  if (act === 'opp-check'){
+    const o = state.opportunities.find(x => x.id === el.dataset.id);
+    if (!o) return;
+    if (!o.checklist) o.checklist = {};
+    o.checklist[el.dataset.item] = el.checked;
+    save();
+    return;
+  }
+  if (act === 'ib-field'){
+    const g = state.ibSubjects[el.dataset.group];
+    if (!g) return;
+    g[el.dataset.field] = el.value;
+    save();
+    return;
   }
 });
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey){
-    const map = { newTodoInput:'todo-add', subjNewInput:'subj-add', rcgNewName:'rcg-add', srpConcept:'srp-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new' };
+    const map = { newTodoInput:'todo-add', subjNewInput:'subj-add', rcgNewName:'rcg-add', asName:'assign-add', evName:'assess-add', fbNewName:'fb-save-new', ideaNewTitle:'idea-add', oppNewName:'opp-save-new', msNewLabel:'milestone-add', testNewName:'test-add', uniNewName:'uni-add' };
     if (map[e.target.id]){ e.preventDefault(); const btn = document.querySelector(`[data-act="${map[e.target.id]}"]`); btn && btn.click(); return; }
-    if (e.target.id === 'wbNewCorrect' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); const btn = document.querySelector('[data-act="wb-save-new"]'); btn && btn.click(); }
-    
-    // 時間表儲存
     if (e.target.id && e.target.id.startsWith('time-start-')) {
       e.preventDefault();
       const id = e.target.id.replace('time-start-', '');
@@ -3895,12 +4187,11 @@ const CmdK = {
   commands: [
     {id:'nav-master',    icon:'🏠', label:'主控台 Dashboard',      hint:'', run: () => state.view = 'master'},
     {id:'nav-todo',      icon:'📝', label:'待辦事項 To-Do',        hint:'', run: () => state.view = 'todo'},
-    {id:'nav-srp',       icon:'⏰', label:'間隔複習 SRP',           hint:'', run: () => state.view = 'srp'},
     {id:'nav-assign',    icon:'✍️', label:'作業追蹤 Assignments',  hint:'', run: () => state.view = 'assign'},
     {id:'nav-assess',    icon:'📚', label:'考試計劃 Assessments',  hint:'', run: () => state.view = 'assess'},
     {id:'nav-feedback',  icon:'💬', label:'考試反饋 Feedback',     hint:'', run: () => state.view = 'feedback'},
-    {id:'nav-wrongbook', icon:'📕', label:'錯題本 Mistake Book',   hint:'', run: () => state.view = 'wrongbook'},
     {id:'nav-report',    icon:'💯', label:'成績單 Report Cards',   hint:'', run: () => state.view = 'report'},
+    {id:'nav-planning',  icon:'🧭', label:'未來規劃 Planning',     hint:'', run: () => state.view = 'planning'},
     {id:'nav-detox',     icon:'🌿', label:'解壓空間 Detox',        hint:'', run: () => state.view = 'detox'},
     {id:'nav-schedule',  icon:'📅', label:'課表 Schedule',         hint:'', run: () => state.view = 'schedule'},
     {id:'nav-guide',     icon:'📋', label:'操作指南 Guide',         hint:'', run: () => state.view = 'guide'},
@@ -3956,6 +4247,43 @@ const CmdK = {
             state.todos.push({id: uid(), date: state.selDate || todayISO(), text, done: false, startTime: null, endTime: null});
             state.view = 'todo';
             toast('✅ 已新增待辦');
+          }
+        });
+      }
+    }
+    if (q.startsWith('opp ') || q.startsWith('opportunity ')){
+      const text = q.replace(/^(opp|opportunity)\s+/i, '').trim();
+      if (text){
+        items.unshift({
+          id:'add-opp', icon:'🧭',
+          label:`新增機會：「${text}」`,
+          hint:'Enter',
+          run: () => {
+            state.opportunities.unshift({
+              id: uid(), name: text, org:'', grade:'', category:'summer',
+              status:'watch', deadline:null, notes:'',
+              checklist:{essay:false, rec:false, transcript:false, fee:false, scholarship:false},
+              link:'', hours:'', reflection:''
+            });
+            state.view = 'planning';
+            state.planningTab = 'opps';
+            toast('✅ 已新增機會');
+          }
+        });
+      }
+    }
+    if (q.startsWith('idea ') || q.startsWith('ee ')){
+      const text = q.replace(/^(idea|ee)\s+/i, '').trim();
+      if (text){
+        items.unshift({
+          id:'add-idea', icon:'💡',
+          label:`新增探究靈感：「${text}」`,
+          hint:'Enter',
+          run: () => {
+            state.ideas.unshift({ id: uid(), title: text, subject:'', type:'EE', note:'', date: todayISO() });
+            state.view = 'planning';
+            state.planningTab = 'roadmap';
+            toast('✅ 已新增靈感');
           }
         });
       }
@@ -4038,9 +4366,8 @@ $('#resetBtn').addEventListener('click', () => {
   localStorage.removeItem(LS_KEY);
   state = structuredClone(DEFAULT_STATE);
   state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-  state.wbAdding = false; state.wbExpandedId = null;
   state.expandedAssessId = null; state.highlightFeedbackId = null;
-  state.editingTodoId = null;
+  state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
   save(); applyTheme(); render();
   toast('↺ 已重設');
 });
@@ -4116,9 +4443,8 @@ loadState();
   }
 })();
 state.editingFbId = null; state.fbAdding = false; state.editingSchedule = false;
-state.wbAdding = false; state.wbExpandedId = null;
 state.expandedAssessId = null; state.highlightFeedbackId = null;
-state.editingTodoId = null;
+state.editingTodoId = null; state.oppAdding = false; state.oppExpandedId = null;
 applyTheme();
 render();
 pomoRender();
